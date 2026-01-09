@@ -17,22 +17,34 @@
         gap: 15px;
         width: auto;
         height: fit-content;
+        margin-top: 30px;
       }
+
       .kqht {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         padding: 0px;
-        width: fit-content;
+        width: 100%;
+        flex: 2;
         height: fit-content;
         background: #ffffff;
         box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
         border-radius: 8px;
-
-        flex: none;
         order: 0;
         align-self: stretch;
-        flex-grow: 0;
+      }
+
+      .tkd {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        flex: 1;
+        height: fit-content;
+        background: #ffffff;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
       }
       .header-kqht {
         display: flex;
@@ -40,7 +52,6 @@
         justify-content: space-between;
         align-items: center;
         padding: 16px 19.99px 16px 20px;
-        gap: 334.93px;
         width: 95%;
         height: fit-content;
         background: #ffffff;
@@ -154,27 +165,21 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 26px;
-        /* identical to box height, or 160% */
         display: flex;
         align-items: center;
 
         color: #333333;
 
-        /* Inside auto layout */
         flex: none;
         order: 1;
         flex-grow: 0;
       }
       .point-green {
-        /* Rectangle 48 */
-
         width: 10px;
         height: 10px;
 
         background: #46a357;
         border-radius: 10px;
-
-        /* Inside auto layout */
         flex: none;
         order: 0;
         flex-grow: 0;
@@ -188,46 +193,31 @@
         background: #153898;
         border-radius: 10px;
 
-        /* Inside auto layout */
         flex: none;
         order: 0;
         flex-grow: 0;
       }
       .note {
-        /* Container */
-
-        /* Auto layout */
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 0px 0px 0.54px;
         gap: 12px;
 
-        width: 885px;
+        /* width: 885px; */
+        width: 100%;
         height: 26.54px;
-
-        /* Inside auto layout */
         flex: none;
         order: 0;
         align-self: stretch;
         flex-grow: 0;
-      }
-      .tkd {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        height: 413.39px;
-        background: #ffffff;
-        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
-        border-radius: 8px;
       }
       .header-tkd {
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 15.05px 20px 15.9843px;
-        width: 540px;
+        width: 100%;
         height: 62.82px;
         background: #ffffff;
       }
@@ -264,7 +254,7 @@
         flex-grow: 0;
       }
       .grade-chart {
-        width: 330%;
+        width: 100%;
         padding: 16px;
         font-family: Arial, sans-serif;
       }
@@ -370,417 +360,419 @@
         </nav>
       </aside>
       <!-- Details -->
-      <section class="grid-2-cols section-info">
-        <div class="card">
-          <div class="card-header">
-            <h3>Lớp học phần</h3>
-            <select class="semester-select">
-              <option>HK2 (2025 - 2026)</option>
-            </select>
-          </div>
-          <div class="card-body">
-            <div class="course-list">
-              <div class="course-item">
-                <div class="course-code">420300154901</div>
-                <div class="course-name">Kiến trúc và Thiết kế Phần mềm</div>
-                <div class="course-credits">Số tín chỉ: 4</div>
-              </div>
-              <div class="course-item">
-                <div class="course-code">420300314705</div>
-                <div class="course-name">
-                  Công nghệ mới trong phát triển ứng dụng CNTT
-                </div>
-                <div class="course-credits">Số tín chỉ: 3</div>
-              </div>
-              <div class="course-item">
-                <div class="course-code">420300309801</div>
-                <div class="course-name">Thực tập doanh nghiệp</div>
-                <div class="course-credits">Số tín chỉ: 5</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header">
-            <h3>Tiến độ học tập</h3>
-          </div>
-          <div class="card-body">
-            <div class="progress-container">
-              <div class="progress-circle">
-                <svg width="200" height="200" viewBox="0 0 200 200">
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="80"
-                    fill="none"
-                    stroke="#E8F4FF"
-                    stroke-width="20"
-                  />
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="80"
-                    fill="none"
-                    stroke="#3B9AFF"
-                    stroke-width="20"
-                    stroke-dasharray="502.4"
-                    stroke-dashoffset="0"
-                    transform="rotate(-90 100 100)"
-                    stroke-linecap="round"
-                  />
-
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="60"
-                    fill="none"
-                    stroke="#E8F8F0"
-                    stroke-width="20"
-                  />
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="60"
-                    fill="none"
-                    stroke="#C4D4D9"
-                    stroke-width="20"
-                    stroke-dasharray="376.8"
-                    stroke-dashoffset="33.91"
-                    transform="rotate(-90 100 100)"
-                    stroke-linecap="round"
-                  />
-                  <circle
-                    cx="100"
-                    cy="100"
-                    r="60"
-                    fill="none"
-                    stroke="#00D95F"
-                    stroke-width="20"
-                    stroke-dasharray="376.8"
-                    stroke-dashoffset="64.056"
-                    transform="rotate(-90 100 100)"
-                    stroke-linecap="round"
-                  />
-                </svg>
-                <div class="progress-percentage">83%</div>
-              </div>
-
-              <div class="progress-legend">
-                <div class="legend-item">
-                  <span class="legend-dot completed"></span>
-                  <span class="legend-text"
-                    >Đã hoàn thành: <strong>135 tín chỉ</strong></span
-                  >
-                </div>
-                <div class="legend-item">
-                  <span class="legend-dot current"></span>
-                  <span class="legend-text"
-                    >Tổng tín chỉ: <strong>162 tín chỉ</strong></span
-                  >
-                </div>
-                <div class="legend-item">
-                  <span class="legend-dot remaining"></span>
-                  <span class="legend-text"
-                    >Đang học kỳ này: <strong>12 tín chỉ</strong></span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header">
-            <h3>Thông tin học bổng</h3>
-            <select class="semester-select">
-              <option>HK2 (2025 - 2026)</option>
-            </select>
-          </div>
-          <div class="card-body">
-            <div class="scholarship-list">
-              <div class="scholarship-item scholarship-approved">
-                <div class="scholarship-header">
-                  <div class="scholarship-name">
-                    Học bổng khuyến khích học tập
-                  </div>
-                  <span class="scholarship-status status-approved">
-                    <i class="fas fa-check-circle"></i> Đã duyệt
-                  </span>
-                </div>
-                <div class="scholarship-details">
-                  <div class="scholarship-amount-approved">2.000.000 VNĐ</div>
-                  <div class="scholarship-semester">HK1 2024-2025</div>
-                </div>
-                <div class="scholarship-date">Ngày duyệt: 15/01/2025</div>
-              </div>
-              <div class="scholarship-item scholarship-pending">
-                <div class="scholarship-header">
-                  <div class="scholarship-name">Học bổng tài năng CNTT</div>
-                  <span class="scholarship-status status-pending">
-                    <i class="fas fa-clock"></i> Đang xét duyệt
-                  </span>
-                </div>
-                <div class="scholarship-details">
-                  <div class="scholarship-amount-pending">5.000.000 VNĐ</div>
-                  <div class="scholarship-semester">HK2 2024-2025</div>
-                </div>
-                <div class="scholarship-date">Ngày đăng ký: 02/02/2025</div>
-                <div class="scholarship-progress">
-                  <div class="scholarship-progress-bar">
-                    <div
-                      class="scholarship-progress-fill"
-                      style="width: 65%"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-              <div class="scholarship-summary">
-                <div class="summary-item">
-                  <span
-                    >Tổng học bổng đã nhận: <strong>2.000.000 VNĐ</strong></span
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="button-group">
-              <button class="btn-primary-green btn-primary">
-                Xem chi tiết
-              </button>
-              <button class="btn-primary-blue btn-primary">
-                Đăng ký học bổng
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <div class="section-3">
-        <div class="kqht">
-          <!-- header -->
-          <div class="header-kqht">
-            <h1 class="title-kqht">Kết quả học tập theo học kỳ</h1>
-            <div>
-              <select name="" id="thangdiem">
-                <option value="Thang điểm 4">Thang điểm 4</option>
-                <option value="Thang điểm 10">Thang điểm 10</option>
+      <div class="dashboard-content">
+        <section class="grid-2-cols section-info">
+          <div class="card">
+            <div class="card-header">
+              <h3>Lớp học phần</h3>
+              <select class="semester-select">
+                <option>HK2 (2025 - 2026)</option>
               </select>
             </div>
+            <div class="card-body">
+              <div class="course-list">
+                <div class="course-item">
+                  <div class="course-code">420300154901</div>
+                  <div class="course-name">Kiến trúc và Thiết kế Phần mềm</div>
+                  <div class="course-credits">Số tín chỉ: 4</div>
+                </div>
+                <div class="course-item">
+                  <div class="course-code">420300314705</div>
+                  <div class="course-name">
+                    Công nghệ mới trong phát triển ứng dụng CNTT
+                  </div>
+                  <div class="course-credits">Số tín chỉ: 3</div>
+                </div>
+                <div class="course-item">
+                  <div class="course-code">420300309801</div>
+                  <div class="course-name">Thực tập doanh nghiệp</div>
+                  <div class="course-credits">Số tín chỉ: 5</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <!-- biểu đồ -->
-          <div
-            style="
-              display: flex;
-              flex-direction: column;
-              align-items: flex-start;
-              padding: 20px 15px;
-              height: 100%;
+          <div class="card">
+            <div class="card-header">
+              <h3>Tiến độ học tập</h3>
+            </div>
+            <div class="card-body">
+              <div class="progress-container">
+                <div class="progress-circle">
+                  <svg width="200" height="200" viewBox="0 0 200 200">
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="80"
+                      fill="none"
+                      stroke="#E8F4FF"
+                      stroke-width="20"
+                    />
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="80"
+                      fill="none"
+                      stroke="#3B9AFF"
+                      stroke-width="20"
+                      stroke-dasharray="502.4"
+                      stroke-dashoffset="0"
+                      transform="rotate(-90 100 100)"
+                      stroke-linecap="round"
+                    />
 
-              flex: none;
-              order: 1;
-              align-self: stretch;
-              flex-grow: 0;
-            "
-          >
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="60"
+                      fill="none"
+                      stroke="#E8F8F0"
+                      stroke-width="20"
+                    />
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="60"
+                      fill="none"
+                      stroke="#C4D4D9"
+                      stroke-width="20"
+                      stroke-dasharray="376.8"
+                      stroke-dashoffset="33.91"
+                      transform="rotate(-90 100 100)"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="60"
+                      fill="none"
+                      stroke="#00D95F"
+                      stroke-width="20"
+                      stroke-dasharray="376.8"
+                      stroke-dashoffset="64.056"
+                      transform="rotate(-90 100 100)"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <div class="progress-percentage">83%</div>
+                </div>
+
+                <div class="progress-legend">
+                  <div class="legend-item">
+                    <span class="legend-dot completed"></span>
+                    <span class="legend-text"
+                      >Đã hoàn thành: <strong>135 tín chỉ</strong></span
+                    >
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot current"></span>
+                    <span class="legend-text"
+                      >Tổng tín chỉ: <strong>162 tín chỉ</strong></span
+                    >
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot remaining"></span>
+                    <span class="legend-text"
+                      >Đang học kỳ này: <strong>12 tín chỉ</strong></span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Thông tin học bổng</h3>
+              <select class="semester-select">
+                <option>HK2 (2025 - 2026)</option>
+              </select>
+            </div>
+            <div class="card-body">
+              <div class="scholarship-list">
+                <div class="scholarship-item scholarship-approved">
+                  <div class="scholarship-header">
+                    <div class="scholarship-name">
+                      Học bổng khuyến khích học tập
+                    </div>
+                    <span class="scholarship-status status-approved">
+                      <i class="fas fa-check-circle"></i> Đã duyệt
+                    </span>
+                  </div>
+                  <div class="scholarship-details">
+                    <div class="scholarship-amount-approved">2.000.000 VNĐ</div>
+                    <div class="scholarship-semester">HK1 2024-2025</div>
+                  </div>
+                  <div class="scholarship-date">Ngày duyệt: 15/01/2025</div>
+                </div>
+                <div class="scholarship-item scholarship-pending">
+                  <div class="scholarship-header">
+                    <div class="scholarship-name">Học bổng tài năng CNTT</div>
+                    <span class="scholarship-status status-pending">
+                      <i class="fas fa-clock"></i> Đang xét duyệt
+                    </span>
+                  </div>
+                  <div class="scholarship-details">
+                    <div class="scholarship-amount-pending">5.000.000 VNĐ</div>
+                    <div class="scholarship-semester">HK2 2024-2025</div>
+                  </div>
+                  <div class="scholarship-date">Ngày đăng ký: 02/02/2025</div>
+                  <div class="scholarship-progress">
+                    <div class="scholarship-progress-bar">
+                      <div
+                        class="scholarship-progress-fill"
+                        style="width: 65%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="scholarship-summary">
+                  <div class="summary-item">
+                    <span
+                      >Tổng học bổng đã nhận:
+                      <strong>2.000.000 VNĐ</strong></span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="button-group">
+                <button class="btn-primary-green btn-primary">
+                  Xem chi tiết
+                </button>
+                <button class="btn-primary-blue btn-primary">
+                  Đăng ký học bổng
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-3 section-info">
+          <div class="kqht">
+            <!-- header -->
+            <div class="header-kqht">
+              <h1 class="title-kqht">Kết quả học tập theo học kỳ</h1>
+              <div>
+                <select name="" id="thangdiem">
+                  <option value="Thang điểm 4">Thang điểm 4</option>
+                  <option value="Thang điểm 10">Thang điểm 10</option>
+                </select>
+              </div>
+            </div>
+            <!-- biểu đồ -->
             <div
               style="
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 5px 0px;
-                width: 885px;
+                padding: 20px 15px;
                 height: 100%;
 
-                /* Inside auto layout */
                 flex: none;
-                order: 0;
+                order: 1;
                 align-self: stretch;
                 flex-grow: 0;
               "
             >
-              <div class="chart">
-                <svg viewBox="0 0 860 340" preserveAspectRatio="none">
-                  <!-- Y labels -->
-                  <g class="y-labels">
-                    <text x="10" y="55">4.0</text>
-                    <text x="10" y="105">3.8</text>
-                    <text x="10" y="155">3.6</text>
-                    <text x="10" y="205">3.4</text>
-                    <text x="10" y="255">3.2</text>
-                    <text x="10" y="305">3.0</text>
-                  </g>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 5px 0px;
+                  width: 100%;
+                  height: 100%;
 
-                  <!-- grid -->
-                  <g class="grid">
-                    <line x1="60" y1="50" x2="840" y2="50" />
-                    <line x1="60" y1="100" x2="840" y2="100" />
-                    <line x1="60" y1="150" x2="840" y2="150" />
-                    <line x1="60" y1="200" x2="840" y2="200" />
-                    <line x1="60" y1="250" x2="840" y2="250" />
-                    <line x1="60" y1="300" x2="840" y2="300" />
-                  </g>
+                  /* Inside auto layout */
+                  flex: none;
+                  order: 0;
+                  align-self: stretch;
+                  flex-grow: 0;
+                "
+              >
+                <div class="chart">
+                  <svg viewBox="0 0 860 340" preserveAspectRatio="none">
+                    <!-- Y labels -->
+                    <g class="y-labels">
+                      <text x="10" y="55">4.0</text>
+                      <text x="10" y="105">3.8</text>
+                      <text x="10" y="155">3.6</text>
+                      <text x="10" y="205">3.4</text>
+                      <text x="10" y="255">3.2</text>
+                      <text x="10" y="305">3.0</text>
+                    </g>
 
-                  <!-- Học kỳ-->
-                  <path
-                    class="area blue"
-                    d="M60,200 
+                    <!-- grid -->
+                    <g class="grid">
+                      <line x1="60" y1="50" x2="840" y2="50" />
+                      <line x1="60" y1="100" x2="840" y2="100" />
+                      <line x1="60" y1="150" x2="840" y2="150" />
+                      <line x1="60" y1="200" x2="840" y2="200" />
+                      <line x1="60" y1="250" x2="840" y2="250" />
+                      <line x1="60" y1="300" x2="840" y2="300" />
+                    </g>
+
+                    <!-- Học kỳ-->
+                    <path
+                      class="area blue"
+                      d="M60,200 
                                   L196,185 
                                   L332,145 
                                   L468,165 
                                   L604,135 
                                   L740,150
                                   L740,300 L60,300 Z"
-                  />
+                    />
 
-                  <!-- Tích lũy -->
-                  <path
-                    class="area green"
-                    d="M60,200 
+                    <!-- Tích lũy -->
+                    <path
+                      class="area green"
+                      d="M60,200 
                                   L196,195 
                                   L332,180 
                                   L468,170 
                                   L604,160 
                                   L740,155
                                   L740,300 L60,300 Z"
-                  />
+                    />
 
-                  <!-- line -->
-                  <polyline
-                    class="line blue"
-                    points="60,200 196,185 332,145 468,165 604,135 740,150"
-                  />
+                    <!-- line -->
+                    <polyline
+                      class="line blue"
+                      points="60,200 196,185 332,145 468,165 604,135 740,150"
+                    />
 
-                  <polyline
-                    class="line green"
-                    points="60,200 196,195 332,180 468,170 604,160 740,155"
-                  />
+                    <polyline
+                      class="line green"
+                      points="60,200 196,195 332,180 468,170 604,160 740,155"
+                    />
 
-                  <!-- dot -->
-                  <g class="dots blue">
-                    <circle cx="60" cy="200" r="4" />
-                    <circle cx="196" cy="185" r="4" />
-                    <circle cx="332" cy="145" r="4" />
-                    <circle cx="468" cy="165" r="4" />
-                    <circle cx="604" cy="135" r="4" />
-                    <circle cx="740" cy="150" r="4" />
-                  </g>
+                    <!-- dot -->
+                    <g class="dots blue">
+                      <circle cx="60" cy="200" r="4" />
+                      <circle cx="196" cy="185" r="4" />
+                      <circle cx="332" cy="145" r="4" />
+                      <circle cx="468" cy="165" r="4" />
+                      <circle cx="604" cy="135" r="4" />
+                      <circle cx="740" cy="150" r="4" />
+                    </g>
 
-                  <g class="dots green">
-                    <circle cx="60" cy="200" r="4" />
-                    <circle cx="196" cy="195" r="4" />
-                    <circle cx="332" cy="180" r="4" />
-                    <circle cx="468" cy="170" r="4" />
-                    <circle cx="604" cy="160" r="4" />
-                    <circle cx="740" cy="155" r="4" />
-                  </g>
+                    <g class="dots green">
+                      <circle cx="60" cy="200" r="4" />
+                      <circle cx="196" cy="195" r="4" />
+                      <circle cx="332" cy="180" r="4" />
+                      <circle cx="468" cy="170" r="4" />
+                      <circle cx="604" cy="160" r="4" />
+                      <circle cx="740" cy="155" r="4" />
+                    </g>
+                    <!-- x labels -->
+                    <g class="x-labels">
+                      <text x="60" y="330">HK1/2022</text>
+                      <text x="196" y="330">HK2/2022</text>
+                      <text x="332" y="330">HK1/2023</text>
+                      <text x="468" y="330">HK2/2023</text>
+                      <text x="604" y="330">HK1/2024</text>
+                      <text x="740" y="330">HK2/2024</text>
+                    </g>
+                  </svg>
+                </div>
+              </div>
 
-                  <!-- x labels -->
-                  <g class="x-labels">
-                    <text x="60" y="330">HK1/2022</text>
-                    <text x="196" y="330">HK2/2022</text>
-                    <text x="332" y="330">HK1/2023</text>
-                    <text x="468" y="330">HK2/2023</text>
-                    <text x="604" y="330">HK1/2024</text>
-                    <text x="740" y="330">HK2/2024</text>
-                  </g>
-                </svg>
+              <div>
+                <div class="note">
+                  <p class="point-blue"></p>
+                  <p class="gpa">GPA học kỳ</p>
+                </div>
+                <div class="note">
+                  <p class="point-green"></p>
+                  <p class="gpa">GPA tích lũy</p>
+                </div>
               </div>
             </div>
-
+          </div>
+          <!-- Thống kê điểm -->
+          <!-- header -->
+          <div class="tkd">
+            <div class="header-tkd">
+              <h1 class="title-tkd">Thống kê điểm</h1>
+              <div>
+                <select name="" id="select-hk">
+                  <option value="HK1 (2025-2026)">HK1 (2025-2026)</option>
+                  <option value="HK2 (2024-2025)">HK2 (2024-2025)</option>
+                  <option value="HK1 (2024-2025)">HK1 (2024-2025)</option>
+                  <option value="HK2 (2023-2024)">HK2 (2023-2024)</option>
+                  <option value="HK1 (2023-2024)">HK1 (2023-2024)</option>
+                  <option value="HK2 (2022-2023)">HK2 (2022-2023)</option>
+                  <option value="HK1 (2022-2023)">HK1 (2022-2023)</option>
+                </select>
+              </div>
+            </div>
             <div>
-              <div class="note">
-                <p class="point-blue"></p>
-                <p class="gpa">GPA học kỳ</p>
-              </div>
-              <div class="note">
-                <p class="point-green"></p>
-                <p class="gpa">GPA tích lũy</p>
+              <div class="grade-chart">
+                <div class="row">
+                  <span class="label">A+</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 80%"></div>
+                  </div>
+                  <span class="count">4 môn</span>
+                </div>
+
+                <div class="row">
+                  <span class="label">A</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 40%"></div>
+                  </div>
+                  <span class="count">2 môn</span>
+                </div>
+
+                <div class="row">
+                  <span class="label">B+</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
+
+                <div class="row">
+                  <span class="label">B</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
+
+                <div class="row">
+                  <span class="label">C+</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
+
+                <div class="row">
+                  <span class="label">C</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <!-- Thống kê điểm -->
-        <!-- header -->
-        <div class="tkd">
-          <div class="header-tkd">
-            <h1 class="title-tkd">Thống kê điểm</h1>
             <div>
-              <select name="" id="select-hk">
-                <option value="HK1 (2025-2026)">HK1 (2025-2026)</option>
-                <option value="HK2 (2024-2025)">HK2 (2024-2025)</option>
-                <option value="HK1 (2024-2025)">HK1 (2024-2025)</option>
-                <option value="HK2 (2023-2024)">HK2 (2023-2024)</option>
-                <option value="HK1 (2023-2024)">HK1 (2023-2024)</option>
-                <option value="HK2 (2022-2023)">HK2 (2022-2023)</option>
-                <option value="HK1 (2022-2023)">HK1 (2022-2023)</option>
-              </select>
+              <p
+                style="
+                  font-weight: 400;
+                  align-items: center;
+                  margin-top: -1px;
+                  margin-left: 19px;
+                  width: 550px;
+                  text-align: center;
+                  font-size: 14px;
+                  color: #333333;
+                "
+              >
+                Tổng môn đã học: 8
+              </p>
             </div>
           </div>
-          <div>
-            <div class="grade-chart">
-              <div class="row">
-                <span class="label">A+</span>
-                <div class="bar">
-                  <div class="fill" style="width: 80%"></div>
-                </div>
-                <span class="count">4 môn</span>
-              </div>
-
-              <div class="row">
-                <span class="label">A</span>
-                <div class="bar">
-                  <div class="fill" style="width: 40%"></div>
-                </div>
-                <span class="count">2 môn</span>
-              </div>
-
-              <div class="row">
-                <span class="label">B+</span>
-                <div class="bar">
-                  <div class="fill" style="width: 20%"></div>
-                </div>
-                <span class="count">1 môn</span>
-              </div>
-
-              <div class="row">
-                <span class="label">B</span>
-                <div class="bar">
-                  <div class="fill" style="width: 20%"></div>
-                </div>
-                <span class="count">1 môn</span>
-              </div>
-
-              <div class="row">
-                <span class="label">C+</span>
-                <div class="bar">
-                  <div class="fill" style="width: 20%"></div>
-                </div>
-                <span class="count">1 môn</span>
-              </div>
-
-              <div class="row">
-                <span class="label">C</span>
-                <div class="bar">
-                  <div class="fill" style="width: 20%"></div>
-                </div>
-                <span class="count">1 môn</span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <p
-              style="
-                font-weight: 400;
-                align-items: center;
-                margin-top: -1px;
-                margin-left: 19px;
-                width: 550px;
-                text-align: center;
-                font-size: 14px;
-                color: #333333;
-              "
-            >
-              Tổng môn đã học: 8
-            </p>
-          </div>
-        </div>
+        </section>
       </div>
     </main>
   </body>

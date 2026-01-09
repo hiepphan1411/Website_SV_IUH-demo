@@ -52,6 +52,7 @@ body {
   border-radius: 8px;
   box-shadow: var(--shadow);
   overflow: hidden;
+  height: 500px;
 }
 
 .card-header {
@@ -179,7 +180,7 @@ body {
 .scholarship-amount-approved {
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--text-blue);
+  color: var(--success-color);
   font-weight: bold;
 }
 .scholarship-amount-pending {
@@ -352,6 +353,52 @@ body {
 
 .main-content {
   display: flex;
-  max-width: 1920px;
   margin: 0 auto;
+}
+.dashboard-content {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+  .section-3 {
+    flex-direction: column;
+  }
+
+  .kqht,
+  .tkd {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .grid-2-cols {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section-3 {
+    flex-direction: column;
+  }
+
+  .kqht,
+  .tkd {
+    flex: 1;
+    width: 100%;
+  }
 }
