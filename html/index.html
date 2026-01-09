@@ -9,7 +9,299 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style></style>
+    <style>
+      .section-3 {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 15px;
+        width: auto;
+        height: fit-content;
+      }
+      .kqht {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        width: fit-content;
+        height: fit-content;
+        background: #ffffff;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+      }
+      .header-kqht {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 19.99px 16px 20px;
+        gap: 334.93px;
+        width: 95%;
+        height: fit-content;
+        background: #ffffff;
+
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+        margin: -4.26326e-14px 0px;
+      }
+      .title-kqht {
+        width: fit-content;
+        height: fit-content;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 26px;
+
+        display: flex;
+        align-items: center;
+        color: #505050;
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+      }
+      #thangdiem {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 15px;
+        gap: 12px;
+        margin: 0 auto;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 6px;
+
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+      }
+      .chart {
+        width: 100%;
+        background: #fff;
+        font-family: Arial, sans-serif;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .grid line {
+        stroke: #e6e6e6;
+        stroke-width: 1;
+      }
+
+      .line {
+        fill: none;
+        stroke-width: 2.5;
+      }
+
+      .line.blue {
+        stroke: #1f4fd8;
+      }
+      .line.green {
+        stroke: #2ca24c;
+      }
+
+      .area {
+        opacity: 0.15;
+      }
+
+      .area.blue {
+        fill: #1f4fd8;
+      }
+      .area.green {
+        fill: #2ca24c;
+      }
+
+      .dots circle {
+        stroke: #fff;
+        stroke-width: 1;
+      }
+
+      .dots.blue circle {
+        fill: #1f4fd8;
+      }
+      .dots.green circle {
+        fill: #2ca24c;
+      }
+
+      .y-labels text,
+      .x-labels text {
+        fill: #666;
+        font-size: 12px;
+      }
+
+      .x-labels text {
+        text-anchor: middle;
+      }
+
+      .gpa {
+        width: 85px;
+        height: 26px;
+
+        font-family: "Segoe UI";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+        /* identical to box height, or 160% */
+        display: flex;
+        align-items: center;
+
+        color: #333333;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+      }
+      .point-green {
+        /* Rectangle 48 */
+
+        width: 10px;
+        height: 10px;
+
+        background: #46a357;
+        border-radius: 10px;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+      }
+      .point-blue {
+        /* Rectangle 48 */
+
+        width: 10px;
+        height: 10px;
+
+        background: #153898;
+        border-radius: 10px;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+      }
+      .note {
+        /* Container */
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px 0px 0.54px;
+        gap: 12px;
+
+        width: 885px;
+        height: 26.54px;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+      }
+      .tkd {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        height: 413.39px;
+        background: #ffffff;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+      }
+      .header-tkd {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 15.05px 20px 15.9843px;
+        width: 540px;
+        height: 62.82px;
+        background: #ffffff;
+      }
+      .title-tkd {
+        width: fit-content;
+        height: fit-content;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 26px;
+        display: flex;
+        align-items: center;
+        color: #505050;
+
+        flex: none;
+        order: 0;
+        flex-grow: 1;
+      }
+      #select-hk {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 15px;
+        gap: 12px;
+        width: fit-content;
+        height: fit-content;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+      }
+      .grade-chart {
+        width: 330%;
+        padding: 16px;
+        font-family: Arial, sans-serif;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 40px 1fr 60px;
+        align-items: center;
+        gap: 16px;
+        margin: 18px 0;
+      }
+
+      .label {
+        font-weight: 600;
+        color: #1f3fb8;
+      }
+
+      .bar {
+        height: 14px;
+        background: #f2f9fd;
+
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .fill {
+        height: 100%;
+
+        background: #5fa8e8;
+        border-radius: 8px;
+      }
+
+      .count {
+        text-align: right;
+        color: #333;
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -260,6 +552,236 @@
           </div>
         </div>
       </section>
+      <div class="section-3">
+        <div class="kqht">
+          <!-- header -->
+          <div class="header-kqht">
+            <h1 class="title-kqht">Kết quả học tập theo học kỳ</h1>
+            <div>
+              <select name="" id="thangdiem">
+                <option value="Thang điểm 4">Thang điểm 4</option>
+                <option value="Thang điểm 10">Thang điểm 10</option>
+              </select>
+            </div>
+          </div>
+          <!-- biểu đồ -->
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              padding: 20px 15px;
+              height: 100%;
+
+              flex: none;
+              order: 1;
+              align-self: stretch;
+              flex-grow: 0;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 5px 0px;
+                width: 885px;
+                height: 100%;
+
+                /* Inside auto layout */
+                flex: none;
+                order: 0;
+                align-self: stretch;
+                flex-grow: 0;
+              "
+            >
+              <div class="chart">
+                <svg viewBox="0 0 860 340" preserveAspectRatio="none">
+                  <!-- Y labels -->
+                  <g class="y-labels">
+                    <text x="10" y="55">4.0</text>
+                    <text x="10" y="105">3.8</text>
+                    <text x="10" y="155">3.6</text>
+                    <text x="10" y="205">3.4</text>
+                    <text x="10" y="255">3.2</text>
+                    <text x="10" y="305">3.0</text>
+                  </g>
+
+                  <!-- grid -->
+                  <g class="grid">
+                    <line x1="60" y1="50" x2="840" y2="50" />
+                    <line x1="60" y1="100" x2="840" y2="100" />
+                    <line x1="60" y1="150" x2="840" y2="150" />
+                    <line x1="60" y1="200" x2="840" y2="200" />
+                    <line x1="60" y1="250" x2="840" y2="250" />
+                    <line x1="60" y1="300" x2="840" y2="300" />
+                  </g>
+
+                  <!-- Học kỳ-->
+                  <path
+                    class="area blue"
+                    d="M60,200 
+                                  L196,185 
+                                  L332,145 
+                                  L468,165 
+                                  L604,135 
+                                  L740,150
+                                  L740,300 L60,300 Z"
+                  />
+
+                  <!-- Tích lũy -->
+                  <path
+                    class="area green"
+                    d="M60,200 
+                                  L196,195 
+                                  L332,180 
+                                  L468,170 
+                                  L604,160 
+                                  L740,155
+                                  L740,300 L60,300 Z"
+                  />
+
+                  <!-- line -->
+                  <polyline
+                    class="line blue"
+                    points="60,200 196,185 332,145 468,165 604,135 740,150"
+                  />
+
+                  <polyline
+                    class="line green"
+                    points="60,200 196,195 332,180 468,170 604,160 740,155"
+                  />
+
+                  <!-- dot -->
+                  <g class="dots blue">
+                    <circle cx="60" cy="200" r="4" />
+                    <circle cx="196" cy="185" r="4" />
+                    <circle cx="332" cy="145" r="4" />
+                    <circle cx="468" cy="165" r="4" />
+                    <circle cx="604" cy="135" r="4" />
+                    <circle cx="740" cy="150" r="4" />
+                  </g>
+
+                  <g class="dots green">
+                    <circle cx="60" cy="200" r="4" />
+                    <circle cx="196" cy="195" r="4" />
+                    <circle cx="332" cy="180" r="4" />
+                    <circle cx="468" cy="170" r="4" />
+                    <circle cx="604" cy="160" r="4" />
+                    <circle cx="740" cy="155" r="4" />
+                  </g>
+
+                  <!-- x labels -->
+                  <g class="x-labels">
+                    <text x="60" y="330">HK1/2022</text>
+                    <text x="196" y="330">HK2/2022</text>
+                    <text x="332" y="330">HK1/2023</text>
+                    <text x="468" y="330">HK2/2023</text>
+                    <text x="604" y="330">HK1/2024</text>
+                    <text x="740" y="330">HK2/2024</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <div>
+              <div class="note">
+                <p class="point-blue"></p>
+                <p class="gpa">GPA học kỳ</p>
+              </div>
+              <div class="note">
+                <p class="point-green"></p>
+                <p class="gpa">GPA tích lũy</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Thống kê điểm -->
+        <!-- header -->
+        <div class="tkd">
+          <div class="header-tkd">
+            <h1 class="title-tkd">Thống kê điểm</h1>
+            <div>
+              <select name="" id="select-hk">
+                <option value="HK1 (2025-2026)">HK1 (2025-2026)</option>
+                <option value="HK2 (2024-2025)">HK2 (2024-2025)</option>
+                <option value="HK1 (2024-2025)">HK1 (2024-2025)</option>
+                <option value="HK2 (2023-2024)">HK2 (2023-2024)</option>
+                <option value="HK1 (2023-2024)">HK1 (2023-2024)</option>
+                <option value="HK2 (2022-2023)">HK2 (2022-2023)</option>
+                <option value="HK1 (2022-2023)">HK1 (2022-2023)</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div class="grade-chart">
+              <div class="row">
+                <span class="label">A+</span>
+                <div class="bar">
+                  <div class="fill" style="width: 80%"></div>
+                </div>
+                <span class="count">4 môn</span>
+              </div>
+
+              <div class="row">
+                <span class="label">A</span>
+                <div class="bar">
+                  <div class="fill" style="width: 40%"></div>
+                </div>
+                <span class="count">2 môn</span>
+              </div>
+
+              <div class="row">
+                <span class="label">B+</span>
+                <div class="bar">
+                  <div class="fill" style="width: 20%"></div>
+                </div>
+                <span class="count">1 môn</span>
+              </div>
+
+              <div class="row">
+                <span class="label">B</span>
+                <div class="bar">
+                  <div class="fill" style="width: 20%"></div>
+                </div>
+                <span class="count">1 môn</span>
+              </div>
+
+              <div class="row">
+                <span class="label">C+</span>
+                <div class="bar">
+                  <div class="fill" style="width: 20%"></div>
+                </div>
+                <span class="count">1 môn</span>
+              </div>
+
+              <div class="row">
+                <span class="label">C</span>
+                <div class="bar">
+                  <div class="fill" style="width: 20%"></div>
+                </div>
+                <span class="count">1 môn</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p
+              style="
+                font-weight: 400;
+                align-items: center;
+                margin-top: -1px;
+                margin-left: 19px;
+                width: 550px;
+                text-align: center;
+                font-size: 14px;
+                color: #333333;
+              "
+            >
+              Tổng môn đã học: 8
+            </p>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
 </html>
