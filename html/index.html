@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cổng thông tin sinh viên</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style></style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-container">
+        <div class="content-left">
+          <img src="../img/logo-iuh.png" />
+        </div>
+        <div class="content-right"></div>
+        <div></div>
+      </div>
+    </header>
+    <!-- Content -->
+    <main class="main-content">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Trang chủ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Thông tin sinh viên</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-calendar-week"></i>
+            <span>Lịch theo tuần</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-book-open"></i>
+            <span>Đăng ký học phần</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Kết quả học tập</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Tra cứu công nợ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-trophy"></i>
+            <span>Học bổng</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-folder-open"></i>
+            <span>Hồ sơ điện tử</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-pen-fancy"></i>
+            <span>Lịch thi</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-tasks"></i>
+            <span>Lịch theo tiến độ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-bell"></i>
+            <span>Thông báo</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-poll"></i>
+            <span>Khảo sát</span>
+          </a>
+        </nav>
+      </aside>
+      <!-- Details -->
+      <section class="grid-2-cols section-info">
+        <div class="card">
+          <div class="card-header">
+            <h3>Lớp học phần</h3>
+            <select class="semester-select">
+              <option>HK2 (2025 - 2026)</option>
+            </select>
+          </div>
+          <div class="card-body">
+            <div class="course-list">
+              <div class="course-item">
+                <div class="course-code">420300154901</div>
+                <div class="course-name">Kiến trúc và Thiết kế Phần mềm</div>
+                <div class="course-credits">Số tín chỉ: 4</div>
+              </div>
+              <div class="course-item">
+                <div class="course-code">420300314705</div>
+                <div class="course-name">
+                  Công nghệ mới trong phát triển ứng dụng CNTT
+                </div>
+                <div class="course-credits">Số tín chỉ: 3</div>
+              </div>
+              <div class="course-item">
+                <div class="course-code">420300309801</div>
+                <div class="course-name">Thực tập doanh nghiệp</div>
+                <div class="course-credits">Số tín chỉ: 5</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3>Tiến độ học tập</h3>
+          </div>
+          <div class="card-body">
+            <div class="progress-container">
+              <div class="progress-circle">
+                <svg width="200" height="200" viewBox="0 0 200 200">
+                  <circle
+                    cx="100"
+                    cy="100"
+                    r="80"
+                    fill="none"
+                    stroke="#E8F4FF"
+                    stroke-width="20"
+                  />
+                  <circle
+                    cx="100"
+                    cy="100"
+                    r="80"
+                    fill="none"
+                    stroke="#3B9AFF"
+                    stroke-width="20"
+                    stroke-dasharray="502.4"
+                    stroke-dashoffset="0"
+                    transform="rotate(-90 100 100)"
+                    stroke-linecap="round"
+                  />
+
+                  <circle
+                    cx="100"
+                    cy="100"
+                    r="60"
+                    fill="none"
+                    stroke="#E8F8F0"
+                    stroke-width="20"
+                  />
+                  <circle
+                    cx="100"
+                    cy="100"
+                    r="60"
+                    fill="none"
+                    stroke="#C4D4D9"
+                    stroke-width="20"
+                    stroke-dasharray="376.8"
+                    stroke-dashoffset="33.91"
+                    transform="rotate(-90 100 100)"
+                    stroke-linecap="round"
+                  />
+                  <circle
+                    cx="100"
+                    cy="100"
+                    r="60"
+                    fill="none"
+                    stroke="#00D95F"
+                    stroke-width="20"
+                    stroke-dasharray="376.8"
+                    stroke-dashoffset="64.056"
+                    transform="rotate(-90 100 100)"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <div class="progress-percentage">83%</div>
+              </div>
+
+              <div class="progress-legend">
+                <div class="legend-item">
+                  <span class="legend-dot completed"></span>
+                  <span class="legend-text"
+                    >Đã hoàn thành: <strong>135 tín chỉ</strong></span
+                  >
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot current"></span>
+                  <span class="legend-text"
+                    >Tổng tín chỉ: <strong>162 tín chỉ</strong></span
+                  >
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot remaining"></span>
+                  <span class="legend-text"
+                    >Đang học kỳ này: <strong>12 tín chỉ</strong></span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3>Thông tin học bổng</h3>
+            <select class="semester-select">
+              <option>HK2 (2025 - 2026)</option>
+            </select>
+          </div>
+          <div class="card-body">
+            <div class="scholarship-list">
+              <div class="scholarship-item scholarship-approved">
+                <div class="scholarship-header">
+                  <div class="scholarship-name">
+                    Học bổng khuyến khích học tập
+                  </div>
+                  <span class="scholarship-status status-approved">
+                    <i class="fas fa-check-circle"></i> Đã duyệt
+                  </span>
+                </div>
+                <div class="scholarship-details">
+                  <div class="scholarship-amount-approved">2.000.000 VNĐ</div>
+                  <div class="scholarship-semester">HK1 2024-2025</div>
+                </div>
+                <div class="scholarship-date">Ngày duyệt: 15/01/2025</div>
+              </div>
+              <div class="scholarship-item scholarship-pending">
+                <div class="scholarship-header">
+                  <div class="scholarship-name">Học bổng tài năng CNTT</div>
+                  <span class="scholarship-status status-pending">
+                    <i class="fas fa-clock"></i> Đang xét duyệt
+                  </span>
+                </div>
+                <div class="scholarship-details">
+                  <div class="scholarship-amount-pending">5.000.000 VNĐ</div>
+                  <div class="scholarship-semester">HK2 2024-2025</div>
+                </div>
+                <div class="scholarship-date">Ngày đăng ký: 02/02/2025</div>
+                <div class="scholarship-progress">
+                  <div class="scholarship-progress-bar">
+                    <div
+                      class="scholarship-progress-fill"
+                      style="width: 65%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="scholarship-summary">
+                <div class="summary-item">
+                  <span
+                    >Tổng học bổng đã nhận: <strong>2.000.000 VNĐ</strong></span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="button-group">
+              <button class="btn-primary-green btn-primary">
+                Xem chi tiết
+              </button>
+              <button class="btn-primary-blue btn-primary">
+                Đăng ký học bổng
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
