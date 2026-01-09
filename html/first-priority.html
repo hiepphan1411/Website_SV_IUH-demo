@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    body {
+      margin-top: 20px;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #e7ecf0;
+      gap: 15px;
+    }
+    /* Student Information Card */
+    .avatar {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+
+      width: 120px;
+      height: 120px;
+
+      background: #dce1ea;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+      border-radius: 80px;
+
+      flex: none;
+      order: 0;
+      align-self: stretch;
+      flex-grow: 0;
+    }
+    .information-card img {
+      border-radius: 80px;
+    }
+    .avatar-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0px;
+      gap: 18px;
+
+      width: fit-content;
+      height: fit-content;
+
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+    .details-link {
+      width: 100%;
+      height: 17px;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      color: #557ffe;
+
+      flex: none;
+      order: 1;
+      align-self: stretch;
+      flex-grow: 0;
+    }
+    .infor-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0px;
+
+      width: fit-content;
+      height: fit-content;
+
+      flex: none;
+      order: 0;
+      flex-grow: 1;
+    }
+    .infor-text-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      width: fit-content;
+      height: fit-content;
+
+      flex: none;
+      order: 1;
+      flex-grow: 1;
+    }
+    .infor-card-body {
+      display: flex;
+      align-items: flex-start;
+      padding: 15px;
+      gap: 20px;
+
+      width: 622px;
+      height: 185px;
+
+      flex: none;
+      order: 1;
+      align-self: stretch;
+      flex-grow: 0;
+    }
+    .title {
+      box-sizing: border-box;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 10px 15px 0px;
+      gap: 10px;
+
+      width: 622px;
+      height: 52px;
+
+      border-bottom: 1px solid #e7ecf0;
+
+      flex: none;
+      order: 0;
+      align-self: stretch;
+      flex-grow: 0;
+    }
+    .title > p {
+      width: max-content;
+      height: 27px;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 27px;
+      display: flex;
+      align-items: center;
+
+      color: #505050;
+
+      flex: none;
+      order: 0;
+      flex-grow: 1;
+    }
+    .card-infor-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 15px;
+
+      width: fit-content;
+      height: fit-content;
+
+      background: #ffffff;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+
+      flex: none;
+      order: 0;
+      align-self: stretch;
+      flex-grow: 0;
+    }
+    /* Today Learning Schedule Card */
+    .lesson-border {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 5px 10px;
+
+      width: fit-content;
+      height: max-content;
+
+      background: #56a2e8;
+      border-radius: 4px;
+
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+    .lesson-border > p {
+      width: fit-content;
+      height: max-content;
+
+      font-family: "Segoe UI";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+
+      color: #ffffff;
+
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+    .lesson-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+
+      width: max-content;
+      height: 30.39px;
+
+      flex: none;
+      order: 0;
+      align-self: stretch;
+      flex-grow: 0;
+    }
+    .lesson-card {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-items: center;
+      padding: 10px 25px;
+      gap: 8px;
+
+      width: 83%;
+      min-height: 130px;
+
+      background: #f7fcff;
+      border-radius: 6px;
+
+      flex: none;
+      order: 0;
+      align-self: stretch;
+      flex-grow: 0;
+    }
+    .lesson-body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+
+      width: max-content;
+      height: fit-content;
+    }
+    .schedule-icon-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      width: 50px;
+      height: 50px;
+
+      background: rgba(21, 56, 152, 0.1);
+      border-radius: 8px;
+
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+    .schedule-icon-container i {
+      font-size: 24px;
+      color: #56a2e8;
+    }
+    .today-schedule-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0px;
+
+      width: 115px;
+      height: 51.61px;
+
+      flex: none;
+      order: 1;
+      flex-grow: 0;
+    }
+    .today-schedule-text {
+      width: max-content;
+      height: fit-content;
+    }
+    .schedule-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 15.99px;
+
+      width: 100%;
+      height: fit-content;
+
+      flex: none;
+      order: 0;
+      align-self: stretch;
+      flex-grow: 0;
+    }
+    .detail-link-forward {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 0px;
+      gap: 4px;
+
+      width: fit-content;
+      height: fit-content;
+      color: #56a2e8;
+      font-weight: 550;
+
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+    .detail-link-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      width: 100%;
+      height: fit-content;
+    }
+    .today-schedule-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      gap: 15px;
+
+      width: 300px;
+      min-height: 220px;
+
+      background: #ffffff;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+
+      flex: none;
+      order: 0;
+      flex-grow: 1;
+    }
+    /* Today Examination Schedule Card */
+    .lesson-card.empty {
+      justify-content: center;
+      align-items: center;
+      min-height: 130px;
+    }
+
+    .empty-text {
+      color: #555555;
+      font-style: italic;
+    }
+    /* Today Schedule Container */
+    .highest-priority-container {
+      display: flex;
+      align-items: center;
+      padding: 0px;
+      gap: 20px;
+
+      width: fit-content;
+      height: fit-content;
+
+      flex: none;
+      order: 1;
+      align-self: stretch;
+      flex-grow: 0;
+    }
+  </style>
+  <body>
+    <!-- Highest Priority Container -->
+    <div class="highest-priority-container">
+      <!-- Student Information Card -->
+      <div class="card-infor-container">
+        <div class="title">
+          <p>Thông tin sinh viên</p>
+        </div>
+        <div class="infor-card-body">
+          <div class="avatar-left">
+            <div class="avatar">
+              <img src="../img/user.png" style="width: 60px" />
+            </div>
+            <a href="" class="details-link">Xem chi tiết</a>
+          </div>
+          <div class="infor-text-container">
+            <div>
+              <p>MSSV: <b>2552010678</b></p>
+              <p>Họ tên: <b>Asc Test</b></p>
+              <p>Giới tính: <b>Nam</b></p>
+              <p>Ngày sinh: <b>01/01/2008</b></p>
+              <p>Nơi sinh: <b>An Giang</b></p>
+            </div>
+            <div>
+              <p>Lớp học: <b>D.14.22.03</b></p>
+              <p>Khóa học: <b>Khóa 2025</b></p>
+              <p>Bậc đào tạo: <b>Đại học</b></p>
+              <p>Loại hình đào tạo: <b>Chính quy</b></p>
+              <p>Ngành: <b>Tài chính - Ngân hàng</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Today Learning Schedule Card -->
+      <div class="today-schedule-card">
+        <div class="schedule-title">
+          <div class="schedule-icon-container">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="today-schedule-text">
+            <span>Lịch học hôm nay</span>
+            <span style="font-weight: 700; font-size: 28px">1</span>
+          </div>
+        </div>
+        <div class="lesson-card">
+          <div class="lesson-title">
+            <div class="lesson-border">
+              <span style="color: white">T1-3</span>
+            </div>
+            <p>Thực tập doanh nghiệp</p>
+          </div>
+          <div class="lesson-body">
+            <span> Lớp học phần: <b>DHKTPM18A</b> </span>
+            <span> Giảng viên: <b>Nguyễn Thị Hạnh</b> </span>
+            <span>Phòng học: <b>A02.03</b></span>
+          </div>
+        </div>
+        <div class="detail-link-container">
+          <span class="detail-link-forward"
+            >Xem chi tiết <i class="fa-solid fa-angle-right"></i
+          ></span>
+        </div>
+      </div>
+      <!-- Today Examination Schedule Card -->
+      <div class="today-schedule-card">
+        <div class="schedule-title">
+          <div
+            class="schedule-icon-container"
+            style="background-color: #f9b20020"
+          >
+            <i class="fas fa-clipboard-list" style="color: #fbb522"></i>
+          </div>
+          <div class="today-schedule-text">
+            <span>Lịch thi hôm nay</span>
+            <span style="font-weight: 700; font-size: 28px">0</span>
+          </div>
+        </div>
+        <div class="lesson-card" style="background-color: #f9b20020">
+          <span class="empty-text">Không có lịch hôm nay</span>
+        </div>
+        <div class="detail-link-container">
+          <span class="detail-link-forward" style="color: #fbb522"
+            >Xem chi tiết
+            <i class="fa-solid fa-angle-right" style="color: #fbb522"></i
+          ></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
