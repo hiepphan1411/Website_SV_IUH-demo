@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboad</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    body {
+      background-color: #c6dcee;
+    }
+    .container {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <!-- Header Container -->
+      <div class="header-container">
+        <div class="left-header-container">
+          <div class="logo-div">
+            <!-- Todo Logo -->
+          </div>
+          <div class="search-bar">
+            <input type="text" placeholder="Tìm kiếm..." />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
+        <div class="right-header-container">
+          <div>
+            <i class="fa-regular fa-house"></i>
+            <span>Trang chủ</span>
+          </div>
+          <div>
+            <i class="fa-regular fa-bell"></i>
+            <span>Tin tức</span>
+          </div>
+          <div class="login-infor">
+            <div class="avatar">
+              <img
+                src="../img/user.png"
+                alt="User Image"
+                width="15"
+                height="15"
+              />
+            </div>
+            <span style="font-size: larger">Asc Test</span>
+          </div>
+        </div>
+      </div>
+      <!-- Highest Priority Container -->
+      <div class="highest-priority-container">
+        <!-- Student Information Card -->
+        <div class="card-infor-container">
+          <div class="title">
+            <span>Thông tin sinh viên</span>
+          </div>
+          <div class="infor-card-body">
+            <div class="avatar-left">
+              <div class="student-avatar">
+                <img src="../img/user.png" style="width: 60px" />
+              </div>
+              <a href="" class="details-link">Xem chi tiết</a>
+            </div>
+            <div class="infor-text-container">
+              <div>
+                <p>MSSV: <b>2552010678</b></p>
+                <p>Họ tên: <b>Asc Test</b></p>
+                <p>Giới tính: <b>Nam</b></p>
+                <p>Ngày sinh: <b>01/01/2008</b></p>
+                <p>Nơi sinh: <b>An Giang</b></p>
+              </div>
+              <div>
+                <p>Lớp học: <b>D.14.22.03</b></p>
+                <p>Khóa học: <b>Khóa 2025</b></p>
+                <p>Bậc đào tạo: <b>Đại học</b></p>
+                <p>Loại hình đào tạo: <b>Chính quy</b></p>
+                <p>Ngành: <b>Tài chính - Ngân hàng</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Today Learning Schedule Card -->
+        <div class="today-schedule-card">
+          <div class="schedule-title">
+            <div class="schedule-icon-container">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="today-schedule-text">
+              <span>Lịch học hôm nay</span>
+              <span style="font-weight: 700; font-size: 28px">1</span>
+            </div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-title">
+              <div class="lesson-border">
+                <span style="color: white">T1-3</span>
+              </div>
+              <p>Thực tập doanh nghiệp</p>
+            </div>
+            <div class="lesson-body">
+              <span> Lớp học phần: <b>DHKTPM18A</b> </span>
+              <span> Giảng viên: <b>Nguyễn Thị Hạnh</b> </span>
+              <span>Phòng học: <b>A02.03</b></span>
+            </div>
+          </div>
+          <div class="detail-link-container">
+            <span class="detail-link-forward"
+              >Xem chi tiết <i class="fa-solid fa-angle-right"></i
+            ></span>
+          </div>
+        </div>
+        <!-- Today Examination Schedule Card -->
+        <div class="today-schedule-card">
+          <div class="schedule-title">
+            <div
+              class="schedule-icon-container"
+              style="background-color: #f9b20020"
+            >
+              <i class="fas fa-clipboard-list" style="color: #fbb522"></i>
+            </div>
+            <div class="today-schedule-text">
+              <span>Lịch thi hôm nay</span>
+              <span style="font-weight: 700; font-size: 28px">0</span>
+            </div>
+          </div>
+          <div class="lesson-card" style="background-color: #f9b20020">
+            <span class="empty-text">Không có lịch hôm nay</span>
+          </div>
+          <div class="detail-link-container">
+            <span class="detail-link-forward" style="color: #fbb522"
+              >Xem chi tiết
+              <i class="fa-solid fa-angle-right" style="color: #fbb522"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+      <!-- Second Priority Container -->
+      <div class="second-priority-container">
+        <div class="second-prio-card">
+          <div class="second-prio-icon schedule-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <div class="second-prio-title schedule-title">
+            <span>Lịch học trong tuần</span>
+            <span class="counting">2</span>
+            <span class="small-text"></span>
+          </div>
+        </div>
+        <div class="second-prio-card">
+          <div class="second-prio-icon exam-icon">
+            <i class="fa-solid fa-pen-fancy"></i>
+          </div>
+          <div class="second-prio-title exam-title">
+            <span>Lịch thi trong tuần</span>
+            <span class="counting">0</span>
+            <span class="small-text">Không có lịch thi</span>
+          </div>
+        </div>
+        <div class="second-prio-card">
+          <div class="second-prio-icon announce-icon">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <div class="second-prio-title announce-title">
+            <span>Thông báo mới</span>
+            <span class="counting">0</span>
+            <span class="small-text">Chưa xem</span>
+          </div>
+        </div>
+        <div class="second-prio-card">
+          <div class="second-prio-icon scholarship-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <div class="second-prio-title scholarship-title">
+            <span>Học bổng</span>
+            <span class="counting">2</span>
+            <span class="small-text">Đã nhận</span>
+          </div>
+        </div>
+      </div>
+      <!-- Quick Function Container -->
+      <div class="quick-function-container">
+        <div class="quick-fucntion-card">
+          <i class="fa-solid fa-calendar"></i>
+          <span>Lịch theo tuần</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fas fa-book-open"></i>
+          <span>Đăng ký học phần</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fa-solid fa-chart-area"></i>
+          <span>Kết quả học tập</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fa-solid fa-money-bill-wave"></i>
+          <span>Tra cứu công nợ</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fa-solid fa-credit-card"></i>
+          <span>Thanh toán trực tuyến</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fa-solid fa-receipt"></i>
+          <span>Phiếu thu tổng hợp</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Lịch theo tiến độ</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fa-solid fa-pen-fancy"></i>
+          <span>Lịch thi</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fa-solid fa-bell"></i>
+          <span>Nhắc nhở</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fas fa-poll"></i>
+          <span>Khảo sát</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fas fa-folder-open"></i>
+          <span>Hồ sơ điện tử</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fas fa-trophy"></i>
+          <span>Học bổng</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fa-solid fa-bed"></i>
+          <span>Đăng ký nội trú</span>
+        </div>
+        <div class="quick-fucntion-card">
+          <i class="fab fa-wpforms"></i>
+          <span>Đề xuất biểu mẫu</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
