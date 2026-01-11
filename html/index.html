@@ -1,503 +1,1123 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <title>Document</title>
-        <style>
-            .section-3 {
-                display: flex;
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 15px;
-                width: auto;
-                height: fit-content;
-            }
-            .kqht {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cổng thông tin sinh viên</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .section-3 {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 15px;
+        margin-top: 30px;
+      }
+
+      .kqht,
+      .tkd {
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+      }
+
+      .header-kqht,
+      .header-tkd {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        border-bottom: 1px solid #e7ecf0;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .title-kqht {
+        width: fit-content;
+        height: fit-content;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 26px;
+
+        display: flex;
+        align-items: center;
+        color: #505050;
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+      }
+      #thangdiem {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 15px;
+        gap: 12px;
+        margin: 0 auto;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 6px;
+
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+      }
+      .chart {
+        width: 100%;
+        background: #fff;
+        font-family: Arial, sans-serif;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .grid line {
+        stroke: #e6e6e6;
+        stroke-width: 1;
+      }
+
+      .line {
+        fill: none;
+        stroke-width: 2.5;
+      }
+
+      .line.blue {
+        stroke: #1f4fd8;
+      }
+      .line.green {
+        stroke: #2ca24c;
+      }
+
+      .area {
+        opacity: 0.15;
+      }
+
+      .area.blue {
+        fill: #1f4fd8;
+      }
+      .area.green {
+        fill: #2ca24c;
+      }
+
+      .dots circle {
+        stroke: #fff;
+        stroke-width: 1;
+      }
+
+      .dots.blue circle {
+        fill: #1f4fd8;
+      }
+      .dots.green circle {
+        fill: #2ca24c;
+      }
+
+      .y-labels text,
+      .x-labels text {
+        fill: #666;
+        font-size: 12px;
+      }
+
+      .x-labels text {
+        text-anchor: middle;
+      }
+
+      .gpa {
+        width: 85px;
+        height: 26px;
+
+        font-family: "Segoe UI";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+        display: flex;
+        align-items: center;
+
+        color: #333333;
+
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+      }
+      .point-green {
+        width: 10px;
+        height: 10px;
+
+        background: #46a357;
+        border-radius: 10px;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+      }
+      .point-blue {
+        /* Rectangle 48 */
+
+        width: 10px;
+        height: 10px;
+
+        background: #153898;
+        border-radius: 10px;
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+      }
+      .note {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px 0px 0.54px;
+        gap: 12px;
+
+        /* width: 885px; */
+        width: 100%;
+        height: 26.54px;
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+      }
+      .header-tkd {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 15.05px 20px 15.9843px;
+        width: 100%;
+        height: 62.82px;
+        background: #ffffff;
+      }
+      .title-tkd {
+        width: fit-content;
+        height: fit-content;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 26px;
+        display: flex;
+        align-items: center;
+        color: #505050;
+
+        flex: none;
+        order: 0;
+        flex-grow: 1;
+      }
+      #select-hk {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 15px;
+        gap: 12px;
+        width: fit-content;
+        height: fit-content;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+      }
+      .grade-chart {
+        width: 100%;
+        padding: 16px 20px;
+        font-family: Arial, sans-serif;
+      }
+
+      .row {
+        display: grid !important;
+        grid-template-columns: 40px 1fr 60px;
+        align-items: center;
+        gap: 16px;
+        margin: 18px 0;
+      }
+
+      .label {
+        font-weight: 600;
+        color: #1f3fb8;
+        font-size: 14px;
+      }
+
+      .bar {
+        height: 14px !important;
+        background: #f2f9fd !important;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .fill {
+        height: 100% !important;
+        background: #5fa8e8 !important;
+        border-radius: 8px;
+        display: block;
+      }
+
+      .count {
+        text-align: right;
+        color: #333;
+        font-weight: 500;
+      }
+      /* Responsive Design */
+      @media (max-width: 1400px) {
+        .section-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .highest-priority-container {
+          grid-template-columns: 1fr;
+        }
+
+        .grid-2-cols {
+          grid-template-columns: 1fr;
+        }
+
+        .quick-function-container {
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        }
+      }
+
+      @media (max-width: 992px) {
+        .sidebar {
+          position: fixed;
+          left: -250px;
+          transition: left 0.3s;
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+
+        .dashboard-content {
+          padding: 1rem;
+        }
+
+        .left-header-container {
+          max-width: 100%;
+        }
+
+        .search-bar {
+          max-width: 200px;
+        }
+
+        .second-priority-container {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          padding: 10px 15px;
+        }
+
+        .left-header-container {
+          gap: 10px;
+        }
+
+        .right-header-container {
+          gap: 10px;
+        }
+
+        .right-header-container > div span {
+          display: none;
+        }
+
+        .search-bar {
+          max-width: 150px;
+        }
+
+        .infor-text-container {
+          gap: 20px;
+        }
+
+        .second-priority-container {
+          grid-template-columns: 1fr;
+        }
+
+        .quick-function-container {
+          grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+          gap: 10px;
+        }
+
+        .grid-2-cols {
+          grid-template-columns: 1fr;
+        }
+
+        .chart svg {
+          height: 250px;
+        }
+
+        .header-kqht,
+        .header-tkd {
+          padding: 12px 15px;
+        }
+
+        .title-kqht,
+        .title-tkd {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .dashboard-content {
+          padding: 0.75rem;
+        }
+
+        .card-header h3 {
+          font-size: 0.9rem;
+        }
+
+        .quick-function-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .quick-fucntion-card {
+          padding: 15px 10px;
+          min-height: 100px;
+        }
+
+        .quick-fucntion-card i {
+          font-size: 24px;
+        }
+
+        .quick-fucntion-card span {
+          font-size: 12px;
+        }
+
+        .button-group {
+          flex-direction: column;
+        }
+
+        .btn-primary {
+          min-width: 100%;
+        }
+
+        .title-kqht,
+        .title-tkd {
+          font-size: 16px;
+        }
+
+        .chart svg {
+          height: 200px;
+        }
+
+        .grade-chart {
+          padding: 12px 15px;
+        }
+
+        .row {
+          grid-template-columns: 35px 1fr 55px !important;
+          gap: 10px;
+          margin: 12px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header-container">
+      <div class="left-header-container">
+        <div class="logo-div">
+          <!-- Todo Logo -->
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Tìm kiếm..." />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </div>
+      <div class="right-header-container">
+        <div>
+          <i class="fa-regular fa-house"></i>
+          <span>Trang chủ</span>
+        </div>
+        <div>
+          <i class="fa-regular fa-bell"></i>
+          <span>Tin tức</span>
+        </div>
+        <div class="login-infor">
+          <div class="avatar">
+            <img
+              src="../img/user.png"
+              alt="User Image"
+              width="15"
+              height="15"
+            />
+          </div>
+          <span style="font-size: larger">Asc Test</span>
+        </div>
+      </div>
+    </header>
+    <!-- Content -->
+    <main class="main-content">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Trang chủ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Thông tin sinh viên</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-calendar-week"></i>
+            <span>Lịch theo tuần</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-book-open"></i>
+            <span>Đăng ký học phần</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Kết quả học tập</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Tra cứu công nợ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-trophy"></i>
+            <span>Học bổng</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-folder-open"></i>
+            <span>Hồ sơ điện tử</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-pen-fancy"></i>
+            <span>Lịch thi</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-tasks"></i>
+            <span>Lịch theo tiến độ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-bell"></i>
+            <span>Thông báo</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-poll"></i>
+            <span>Khảo sát</span>
+          </a>
+        </nav>
+      </aside>
+      <!-- Details -->
+      <div class="dashboard-content">
+        <!-- Highest priority -->
+        <div class="highest-priority-container">
+          <!-- Student Information Card -->
+          <div class="card-infor-container">
+            <div class="title">
+              <p>Thông tin sinh viên</p>
+            </div>
+            <div class="infor-card-body">
+              <div class="avatar-left">
+                <div class="student-avatar">
+                  <img src="../img/user.png" style="width: 60px" />
+                </div>
+                <a href="" class="details-link">Xem chi tiết</a>
+              </div>
+              <div class="infor-text-container">
+                <div>
+                  <p>MSSV: <b>2552010678</b></p>
+                  <p>Họ tên: <b>Asc Test</b></p>
+                  <p>Giới tính: <b>Nam</b></p>
+                  <p>Ngày sinh: <b>01/01/2008</b></p>
+                  <p>Nơi sinh: <b>An Giang</b></p>
+                </div>
+                <div>
+                  <p>Lớp học: <b>D.14.22.03</b></p>
+                  <p>Khóa học: <b>Khóa 2025</b></p>
+                  <p>Bậc đào tạo: <b>Đại học</b></p>
+                  <p>Loại hình đào tạo: <b>Chính quy</b></p>
+                  <p>Ngành: <b>Tài chính - Ngân hàng</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Today Learning Schedule Card -->
+          <div class="today-schedule-card">
+            <div class="schedule-title">
+              <div class="schedule-icon-container">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <div class="today-schedule-text">
+                <span>Lịch học hôm nay</span>
+                <span style="font-weight: 700; font-size: 28px">1</span>
+              </div>
+            </div>
+            <div class="lesson-card">
+              <div class="lesson-title">
+                <div class="lesson-border">
+                  <span style="color: white">T1-3</span>
+                </div>
+                <p>Thực tập doanh nghiệp</p>
+              </div>
+              <div class="lesson-body">
+                <span> Lớp học phần: <b>DHKTPM18A</b> </span>
+                <span> Giảng viên: <b>Nguyễn Thị Hạnh</b> </span>
+                <span>Phòng học: <b>A02.03</b></span>
+              </div>
+            </div>
+            <div class="detail-link-container">
+              <span class="detail-link-forward"
+                >Xem chi tiết <i class="fa-solid fa-angle-right"></i
+              ></span>
+            </div>
+          </div>
+          <!-- Today Examination Schedule Card -->
+          <div class="today-schedule-card">
+            <div class="schedule-title">
+              <div
+                class="schedule-icon-container"
+                style="background-color: #f9b20020"
+              >
+                <i class="fas fa-clipboard-list" style="color: #fbb522"></i>
+              </div>
+              <div class="today-schedule-text">
+                <span>Lịch thi hôm nay</span>
+                <span style="font-weight: 700; font-size: 28px">0</span>
+              </div>
+            </div>
+            <div class="lesson-card" style="background-color: #f9b20020">
+              <span class="empty-text">Không có lịch hôm nay</span>
+            </div>
+            <div class="detail-link-container">
+              <span class="detail-link-forward" style="color: #fbb522"
+                >Xem chi tiết
+                <i class="fa-solid fa-angle-right" style="color: #fbb522"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+        <!-- Second priority -->
+        <section class="second-priority-container">
+          <div class="second-prio-card">
+            <div class="second-prio-icon schedule-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="second-prio-title schedule-title">
+              <span>Lịch học trong tuần</span>
+              <span class="counting">2</span>
+              <span class="small-text"></span>
+            </div>
+          </div>
+          <div class="second-prio-card">
+            <div class="second-prio-icon exam-icon">
+              <i class="fa-solid fa-pen-fancy"></i>
+            </div>
+            <div class="second-prio-title exam-title">
+              <span>Lịch thi trong tuần</span>
+              <span class="counting">0</span>
+              <span class="small-text">Không có lịch thi</span>
+            </div>
+          </div>
+          <div class="second-prio-card">
+            <div class="second-prio-icon announce-icon">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="second-prio-title announce-title">
+              <span>Thông báo mới</span>
+              <span class="counting">0</span>
+              <span class="small-text">Chưa xem</span>
+            </div>
+          </div>
+          <div class="second-prio-card">
+            <div class="second-prio-icon scholarship-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="second-prio-title scholarship-title">
+              <span>Học bổng</span>
+              <span class="counting">2</span>
+              <span class="small-text">Đã nhận</span>
+            </div>
+          </div>
+        </section>
+        <!-- Quick Function Container -->
+        <div class="quick-function-container">
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-calendar"></i>
+            <span>Lịch theo tuần</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fas fa-book-open"></i>
+            <span>Đăng ký học phần</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-chart-area"></i>
+            <span>Kết quả học tập</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-money-bill-wave"></i>
+            <span>Tra cứu công nợ</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-credit-card"></i>
+            <span>Thanh toán trực tuyến</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Phiếu thu tổng hợp</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-list-check"></i>
+            <span>Lịch theo tiến độ</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-pen-fancy"></i>
+            <span>Lịch thi</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-bell"></i>
+            <span>Nhắc nhở</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fas fa-poll"></i>
+            <span>Khảo sát</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fas fa-folder-open"></i>
+            <span>Hồ sơ điện tử</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fas fa-trophy"></i>
+            <span>Học bổng</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-bed"></i>
+            <span>Đăng ký nội trú</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fab fa-wpforms"></i>
+            <span>Đề xuất biểu mẫu</span>
+          </div>
+        </div>
+
+        <section class="grid-2-cols section-info">
+          <div class="card">
+            <div class="card-header">
+              <h3>Lớp học phần</h3>
+              <select class="semester-select">
+                <option>HK2 (2025 - 2026)</option>
+              </select>
+            </div>
+            <div class="card-body">
+              <div class="course-list">
+                <div class="course-item">
+                  <div class="course-code">420300154901</div>
+                  <div class="course-name">Kiến trúc và Thiết kế Phần mềm</div>
+                  <div class="course-credits">Số tín chỉ: 4</div>
+                </div>
+                <div class="course-item">
+                  <div class="course-code">420300314705</div>
+                  <div class="course-name">
+                    Công nghệ mới trong phát triển ứng dụng CNTT
+                  </div>
+                  <div class="course-credits">Số tín chỉ: 3</div>
+                </div>
+                <div class="course-item">
+                  <div class="course-code">420300309801</div>
+                  <div class="course-name">Thực tập doanh nghiệp</div>
+                  <div class="course-credits">Số tín chỉ: 5</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Tiến độ học tập</h3>
+            </div>
+            <div class="card-body">
+              <div class="progress-container">
+                <div class="progress-circle">
+                  <svg width="200" height="200" viewBox="0 0 200 200">
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="80"
+                      fill="none"
+                      stroke="#E8F4FF"
+                      stroke-width="20"
+                    />
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="80"
+                      fill="none"
+                      stroke="#3B9AFF"
+                      stroke-width="20"
+                      stroke-dasharray="502.4"
+                      stroke-dashoffset="0"
+                      transform="rotate(-90 100 100)"
+                      stroke-linecap="round"
+                    />
+
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="60"
+                      fill="none"
+                      stroke="#E8F8F0"
+                      stroke-width="20"
+                    />
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="60"
+                      fill="none"
+                      stroke="#C4D4D9"
+                      stroke-width="20"
+                      stroke-dasharray="376.8"
+                      stroke-dashoffset="33.91"
+                      transform="rotate(-90 100 100)"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="60"
+                      fill="none"
+                      stroke="#00D95F"
+                      stroke-width="20"
+                      stroke-dasharray="376.8"
+                      stroke-dashoffset="64.056"
+                      transform="rotate(-90 100 100)"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <div class="progress-percentage">83%</div>
+                </div>
+
+                <div class="progress-legend">
+                  <div class="legend-item">
+                    <span class="legend-dot completed"></span>
+                    <span class="legend-text"
+                      >Đã hoàn thành: <strong>135 tín chỉ</strong></span
+                    >
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot current"></span>
+                    <span class="legend-text"
+                      >Tổng tín chỉ: <strong>162 tín chỉ</strong></span
+                    >
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot remaining"></span>
+                    <span class="legend-text"
+                      >Đang học kỳ này: <strong>12 tín chỉ</strong></span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Thông tin học bổng</h3>
+              <select class="semester-select">
+                <option>HK2 (2025 - 2026)</option>
+              </select>
+            </div>
+            <div class="card-body">
+              <div class="scholarship-list">
+                <div class="scholarship-item scholarship-approved">
+                  <div class="scholarship-header">
+                    <div class="scholarship-name">
+                      Học bổng khuyến khích học tập
+                    </div>
+                    <span class="scholarship-status status-approved">
+                      <i class="fas fa-check-circle"></i> Đã duyệt
+                    </span>
+                  </div>
+                  <div class="scholarship-details">
+                    <div class="scholarship-amount-approved">2.000.000 VNĐ</div>
+                    <div class="scholarship-semester">HK1 2024-2025</div>
+                  </div>
+                  <div class="scholarship-date">Ngày duyệt: 15/01/2025</div>
+                </div>
+                <div class="scholarship-item scholarship-pending">
+                  <div class="scholarship-header">
+                    <div class="scholarship-name">Học bổng tài năng CNTT</div>
+                    <span class="scholarship-status status-pending">
+                      <i class="fas fa-clock"></i> Đang xét duyệt
+                    </span>
+                  </div>
+                  <div class="scholarship-details">
+                    <div class="scholarship-amount-pending">5.000.000 VNĐ</div>
+                    <div class="scholarship-semester">HK2 2024-2025</div>
+                  </div>
+                  <div class="scholarship-date">Ngày đăng ký: 02/02/2025</div>
+                  <div class="scholarship-progress">
+                    <div class="scholarship-progress-bar">
+                      <div
+                        class="scholarship-progress-fill"
+                        style="width: 65%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="scholarship-summary">
+                  <div class="summary-item">
+                    <span
+                      >Tổng học bổng đã nhận:
+                      <strong>2.000.000 VNĐ</strong></span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="button-group">
+                <button class="btn-primary-green btn-primary">
+                  Xem chi tiết
+                </button>
+                <button class="btn-primary-blue btn-primary">
+                  Đăng ký học bổng
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-3 section-info">
+          <div class="kqht">
+            <!-- header -->
+            <div class="header-kqht">
+              <h1 class="title-kqht">Kết quả học tập theo học kỳ</h1>
+              <div>
+                <select name="" id="thangdiem">
+                  <option value="Thang điểm 4">Thang điểm 4</option>
+                  <option value="Thang điểm 10">Thang điểm 10</option>
+                </select>
+              </div>
+            </div>
+            <!-- biểu đồ -->
+            <div
+              style="
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 0px;
-                width: fit-content;
-                height: fit-content;
-                background: #ffffff;
-                box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
-                border-radius: 8px;
-            }
-            .header-kqht {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                padding: 16px 19.99px 16px 20px;
-                gap: 334.93px;
-                width: 95%;
-                height: fit-content;
-                background: #ffffff;
-                
+                padding: 20px 15px;
+                height: 100%;
+
                 flex: none;
-                order: 0;
+                order: 1;
                 align-self: stretch;
                 flex-grow: 0;
-                margin: -4.26326e-14px 0px;
-            }
-            .title-kqht {
-                width: fit-content;
-                height: fit-content;
-                font-style: normal;
-                font-weight: 700;
-                font-size: 22px;
-                line-height: 26px;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 5px 0px;
+                  width: 100%;
+                  height: 100%;
 
-                display: flex;
-                align-items: center;
-                color: #505050;
+                  /* Inside auto layout */
+                  flex: none;
+                  order: 0;
+                  align-self: stretch;
+                  flex-grow: 0;
+                "
+              >
+                <div class="chart">
+                  <svg viewBox="0 0 860 340" preserveAspectRatio="none">
+                    <!-- Y labels -->
+                    <g class="y-labels">
+                      <text x="10" y="55">4.0</text>
+                      <text x="10" y="105">3.8</text>
+                      <text x="10" y="155">3.6</text>
+                      <text x="10" y="205">3.4</text>
+                      <text x="10" y="255">3.2</text>
+                      <text x="10" y="305">3.0</text>
+                    </g>
 
-                flex: none;
-                order: 0;
-                flex-grow: 0;
-            }
-            #thangdiem {
-                box-sizing: border-box;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                padding: 4px 15px;
-                gap: 12px;
-                margin: 0 auto;
-                width: fit-content;
-                height: fit-content;
-                border-radius: 6px;
-            }
-            .chart {
-                width: 100%;
-                background: #fff;
-                font-family: Arial, sans-serif;
-            }
+                    <!-- grid -->
+                    <g class="grid">
+                      <line x1="60" y1="50" x2="840" y2="50" />
+                      <line x1="60" y1="100" x2="840" y2="100" />
+                      <line x1="60" y1="150" x2="840" y2="150" />
+                      <line x1="60" y1="200" x2="840" y2="200" />
+                      <line x1="60" y1="250" x2="840" y2="250" />
+                      <line x1="60" y1="300" x2="840" y2="300" />
+                    </g>
 
-            svg {
-                width: 100%;
-                height: 100%;
-            }
-
-            .grid line {
-                stroke: #e6e6e6;
-                stroke-width: 1;
-            }
-
-            .line {
-                fill: none;
-                stroke-width: 2.5;
-            }
-
-            .line.blue {
-                stroke: #1f4fd8;
-            }
-            .line.green {
-                stroke: #2ca24c;
-            }
-
-            .area {
-                opacity: 0.15;
-            }
-
-            .area.blue {
-                fill: #1f4fd8;
-            }
-            .area.green {
-                fill: #2ca24c;
-            }
-
-            .dots circle {
-                stroke: #fff;
-                stroke-width: 1;
-            }
-
-            .dots.blue circle {
-                fill: #1f4fd8;
-            }
-            .dots.green circle {
-                fill: #2ca24c;
-            }
-
-            .y-labels text,
-            .x-labels text {
-                fill: #666;
-                font-size: 12px;
-            }
-
-            .x-labels text {
-                text-anchor: middle;
-            }
-
-            .gpa {
-                width: 85px;
-                height: 26px;
-                font-style: normal;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 26px;
-                display: flex;
-                align-items: center;
-                color: #333333;
-            }
-            .point-green {
-                width: 10px;
-                height: 10px;
-                background: #46a357;
-                border-radius: 10px;
-            }
-            .point-blue {
-                width: 10px;
-                height: 10px;
-                background: #153898;
-                border-radius: 10px;
-            }
-            .note {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                padding: 0px 0px 0.54px;
-                gap: 12px;
-                width: 885px;
-                height: 26.54px;
-            }
-            .tkd {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-                height: 413.39px;
-                background: #ffffff;
-                box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
-                border-radius: 8px;
-            }
-            .header-tkd {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                padding: 15.05px 20px 15.9843px;
-                width: 540px;
-                height: 62.82px;
-                background: #ffffff;
-            }
-            .title-tkd {
-                width: fit-content;
-                height: fit-content;
-                font-style: normal;
-                font-weight: 700;
-                font-size: 22px;
-                line-height: 26px;
-                display: flex;
-                align-items: center;
-                color: #505050;
-
-                flex: none;
-                order: 0;
-                flex-grow: 1;
-            }
-            #select-hk {
-                box-sizing: border-box;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                padding: 4px 15px;
-                gap: 12px;
-                width: fit-content;
-                height: fit-content;
-                border: 1px solid #e0e0e0;
-                border-radius: 6px;
-            }
-            .grade-chart {
-                width: 330%;
-                padding: 16px;
-                font-family: Arial, sans-serif;
-            }
-
-            .row {
-                display: grid;
-                grid-template-columns: 40px 1fr 60px;
-                align-items: center;
-                gap: 16px;
-                margin: 18px 0;
-            }
-
-            .label {
-                font-weight: 600;
-                color: #1f3fb8;
-            }
-
-            .bar {
-                height: 14px;
-                background: #f2f9fd;
-
-                border-radius: 8px;
-                overflow: hidden;
-            }
-
-            .fill {
-                height: 100%;
-
-                background: #5fa8e8;
-                border-radius: 8px;
-            }
-
-            .count {
-                text-align: right;
-                color: #333;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="section-3">
-            <div class="kqht">
-                <!-- header -->
-                <div class="header-kqht">
-                    <h1 class="title-kqht">Kết quả học tập theo học kỳ</h1>
-                    <div>
-                        <select name="" id="thangdiem">
-                            <option value="Thang điểm 4">Thang điểm 4</option>
-                            <option value="Thang điểm 10">Thang điểm 10</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- biểu đồ -->
-                <div
-                    style="
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        padding: 20px 15px;
-                        height: 100%;
-
-                        flex: none;
-                        order: 1;
-                        align-self: stretch;
-                        flex-grow: 0;
-                    "
-                >
-                    <div
-                        style="
-                            display: flex;
-                            flex-direction: column;
-                            align-items: flex-start;
-                            padding: 5px 0px;
-                            width: 885px;
-                            height: 100%;
-
-                            /* Inside auto layout */
-                            flex: none;
-                            order: 0;
-                            align-self: stretch;
-                            flex-grow: 0;
-                        "
-                    >
-                        <div class="chart">
-                            <svg
-                                viewBox="0 0 860 340"
-                                preserveAspectRatio="none"
-                            >
-                                <!-- Y labels -->
-                                <g class="y-labels">
-                                    <text x="10" y="55">4.0</text>
-                                    <text x="10" y="105">3.8</text>
-                                    <text x="10" y="155">3.6</text>
-                                    <text x="10" y="205">3.4</text>
-                                    <text x="10" y="255">3.2</text>
-                                    <text x="10" y="305">3.0</text>
-                                </g>
-
-                                <!-- grid -->
-                                <g class="grid">
-                                    <line x1="60" y1="50" x2="840" y2="50" />
-                                    <line x1="60" y1="100" x2="840" y2="100" />
-                                    <line x1="60" y1="150" x2="840" y2="150" />
-                                    <line x1="60" y1="200" x2="840" y2="200" />
-                                    <line x1="60" y1="250" x2="840" y2="250" />
-                                    <line x1="60" y1="300" x2="840" y2="300" />
-                                </g>
-
-                                <!-- Học kỳ-->
-                                <path
-                                    class="area blue"
-                                    d="M60,200 
+                    <!-- Học kỳ-->
+                    <path
+                      class="area blue"
+                      d="M60,200 
                                   L196,185 
                                   L332,145 
                                   L468,165 
                                   L604,135 
                                   L740,150
                                   L740,300 L60,300 Z"
-                                />
+                    />
 
-                                <!-- Tích lũy -->
-                                <path
-                                    class="area green"
-                                    d="M60,200 
+                    <!-- Tích lũy -->
+                    <path
+                      class="area green"
+                      d="M60,200 
                                   L196,195 
                                   L332,180 
                                   L468,170 
                                   L604,160 
                                   L740,155
                                   L740,300 L60,300 Z"
-                                />
+                    />
 
-                                <!-- line -->
-                                <polyline
-                                    class="line blue"
-                                    points="60,200 196,185 332,145 468,165 604,135 740,150"
-                                />
+                    <!-- line -->
+                    <polyline
+                      class="line blue"
+                      points="60,200 196,185 332,145 468,165 604,135 740,150"
+                    />
 
-                                <polyline
-                                    class="line green"
-                                    points="60,200 196,195 332,180 468,170 604,160 740,155"
-                                />
+                    <polyline
+                      class="line green"
+                      points="60,200 196,195 332,180 468,170 604,160 740,155"
+                    />
 
-                                <!-- dot -->
-                                <g class="dots blue">
-                                    <circle cx="60" cy="200" r="4" />
-                                    <circle cx="196" cy="185" r="4" />
-                                    <circle cx="332" cy="145" r="4" />
-                                    <circle cx="468" cy="165" r="4" />
-                                    <circle cx="604" cy="135" r="4" />
-                                    <circle cx="740" cy="150" r="4" />
-                                </g>
+                    <!-- dot -->
+                    <g class="dots blue">
+                      <circle cx="60" cy="200" r="4" />
+                      <circle cx="196" cy="185" r="4" />
+                      <circle cx="332" cy="145" r="4" />
+                      <circle cx="468" cy="165" r="4" />
+                      <circle cx="604" cy="135" r="4" />
+                      <circle cx="740" cy="150" r="4" />
+                    </g>
 
-                                <g class="dots green">
-                                    <circle cx="60" cy="200" r="4" />
-                                    <circle cx="196" cy="195" r="4" />
-                                    <circle cx="332" cy="180" r="4" />
-                                    <circle cx="468" cy="170" r="4" />
-                                    <circle cx="604" cy="160" r="4" />
-                                    <circle cx="740" cy="155" r="4" />
-                                </g>
-
-                                <!-- x labels -->
-                                <g class="x-labels">
-                                    <text x="60" y="330">HK1/2022</text>
-                                    <text x="196" y="330">HK2/2022</text>
-                                    <text x="332" y="330">HK1/2023</text>
-                                    <text x="468" y="330">HK2/2023</text>
-                                    <text x="604" y="330">HK1/2024</text>
-                                    <text x="740" y="330">HK2/2024</text>
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="note">
-                            <p class="point-blue"></p>
-                            <p class="gpa">GPA học kỳ</p>
-                        </div>
-                        <div class="note">
-                            <p class="point-green"></p>
-                            <p class="gpa">GPA tích lũy</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Thống kê điểm -->
-            <!-- header -->
-            <div class="tkd">
-                <div class="header-tkd">
-                    <h1 class="title-tkd">Thống kê điểm</h1>
-                    <div>
-                        <select name="" id="select-hk">
-                            <option value="HK1 (2025-2026)">
-                                HK1 (2025-2026)
-                            </option>
-                            <option value="HK2 (2024-2025)">
-                                HK2 (2024-2025)
-                            </option>
-                            <option value="HK1 (2024-2025)">
-                                HK1 (2024-2025)
-                            </option>
-                            <option value="HK2 (2023-2024)">
-                                HK2 (2023-2024)
-                            </option>
-                            <option value="HK1 (2023-2024)">
-                                HK1 (2023-2024)
-                            </option>
-                            <option value="HK2 (2022-2023)">
-                                HK2 (2022-2023)
-                            </option>
-                            <option value="HK1 (2022-2023)">
-                                HK1 (2022-2023)
-                            </option>
-                        </select>
-                    </div>
+                    <g class="dots green">
+                      <circle cx="60" cy="200" r="4" />
+                      <circle cx="196" cy="195" r="4" />
+                      <circle cx="332" cy="180" r="4" />
+                      <circle cx="468" cy="170" r="4" />
+                      <circle cx="604" cy="160" r="4" />
+                      <circle cx="740" cy="155" r="4" />
+                    </g>
+                    <!-- x labels -->
+                    <g class="x-labels">
+                      <text x="60" y="330">HK1/2022</text>
+                      <text x="196" y="330">HK2/2022</text>
+                      <text x="332" y="330">HK1/2023</text>
+                      <text x="468" y="330">HK2/2023</text>
+                      <text x="604" y="330">HK1/2024</text>
+                      <text x="740" y="330">HK2/2024</text>
+                    </g>
+                  </svg>
                 </div>
                 <div>
-                    <div class="grade-chart">
-                        <div class="row">
-                            <span class="label">A+</span>
-                            <div class="bar">
-                                <div class="fill" style="width: 80%"></div>
-                            </div>
-                            <span class="count">4 môn</span>
-                        </div>
-
-                        <div class="row">
-                            <span class="label">A</span>
-                            <div class="bar">
-                                <div class="fill" style="width: 40%"></div>
-                            </div>
-                            <span class="count">2 môn</span>
-                        </div>
-
-                        <div class="row">
-                            <span class="label">B+</span>
-                            <div class="bar">
-                                <div class="fill" style="width: 20%"></div>
-                            </div>
-                            <span class="count">1 môn</span>
-                        </div>
-
-                        <div class="row">
-                            <span class="label">B</span>
-                            <div class="bar">
-                                <div class="fill" style="width: 20%"></div>
-                            </div>
-                            <span class="count">1 môn</span>
-                        </div>
-
-                        <div class="row">
-                            <span class="label">C+</span>
-                            <div class="bar">
-                                <div class="fill" style="width: 20%"></div>
-                            </div>
-                            <span class="count">1 môn</span>
-                        </div>
-
-                        <div class="row">
-                            <span class="label">C</span>
-                            <div class="bar">
-                                <div class="fill" style="width: 20%"></div>
-                            </div>
-                            <span class="count">1 môn</span>
-                        </div>
-                    </div>
+                  <div class="note">
+                    <p class="point-blue"></p>
+                    <p class="gpa">GPA học kỳ</p>
+                  </div>
+                  <div class="note">
+                    <p class="point-green"></p>
+                    <p class="gpa">GPA tích lũy</p>
+                  </div>
                 </div>
-                <div>
-                    <p
-                        style="
-                            font-weight: 400;
-                            align-items: center;
-                            margin-top: -1px;
-                            margin-left: 19px;
-                            width: 550px;
-                            text-align: center;
-                            font-size: 14px;
-                            color: #333333;
-                        "
-                    >
-                        Tổng môn đã học: 8
-                    </p>
-                </div>
+              </div>
             </div>
-        </div>
-    </body>
+          </div>
+          <!-- Thống kê điểm -->
+          <!-- header -->
+          <div class="tkd">
+            <div class="header-tkd">
+              <h1 class="title-tkd">Thống kê điểm</h1>
+              <div>
+                <select name="" id="select-hk">
+                  <option value="HK1 (2025-2026)">HK1 (2025-2026)</option>
+                  <option value="HK2 (2024-2025)">HK2 (2024-2025)</option>
+                  <option value="HK1 (2024-2025)">HK1 (2024-2025)</option>
+                  <option value="HK2 (2023-2024)">HK2 (2023-2024)</option>
+                  <option value="HK1 (2023-2024)">HK1 (2023-2024)</option>
+                  <option value="HK2 (2022-2023)">HK2 (2022-2023)</option>
+                  <option value="HK1 (2022-2023)">HK1 (2022-2023)</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <div class="grade-chart">
+                <div class="row">
+                  <span class="label">A+</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 80%"></div>
+                  </div>
+                  <span class="count">4 môn</span>
+                </div>
+
+                <div class="row">
+                  <span class="label">A</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 40%"></div>
+                  </div>
+                  <span class="count">2 môn</span>
+                </div>
+
+                <div class="row">
+                  <span class="label">B+</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
+
+                <div class="row">
+                  <span class="label">B</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
+
+                <div class="row">
+                  <span class="label">C+</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
+
+                <div class="row">
+                  <span class="label">C</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p
+                style="
+                  font-weight: 400;
+                  align-items: center;
+                  margin-top: -1px;
+                  margin-left: 19px;
+                  width: 550px;
+                  text-align: center;
+                  font-size: 14px;
+                  color: #333333;
+                "
+              >
+                Tổng môn đã học: 8
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+  <script src="../js/main.js"></script>
 </html>
