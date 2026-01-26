@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chương trình khung đào tạo và tiên đề học tập</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/themes/base/jquery-ui.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://kendo.cdn.telerik.com/2016.3.1118/styles/kendo.common.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://kendo.cdn.telerik.com/2016.3.1118/styles/kendo.default.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/curriculum-framework.css" />
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="header-section">
+      <div class="container-lg">
+        <div class="header-title">
+          Chương trình khung đào tạo và tiên đề học tập
+        </div>
+        <div class="header-subtitle">
+          Năm chương trình đào tạo theo Thông tư 11 và lộ trình học tập hợp
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg">
+      <!-- Progress Section -->
+      <div class="content-wrapper">
+        <div class="progress-section">
+          <div class="learning-progress-title">
+            <div class="section-title">Tiến độ học tập</div>
+
+            <div class="progress-label">
+              <span
+                ><i class="fa-solid fa-circle badge-completed"></i> Đã hoàn
+                thành</span
+              >
+              <span
+                ><i class="fa-solid fa-circle badge-progress"></i> Tin chỉ đang
+                học</span
+              >
+              <span
+                ><i class="fa-solid fa-circle badge-notstart"></i> Tin chỉ còn
+                lại</span
+              >
+            </div>
+          </div>
+
+          <div class="progress-bar-div">
+            <div class="progress-bar-title">
+              <div>Đã hoàn thành</div>
+              <div>
+                <span class="progress-percentage">75%</span>
+              </div>
+            </div>
+            <div id="chart" class="progress-chart" style="width: 100%"></div>
+          </div>
+
+          <div class="stats-container">
+            <div class="stat-box">
+              <div class="stat-number green">162</div>
+              <div class="stat-label">Tổng tin chỉ</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number blue">122</div>
+              <div class="stat-label">Đã hoàn thành</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number yellow">24</div>
+              <div class="stat-label">Tin chỉ đang học</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number gray">16</div>
+              <div class="stat-label">Tin chỉ còn lại</div>
+            </div>
+            <div class="stat-box-end">
+              <div class="stat-number yellow">+ 2%</div>
+              <div class="stat-label">Tiến độ so với kế hoạch</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Section -->
+      <div class="content-wrapper">
+        <div class="tab-buttons">
+          <button class="tab-btn active">Học kỳ</button>
+          <button class="tab-btn">Khối kiến thức</button>
+        </div>
+
+        <div class="controls-section">
+          <div class="search-box">
+            <input
+              type="text"
+              placeholder="Tìm kiếm môn học theo tên hoặc mã..."
+            />
+          </div>
+          <div class="action-buttons">
+            <button class="btn-custom primary">
+              <i class="fas fa-bars"></i>
+              Tất cả
+            </button>
+            <button class="btn-custom">
+              <i class="fab fa-leanpub"></i>
+              Chưa học
+            </button>
+            <button class="btn-custom">
+              <i class="far fa-calendar-alt"></i>
+              Bắt buộc
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Knowledge Blocks Overview -->
+      <div class="content-wrapper">
+        <div class="section-title">Tổng quan khối kiến thức</div>
+
+        <div class="knowledge-blocks">
+          <div class="knowledge-block">
+            <div class="circle-progress">
+              <svg viewBox="0 0 120 120">
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  fill="none"
+                  stroke="#e9ecef"
+                  stroke-width="8"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  fill="none"
+                  stroke="#ffb800"
+                  stroke-width="8"
+                  stroke-dasharray="157 314"
+                  stroke-dashoffset="0"
+                />
+              </svg>
+              <div class="circle-text yellow">GDDC</div>
+            </div>
+            <div class="block-title">Giáo dục đại cương</div>
+            <div class="block-code">32/31 tin chỉ</div>
+            <div class="block-progress">
+              <div class="block-progress-bar yellow"></div>
+            </div>
+          </div>
+
+          <div class="knowledge-block">
+            <div class="circle-progress">
+              <svg viewBox="0 0 120 120">
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  fill="none"
+                  stroke="#e9ecef"
+                  stroke-width="8"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  fill="none"
+                  stroke="#ffb800"
+                  stroke-width="8"
+                  stroke-dasharray="157 314"
+                  stroke-dashoffset="0"
+                />
+              </svg>
+              <div class="circle-text yellow">GDCN</div>
+            </div>
+            <div class="block-title">Giáo dục chuyên nghiệp</div>
+            <div class="block-code">65/96 tin chỉ</div>
+            <div class="block-progress">
+              <div class="block-progress-bar yellow"></div>
+            </div>
+          </div>
+
+          <div class="knowledge-block">
+            <div class="circle-progress">
+              <svg viewBox="0 0 120 120">
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  fill="none"
+                  stroke="#e9ecef"
+                  stroke-width="8"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  fill="none"
+                  stroke="#28a745"
+                  stroke-width="8"
+                  stroke-dasharray="251 314"
+                  stroke-dashoffset="0"
+                />
+              </svg>
+              <div class="circle-text green">N/A</div>
+            </div>
+            <div class="block-title">Chuyên định</div>
+            <div class="block-code">22/22 tin chỉ</div>
+            <div class="block-progress">
+              <div class="block-progress-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="legend">
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: var(--success-green)"
+            ></div>
+            <span>Hoàn thành</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: var(--primary-yellow)"
+            ></div>
+            <span>Đang học</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background-color: #ccc"></div>
+            <span>Chưa học</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expandable Sections -->
+      <div class="content-wrapper">
+        <!-- Section 1 -->
+        <div class="expandable-section">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="semester-title">
+              <div class="semester-head-icon"></div>
+              <div>
+                <div class="section-header-text">
+                  Khối kiến thức giáo dục đại cương
+                </div>
+                <div class="section-meta">
+                  Bắt buộc:
+                  <span class="bold-text">12 tín chỉ</span>
+                  • Tự chọn:
+                  <span class="bold-text">6 tín chỉ</span>
+                </div>
+              </div>
+            </div>
+            <div class="section-icon">
+              <i class="fas fa-chevron-up"></i>
+            </div>
+          </div>
+          <div class="section-content">
+            <!-- Table will go here -->
+            <p>Nội dung khối kiến thức đại cương...</p>
+          </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="expandable-section">
+          <div class="section-header expanded" onclick="toggleSection(this)">
+            <div class="semester-title">
+              <div class="semester-head-icon"></div>
+              <div>
+                <div class="section-header-text">
+                  Khối kiến thức giáo dục đại cương
+                </div>
+                <div class="section-meta">
+                  Bắt buộc:
+                  <span class="bold-text">12 tín chỉ</span>
+                  • Tự chọn:
+                  <span class="bold-text">6 tín chỉ</span>
+                </div>
+              </div>
+            </div>
+            <div class="section-icon">
+              <i class="fas fa-chevron-up"></i>
+            </div>
+          </div>
+          <div class="section-content active">
+            <div class="subtitle-header">Học phần bắt buộc</div>
+            <div class="table-frame">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>HỌC KỲ</th>
+                    <th>TÊN MÔN HỌC/HỌC PHẦN</th>
+                    <th>MÃ HP</th>
+                    <th>HỌC PHẦN</th>
+                    <th>HP TƯƠNG ĐƯƠNG</th>
+                    <th>HP THAY THẾ</th>
+                    <th>SỐ TC</th>
+                    <th>SỐ TIẾT LÝ</th>
+                    <th>SỐ TIẾT THI</th>
+                    <th>ĐẠT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>Kỹ năng thăm gia quyết các vụ án dân sự</td>
+                    <td>000093</td>
+                    <td>-</td>
+                    <td>[010115]</td>
+                    <td>-</td>
+                    <td>3</td>
+                    <td>30</td>
+                    <td>30</td>
+                    <td><span class="checkmark">✓</span></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>Phương pháp điều tra xã hội học</td>
+                    <td>000901</td>
+                    <td>-</td>
+                    <td>[010006]</td>
+                    <td>-</td>
+                    <td>1</td>
+                    <td>10</td>
+                    <td>0</td>
+                    <td><span class="checkmark">✓</span></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>Pháp luật đại cương</td>
+                    <td>000902</td>
+                    <td>-</td>
+                    <td>[010116]</td>
+                    <td>-</td>
+                    <td>2</td>
+                    <td>20</td>
+                    <td>0</td>
+                    <td><span class="dash">-</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="subtitle-header">Học phần tự chọn</div>
+            <div
+              style="padding: 20px; background-color: white"
+              class="elective-course"
+            >
+              <div>
+                <div class="block-type">
+                  TỰ CHỌN KHỐI KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP 1
+                </div>
+                <table class="table elective-table">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>HỌC KỲ</th>
+                      <th>TÊN MÔN HỌC/HỌC PHẦN</th>
+                      <th>MÃ HP</th>
+                      <th>HỌC PHẦN</th>
+                      <th>HP TƯƠNG ĐƯƠNG</th>
+                      <th>HP THAY THẾ</th>
+                      <th>SỐ TC</th>
+                      <th>SỐ TIẾT LÝ</th>
+                      <th>SỐ TIẾT THI</th>
+                      <th>ĐẠT</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>Kỹ năng thăm gia giải quyết các vụ án dân sự 1</td>
+                      <td>000093</td>
+                      <td>-</td>
+                      <td>[010115]</td>
+                      <td>-</td>
+                      <td>3</td>
+                      <td>30</td>
+                      <td>30</td>
+                      <td><span class="dash">-</span></td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>Phương pháp điều tra xã hội học 1</td>
+                      <td>000901</td>
+                      <td>-</td>
+                      <td>[010006]</td>
+                      <td>-</td>
+                      <td>1</td>
+                      <td>10</td>
+                      <td>0</td>
+                      <td><span class="checkmark">✓</span></td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>Pháp luật đại cương 1</td>
+                      <td>000902</td>
+                      <td>-</td>
+                      <td>[010116]</td>
+                      <td>-</td>
+                      <td>2</td>
+                      <td>20</td>
+                      <td>0</td>
+                      <td><span class="dash">-</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div>
+                <div class="block-type">
+                  TỰ CHỌN KHỐI KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP 2
+                </div>
+                <table class="table elective-table">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>HỌC KỲ</th>
+                      <th>TÊN MÔN HỌC/HỌC PHẦN</th>
+                      <th>MÃ HP</th>
+                      <th>HỌC PHẦN</th>
+                      <th>HP TƯƠNG ĐƯƠNG</th>
+                      <th>HP THAY THẾ</th>
+                      <th>SỐ TC</th>
+                      <th>SỐ TIẾT LÝ</th>
+                      <th>SỐ TIẾT THI</th>
+                      <th>ĐẠT</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>Kỹ năng thăm gia giải quyết các vụ án dân sự 2</td>
+                      <td>000094</td>
+                      <td>000093 (b)</td>
+                      <td>[010115]</td>
+                      <td>-</td>
+                      <td>3</td>
+                      <td>30</td>
+                      <td>30</td>
+                      <td><span class="dash">-</span></td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>Phương pháp điều tra xã hội học 2</td>
+                      <td>000905</td>
+                      <td>000901 (b)</td>
+                      <td>[010006]</td>
+                      <td>-</td>
+                      <td>1</td>
+                      <td>10</td>
+                      <td>0</td>
+                      <td><span class="dash">-</span></td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>Pháp luật đại cương 2</td>
+                      <td>000906</td>
+                      <td>000902 (b)</td>
+                      <td>[010116]</td>
+                      <td>-</td>
+                      <td>2</td>
+                      <td>20</td>
+                      <td>0</td>
+                      <td><span class="dash">-</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="expandable-section">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div>
+              <div class="section-header-text">🔷 Chưa xác định</div>
+              <div class="section-meta">
+                Bắt buộc: 12 tin chỉ • Tự chọn: 6 tin chỉ
+              </div>
+            </div>
+            <div class="section-icon">▼</div>
+          </div>
+          <div class="section-content">
+            <p>Nội dung phần chưa xác định...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-section">© 2025</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
+
+    <script src="https://kendo.cdn.telerik.com/2016.3.1118/js/kendo.all.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      $("#chart").kendoChart({
+        chartArea: {
+          height: 30,
+          background: "#f4fbff",
+        },
+        legend: { visible: false },
+        seriesDefaults: {
+          type: "bar",
+          stack: true,
+        },
+        series: [
+          { data: [60], color: "#56a2e8" }, // xanh
+          { data: [15], color: "#ffb800" }, // vàng
+          { data: [25], color: "#e0e0e0" }, // xám
+        ],
+        valueAxis: {
+          min: 0,
+          max: 100,
+          visible: false,
+          majorGridLines: { visible: false },
+          minorGridLines: { visible: false },
+        },
+        categoryAxis: {
+          categories: [""],
+          visible: false,
+          majorGridLines: { visible: false },
+          minorGridLines: { visible: false },
+        },
+        tooltip: {
+          visible: true,
+          template: "#= value #%",
+        },
+        dataBound: function () {
+          var svg = $("#chart svg");
+
+          svg.find("rect[fill]").each(function () {
+            var rect = $(this);
+            var fill = rect.attr("fill");
+
+            if (fill && !fill.includes("url")) {
+              rect.attr("rx", 8);
+              rect.attr("ry", 8);
+            }
+          });
+        },
+      });
+
+      function toggleSection(header) {
+        const icon = header.querySelector(".section-icon");
+        const content = header.nextElementSibling;
+
+        // Close all other sections
+        document.querySelectorAll(".section-header").forEach((h) => {
+          if (h !== header) {
+            h.classList.remove("expanded");
+            h.querySelector(".section-icon").classList.remove("rotated");
+            h.nextElementSibling.classList.remove("active");
+          }
+        });
+
+        // Toggle current section
+        header.classList.toggle("expanded");
+        icon.classList.toggle("rotated");
+        content.classList.toggle("active");
+      }
+
+      // Initialize tooltips if needed
+      $(function () {
+        // Bootstrap tooltip initialization
+        var tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]'),
+        );
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      });
+    </script>
+  </body>
+</html>
