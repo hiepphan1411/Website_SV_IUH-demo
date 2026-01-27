@@ -1,674 +1,1060 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cổng thông tin sinh viên</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="../css/index.css" />
-    <script
-      src="https://kit.fontawesome.com/6f955e325d.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="header-container">
-      <div class="left-header-container">
-        <div class="logo-div">
-          <!-- Todo Logo -->
-        </div>
-        <div class="search-bar">
-          <input type="text" placeholder="Tìm kiếm..." />
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-      </div>
-      <div class="right-header-container">
-        <div>
-          <i class="fa-regular fa-house"></i>
-          <span>Trang chủ</span>
-        </div>
-        <div>
-          <i class="fa-regular fa-bell"></i>
-          <span>Tin tức</span>
-        </div>
-        <div class="login-infor">
-          <div class="avatar">
-            <img
-              src="../img/user.png"
-              alt="User Image"
-              width="15"
-              height="15"
-            />
-          </div>
-          <span style="font-size: larger">Asc Test</span>
-        </div>
-      </div>
-    </header>
-    <!-- Content -->
-    <main class="main-content">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <nav class="nav-menu">
-          <a href="#" class="nav-item active">
-            <i class="fas fa-home"></i>
-            <span>Trang chủ</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-user"></i>
-            <span>Thông tin sinh viên</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-calendar-week"></i>
-            <span>Lịch theo tuần</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-book-open"></i>
-            <span>Đăng ký học phần</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-chart-line"></i>
-            <span>Kết quả học tập</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-money-bill-wave"></i>
-            <span>Tra cứu công nợ</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-trophy"></i>
-            <span>Học bổng</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-folder-open"></i>
-            <span>Hồ sơ điện tử</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-pen-fancy"></i>
-            <span>Lịch thi</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-tasks"></i>
-            <span>Lịch theo tiến độ</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-bell"></i>
-            <span>Thông báo</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-poll"></i>
-            <span>Khảo sát</span>
-          </a>
-        </nav>
-      </aside>
-      <!-- Details -->
-      <div class="dashboard-content">
-        <!-- Highest priority -->
-        <div class="highest-priority-container">
-          <!-- Student Information Card -->
-          <div class="card-infor-container">
-            <div class="title">
-              <p>Thông tin sinh viên</p>
-            </div>
-            <div class="infor-card-body">
-              <div class="avatar-left">
-                <div class="student-avatar">
-                  <img src="../img/user.png" style="width: 50px" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cổng thông tin sinh viên</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+
+        <link
+            href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"
+            rel="stylesheet"
+        />
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.common.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.default.min.css"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="../css/index.css" />
+        <script
+            src="https://kit.fontawesome.com/6f955e325d.js"
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header-container">
+            <div class="left-header-container">
+                <div class="logo-div">
+                    <!-- Todo Logo -->
                 </div>
-                <a href="" class="details-link">Xem chi tiết</a>
-              </div>
-              <div class="infor-text-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm..." />
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            <div class="right-header-container">
                 <div>
-                  <p>MSSV: <b>2552010678</b></p>
-                  <p>Họ tên: <b>Asc Test</b></p>
-                  <p>Giới tính: <b>Nam</b></p>
-                  <p>Ngày sinh: <b>01/01/2008</b></p>
-                  <p>Nơi sinh: <b>An Giang</b></p>
+                    <i class="fa-regular fa-house"></i>
+                    <span>Trang chủ</span>
                 </div>
                 <div>
-                  <p>Lớp học: <b>D.14.22.03</b></p>
-                  <p>Khóa học: <b>Khóa 2025</b></p>
-                  <p>Bậc đào tạo: <b>Đại học</b></p>
-                  <p>Loại hình đào tạo: <b>Chính quy</b></p>
-                  <p>Ngành: <b>Tài chính - Ngân hàng</b></p>
+                    <i class="fa-regular fa-bell"></i>
+                    <span>Tin tức</span>
                 </div>
-              </div>
-            </div>
-          </div>
-          <!-- Today Learning Schedule Card -->
-          <div class="today-schedule-card">
-            <div class="schedule-title">
-              <div class="schedule-icon-container">
-                <i class="fas fa-calendar-alt"></i>
-              </div>
-              <div class="today-schedule-text">
-                <span>Lịch học hôm nay</span>
-                <span style="font-weight: 700; font-size: 28px">1</span>
-              </div>
-            </div>
-            <div class="lesson-card">
-              <div class="lesson-title">
-                <div class="lesson-border">
-                  <span style="color: white">T1-3</span>
-                </div>
-                <p>Thực tập doanh nghiệp</p>
-              </div>
-              <div class="lesson-body">
-                <span> Lớp học phần: <b>DHKTPM18A</b> </span>
-                <span> Giảng viên: <b>Nguyễn Thị Hạnh</b> </span>
-                <span>Phòng học: <b>A02.03</b></span>
-              </div>
-            </div>
-            <div class="detail-link-container">
-              <span class="detail-link-forward"
-                >Xem chi tiết <i class="fa-solid fa-angle-right"></i
-              ></span>
-            </div>
-          </div>
-          <!-- Today Examination Schedule Card -->
-          <div class="today-schedule-card">
-            <div class="schedule-title">
-              <div
-                class="schedule-icon-container"
-                style="background-color: #f9b20020"
-              >
-                <i class="fas fa-clipboard-list" style="color: #fbb522"></i>
-              </div>
-              <div class="today-schedule-text">
-                <span>Lịch thi hôm nay</span>
-                <span style="font-weight: 700; font-size: 28px">0</span>
-              </div>
-            </div>
-            <div class="lesson-card" style="background-color: #f9b20020">
-              <span class="empty-text">Không có lịch hôm nay</span>
-            </div>
-            <div class="detail-link-container">
-              <span class="detail-link-forward" style="color: #fbb522"
-                >Xem chi tiết
-                <i class="fa-solid fa-angle-right" style="color: #fbb522"></i
-              ></span>
-            </div>
-          </div>
-        </div>
-        <!-- Second priority -->
-        <section class="second-priority-container">
-          <div class="second-prio-card">
-            <div class="second-prio-icon schedule-icon">
-              <i class="fas fa-book-open"></i>
-            </div>
-            <div class="second-prio-title schedule-title">
-              <span>Lịch học trong tuần</span>
-              <span class="counting">2</span>
-              <span class="small-text"></span>
-            </div>
-          </div>
-          <div class="second-prio-card">
-            <div class="second-prio-icon exam-icon">
-              <i class="fa-solid fa-pen-fancy"></i>
-            </div>
-            <div class="second-prio-title exam-title">
-              <span>Lịch thi trong tuần</span>
-              <span class="counting">0</span>
-              <span class="small-text">Không có lịch thi</span>
-            </div>
-          </div>
-          <div class="second-prio-card">
-            <div class="second-prio-icon announce-icon">
-              <i class="fa-solid fa-bell"></i>
-            </div>
-            <div class="second-prio-title announce-title">
-              <span>Thông báo mới</span>
-              <span class="counting">0</span>
-              <span class="small-text">Chưa xem</span>
-            </div>
-          </div>
-          <div class="second-prio-card">
-            <div class="second-prio-icon scholarship-icon">
-              <i class="fas fa-trophy"></i>
-            </div>
-            <div class="second-prio-title scholarship-title">
-              <span>Học bổng</span>
-              <span class="counting">2</span>
-              <span class="small-text">Đã nhận</span>
-            </div>
-          </div>
-        </section>
-        <!-- Quick Function Container -->
-        <div class="quick-function-container">
-          <div class="quick-fucntion-card">
-            <i class="fa-solid fa-calendar"></i>
-            <span>Lịch theo tuần</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fas fa-book-open"></i>
-            <span>Đăng ký học phần</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fa-solid fa-chart-area"></i>
-            <span>Kết quả học tập</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fa-solid fa-money-bill-wave"></i>
-            <span>Tra cứu công nợ</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fa-solid fa-credit-card"></i>
-            <span>Thanh toán trực tuyến</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fa-solid fa-receipt"></i>
-            <span>Phiếu thu tổng hợp</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fa-solid fa-list-check"></i>
-            <span>Lịch theo tiến độ</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fa-solid fa-pen-fancy"></i>
-            <span>Lịch thi</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fa-solid fa-bell"></i>
-            <span>Nhắc nhở</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fas fa-poll"></i>
-            <span>Khảo sát</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fas fa-folder-open"></i>
-            <span>Hồ sơ điện tử</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fas fa-trophy"></i>
-            <span>Học bổng</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fa-solid fa-bed"></i>
-            <span>Đăng ký nội trú</span>
-          </div>
-          <div class="quick-fucntion-card">
-            <i class="fab fa-wpforms"></i>
-            <span>Đề xuất biểu mẫu</span>
-          </div>
-        </div>
-
-        <section class="grid-2-cols section-info">
-          <div class="card">
-            <div
-              class="card-header d-flex justify-content-between align-items-center"
-            >
-              <h3 class="mb-0">Tiến độ học tập</h3>
-              <span class="progress-percentage-header">83%</span>
-            </div>
-            <div class="card-body">
-              <!-- GPA and Progress Container -->
-              <div class="gpa-progress-container mb-3">
-                <!-- GPA Display Card -->
-                <div class="gpa-display-card rounded-4 text-white p-4">
-                  <div class="gpa-number fw-bold mb-2">3.62</div>
-                  <div class="gpa-label mb-2">GPA Tích lũy</div>
-                  <span class="badge gpa-badge">Xếp loại Giỏi</span>
-                </div>
-
-                <!-- Progress and Credit Section -->
-                <div class="progress-credit-section">
-                  <!-- Progress Bar Section -->
-                  <div class="progress-section mb-3">
-                    <div
-                      class="d-flex justify-content-between align-items-center mb-2"
-                    >
-                      <small class="progress-label">Tín chỉ tích lũy</small>
-                      <span class="progress-value">135/162</span>
+                <div class="login-infor">
+                    <div class="avatar-header">
+                        <img
+                            src="../img/user.png"
+                            alt="User Image"
+                            width="15"
+                            height="15"
+                        />
                     </div>
-                    <div class="progress-bar-wrapper">
-                      <div class="progress-bar-fill" style="width: 83%"></div>
+                    <span style="font-size: larger">Asc Test</span>
+                </div>
+            </div>
+        </header>
+        <!-- Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <a href="#" class="nav-item active">
+                        <i class="fas fa-home"></i>
+                        <span>Trang chủ</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user"></i>
+                        <span>Thông tin sinh viên</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-calendar-week"></i>
+                        <span>Lịch theo tuần</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-book-open"></i>
+                        <span>Đăng ký học phần</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Kết quả học tập</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Tra cứu công nợ</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Học bổng</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Hồ sơ điện tử</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-pen-fancy"></i>
+                        <span>Lịch thi</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Lịch theo tiến độ</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Thông báo</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-poll"></i>
+                        <span>Khảo sát</span>
+                    </a>
+                </nav>
+            </aside>
+            <!-- Details -->
+            <div class="dashboard-content">
+                <!-- Highest priority -->
+                <div class="container-fluid">
+                    <div class="row gap-3">
+                        <!-- student information -->
+                        <div class="col-xl-4 student-card text-center">
+                            <div class="avatar-card mx-auto mb-3"></div>
+                            <h6 class="fw-bold mb-0">Asc Test</h6>
+                            <small class="fw-semibold text-muted"
+                                >2552010678</small
+                            >
+
+                            <div class="info-row">
+                                <span class="row-title">Ngày sinh:</span>
+                                <span class="fw-semibold row-content"
+                                    >01/01/2008</span
+                                >
+                            </div>
+                            <div class="info-row">
+                                <span class="row-title">Khóa học:</span>
+                                <span class="fw-semibold row-content"
+                                    >Khóa 2025</span
+                                >
+                            </div>
+                            <div class="info-row">
+                                <span class="row-title">Lớp học:</span>
+                                <span class="fw-semibold row-content"
+                                    >D.14.22.03</span
+                                >
+                            </div>
+                            <div class="info-row">
+                                <span class="row-title">Ngành:</span>
+                                <span class="fw-semibold row-content"
+                                    >Tài chính - Ngân hàng</span
+                                >
+                            </div>
+
+                            <a
+                                href="#"
+                                class="fw-bold profile-link mt-3 d-inline-block"
+                            >
+                                Xem chi tiết hồ sơ
+                            </a>
+                        </div>
+
+                        <!-- schedule -->
+
+                        <div class="schedule-card col-xl-6 d-flex flex-column">
+                            <div
+                                class="d-flex justify-content-between align-items-center mb-3"
+                            >
+                                <div>
+                                    <h6
+                                        class="fw-bold mb-0"
+                                        style="font-size: 22px"
+                                    >
+                                        Lịch hôm nay
+                                    </h6>
+                                    <small class="fw-semibold text-muted"
+                                        >Thứ Tư, 13 Tháng 01, 2026</small
+                                    >
+                                </div>
+                                <div class="badge-group">
+                                    <span
+                                        class="badge bg-primary-subtle text-primary border border-primary"
+                                    >
+                                        1 Lịch học
+                                    </span>
+                                    <span
+                                        class="badge bg-warning-subtle text-warning border border-warning"
+                                    >
+                                        1 Lịch thi
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="schedule-item-border">
+                                <!-- item 1 -->
+                                <div class="schedule-item blue">
+                                    <div class="time-box">
+                                        <span>Tiết</span>
+                                        <strong>1-3</strong>
+                                    </div>
+
+                                    <div class="schedule-info">
+                                        <p
+                                            class="fw-semibold"
+                                            style="color: #56a2e8"
+                                        >
+                                            DHKTPM18A-420300314705
+                                        </p>
+                                        <div class="fw-semibold">
+                                            Thực tập doanh nghiệp
+                                        </div>
+                                        <div class="meta">
+                                            <i class="fa-solid fa-clock"></i>
+                                            6h30 - 9h10 &nbsp; • &nbsp;
+                                            <i
+                                                class="fa-solid fa-location-dot"
+                                            ></i>
+                                            Phòng A203
+                                        </div>
+                                    </div>
+
+                                    <div class="teacher align-items-center">
+                                        Giảng viên<br />
+                                        <strong>TS. Nguyễn Thị Hạnh</strong>
+                                    </div>
+                                </div>
+
+                                <!-- item 2 -->
+                                <div class="schedule-item orange">
+                                    <div class="time-box">
+                                        <span>Tiết</span>
+                                        <strong>7-9</strong>
+                                    </div>
+
+                                    <div class="schedule-info">
+                                        <p
+                                            class="fw-semibold"
+                                            style="color: #fbb522"
+                                        >
+                                            DHKTPM18A-420300314705
+                                        </p>
+                                        <div class="fw-semibold">
+                                            Thực tập doanh nghiệp
+                                        </div>
+                                        <div class="meta">
+                                            <i class="fa-solid fa-clock"></i>
+                                            12h30 - 15h &nbsp; • &nbsp;
+                                            <i
+                                                class="fa-solid fa-location-dot"
+                                            ></i>
+                                            Phòng A403
+                                        </div>
+                                    </div>
+
+                                    <div class="teacher">
+                                        Giảng viên<br />
+                                        <strong>ThS. Trần Thế Trung</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-end mt-auto">
+                                <a href="#" class="profile-link course-code"
+                                    >Xem chi tiết
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT: SUMMARY -->
+
+                        <div class="col-xl-2 sumary">
+                            <div class="summary-card blue">
+                                <div class="summary-title-study">
+                                    <i
+                                        class="fas fa-book-open"
+                                        style="font-size: 20px"
+                                    ></i>
+                                    <p>HỌC TẬP</p>
+                                </div>
+                                <div class="summary-desc-study blue">
+                                    Lịch học trong tuần
+                                </div>
+                                <div style="display: flex">
+                                    <p class="summary-value-study">2</p>
+                                    <p
+                                        style="
+                                            font-size: 11px;
+                                            color: var(--primary-blue);
+                                            font-style: italic;
+                                            margin-top: 14px;
+                                        "
+                                    >
+                                        môn học
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="summary-card orange">
+                                <div class="summary-title-exam">
+                                    <i
+                                        class="fa-solid fa-pen-fancy"
+                                        style="font-size: 20px"
+                                    ></i>
+                                    <p>KỲ THI</p>
+                                </div>
+                                <div class="summary-desc-exam orange">
+                                    Lịch thi sắp tới
+                                </div>
+                                <div style="display: flex">
+                                    <p class="summary-value-exam">1</p>
+                                    <p
+                                        style="
+                                            font-size: 11px;
+                                            color: var(--warning-orange);
+                                            font-style: italic;
+                                            margin-top: 14px;
+                                        "
+                                    >
+                                        môn học
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="summary-card gray">
+                                <div class="summary-title-remind">
+                                    <i
+                                        class="fa-solid fa-bell"
+                                        style="font-size: 20px"
+                                    ></i>
+                                    <p>NHẮC NHỞ</p>
+                                </div>
+                                <div class="summary-desc-remind gray">
+                                    Nhắc nhở mới
+                                </div>
+                                <div style="display: flex">
+                                    <p class="summary-value-exam">0</p>
+                                    <p
+                                        style="
+                                            font-size: 11px;
+                                            color: var(--primary-gray);
+                                            font-style: italic;
+                                            margin-top: 14px;
+                                        "
+                                    >
+                                        chưa xem
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                </div>
 
-                  <!-- Credit Status -->
-                  <div class="credit-status-grid">
-                    <div class="credit-box credit-completed">
-                      <div class="credit-number">135</div>
-                      <div class="credit-unit">tín chỉ</div>
-                      <div class="credit-label">Đã hoàn thành</div>
+                <!-- Quick Function Container -->
+                <div class="card-access shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <div
+                            class="d-flex justify-content-between align-items-center mb-4"
+                        >
+                            <h5 class="fw-bold mb-0">Truy cập nhanh</h5>
+                            <div class="btn-group btn-group-sm">
+                                <button
+                                    class="btn btn-toggle active"
+                                    id="btnCompact"
+                                >
+                                    <i class="fas fa-compress-alt me-1"></i> Gần
+                                    đây
+                                </button>
+                                <button class="btn btn-toggle" id="btnExpanded">
+                                    <i class="fas fa-th me-1"></i> Tất cả
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Compact View -->
+                        <div id="quickAccessCompact" class="row g-3">
+                            <div class="col-2">
+                                <div
+                                    class="card-access-quick border-0 shadow-sm"
+                                >
+                                    <div
+                                        class="card-body p-3 d-flex align-items-center gap-3"
+                                    >
+                                        <div
+                                            class="quick-access-icon rounded-3 d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="
+                                                background-color: var(
+                                                    --primary-blue
+                                                );
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-chart-line text-white"
+                                            ></i>
+                                        </div>
+                                        <div>
+                                            <h6
+                                                class="mb-1 fw-semibold small"
+                                                style="font-size: 14px"
+                                            >
+                                                Kết quả học tập
+                                            </h6>
+                                            <p
+                                                class="mb-0 text-muted"
+                                                style="font-size: 12px"
+                                            >
+                                                5 phút trước
+                                            </p>
+                                        </div>
+                                        <div class="position-relative ms-2">
+                                            <span
+                                                class="notification-dot position-absolute rounded-circle"
+                                                style="
+                                                    background-color: var(
+                                                        --primary-blue
+                                                    );
+                                                "
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div
+                                    class="card-access-quick border-0 shadow-sm"
+                                >
+                                    <div
+                                        class="card-body p-3 d-flex align-items-center gap-3"
+                                    >
+                                        <div
+                                            class="quick-access-icon rounded-3 d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="
+                                                background-color: var(
+                                                    --primary-blue
+                                                );
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-book text-white"
+                                            ></i>
+                                        </div>
+                                        <div>
+                                            <h6
+                                                class="mb-1 fw-semibold small"
+                                                style="font-size: 14px"
+                                            >
+                                                Đăng ký học phần
+                                            </h6>
+                                            <p
+                                                class="mb-0 text-muted"
+                                                style="font-size: 12px"
+                                            >
+                                                30 phút trước
+                                            </p>
+                                        </div>
+                                        <div class="position-relative ms-2">
+                                            <span
+                                                class="notification-dot position-absolute rounded-circle"
+                                                style="
+                                                    background-color: var(
+                                                        --primary-blue
+                                                    );
+                                                "
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div
+                                    class="card-access-quick border-0 shadow-sm"
+                                >
+                                    <div
+                                        class="card-body p-3 d-flex align-items-center gap-3"
+                                    >
+                                        <div
+                                            class="quick-access-icon rounded-3 d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="
+                                                background-color: var(
+                                                    --primary-blue
+                                                );
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-calendar-alt text-white"
+                                            ></i>
+                                        </div>
+                                        <div>
+                                            <h6
+                                                class="mb-1 fw-semibold small"
+                                                style="font-size: 14px"
+                                            >
+                                                Lịch theo tuần
+                                            </h6>
+                                            <p
+                                                class="mb-0 text-muted"
+                                                style="font-size: 12px"
+                                            >
+                                                1 giờ trước
+                                            </p>
+                                        </div>
+                                        <div class="position-relative ms-2">
+                                            <span
+                                                class="notification-dot position-absolute rounded-circle"
+                                                style="
+                                                    background-color: var(
+                                                        --primary-blue
+                                                    );
+                                                "
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div
+                                    class="card-access-quick border-0 shadow-sm"
+                                >
+                                    <div
+                                        class="card-body p-3 d-flex align-items-center gap-3"
+                                    >
+                                        <div
+                                            class="quick-access-icon rounded-3 d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="
+                                                background-color: var(
+                                                    --primary-blue
+                                                );
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-credit-card text-white"
+                                            ></i>
+                                        </div>
+                                        <div>
+                                            <h6
+                                                class="mb-1 fw-semibold small"
+                                                style="font-size: 14px"
+                                            >
+                                                Tra cứu công nợ
+                                            </h6>
+                                            <p
+                                                class="mb-0 text-muted"
+                                                style="font-size: 12px"
+                                            >
+                                                Hôm qua
+                                            </p>
+                                        </div>
+                                        <div class="position-relative ms-2">
+                                            <span
+                                                class="notification-dot position-absolute rounded-circle"
+                                                style="
+                                                    background-color: var(
+                                                        --primary-blue
+                                                    );
+                                                "
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div
+                                    class="card-access-quick border-0 shadow-sm"
+                                >
+                                    <div
+                                        class="card-body p-3 d-flex align-items-center gap-3"
+                                    >
+                                        <div
+                                            class="quick-access-icon rounded-3 d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="
+                                                background-color: var(
+                                                    --primary-blue
+                                                );
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-id-card text-white"
+                                            ></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1 fw-semibold small">
+                                                Khảo sát
+                                            </h6>
+                                            <p
+                                                class="mb-0 text-muted"
+                                                style="font-size: 0.75rem"
+                                            >
+                                                Hôm qua
+                                            </p>
+                                        </div>
+                                        <div class="position-relative ms-2">
+                                            <span
+                                                class="notification-dot position-absolute rounded-circle"
+                                                style="
+                                                    background-color: var(
+                                                        --primary-blue
+                                                    );
+                                                "
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expanded View - Auto Grid Layout -->
+                        <div id="quickAccessExpanded" class="d-none">
+                            <div class="quick-access-grid">
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Lịch theo tuần
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Đăng ký học phần
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Kết quả học tập
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Tra cứu công nợ
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Thanh toán trực tuyến
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Phiếu thu tổng hợp
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-list-check"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Lịch theo tiến độ
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Lịch thi
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-bell"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Nhắc nhở
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-id-card"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Khảo sát
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-folder"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Hồ sơ điện tử
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Học bổng
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Đăng ký nội trú
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-file-signature"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Đề xuất biểu mẫu
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-user-graduate"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Thông tin sinh viên
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-comments"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Góp ý
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="credit-box credit-remaining">
-                      <div class="credit-number">12</div>
-                      <div class="credit-unit">tín chỉ</div>
-                      <div class="credit-label">Còn lại</div>
+                </div>
+
+                <section class="grid-2-cols section-info">
+                    <div class="card border-0">
+                        <div
+                            class="card-header d-flex justify-content-between align-items-center"
+                        >
+                            <h3 class="mb-0">Tiến độ học tập</h3>
+                            <span class="progress-percentage-header">83%</span>
+                        </div>
+                        <div class="card-body">
+                            <!-- GPA and Progress Container -->
+                            <div class="gpa-progress-container mb-3">
+                                <!-- GPA Display Card -->
+                                <div
+                                    class="gpa-display-card rounded-4 text-white p-4"
+                                >
+                                    <div class="gpa-number fw-bold mb-2">
+                                        3.62
+                                    </div>
+                                    <div class="gpa-label mb-2">
+                                        GPA Tích lũy
+                                    </div>
+                                    <span class="badge gpa-badge"
+                                        >Xếp loại Giỏi</span
+                                    >
+                                </div>
+
+                                <!-- Progress and Credit Section -->
+                                <div class="progress-credit-section">
+                                    <!-- Progress Bar Section -->
+                                    <div class="progress-section mb-3">
+                                        <div
+                                            class="d-flex justify-content-between align-items-center mb-2"
+                                        >
+                                            <small class="progress-label"
+                                                >Tín chỉ tích lũy</small
+                                            >
+                                            <span class="progress-value"
+                                                >135/162</span
+                                            >
+                                        </div>
+                                        <div class="progress-bar-wrapper">
+                                            <div
+                                                class="progress-bar-fill"
+                                                style="width: 83%"
+                                            ></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Credit Status -->
+                                    <div class="credit-status-grid">
+                                        <div
+                                            class="credit-box credit-completed"
+                                        >
+                                            <div class="credit-number">135</div>
+                                            <div class="credit-unit">
+                                                tín chỉ
+                                            </div>
+                                            <div class="credit-label">
+                                                Đã hoàn thành
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="credit-box credit-remaining"
+                                        >
+                                            <div class="credit-number">12</div>
+                                            <div class="credit-unit">
+                                                tín chỉ
+                                            </div>
+                                            <div class="credit-label">
+                                                Còn lại
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Current Status Section -->
+                            <div class="current-status-section">
+                                <h6 class="status-title">
+                                    Trạng thái học phần hiện tại
+                                </h6>
+
+                                <div class="status-badge-row">
+                                    <div class="">
+                                        <span class="status-badge badge-open"
+                                            >ĐANG MỞ</span
+                                        >
+                                    </div>
+                                    <div class="semester-info-open">
+                                        <span
+                                            class="semester-info-status fw-semibold"
+                                            >Học kỳ 2 (2024-2025)
+                                        </span>
+                                        <div class="deadline-text">
+                                            Đến 20/02/2025
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="registration-summary">
+                                    <div class="summary-row">
+                                        <span class="summary-label"
+                                            >Đã đăng ký:</span
+                                        >
+                                        <span class="summary-value"
+                                            >3 / 12 TC</span
+                                        >
+                                    </div>
+                                    <div class="summary-row">
+                                        <span class="summary-label"
+                                            >Tối đa:</span
+                                        >
+                                        <span class="summary-value">24 TC</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Current Status Section -->
-              <div class="current-status-section">
-                <h6 class="status-title">Trạng thái học phần hiện tại</h6>
-
-                <div class="status-badge-row">
-                  <span class="status-badge badge-open">ĐANG MỞ</span>
-                  <span class="semester-info">Học kỳ 2 (2024-2025)</span>
-                </div>
-
-                <div class="deadline-text">Đến 20/02/2025</div>
-
-                <div class="registration-summary">
-                  <div class="summary-row">
-                    <span class="summary-label">Đã đăng ký:</span>
-                    <span class="summary-value">3 / 12 TC</span>
-                  </div>
-                  <div class="summary-row">
-                    <span class="summary-label">Tối đa:</span>
-                    <span class="summary-value">24 TC</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <h3>Thông tin học bổng</h3>
-              <select class="semester-select">
-                <option>HK2 (2025 - 2026)</option>
-              </select>
-            </div>
-            <div class="card-body">
-              <div class="scholarship-list">
-                <div class="scholarship-item scholarship-approved">
-                  <div class="scholarship-header">
-                    <div class="scholarship-name">
-                      Học bổng khuyến khích học tập
+                    <!-- Scholarship -->
+                    <div class="card border-0">
+                        <div class="card-header">
+                            <h3>Thông tin học bổng</h3>
+                            <select class="form-select" id="semester-select">
+                                <option value="HK1 (2025 - 2026)">
+                                    HK1 (2025 - 2026)
+                                </option>
+                                <option value="HK2 (2025 - 2026)">
+                                    HK2 (2025 - 2026)
+                                </option>
+                            </select>
+                        </div>
+                        <div class="card-body">
+                            <div
+                                class="scholarship-list h-100 d-flex flex-column gap-3 mb-4"
+                            >
+                                <div
+                                    class="scholarship-item scholarship-approved"
+                                >
+                                    <div class="scholarship-header">
+                                        <div class="scholarship-name">
+                                            Học bổng khuyến khích học tập
+                                        </div>
+                                        <span
+                                            class="scholarship-status status-approved"
+                                        >
+                                            <i class="fas fa-check-circle"></i>
+                                            Đã duyệt
+                                        </span>
+                                    </div>
+                                    <div class="scholarship-details">
+                                        <div
+                                            class="scholarship-amount-approved"
+                                        >
+                                            70% học phí
+                                        </div>
+                                        <div class="scholarship-semester">
+                                            HK1 2024-2025
+                                        </div>
+                                    </div>
+                                    <div class="scholarship-date">
+                                        Ngày duyệt: 15/01/2025
+                                    </div>
+                                </div>
+                                <div
+                                    class="scholarship-item scholarship-pending"
+                                >
+                                    <div class="scholarship-header">
+                                        <div class="scholarship-name">
+                                            Học bổng tài năng CNTT
+                                        </div>
+                                        <span
+                                            class="scholarship-status status-pending"
+                                        >
+                                            <i class="fas fa-clock"></i> Đang
+                                            xét duyệt
+                                        </span>
+                                    </div>
+                                    <div class="scholarship-details">
+                                        <div class="scholarship-amount-pending">
+                                            5.000.000 VNĐ
+                                        </div>
+                                        <div class="scholarship-semester">
+                                            HK2 2024-2025
+                                        </div>
+                                    </div>
+                                    <div class="scholarship-date">
+                                        Ngày đăng ký: 02/02/2025
+                                    </div>
+                                </div>
+                                <div
+                                    class="mt-auto actions d-flex gap-3 flex-wrap align-items-end"
+                                >
+                                    <button
+                                        class="btn-primary-green btn-primary"
+                                    >
+                                        Xem chi tiết
+                                    </button>
+                                    <button
+                                        class="btn-primary-blue btn-primary"
+                                    >
+                                        Đăng ký học bổng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <span class="scholarship-status status-approved">
-                      <i class="fas fa-check-circle"></i> Đã duyệt
-                    </span>
-                  </div>
-                  <div class="scholarship-details">
-                    <div class="scholarship-amount-approved">2.000.000 VNĐ</div>
-                    <div class="scholarship-semester">HK1 2024-2025</div>
-                  </div>
-                  <div class="scholarship-date">Ngày duyệt: 15/01/2025</div>
-                </div>
-                <div class="scholarship-item scholarship-pending">
-                  <div class="scholarship-header">
-                    <div class="scholarship-name">Học bổng tài năng CNTT</div>
-                    <span class="scholarship-status status-pending">
-                      <i class="fas fa-clock"></i> Đang xét duyệt
-                    </span>
-                  </div>
-                  <div class="scholarship-details">
-                    <div class="scholarship-amount-pending">5.000.000 VNĐ</div>
-                    <div class="scholarship-semester">HK2 2024-2025</div>
-                  </div>
-                  <div class="scholarship-date">Ngày đăng ký: 02/02/2025</div>
-                </div>
-                <div class="scholarship-summary">
-                  <div class="summary-item">
-                    <span
-                      >Tổng học bổng đã nhận:
-                      <strong>2.000.000 VNĐ</strong></span
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="button-group">
-                <button class="btn-primary-green btn-primary">
-                  Xem chi tiết
-                </button>
-                <button class="btn-primary-blue btn-primary">
-                  Đăng ký học bổng
-                </button>
-              </div>
+                </section>
+                <section class="section-3 section-info">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h1 class="chart-title">
+                                Kết quả học tập theo học kỳ
+                            </h1>
+                            <select class="form-select" id="gradesSelect">
+                                <option value="4">Thang điểm 4</option>
+                                <option value="10">Thang điểm 10</option>
+                            </select>
+                        </div>
+
+                        <div class="chart-wrapper">
+                            <canvas id="gpaChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="course-card">
+                            <div class="chart-header">
+                                <h1 class="chart-title">Lớp học phần học kỳ</h1>
+
+                                <select class="form-select" id="semesterSelect">
+                                    <option>HK1 (2025-2026)</option>
+                                    <option>HK2 (2025-2026)</option>
+                                </select>
+                            </div>
+
+                            <!-- List LHP -->
+                            <div class="course-list-wrapper">
+                                <div id="courseList"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-          </div>
-        </section>
-        <section class="section-3 section-info">
-          <div class="kqht">
-            <!-- header -->
-            <div class="header-kqht">
-              <h1 class="title-kqht">Kết quả học tập theo học kỳ</h1>
-              <div>
-                <select name="" id="thangdiem">
-                  <option value="Thang điểm 4">Thang điểm 4</option>
-                  <option value="Thang điểm 10">Thang điểm 10</option>
-                </select>
-              </div>
-            </div>
-            <!-- biểu đồ -->
-            <div
-              style="
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 20px 15px;
-                height: 100%;
-
-                flex: none;
-                order: 1;
-                align-self: stretch;
-                flex-grow: 0;
-              "
-            >
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  align-items: flex-start;
-                  padding: 5px 0px;
-                  width: 100%;
-                  height: 100%;
-
-                  /* Inside auto layout */
-                  flex: none;
-                  order: 0;
-                  align-self: stretch;
-                  flex-grow: 0;
-                "
-              >
-                <div class="chart">
-                  <svg viewBox="0 0 860 340" preserveAspectRatio="none">
-                    <!-- Y labels -->
-                    <g class="y-labels">
-                      <text x="10" y="55">4.0</text>
-                      <text x="10" y="105">3.8</text>
-                      <text x="10" y="155">3.6</text>
-                      <text x="10" y="205">3.4</text>
-                      <text x="10" y="255">3.2</text>
-                      <text x="10" y="305">3.0</text>
-                    </g>
-
-                    <!-- grid -->
-                    <g class="grid">
-                      <line x1="60" y1="50" x2="840" y2="50" />
-                      <line x1="60" y1="100" x2="840" y2="100" />
-                      <line x1="60" y1="150" x2="840" y2="150" />
-                      <line x1="60" y1="200" x2="840" y2="200" />
-                      <line x1="60" y1="250" x2="840" y2="250" />
-                      <line x1="60" y1="300" x2="840" y2="300" />
-                    </g>
-
-                    <!-- Học kỳ-->
-                    <path
-                      class="area blue"
-                      d="M60,200 
-                                  L196,185 
-                                  L332,145 
-                                  L468,165 
-                                  L604,135 
-                                  L740,150
-                                  L740,300 L60,300 Z"
-                    />
-
-                    <!-- Tích lũy -->
-                    <path
-                      class="area green"
-                      d="M60,200 
-                                  L196,195 
-                                  L332,180 
-                                  L468,170 
-                                  L604,160 
-                                  L740,155
-                                  L740,300 L60,300 Z"
-                    />
-
-                    <!-- line -->
-                    <polyline
-                      class="line blue"
-                      points="60,200 196,185 332,145 468,165 604,135 740,150"
-                    />
-
-                    <polyline
-                      class="line green"
-                      points="60,200 196,195 332,180 468,170 604,160 740,155"
-                    />
-
-                    <!-- dot -->
-                    <g class="dots blue">
-                      <circle cx="60" cy="200" r="4" />
-                      <circle cx="196" cy="185" r="4" />
-                      <circle cx="332" cy="145" r="4" />
-                      <circle cx="468" cy="165" r="4" />
-                      <circle cx="604" cy="135" r="4" />
-                      <circle cx="740" cy="150" r="4" />
-                    </g>
-
-                    <g class="dots green">
-                      <circle cx="60" cy="200" r="4" />
-                      <circle cx="196" cy="195" r="4" />
-                      <circle cx="332" cy="180" r="4" />
-                      <circle cx="468" cy="170" r="4" />
-                      <circle cx="604" cy="160" r="4" />
-                      <circle cx="740" cy="155" r="4" />
-                    </g>
-                    <!-- x labels -->
-                    <g class="x-labels">
-                      <text x="60" y="330">HK1/2022</text>
-                      <text x="196" y="330">HK2/2022</text>
-                      <text x="332" y="330">HK1/2023</text>
-                      <text x="468" y="330">HK2/2023</text>
-                      <text x="604" y="330">HK1/2024</text>
-                      <text x="740" y="330">HK2/2024</text>
-                    </g>
-                  </svg>
-                </div>
-                <div>
-                  <div class="note">
-                    <p class="point-blue"></p>
-                    <p class="gpa">GPA học kỳ</p>
-                  </div>
-                  <div class="note">
-                    <p class="point-green"></p>
-                    <p class="gpa">GPA tích lũy</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Thống kê điểm -->
-          <!-- header -->
-          <div class="tkd">
-            <div class="header-tkd">
-              <h1 class="title-tkd">Thống kê điểm</h1>
-              <div>
-                <select name="" id="select-hk">
-                  <option value="HK1 (2025-2026)">HK1 (2025-2026)</option>
-                  <option value="HK2 (2024-2025)">HK2 (2024-2025)</option>
-                  <option value="HK1 (2024-2025)">HK1 (2024-2025)</option>
-                  <option value="HK2 (2023-2024)">HK2 (2023-2024)</option>
-                  <option value="HK1 (2023-2024)">HK1 (2023-2024)</option>
-                  <option value="HK2 (2022-2023)">HK2 (2022-2023)</option>
-                  <option value="HK1 (2022-2023)">HK1 (2022-2023)</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <div class="grade-chart">
-                <div class="grade-row">
-                  <span class="label">A+</span>
-                  <div class="bar">
-                    <div class="fill" style="width: 80%"></div>
-                  </div>
-                  <span class="count">4 môn</span>
-                </div>
-
-                <div class="grade-grade-row">
-                  <span class="label">A</span>
-                  <div class="bar">
-                    <div class="fill" style="width: 40%"></div>
-                  </div>
-                  <span class="count">2 môn</span>
-                </div>
-
-                <div class="grade-grade-row">
-                  <span class="label">B+</span>
-                  <div class="bar">
-                    <div class="fill" style="width: 20%"></div>
-                  </div>
-                  <span class="count">1 môn</span>
-                </div>
-
-                <div class="grade-grade-row">
-                  <span class="label">B</span>
-                  <div class="bar">
-                    <div class="fill" style="width: 20%"></div>
-                  </div>
-                  <span class="count">1 môn</span>
-                </div>
-
-                <div class="grade-grade-row">
-                  <span class="label">C+</span>
-                  <div class="bar">
-                    <div class="fill" style="width: 20%"></div>
-                  </div>
-                  <span class="count">1 môn</span>
-                </div>
-
-                <div class="grade-row">
-                  <span class="label">C</span>
-                  <div class="bar">
-                    <div class="fill" style="width: 20%"></div>
-                  </div>
-                  <span class="count">1 môn</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <p
-                style="
-                  font-weight: 400;
-                  align-items: center;
-                  margin-top: -1px;
-                  margin-left: 19px;
-                  width: 550px;
-                  text-align: center;
-                  font-size: 14px;
-                  color: #333333;
-                "
-              >
-                Tổng môn đã học: 8
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
-    </main>
-    <!-- Bootstrap JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-  <script src="../js/main.js"></script>
+        </main>
+    </body>
+    <script src="../js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/js/kendo.all.min.js"></script>
+    <script src="../js/index.js"></script>
 </html>
