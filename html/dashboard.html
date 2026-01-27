@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bảng Điều Khiển Học Tập</title>
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+
+        <link
+            href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"
+            rel="stylesheet"
+        />
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.common.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.default.min.css"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="../css/index.css" />
+        <script
+            src="https://kit.fontawesome.com/6f955e325d.js"
+            crossorigin="anonymous"
+        ></script>
+        <style>
+           
+            .chart-container {
+                background: white;
+                border-radius: 8px;
+                height: min-content;
+                padding: 20px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+
+            .chart-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 16px 20px;
+                border-bottom: 1px solid #e7ecf0;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .chart-title {
+                width: fit-content;
+                height: fit-content;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 26px;
+                display: flex;
+                align-items: center;
+                color: #505050;
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+            }
+
+            .grades-dropdown {
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 8px 12px;
+                font-size: 10px;
+                background-color: #f8f9fa;
+                cursor: pointer;
+                min-width: 150px;
+            }
+
+            .grades-dropdown:hover {
+                background-color: #f0f0f0;
+            }
+
+            .chart-wrapper {
+                position: relative;
+                width: 100%;
+                height: 300px;
+            }
+
+            canvas#gpaChart {
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+            .chart-legend {
+                display: flex;
+                gap: 30px;
+                justify-content: center;
+                margin-bottom: 20px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .legend-color {
+                width: 12px;
+                height: 12px;
+                border-radius: 2px;
+            }
+
+            .legend-color.your-gpa {
+                background-color: #050645;
+            }
+
+            .legend-color.average-gpa {
+                background-color: #e87aa8;
+            }
+
+            .legend-label {
+                font-size: 14px;
+                color: #666;
+            }
+
+            .legend-value {
+                font-weight: 600;
+                color: #333;
+                margin-left: 10px;
+            }
+
+            .semester-info {
+                background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-left: 4px solid #6366f1;
+            }
+
+            .semester-info-title {
+                font-size: 14px;
+                color: #666;
+                margin-bottom: 12px;
+                font-weight: 500;
+            }
+
+            .semester-stats {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            .stat-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .stat-label {
+                font-size: 13px;
+                color: #666;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .stat-color {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+            }
+
+            .stat-color.your-gpa {
+                background-color: #6366f1;
+            }
+
+            .stat-color.average-gpa {
+                background-color: #e87aa8;
+            }
+
+            .stat-value {
+                font-size: 18px;
+                font-weight: 700;
+                color: #333;
+            }
+
+            /* Chart Canvas Styling */
+            .canvas-wrapper {
+                position: relative;
+                width: 100%;
+            }
+            /* Add any additional styling for the canvas wrapper here */
+
+            .course-card {
+                background: #fff;
+                border-radius: 12px;
+                padding: 20px;
+            }
+
+            .semester-select {
+                width: 30%;
+            }
+
+            .course-item {
+                background: #f6fbff;
+                border-radius: 12px;
+                padding: 16px;
+            }
+            .course-header {
+                align-items: flex-start;
+            }
+
+            .course-title {
+                font-weight: 600;
+                font-size: 15px;
+            }
+
+            .course-meta {
+                font-size: 13px;
+                line-height: 1.4;
+            }
+            .course-divider {
+                margin: 12px 0;
+                border-color: #e5eaf1;
+            }
+
+            .progress-title {
+                font-size: 14px;
+                font-weight: 500;
+                color: #6b7280;
+            }
+
+            .progress-row {
+                display: flex;
+                justify-content: space-between;
+                font-size: 14px;
+            }
+
+            .progress-value {
+                color: #1e88e5;
+                font-weight: 600;
+            }
+
+            .progress {
+                height: 6px;
+                background-color: #e9edf5;
+                border-radius: 6px;
+                overflow: hidden;
+            }
+
+            .progress-bar {
+                background-color: #5c6cff;
+                border-radius: 6px;
+            }
+            .progress-bar.dark {
+                background-color: #2f3ca8;
+            }
+
+            /* Responsive Design */
+            @media (max-width: 1400px) {
+                .section-3 {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @media (max-width: 1200px) {
+                .highest-priority-container {
+                    grid-template-columns: 1fr;
+                }
+
+                .grid-2-cols {
+                    grid-template-columns: 1fr;
+                }
+
+                .quick-function-container {
+                    grid-template-columns: repeat(
+                        auto-fill,
+                        minmax(100px, 1fr)
+                    );
+                }
+            }
+
+            @media (max-width: 992px) {
+                .sidebar {
+                    position: fixed;
+                    left: -250px;
+                    transition: left 0.3s;
+                }
+
+                .sidebar.active {
+                    left: 0;
+                }
+
+                .dashboard-content {
+                    padding: 1rem;
+                }
+
+                .left-header-container {
+                    max-width: 100%;
+                }
+
+                .search-bar {
+                    max-width: 200px;
+                }
+
+                .second-priority-container {
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                }
+            }
+
+            @media (max-width: 668px) {
+                .header-container {
+                    padding: 10px 15px;
+                }
+
+                .left-header-container {
+                    gap: 10px;
+                }
+
+                .right-header-container {
+                    gap: 10px;
+                }
+
+                .right-header-container > div span {
+                    display: none;
+                }
+
+                .search-bar {
+                    max-width: 150px;
+                }
+
+                .infor-text-container {
+                    gap: 20px;
+                }
+
+                .second-priority-container {
+                    grid-template-columns: 1fr;
+                }
+
+                .quick-function-container {
+                    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                    gap: 10px;
+                }
+
+                .grid-2-cols {
+                    grid-template-columns: 1fr;
+                }
+
+                .chart svg {
+                    height: 250px;
+                }
+
+                .header-kqht,
+                .header-tkd {
+                    padding: 12px 15px;
+                }
+
+                .title-kqht,
+                .title-tkd {
+                    font-size: 18px;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .dashboard-content {
+                    padding: 0.75rem;
+                }
+
+                .card-header h3 {
+                    font-size: 0.9rem;
+                }
+
+                .quick-function-container {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .quick-fucntion-card {
+                    padding: 15px 10px;
+                    min-height: 100px;
+                }
+
+                .quick-fucntion-card i {
+                    font-size: 24px;
+                }
+
+                .quick-fucntion-card span {
+                    font-size: 12px;
+                }
+
+                .button-group {
+                    flex-direction: column;
+                }
+
+                .btn-primary {
+                    min-width: 100%;
+                }
+
+                .title-kqht,
+                .title-tkd {
+                    font-size: 16px;
+                }
+
+                .chart svg {
+                    height: 200px;
+                }
+
+                .grade-chart {
+                    padding: 12px 15px;
+                }
+
+                .row {
+                    grid-template-columns: 35px 1fr 55px !important;
+                    gap: 10px;
+                    margin: 12px 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <a href="#" class="nav-item active">
+                        <i class="fas fa-home"></i>
+                        <span>Trang chủ</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user"></i>
+                        <span>Thông tin sinh viên</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-calendar-week"></i>
+                        <span>Lịch theo tuần</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-book-open"></i>
+                        <span>Đăng ký học phần</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Kết quả học tập</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Tra cứu công nợ</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Học bổng</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Hồ sơ điện tử</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-pen-fancy"></i>
+                        <span>Lịch thi</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Lịch theo tiến độ</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Thông báo</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-poll"></i>
+                        <span>Khảo sát</span>
+                    </a>
+                </nav>
+            </aside>
+            <!-- Details -->
+            <div class="dashboard-content">
+                <!-- Highest priority -->
+                <section class="section-3 section-info">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h1 class="chart-title">
+                                Kết quả học tập theo học kỳ
+                            </h1>
+                            <select class="grades-dropdown" id="gradesSelect">
+                                <option value="4">Thang điểm 4</option>
+                                <option value="10">Thang điểm 10</option>
+                            </select>
+                        </div>
+
+                        <div class="chart-wrapper">
+                            <canvas id="gpaChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- Thống kê điểm -->
+                    <!-- header -->
+                    <div class="container my-4">
+                        <div class="course-card">
+                            <!-- HEADER -->
+                            <div
+                               class="chart-header"
+                            >
+                                <h1 class="chart-title">
+                                    Lớp học phần học kỳ này
+                                </h1>
+
+                                <select
+                                    class="form-select semester-select"
+                                    id="semesterSelect"
+                                >
+                                    <option>HK1 (2025-2026)</option>
+                                    <option>HK2 (2025-2026)</option>
+                                </select>
+                            </div>
+
+                            <!-- COURSE LIST -->
+                            <div id="courseList"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <script src="../js/main.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/js/kendo.all.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                // GPA Data
+                const gpaData = {
+                    grades: [
+                        'HK1 (2023-2024)',
+                        'HK2 (2023-2024)',
+                        'HK1 (2024-2025)',
+                        'HK2 (2024-2025)',
+                        'HK1 (2025-2026)',
+                        'HK2 (2025-2026)',
+                        'HK1 (2026-2027)',
+                        'HK2 (2026-2027)',
+                    ],
+                    yourGPA4: [2.5, 2.4, 2.7, 2.0, 3.5, 2.8, 3.2, 3.8],
+                    averageGPA4: [2.3, 2.7, 2.5, 2.3, 2.8, 2.7, 3.1, 3.4],
+                    yourGPA10: [7.5, 7.2, 7.7, 7.0, 8.5, 7.8, 8.2, 8.8],
+                    averageGPA10: [7.3, 7.7, 7.5, 7.3, 7.8, 7.7, 8.1, 8.4],
+                };
+
+                // Initialize chart
+                const ctx = document
+                    .getElementById('gpaChart')
+                    .getContext('2d');
+                const chartConfig = {
+                    type: 'line',
+                    data: {
+                        labels: gpaData.grades,
+                        datasets: [
+                            {
+                                label: 'Your GPA',
+                                data: gpaData.yourGPA4,
+                                borderColor: '#6366f1',
+                                backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                                borderWidth: 3,
+                                fill: true, // tô vùng dưới đường
+                                tension: 0.4,
+                                pointRadius: 5,
+                                pointBackgroundColor: '#6366f1',
+                                pointBorderColor: '#fff',
+                                pointBorderWidth: 2,
+                                pointHoverRadius: 7,
+                            },
+                            {
+                                label: 'Average GPA',
+                                data: gpaData.averageGPA4,
+                                borderColor: '#e87aa8',
+                                borderDash: [5, 5],
+                                backgroundColor: 'rgba(232, 122, 168, 0.05)',
+                                borderWidth: 2,
+                                fill: true,
+                                tension: 0.4,
+                                pointRadius: 5,
+                                pointBackgroundColor: '#e87aa8',
+                                pointBorderColor: '#fff',
+                                pointBorderWidth: 2,
+                                pointHoverRadius: 7,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false, // hovering over a column will show tooltip for all datasets
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: true,
+                                backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                                padding: 16,
+                                titleFont: { size: 14, weight: 'bold' },
+                                bodyFont: { size: 13 },
+                                displayColors: true,
+                                callbacks: {
+                                    title: function (context) {
+                                        return context[0].label;
+                                    },
+                                    label: function (context) {
+                                        return (
+                                            context.dataset.label +
+                                            ': ' +
+                                            context.parsed.y.toFixed(2)
+                                        );
+                                    },
+                                    afterLabel: function (context) {
+                                        return '';
+                                    },
+                                },
+                            },
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 4.0,
+                                ticks: {
+                                    stepSize: 0.5,
+                                    callback: function (value) {
+                                        return value.toFixed(1);
+                                    },
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)',
+                                    drawBorder: false,
+                                },
+                            },
+                            x: {
+                                grid: {
+                                    display: true,
+                                    color: 'rgba(0, 0, 0, 0.05)',
+                                    drawBorder: false,
+                                },
+                            },
+                        },
+                    },
+                };
+
+                const gpaChart = new Chart(ctx, chartConfig);
+
+                // Grades Dropdown Handler
+                $('#gradesSelect').on('selectmenuchange', function (event, ui) {
+                    const selectedScale = ui.item.value; // lấy giá trị tại dropdown
+
+                    if (selectedScale === '10') {
+                        gpaChart.data.datasets[0].data = gpaData.yourGPA10;
+                        gpaChart.data.datasets[1].data = gpaData.averageGPA10;
+
+                        gpaChart.options.scales.y.max = 10;
+                        gpaChart.options.scales.y.ticks.stepSize = 1;
+                        gpaChart.options.scales.y.ticks.callback = function (
+                            value,
+                        ) {
+                            return value.toFixed(1);
+                        };
+                    } else {
+                        gpaChart.data.datasets[0].data = gpaData.yourGPA4;
+                        gpaChart.data.datasets[1].data = gpaData.averageGPA4;
+
+                        gpaChart.options.scales.y.max = 4.0;
+                        gpaChart.options.scales.y.ticks.stepSize = 0.5;
+                    }
+
+                    gpaChart.update();
+                });
+
+                $('#gradesSelect').selectmenu({
+                    width: 150,
+                    classes: {
+                        'ui-selectmenu-button': 'custom-selectmenu',
+                    },
+                });
+            });
+
+            // Lớp học phần theo kỳ
+            $(document).ready(function () {
+                const courseData = {
+                    'HK1 (2025-2026)': [
+                        {
+                            faculty: 'CNPM',
+                            name: 'Kiến trúc và Thiết kế Phần mềm',
+                            code: '420300154901',
+                            credits: 4,
+                            teacher: 'ThS. Nguyễn Văn A',
+                            theory: { done: 8, total: 15 },
+                            practice: { done: 6, total: 12 },
+                        },
+                        {
+                            faculty: 'CNPM',
+                            name: 'Công nghệ mới trong phát triển ứng dụng',
+                            code: '420300314705',
+                            credits: 3,
+                            teacher: 'ThS. Trần Thị B',
+                            theory: { done: 6, total: 12 },
+                            practice: { done: 6, total: 12 },
+                        },
+                    ],
+                    'HK2 (2025-2026)': [
+                        {
+                            faculty: 'HTTT',
+                            name: 'Hệ thống thông tin quản lý',
+                            code: '420301998877',
+                            credits: 3,
+                            teacher: 'TS. Lê Văn C',
+                            theory: { done: 5, total: 15 },
+                            practice: { done: 4, total: 10 },
+                        },
+                    ],
+                };
+
+                /* ================= RENDER FUNCTION ================= */
+                function renderCourses(semester) {
+                    const courses = courseData[semester] || [];
+                    const $list = $('#courseList');
+                    $list.empty();
+
+                    if (!courses.length) {
+                        $list.html(
+                            '<p class="text-muted">Không có học phần</p>',
+                        );
+                        return;
+                    }
+
+                    courses.forEach((c) => {
+                        const theoryPercent =
+                            (c.theory.done / c.theory.total) * 100;
+                        const practicePercent =
+                            (c.practice.done / c.practice.total) * 100;
+
+                        $list.append(`
+                          <div class="course-item mb-3">
+    <!-- Header -->
+    <div class="course-header d-flex gap-3">
+        <span class="faculty-badge flex-shrink-0">${c.faculty}</span>
+
+        <div class="course-info w-100">
+            <h6 class="course-title mb-1">${c.name}</h6>
+
+            <div
+                class="course-meta d-flex flex-wrap gap-2 small text-muted"
+            >
+                <span>${c.code}</span>
+                <span class="credit-badge">${c.credits} TC</span>
+                <span>${c.teacher}</span>
+            </div>
+        </div>
+    </div>
+
+    <hr class="course-divider" />
+
+    <!-- Progress -->
+    <div class="progress-section">
+        <div class="progress-title mb-2">Tiến độ học</div>
+
+        <!-- Lý thuyết -->
+        <div class="progress-row">
+            <span>Lý thuyết</span>
+            <span class="progress-value">
+                ${c.theory.done}/${c.theory.total} buổi
+            </span>
+        </div>
+        <div class="progress mb-2">
+            <div
+                class="progress-bar"
+                style="width:${theoryPercent}%"
+            ></div>
+        </div>
+
+        <!-- Thực hành -->
+        <div class="progress-row">
+            <span>Thực hành</span>
+            <span class="progress-value">
+                ${c.practice.done}/${c.practice.total} buổi
+            </span>
+        </div>
+        <div class="progress">
+            <div
+                class="progress-bar dark"
+                style="width:${practicePercent}%"
+            ></div>
+        </div>
+    </div>
+</div>
+
+
+                        `);
+                    });
+                }
+
+                $('#semesterSelect').on('change', function () {
+                    renderCourses(this.value);
+                });
+
+                /* ================= INIT ================= */
+                renderCourses($('#semesterSelect').val());
+            });
+        </script>
+    </body>
+</html>
