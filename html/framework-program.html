@@ -10,7 +10,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/themes/base/jquery-ui.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -18,6 +21,14 @@
     />
     <link rel="stylesheet" href="../css/curriculum-framework.css" />
     <link rel="stylesheet" href="../css/index.css" />
+    <link
+      href="https://kendo.cdn.telerik.com/2016.3.1118/styles/kendo.common.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://kendo.cdn.telerik.com/2016.3.1118/styles/kendo.default.min.css"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --color-completed: #5b9bd5;
@@ -55,7 +66,7 @@
       }
 
       /* Progress Section */
-      .progress-section {
+      .progress-section-title {
         background: white;
         border-radius: 12px;
         padding: 2rem;
@@ -97,7 +108,7 @@
         float: left;
       }
 
-      .progress-label {
+      .progress-label-container {
         display: flex;
         justify-content: space-between;
         font-size: 0.875rem;
@@ -143,14 +154,55 @@
         border-radius: 12px;
         padding: 2rem;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        overflow: visible;
+      }
+
+      /* Animation keyframes */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes growWidth {
+        from {
+          width: 0;
+        }
       }
 
       .timeline-container {
         position: relative;
+        overflow: visible;
       }
 
       .timeline-wrapper {
         position: relative;
+        overflow: visible;
       }
 
       .timeline-items {
@@ -159,6 +211,7 @@
         align-items: flex-start;
         position: relative;
         padding-bottom: 2rem;
+        overflow: visible;
       }
 
       .timeline-item {
@@ -167,6 +220,35 @@
         flex-direction: column;
         align-items: center;
         position: relative;
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+        cursor: pointer;
+      }
+
+      /* Stagger animation delays */
+      .timeline-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .timeline-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .timeline-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .timeline-item:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .timeline-item:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .timeline-item:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+      .timeline-item:nth-child(7) {
+        animation-delay: 0.7s;
+      }
+      .timeline-item:nth-child(8) {
+        animation-delay: 0.8s;
       }
 
       .timeline-circle-wrapper {
@@ -286,6 +368,114 @@
         color: #999;
       }
 
+      /* Tooltip styles */
+      .semester-tooltip {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+        background: white;
+        color: #333;
+        padding: 0.625rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+        z-index: 10000 !important;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+        border: 1px solid #e0e0e0;
+        min-width: 180px;
+      }
+
+      .semester-tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 5px solid transparent;
+        border-top-color: white;
+      }
+
+      .semester-tooltip::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 6px solid transparent;
+        border-top-color: #e0e0e0;
+        margin-top: 1px;
+      }
+
+      /* Tooltip positioned at bottom */
+      .semester-tooltip.tooltip-bottom {
+        bottom: auto;
+        top: 100%;
+        transform: translateX(-50%) translateY(10px);
+      }
+
+      .semester-tooltip.tooltip-bottom::after {
+        top: auto;
+        bottom: 100%;
+        border-top-color: transparent;
+        border-bottom-color: white;
+      }
+
+      .semester-tooltip.tooltip-bottom::before {
+        top: auto;
+        bottom: 100%;
+        border-top-color: transparent;
+        border-bottom-color: #e0e0e0;
+        margin-top: 0;
+        margin-bottom: 1px;
+      }
+
+      .timeline-item:hover .semester-tooltip,
+      .timeline-semester-card:hover .semester-tooltip {
+        opacity: 1;
+      }
+
+      .timeline-item:hover .semester-tooltip:not(.tooltip-bottom),
+      .timeline-semester-card:hover .semester-tooltip:not(.tooltip-bottom) {
+        transform: translateX(-50%) translateY(-5px);
+      }
+
+      .timeline-item:hover .semester-tooltip.tooltip-bottom,
+      .timeline-semester-card:hover .semester-tooltip.tooltip-bottom {
+        transform: translateX(-50%) translateY(5px);
+      }
+
+      .tooltip-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .tooltip-row:last-child {
+        margin-bottom: 0;
+      }
+
+      .tooltip-label {
+        color: #666;
+      }
+
+      .tooltip-value {
+        font-weight: 600;
+        color: #333;
+      }
+
+      .tooltip-divider {
+        height: 1px;
+        background: #e0e0e0;
+        margin: 0.375rem 0;
+      }
+
       .timeline-info {
         text-align: center;
         margin-bottom: 0.75rem;
@@ -374,6 +564,7 @@
         height: 100%;
         background-color: var(--color-green-completed);
         transition: width 0.3s ease;
+        animation: growWidth 1.5s ease-out;
       }
 
       /* Year markers positioned absolutely to align with semester circles */
@@ -391,6 +582,27 @@
         flex-direction: column;
         align-items: center;
         transform: translateX(-50%);
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+
+      .timeline-year-marker:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .timeline-year-marker:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      .timeline-year-marker:nth-child(3) {
+        animation-delay: 0.8s;
+      }
+      .timeline-year-marker:nth-child(4) {
+        animation-delay: 1.1s;
+      }
+      .timeline-year-marker:nth-child(5) {
+        animation-delay: 1.4s;
+      }
+      .timeline-year-marker:nth-child(6) {
+        animation-delay: 1.7s;
       }
 
       .timeline-year-dot {
@@ -536,6 +748,7 @@
           gap: 2rem;
           position: relative;
           padding-left: 3rem;
+          overflow: visible;
         }
 
         .timeline-mobile::before {
@@ -552,10 +765,27 @@
             #e0e0e0 var(--progress-percent, 50%),
             #e0e0e0 100%
           );
+          animation: fadeIn 0.8s ease-out;
         }
 
         .timeline-year-group {
           position: relative;
+          opacity: 0;
+          animation: slideInLeft 0.6s ease-out forwards;
+          overflow: visible;
+        }
+
+        .timeline-year-group:nth-child(1) {
+          animation-delay: 0.1s;
+        }
+        .timeline-year-group:nth-child(2) {
+          animation-delay: 0.3s;
+        }
+        .timeline-year-group:nth-child(3) {
+          animation-delay: 0.5s;
+        }
+        .timeline-year-group:nth-child(4) {
+          animation-delay: 0.7s;
         }
 
         .timeline-year-marker-mobile {
@@ -589,6 +819,7 @@
           grid-template-columns: repeat(2, 1fr);
           gap: 1rem;
           margin-bottom: 1rem;
+          overflow: visible;
         }
 
         .timeline-semester-card {
@@ -596,10 +827,21 @@
           border: 2px solid #e0e0e0;
           border-radius: 12px;
           padding: 1rem;
+          z-index: 100 !important;
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 0.75rem;
+          transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+          position: relative;
+          cursor: pointer;
+        }
+
+        .timeline-semester-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .timeline-semester-card.completed {
@@ -812,7 +1054,7 @@
         </div>
 
         <!-- TODO: Progress Section By css + bootstrap -->
-        <div class="progress-section">
+        <div class="progress-section-title">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="section-title mb-0">Tiến độ học tập</h2>
             <div class="d-flex gap-3 flex-wrap">
@@ -841,7 +1083,7 @@
           </div>
 
           <div class="mb-4">
-            <div class="progress-label">
+            <div class="progress-label-container">
               <span>Đã hoàn thành</span>
               <span class="progress-percentage" id="overallPercentage"
                 >75%</span
@@ -888,6 +1130,62 @@
                 + 2%
               </div>
               <div class="stat-label">Tiến độ so với kế hoạch</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-wrapper">
+          <div class="progress-section">
+            <div class="learning-progress-title">
+              <div class="section-title">Tiến độ học tập</div>
+
+              <div class="progress-label">
+                <span
+                  ><i class="fa-solid fa-circle badge-completed"></i> Đã hoàn
+                  thành</span
+                >
+                <span
+                  ><i class="fa-solid fa-circle badge-progress"></i> Tin chỉ
+                  đang học</span
+                >
+                <span
+                  ><i class="fa-solid fa-circle badge-notstart"></i> Tin chỉ còn
+                  lại</span
+                >
+              </div>
+            </div>
+
+            <div class="progress-bar-div">
+              <div class="progress-bar-title">
+                <div>Đã hoàn thành</div>
+                <div>
+                  <span class="progress-percentage">75%</span>
+                </div>
+              </div>
+              <div id="chart" class="progress-chart" style="width: 100%"></div>
+            </div>
+
+            <div class="stats-container">
+              <div class="stat-box">
+                <div class="stat-number green">162</div>
+                <div class="stat-label">Tổng tin chỉ</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number blue">122</div>
+                <div class="stat-label">Đã hoàn thành</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number yellow">24</div>
+                <div class="stat-label">Tin chỉ đang học</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number gray">16</div>
+                <div class="stat-label">Tin chỉ còn lại</div>
+              </div>
+              <div class="stat-box-end">
+                <div class="stat-number yellow">+ 2%</div>
+                <div class="stat-label">Tiến độ so với kế hoạch</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1262,9 +1560,13 @@
         </div>
       </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
+
+    <script src="https://kendo.cdn.telerik.com/2016.3.1118/js/kendo.all.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
 
     <script>
       // Data defaults
@@ -1288,6 +1590,8 @@
           completedCredits: 12,
           totalCredits: 12,
           currentCredits: 0,
+          requiredCredits: 10,
+          electiveCredits: 2,
         },
         {
           semester: 2,
@@ -1297,6 +1601,8 @@
           completedCredits: 12,
           totalCredits: 12,
           currentCredits: 0,
+          requiredCredits: 9,
+          electiveCredits: 3,
         },
         {
           semester: 3,
@@ -1306,6 +1612,8 @@
           completedCredits: 15,
           totalCredits: 21,
           currentCredits: 0,
+          requiredCredits: 15,
+          electiveCredits: 6,
         },
         {
           semester: 4,
@@ -1315,6 +1623,8 @@
           completedCredits: 0,
           totalCredits: 19,
           currentCredits: 19,
+          requiredCredits: 13,
+          electiveCredits: 6,
         },
         {
           semester: 5,
@@ -1324,6 +1634,8 @@
           completedCredits: 10,
           totalCredits: 19,
           currentCredits: 4,
+          requiredCredits: 12,
+          electiveCredits: 7,
         },
         {
           semester: 6,
@@ -1333,6 +1645,8 @@
           completedCredits: 0,
           totalCredits: 21,
           currentCredits: 0,
+          requiredCredits: 15,
+          electiveCredits: 6,
         },
         {
           semester: 7,
@@ -1342,6 +1656,8 @@
           completedCredits: 0,
           totalCredits: 15,
           currentCredits: 0,
+          requiredCredits: 9,
+          electiveCredits: 6,
         },
         {
           semester: 8,
@@ -1351,6 +1667,8 @@
           completedCredits: 0,
           totalCredits: 15,
           currentCredits: 0,
+          requiredCredits: 10,
+          electiveCredits: 5,
         },
       ];
 
@@ -1361,6 +1679,84 @@
         handleResize();
         window.addEventListener("resize", handleResize);
       });
+
+      $("#chart").kendoChart({
+        chartArea: {
+          height: 30,
+          background: "#f4fbff",
+        },
+        legend: { visible: false },
+        seriesDefaults: {
+          type: "bar",
+          stack: true,
+        },
+        series: [
+          { data: [60], color: "#56a2e8" }, // xanh
+          { data: [15], color: "#ffb800" }, // vàng
+          { data: [25], color: "#e0e0e0" }, // xám
+        ],
+        valueAxis: {
+          min: 0,
+          max: 100,
+          visible: false,
+          majorGridLines: { visible: false },
+          minorGridLines: { visible: false },
+        },
+        categoryAxis: {
+          categories: [""],
+          visible: false,
+          majorGridLines: { visible: false },
+          minorGridLines: { visible: false },
+        },
+        tooltip: {
+          visible: true,
+          template: "#= value #%",
+        },
+        dataBound: function () {
+          var svg = $("#chart svg");
+
+          svg.find("rect[fill]").each(function () {
+            var rect = $(this);
+            var fill = rect.attr("fill");
+
+            if (fill && !fill.includes("url")) {
+              rect.attr("rx", 8);
+              rect.attr("ry", 8);
+            }
+          });
+        },
+      });
+
+      // function adjustTooltipPosition(element) {
+      //   const tooltip = element.querySelector(".semester-tooltip");
+      //   if (!tooltip) return;
+
+      //   const rect = element.getBoundingClientRect();
+      //   const tooltipRect = tooltip.getBoundingClientRect();
+      //   const viewportHeight = window.innerHeight;
+
+      //   // Check if there's enough space above
+      //   const spaceAbove = rect.top;
+      //   const spaceBelow = viewportHeight - rect.bottom;
+      //   const tooltipHeight = tooltipRect.height || 200;
+
+      //   if (spaceAbove < tooltipHeight + 20 && spaceBelow > spaceAbove) {
+      //     tooltip.classList.add("tooltip-bottom");
+      //   } else {
+      //     tooltip.classList.remove("tooltip-bottom");
+      //   }
+      // }
+
+      // Add hover listeners to adjust tooltip position
+      // function addTooltipListeners() {
+      //   document
+      //     .querySelectorAll(".timeline-item, .timeline-semester-card")
+      //     .forEach((item) => {
+      //       item.addEventListener("mouseenter", () =>
+      //         adjustTooltipPosition(item),
+      //       );
+      //     });
+      // }
 
       // Handle responsive timeline rendering
       function handleResize() {
@@ -1383,6 +1779,8 @@
             mobileTimeline.remove();
           }
         }
+
+        // setTimeout(addTooltipListeners, 100);
       }
 
       // Render mobile timeline
@@ -1514,22 +1912,38 @@
 
             const displayPercent = Math.round(totalPercent);
             const displayCredits = `${sem.completedCredits + sem.currentCredits}/${sem.totalCredits}`;
+            const remainingCredits =
+              sem.totalCredits - sem.completedCredits - sem.currentCredits;
 
-            card.innerHTML = `
-              <div class="timeline-circle ${circleClass}" ${circleStyle}>
-                <span>HK${sem.semester}</span>
-              </div>
-              <div class="timeline-info">
-                <div class="timeline-semester">Học kỳ ${sem.semester}</div>
-                <div class="timeline-credits">${displayCredits} tín chỉ</div>
-              </div>
-              <div class="timeline-progress">
-                <div class="timeline-progress-bar">
-                  ${progressBarHTML}
-                  <div class="timeline-progress-text ${progressTextClass}">${displayPercent}%</div>
-                </div>
-              </div>
-            `;
+            // card.innerHTML = `
+            //   <div class="timeline-circle ${circleClass}" ${circleStyle}>
+            //     <span>HK${sem.semester}</span>
+            //   </div>
+            //   <div class="timeline-info">
+            //     <div class="timeline-semester">Học kỳ ${sem.semester}</div>
+            //     <div class="timeline-credits">${displayCredits} tín chỉ</div>
+            //   </div>
+            //   <div class="timeline-progress">
+            //     <div class="timeline-progress-bar">
+            //       ${progressBarHTML}
+            //       <div class="timeline-progress-text ${progressTextClass}">${displayPercent}%</div>
+            //     </div>
+            //   </div>
+            //   <div class="semester-tooltip">
+            //     <div class="tooltip-row">
+            //       <span class="tooltip-label">Học kỳ:</span>
+            //       <span class="tooltip-value">HK${sem.semester}</span>
+            //     </div>
+            //     <div class="tooltip-row">
+            //       <span class="tooltip-label">Đã học:</span>
+            //       <span class="tooltip-value">${sem.completedCredits}/${sem.totalCredits} TC</span>
+            //     </div>
+            //     <div class="tooltip-row">
+            //       <span class="tooltip-label">Đang học:</span>
+            //       <span class="tooltip-value">${sem.currentCredits} TC</span>
+            //     </div>
+            //   </div>
+            // `;
 
             semestersContainer.appendChild(card);
           });
@@ -1570,10 +1984,10 @@
 
         const progressBar = document.getElementById("overallProgressBar");
         progressBar.innerHTML = `
-        <div class="progress-segment" style="width: ${completedPercent}%; background-color: var(--color-completed);"></div>
-        <div class="progress-segment" style="width: ${currentPercent}%; background-color: var(--color-current);"></div>
-        <div class="progress-segment" style="width: ${remainingPercent}%; background-color: var(--color-remaining);"></div>
-      `;
+          <div class="progress-segment" style="width: ${completedPercent}%; background-color: var(--color-completed);"></div>
+          <div class="progress-segment" style="width: ${currentPercent}%; background-color: var(--color-current);"></div>
+          <div class="progress-segment" style="width: ${remainingPercent}%; background-color: var(--color-remaining);"></div>
+        `;
       }
 
       function renderTimeline() {
@@ -1661,6 +2075,8 @@
 
           const displayPercent = Math.round(totalPercent);
           const displayCredits = `${sem.completedCredits + sem.currentCredits}/${sem.totalCredits}`;
+          const remainingCredits =
+            sem.totalCredits - sem.completedCredits - sem.currentCredits;
 
           item.innerHTML = `
           <div class="timeline-circle-wrapper">
@@ -1676,6 +2092,20 @@
             <div class="timeline-progress-bar">
               ${progressBarHTML}
               <div class="timeline-progress-text ${progressTextClass}">${displayPercent}%</div>
+            </div>
+          </div>
+          <div class="semester-tooltip">
+            <div class="tooltip-row">
+              <span class="tooltip-label">Học kỳ:</span>
+              <span class="tooltip-value">HK${sem.semester}</span>
+            </div>
+            <div class="tooltip-row">
+              <span class="tooltip-label">Đã học:</span>
+              <span class="tooltip-value">${sem.completedCredits}/${sem.totalCredits} TC</span>
+            </div>
+            <div class="tooltip-row">
+              <span class="tooltip-label">Đang học:</span>
+              <span class="tooltip-value">${sem.currentCredits} TC</span>
             </div>
           </div>
         `;
@@ -1730,6 +2160,8 @@
         <div class="timeline-year-label">6/2026</div>
       `;
         markersContainer.appendChild(endMarker);
+
+        // addTooltipListeners();
       }
       // Tab switching
       document

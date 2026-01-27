@@ -74,9 +74,9 @@ body {
   border-radius: 2px;
 }
 
-/* .progress-section {
+.progress-section {
   margin-bottom: 30px;
-} */
+}
 
 .learning-progress-title {
   display: flex;
@@ -111,7 +111,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* .progress-label {
+.progress-label {
   font-size: 11px;
   color: #666;
   margin-bottom: 10px;
@@ -124,7 +124,7 @@ body {
   font-size: 11px;
   padding: 4px 8px;
   margin-right: 5px;
-} */
+}
 
 .badge-completed {
   font-size: 10px;
