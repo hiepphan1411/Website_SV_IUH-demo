@@ -29,13 +29,11 @@
   <body>
     <div class="container">
       <div class="header-section">
-        <div class="container-lg">
-          <div class="header-title">
-            Chương trình khung đào tạo và tiên đề học tập
-          </div>
-          <div class="header-subtitle">
-            Năm chương trình đào tạo theo Thông tư 11 và lộ trình học tập hợp
-          </div>
+        <div class="header-title">
+          Chương trình khung đào tạo và tiên đề học tập
+        </div>
+        <div class="header-subtitle">
+          Năm chương trình đào tạo theo Thông tư 11 và lộ trình học tập hợp
         </div>
       </div>
 
@@ -66,7 +64,9 @@
               <div class="progress-bar-title">
                 <div>Đã hoàn thành</div>
                 <div>
-                  <span class="progress-percentage">75%</span>
+                  <span class="progress-percentage" id="overallPercentage"
+                    >75%</span
+                  >
                 </div>
               </div>
               <div id="chart" class="progress-chart" style="width: 100%"></div>
@@ -74,23 +74,23 @@
 
             <div class="stats-container">
               <div class="stat-box">
-                <div class="stat-number green">162</div>
+                <div class="stat-number green" id="totalCredits">162</div>
                 <div class="stat-label">Tổng tin chỉ</div>
               </div>
               <div class="stat-box">
-                <div class="stat-number blue">122</div>
+                <div class="stat-number blue" id="completedCredits">122</div>
                 <div class="stat-label">Đã hoàn thành</div>
               </div>
               <div class="stat-box">
-                <div class="stat-number yellow">24</div>
+                <div class="stat-number yellow" id="currentCredits">24</div>
                 <div class="stat-label">Tin chỉ đang học</div>
               </div>
               <div class="stat-box">
-                <div class="stat-number gray">16</div>
+                <div class="stat-number gray" id="remainingCredits">16</div>
                 <div class="stat-label">Tin chỉ còn lại</div>
               </div>
               <div class="stat-box-end">
-                <div class="stat-number yellow">+ 2%</div>
+                <div class="stat-number yellow" id="progressDiff">+ 2%</div>
                 <div class="stat-label">Tiến độ so với kế hoạch</div>
               </div>
             </div>
@@ -128,101 +128,190 @@
           </div>
         </div>
 
+        <!-- Timeline Section -->
+        <div class="content-wrapper">
+          <div class="timeline-section">
+            <h2 class="section-title">Lộ trình học tập</h2>
+
+            <div class="timeline-container">
+              <div class="timeline-wrapper">
+                <!-- Semester circles -->
+                <div class="timeline-items" id="timelineItems"></div>
+
+                <!-- Timeline track with year markers -->
+                <div class="timeline-bottom">
+                  <div class="timeline-track-container">
+                    <div class="timeline-track">
+                      <div
+                        class="timeline-track-progress"
+                        id="timelineTrackProgress"
+                      ></div>
+                    </div>
+                    <div
+                      class="timeline-year-markers"
+                      id="timelineYearMarkers"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-footer">
+              <div class="timeline-date">
+                <i class="fas fa-calendar-alt me-2"></i
+                ><span id="startDate">9/2022</span>
+              </div>
+              <!-- <div class="timeline-legends">
+                <div class="legend-item">
+                  <span
+                    class="legend-dot"
+                    style="background-color: var(--color-green-completed)"
+                  ></span>
+                  <span>Hoàn thành</span>
+                </div>
+                <div class="legend-item">
+                  <span
+                    class="legend-dot"
+                    style="background-color: var(--color-yellow-active)"
+                  ></span>
+                  <span>Đang học</span>
+                </div>
+                <div class="legend-item">
+                  <span
+                    class="legend-dot"
+                    style="background-color: #e0e0e0"
+                  ></span>
+                  <span>Chưa học</span>
+                </div>
+              </div> -->
+              <div class="legend">
+                <div class="legend-item">
+                  <div
+                    class="legend-color"
+                    style="background-color: var(--success-green)"
+                  ></div>
+                  <span>Hoàn thành</span>
+                </div>
+                <div class="legend-item">
+                  <div
+                    class="legend-color"
+                    style="background-color: var(--primary-yellow)"
+                  ></div>
+                  <span>Đang học</span>
+                </div>
+                <div class="legend-item">
+                  <div
+                    class="legend-color"
+                    style="background-color: #ccc"
+                  ></div>
+                  <span>Chưa học</span>
+                </div>
+              </div>
+              <div class="timeline-date">
+                <i class="fas fa-calendar-check me-2"></i
+                ><span id="endDate">6/2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Knowledge Blocks Overview -->
         <div class="content-wrapper">
-          <div class="section-title">Tổng quan khối kiến thức</div>
+          <div class="knowledge-block-overview">
+            <div class="section-title">Tổng quan khối kiến thức</div>
 
-          <div class="knowledge-blocks">
-            <div class="knowledge-block">
-              <div class="circle-progress">
-                <svg viewBox="0 0 120 120">
-                  <circle
-                    cx="60"
-                    cy="60"
-                    r="50"
-                    fill="none"
-                    stroke="#e9ecef"
-                    stroke-width="8"
-                  />
-                  <circle
-                    cx="60"
-                    cy="60"
-                    r="50"
-                    fill="none"
-                    stroke="#ffb800"
-                    stroke-width="8"
-                    stroke-dasharray="157 314"
-                    stroke-dashoffset="0"
-                  />
-                </svg>
-                <div class="circle-text yellow">GDDC</div>
+            <div class="knowledge-blocks">
+              <div class="knowledge-block">
+                <div class="circle-progress">
+                  <svg viewBox="0 0 120 120">
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#e9ecef"
+                      stroke-width="8"
+                    />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#ffb800"
+                      stroke-width="8"
+                      stroke-dasharray="157 314"
+                      stroke-dashoffset="0"
+                    />
+                  </svg>
+                  <div class="circle-text yellow">GDDC</div>
+                </div>
+                <div class="block-title">Giáo dục đại cương</div>
+                <div class="block-code">32/31 tin chỉ</div>
+                <div class="block-progress">
+                  <div class="block-progress-bar yellow"></div>
+                </div>
               </div>
-              <div class="block-title">Giáo dục đại cương</div>
-              <div class="block-code">32/31 tin chỉ</div>
-              <div class="block-progress">
-                <div class="block-progress-bar yellow"></div>
-              </div>
-            </div>
 
-            <div class="knowledge-block">
-              <div class="circle-progress">
-                <svg viewBox="0 0 120 120">
-                  <circle
-                    cx="60"
-                    cy="60"
-                    r="50"
-                    fill="none"
-                    stroke="#e9ecef"
-                    stroke-width="8"
-                  />
-                  <circle
-                    cx="60"
-                    cy="60"
-                    r="50"
-                    fill="none"
-                    stroke="#ffb800"
-                    stroke-width="8"
-                    stroke-dasharray="157 314"
-                    stroke-dashoffset="0"
-                  />
-                </svg>
-                <div class="circle-text yellow">GDCN</div>
+              <div class="knowledge-block">
+                <div class="circle-progress">
+                  <svg viewBox="0 0 120 120">
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#e9ecef"
+                      stroke-width="8"
+                    />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#ffb800"
+                      stroke-width="8"
+                      stroke-dasharray="157 314"
+                      stroke-dashoffset="0"
+                    />
+                  </svg>
+                  <div class="circle-text yellow">GDCN</div>
+                </div>
+                <div class="block-title">Giáo dục chuyên nghiệp</div>
+                <div class="block-code">65/96 tin chỉ</div>
+                <div class="block-progress">
+                  <div class="block-progress-bar yellow"></div>
+                </div>
               </div>
-              <div class="block-title">Giáo dục chuyên nghiệp</div>
-              <div class="block-code">65/96 tin chỉ</div>
-              <div class="block-progress">
-                <div class="block-progress-bar yellow"></div>
-              </div>
-            </div>
 
-            <div class="knowledge-block">
-              <div class="circle-progress">
-                <svg viewBox="0 0 120 120">
-                  <circle
-                    cx="60"
-                    cy="60"
-                    r="50"
-                    fill="none"
-                    stroke="#e9ecef"
-                    stroke-width="8"
-                  />
-                  <circle
-                    cx="60"
-                    cy="60"
-                    r="50"
-                    fill="none"
-                    stroke="#28a745"
-                    stroke-width="8"
-                    stroke-dasharray="251 314"
-                    stroke-dashoffset="0"
-                  />
-                </svg>
-                <div class="circle-text green">N/A</div>
-              </div>
-              <div class="block-title">Chưa xác định</div>
-              <div class="block-code">22/22 tin chỉ</div>
-              <div class="block-progress">
-                <div class="block-progress-bar"></div>
+              <div class="knowledge-block">
+                <div class="circle-progress">
+                  <svg viewBox="0 0 120 120">
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#e9ecef"
+                      stroke-width="8"
+                    />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#28a745"
+                      stroke-width="8"
+                      stroke-dasharray="251 314"
+                      stroke-dashoffset="0"
+                    />
+                  </svg>
+                  <div class="circle-text green">N/A</div>
+                </div>
+                <div class="block-title">Chưa xác định</div>
+                <div class="block-code">22/22 tin chỉ</div>
+                <div class="block-progress">
+                  <div class="block-progress-bar"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -250,276 +339,8 @@
         </div>
 
         <!-- Expandable Sections -->
-        <div class="content-wrapper">
-          <!-- Section 1 -->
-          <div class="expandable-section">
-            <div class="section-header" onclick="toggleSection(this)">
-              <div class="semester-title">
-                <div class="semester-head-icon"></div>
-                <div>
-                  <div class="section-header-text">
-                    Khối kiến thức giáo dục đại cương
-                  </div>
-                  <div class="section-meta">
-                    Bắt buộc:
-                    <span class="bold-text">12 tín chỉ</span>
-                    • Tự chọn:
-                    <span class="bold-text">6 tín chỉ</span>
-                  </div>
-                </div>
-              </div>
-              <div class="section-icon">
-                <i class="fas fa-chevron-up"></i>
-              </div>
-            </div>
-            <div class="section-content">
-              <!-- Table will go here -->
-              <p>Nội dung khối kiến thức đại cương...</p>
-            </div>
-          </div>
-
-          <!-- Section 2 -->
-          <div class="expandable-section">
-            <div class="section-header expanded" onclick="toggleSection(this)">
-              <div class="semester-title">
-                <div class="semester-head-icon"></div>
-                <div>
-                  <div class="section-header-text">
-                    Khối kiến thức giáo dục chuyên nghiệp
-                  </div>
-                  <div class="section-meta">
-                    Bắt buộc:
-                    <span class="bold-text">6 tín chỉ</span>
-                    • Tự chọn:
-                    <span class="bold-text">6 tín chỉ</span>
-                  </div>
-                </div>
-              </div>
-              <div class="section-icon">
-                <i class="fas fa-chevron-up"></i>
-              </div>
-            </div>
-            <div class="section-content active">
-              <div class="subtitle-header">Học phần bắt buộc</div>
-              <div class="table-frame">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th>HỌC KỲ</th>
-                      <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                      <th>MÃ HP</th>
-                      <th>HỌC PHẦN</th>
-                      <th>HP TƯƠNG ĐƯƠNG</th>
-                      <th>HP THAY THẾ</th>
-                      <th>SỐ TC</th>
-                      <th>SỐ TIẾT LÝ</th>
-                      <th>SỐ TIẾT THI</th>
-                      <th>ĐẠT</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>Kỹ năng thăm gia quyết các vụ án dân sự</td>
-                      <td>000093</td>
-                      <td>-</td>
-                      <td>[010115]</td>
-                      <td>-</td>
-                      <td>3</td>
-                      <td>30</td>
-                      <td>30</td>
-                      <td><span class="checkmark">✓</span></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>Phương pháp điều tra xã hội học</td>
-                      <td>000901</td>
-                      <td>-</td>
-                      <td>[010006]</td>
-                      <td>-</td>
-                      <td>1</td>
-                      <td>10</td>
-                      <td>0</td>
-                      <td><span class="checkmark">✓</span></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>1</td>
-                      <td>Pháp luật đại cương</td>
-                      <td>000902</td>
-                      <td>-</td>
-                      <td>[010116]</td>
-                      <td>-</td>
-                      <td>2</td>
-                      <td>20</td>
-                      <td>0</td>
-                      <td><span class="dash">-</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="subtitle-header">Học phần tự chọn</div>
-              <div class="elective-course">
-                <div style="width: 100%">
-                  <div class="block-type">
-                    TỰ CHỌN KHỐI KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP 1
-                  </div>
-                  <table class="table elective-table">
-                    <thead>
-                      <tr>
-                        <th>STT</th>
-                        <th>HỌC KỲ</th>
-                        <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                        <th>MÃ HP</th>
-                        <th>HỌC PHẦN</th>
-                        <th>HP TƯƠNG ĐƯƠNG</th>
-                        <th>HP THAY THẾ</th>
-                        <th>SỐ TC</th>
-                        <th>SỐ TIẾT LÝ</th>
-                        <th>SỐ TIẾT THI</th>
-                        <th>ĐẠT</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>Kỹ năng thăm gia giải quyết các vụ án dân sự 1</td>
-                        <td>000093</td>
-                        <td>-</td>
-                        <td>[010115]</td>
-                        <td>-</td>
-                        <td>3</td>
-                        <td>30</td>
-                        <td>30</td>
-                        <td><span class="dash">-</span></td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>Phương pháp điều tra xã hội học 1</td>
-                        <td>000901</td>
-                        <td>-</td>
-                        <td>[010006]</td>
-                        <td>-</td>
-                        <td>1</td>
-                        <td>10</td>
-                        <td>0</td>
-                        <td><span class="checkmark">✓</span></td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>1</td>
-                        <td>Pháp luật đại cương 1</td>
-                        <td>000902</td>
-                        <td>-</td>
-                        <td>[010116]</td>
-                        <td>-</td>
-                        <td>2</td>
-                        <td>20</td>
-                        <td>0</td>
-                        <td><span class="dash">-</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div style="width: 100%">
-                  <div class="block-type">
-                    TỰ CHỌN KHỐI KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP 2
-                  </div>
-                  <table class="table elective-table">
-                    <thead>
-                      <tr>
-                        <th>STT</th>
-                        <th>HỌC KỲ</th>
-                        <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                        <th>MÃ HP</th>
-                        <th>HỌC PHẦN</th>
-                        <th>HP TƯƠNG ĐƯƠNG</th>
-                        <th>HP THAY THẾ</th>
-                        <th>SỐ TC</th>
-                        <th>SỐ TIẾT LÝ</th>
-                        <th>SỐ TIẾT THI</th>
-                        <th>ĐẠT</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>Kỹ năng thăm gia giải quyết các vụ án dân sự 2</td>
-                        <td>000094</td>
-                        <td>000093 (b)</td>
-                        <td>[010115]</td>
-                        <td>-</td>
-                        <td>3</td>
-                        <td>30</td>
-                        <td>30</td>
-                        <td><span class="dash">-</span></td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>Phương pháp điều tra xã hội học 2</td>
-                        <td>000905</td>
-                        <td>000901 (b)</td>
-                        <td>[010006]</td>
-                        <td>-</td>
-                        <td>1</td>
-                        <td>10</td>
-                        <td>0</td>
-                        <td><span class="dash">-</span></td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>1</td>
-                        <td>Pháp luật đại cương 2</td>
-                        <td>000906</td>
-                        <td>000902 (b)</td>
-                        <td>[010116]</td>
-                        <td>-</td>
-                        <td>2</td>
-                        <td>20</td>
-                        <td>0</td>
-                        <td><span class="dash">-</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section 3 -->
-          <div class="expandable-section">
-            <div class="section-header" onclick="toggleSection(this)">
-              <div class="semester-title">
-                <div class="semester-head-icon"></div>
-                <div>
-                  <div class="section-header-text">
-                    Khối kiến thức giáo dục chuyên nghiệp
-                  </div>
-                  <div class="section-meta">
-                    Bắt buộc:
-                    <span class="bold-text">6 tín chỉ</span>
-                    • Tự chọn:
-                    <span class="bold-text">6 tín chỉ</span>
-                  </div>
-                </div>
-              </div>
-              <div class="section-icon">
-                <i class="fas fa-chevron-up"></i>
-              </div>
-            </div>
-            <div class="section-content">
-              <p>Nội dung phần chưa xác định...</p>
-            </div>
-          </div>
+        <div class="content-wrapper" id="expandableSections">
+          <!-- JavaScript Render -->
         </div>
 
         <div class="footer-section">© 2025</div>
@@ -529,6 +350,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
+
+    <script src="../js/curriculum-framework.js"></script>
+
+    <script src="../js/study-progress.js"></script>
 
     <script src="https://kendo.cdn.telerik.com/2016.3.1118/js/kendo.all.min.js"></script>
 
