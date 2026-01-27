@@ -8,6 +8,14 @@
   --table-border-color: #f7f7f7;
   --table-header-bg: #f9fafb;
   --color-text-primary: #505050;
+
+  /* Hiep */
+  --color-completed: #5b9bd5;
+  --color-current: #ffc107;
+  --color-remaining: #c5c5c5;
+  --color-green-completed: #70ad47;
+  --color-yellow-active: #ffc107;
+  --border-thickness: 5px;
 }
 
 body {
@@ -53,6 +61,310 @@ body {
   border-radius: 8px;
   padding: 25px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Timeline Section */
+.timeline-section {
+  padding: 20px;
+}
+
+.timeline-container {
+  position: relative;
+}
+
+.timeline-wrapper {
+  position: relative;
+}
+
+.timeline-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.timeline-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.timeline-circle-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+  z-index: 2;
+}
+
+.timeline-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.938rem;
+  background: white;
+  position: relative;
+  border: var(--border-thickness) solid transparent;
+}
+
+.timeline-circle.completed {
+  border-color: var(--color-green-completed);
+}
+
+.timeline-circle.active {
+  border-color: var(--color-yellow-active);
+}
+
+.timeline-circle.future {
+  border-color: #d0d0d0;
+}
+
+/* Circle with partial progress - using border with gradient via ::before */
+.timeline-circle.partial-green,
+.timeline-circle.partial-mixed,
+.timeline-circle.partial-yellow {
+  border: none;
+}
+
+.timeline-circle.partial-green::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: var(--border-thickness);
+  background: conic-gradient(
+    var(--color-green-completed) 0deg,
+    var(--color-green-completed) calc(var(--progress-green) * 3.6deg),
+    #d0d0d0 calc(var(--progress-green) * 3.6deg),
+    #d0d0d0 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.timeline-circle.partial-mixed::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: var(--border-thickness);
+  background: conic-gradient(
+    var(--color-green-completed) 0deg,
+    var(--color-green-completed) calc(var(--progress-green) * 3.6deg),
+    var(--color-yellow-active) calc(var(--progress-green) * 3.6deg),
+    var(--color-yellow-active) calc(var(--progress-total) * 3.6deg),
+    #d0d0d0 calc(var(--progress-total) * 3.6deg),
+    #d0d0d0 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.timeline-circle.partial-yellow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: var(--border-thickness);
+  background: conic-gradient(
+    var(--color-yellow-active) 0deg,
+    var(--color-yellow-active) calc(var(--progress-yellow) * 3.6deg),
+    #d0d0d0 calc(var(--progress-yellow) * 3.6deg),
+    #d0d0d0 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.timeline-circle > span {
+  position: relative;
+  z-index: 1;
+  color: #333;
+}
+
+.timeline-circle.future > span {
+  color: #999;
+}
+
+.timeline-info {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-semester {
+  font-weight: 600;
+  font-size: 0.813rem;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-credits {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.timeline-progress {
+  width: 100%;
+  max-width: 120px;
+  position: relative;
+}
+
+.timeline-progress-bar {
+  height: 24px;
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+.timeline-progress-segment {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.timeline-progress-segment.completed {
+  background-color: var(--color-green-completed);
+}
+
+.timeline-progress-segment.active {
+  background-color: var(--color-yellow-active);
+}
+
+.timeline-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.timeline-progress-text.light {
+  color: white;
+}
+
+/* Timeline bottom section - simplified */
+.timeline-bottom {
+  position: relative;
+}
+
+.timeline-track-container {
+  position: relative;
+  height: 80px;
+  margin-bottom: 2rem;
+}
+
+.timeline-track {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #e0e0e0;
+}
+
+.timeline-track-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--color-green-completed);
+  transition: width 0.3s ease;
+}
+
+/* Year markers positioned absolutely to align with semester circles */
+.timeline-year-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+.timeline-year-marker {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+}
+
+.timeline-year-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-year-dot.current {
+  background-color: var(--color-green-completed);
+}
+
+.timeline-year-dot.future {
+  background-color: #d0d0d0;
+}
+
+.timeline-year-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #5b9bd5;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.timeline-year-semesters {
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.timeline-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 1rem;
+}
+
+.timeline-date {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.timeline-legends {
+  display: flex;
+  gap: 2rem;
 }
 
 .semester-title {
@@ -111,7 +423,7 @@ body {
   color: #505050;
 }
 
-/* .progress-label {
+.progress-label {
   font-size: 11px;
   color: #666;
   margin-bottom: 10px;
@@ -135,45 +447,8 @@ body {
   color: #9ba9bd;
 }
 
-.progress-bar {
-  width: 100%;
-}
-
-.progress-wrapper {
-  width: 100%;
-  position: relative;
-}
-
-.progress-custom {
-  display: flex;
-  width: 100%;
-  height: 12px;
-  border-radius: 6px;
-  overflow: hidden;
-  background-color: #e0e0e0;
-}
-
-/* .progress-percentage {
+.progress-percentage {
   color: #14358e;
-} */
-
-.progress-bar-blue {
-  background-color: var(--primary-blue);
-  flex: 0 0 65%;
-}
-
-.progress-bar-yellow {
-  background-color: var(--primary-yellow);
-  flex: 0 0 10%;
-}
-
-.progress-bar-gray {
-  background-color: #ccc;
-  flex: 0 0 25%;
-}
-
-.progress-chart {
-  background-color: #f4fbff;
 }
 
 #chart svg rect[fill] {
@@ -450,14 +725,25 @@ body {
   gap: 6px;
 }
 
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
 .legend-color {
   width: 12px;
   height: 12px;
   border-radius: 2px;
 }
 
+#expandableSections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .expandable-section {
-  margin: 20px 0;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
@@ -587,11 +873,29 @@ body {
 }
 
 .table tbody tr:hover {
-  background-color: #f9f9f9;
+  background-color: #f9f9f9 !important;
+}
+
+.table tbody tr td {
+  background-color: transparent;
 }
 
 .table tbody tr.highlight {
   background-color: #e8f4f8;
+}
+
+.table tbody tr.row-locked {
+  opacity: 0.5;
+  pointer-events: auto;
+  cursor: not-allowed;
+}
+
+.table tbody tr.row-locked:hover {
+  background-color: #f0f0f0 !important;
+}
+
+.table tbody tr[title] {
+  cursor: help;
 }
 
 .elective-table {
@@ -631,9 +935,13 @@ body {
   justify-content: center;
   align-items: start;
   gap: 20px;
-  padding: 20px;
-  background-color: white;
+  padding: 20px 0px;
   overflow-x: auto;
+}
+
+.elective-course > div {
+  padding: 0 20px;
+  width: 100%;
 }
 
 .block-type {
@@ -646,6 +954,8 @@ body {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   font-size: 13px;
+  width: fit-content;
+  min-width: 100%;
 }
 
 .footer-section {

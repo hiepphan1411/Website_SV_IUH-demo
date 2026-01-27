@@ -769,6 +769,7 @@
             </div>
           </div>
         </div>
+
         <!-- Controls Section -->
         <div class="content-wrapper-tab-group">
           <div class="tab-buttons">
@@ -803,6 +804,7 @@
             </div>
           </div>
         </div>
+
         <!-- Timeline Section -->
         <div class="timeline-section">
           <h2 class="section-title">Lộ trình học tập</h2>
@@ -919,7 +921,7 @@
             <div class="section-content active">
               <div class="subtitle-header">Học phần bắt buộc</div>
               <div class="table-frame">
-                <table class="table">
+                <table class="table" id="mandatory-courses-table">
                   <thead>
                     <tr>
                       <th>STT</th>
@@ -936,56 +938,21 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>Kỹ năng thăm gia quyết các vụ án dân sự</td>
-                      <td>000093</td>
-                      <td>-</td>
-                      <td>[010115]</td>
-                      <td>-</td>
-                      <td>3</td>
-                      <td>30</td>
-                      <td>30</td>
-                      <td><span class="checkmark">✓</span></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>Phương pháp điều tra xã hội học</td>
-                      <td>000901</td>
-                      <td>-</td>
-                      <td>[010006]</td>
-                      <td>-</td>
-                      <td>1</td>
-                      <td>10</td>
-                      <td>0</td>
-                      <td><span class="checkmark">✓</span></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>1</td>
-                      <td>Pháp luật đại cương</td>
-                      <td>000902</td>
-                      <td>-</td>
-                      <td>[010116]</td>
-                      <td>-</td>
-                      <td>2</td>
-                      <td>20</td>
-                      <td>0</td>
-                      <td><span class="dash">-</span></td>
-                    </tr>
+                    <!-- JavaScript Render -->
                   </tbody>
                 </table>
               </div>
 
               <div class="subtitle-header">Học phần tự chọn</div>
               <div class="elective-course">
-                <div style="width: 100%">
+                <div style="width: max-content; min-width: 100%">
                   <div class="block-type">
                     TỰ CHỌN KHỐI KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP 1
                   </div>
-                  <table class="table elective-table">
+                  <table
+                    class="table elective-table"
+                    id="elective-block1-table"
+                  >
                     <thead>
                       <tr>
                         <th>STT</th>
@@ -1002,54 +969,19 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>Kỹ năng thăm gia giải quyết các vụ án dân sự 1</td>
-                        <td>000093</td>
-                        <td>-</td>
-                        <td>[010115]</td>
-                        <td>-</td>
-                        <td>3</td>
-                        <td>30</td>
-                        <td>30</td>
-                        <td><span class="dash">-</span></td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>Phương pháp điều tra xã hội học 1</td>
-                        <td>000901</td>
-                        <td>-</td>
-                        <td>[010006]</td>
-                        <td>-</td>
-                        <td>1</td>
-                        <td>10</td>
-                        <td>0</td>
-                        <td><span class="checkmark">✓</span></td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>1</td>
-                        <td>Pháp luật đại cương 1</td>
-                        <td>000902</td>
-                        <td>-</td>
-                        <td>[010116]</td>
-                        <td>-</td>
-                        <td>2</td>
-                        <td>20</td>
-                        <td>0</td>
-                        <td><span class="dash">-</span></td>
-                      </tr>
+                      <!-- JavaScript Render -->
                     </tbody>
                   </table>
                 </div>
 
-                <div style="width: 100%">
+                <div style="width: max-content; min-width: 100%">
                   <div class="block-type">
                     TỰ CHỌN KHỐI KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP 2
                   </div>
-                  <table class="table elective-table">
+                  <table
+                    class="table elective-table"
+                    id="elective-block2-table"
+                  >
                     <thead>
                       <tr>
                         <th>STT</th>
@@ -1066,45 +998,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>Kỹ năng thăm gia giải quyết các vụ án dân sự 2</td>
-                        <td>000094</td>
-                        <td>000093 (b)</td>
-                        <td>[010115]</td>
-                        <td>-</td>
-                        <td>3</td>
-                        <td>30</td>
-                        <td>30</td>
-                        <td><span class="dash">-</span></td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>1</td>
-                        <td>Phương pháp điều tra xã hội học 2</td>
-                        <td>000905</td>
-                        <td>000901 (b)</td>
-                        <td>[010006]</td>
-                        <td>-</td>
-                        <td>1</td>
-                        <td>10</td>
-                        <td>0</td>
-                        <td><span class="dash">-</span></td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>1</td>
-                        <td>Pháp luật đại cương 2</td>
-                        <td>000906</td>
-                        <td>000902 (b)</td>
-                        <td>[010116]</td>
-                        <td>-</td>
-                        <td>2</td>
-                        <td>20</td>
-                        <td>0</td>
-                        <td><span class="dash">-</span></td>
-                      </tr>
+                      <!-- JavaScript Render -->
                     </tbody>
                   </table>
                 </div>
@@ -1141,8 +1035,9 @@
       </div>
     </main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../js/curriculum-framework.js"></script>
 
     <script>
       // Data defaults
@@ -1425,6 +1320,7 @@
       `;
         markersContainer.appendChild(endMarker);
       }
+
       // Tab switching
       document
         .getElementById("semesterTab")
