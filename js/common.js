@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+function initializeSidebar() {
   const navParents = document.querySelectorAll(".nav-parent");
 
   navParents.forEach((parent) => {
@@ -58,4 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
-});
+}
+
+// Auto-initialize if DOM is already loaded
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeSidebar);
+} else {
+  initializeSidebar();
+}

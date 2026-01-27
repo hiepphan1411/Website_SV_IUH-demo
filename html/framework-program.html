@@ -73,142 +73,7 @@
     <main class="main-content">
       <div class="sidebar-overlay" id="sidebarOverlay"></div>
       <!-- Sidebar -->
-      <aside class="sidebar" id="sidebar">
-        <nav class="nav-menu">
-          <!-- Trang chủ -->
-          <a href="../html/index.html" class="nav-item nav-parent active">
-            <i class="fas fa-home"></i>
-            <span style="width: 90%">Trang chủ</span>
-          </a>
-
-          <!-- Thông tin chung -->
-          <div class="nav-group">
-            <div class="nav-parent">
-              <i class="fas fa-info-circle"></i>
-              <span>Thông tin chung</span>
-              <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-            <div class="nav-submenu">
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký nội trú</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Hồ sơ điện tử</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đề xuất cập nhật thông tin</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đề xuất biểu mẫu</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký chuyên ngành</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Lịch sử khai báo BHYT</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Khai báo thông tin BHYT</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đề xuất xét tốt nghiệp</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Học tập -->
-          <div class="nav-group">
-            <div class="nav-parent">
-              <i class="fas fa-graduation-cap"></i>
-              <span>Học tập</span>
-              <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-            <div class="nav-submenu">
-              <a href="#" class="nav-subitem">
-                <span>Kết quả học tập</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Thông tin điểm danh</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Kết quả rèn luyện</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Lịch theo tuần</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Lịch theo tiến độ</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký phúc khảo</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Học phí -->
-          <div class="nav-group">
-            <div class="nav-parent">
-              <i class="fas fa-money-bill-wave"></i>
-              <span>Học phí</span>
-              <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-            <div class="nav-submenu">
-              <a href="#" class="nav-subitem">
-                <span>Thanh toán trực tuyến</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Thanh toán nội trú</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Phiếu thu trực tuyến</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Tra cứu công nợ</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Đăng ký học phần -->
-          <div class="nav-group">
-            <div class="nav-parent">
-              <i class="fas fa-book-open"></i>
-              <span>Đăng ký học phần</span>
-              <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-            <div class="nav-submenu">
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký thi lại - thi cải thiện</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký môn học điều kiện</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Chương trình khung</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký học phần</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Khác -->
-          <div class="nav-group">
-            <div class="nav-parent">
-              <i class="fas fa-ellipsis-h"></i>
-              <span>Khác</span>
-              <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-            <div class="nav-submenu">
-              <a href="#" class="nav-subitem">
-                <span>Hộp thư sinh viên</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Liên hệ góp ý</span>
-              </a>
-            </div>
-          </div>
-        </nav>
-      </aside>
+      <div id="sidebar-container"></div>
       <!-- Details -->
       <div class="container-lg">
         <!-- Progress Section -->
@@ -533,8 +398,16 @@
     <script src="../js/common.js"></script>
 
     <script>
-      // Current academic year
+      fetch("component/sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar-container").innerHTML = html;
 
+          // Initialize sidebar after it's loaded
+          if (typeof initializeSidebar === "function") {
+            initializeSidebar();
+          }
+        });
       // Initialize
       document.addEventListener("DOMContentLoaded", function () {
         handleResize();
