@@ -1,0 +1,94 @@
+/* Sidebar Dropdown Styles */
+.nav-group {
+  margin-bottom: 0.25rem;
+}
+
+.nav-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 10px 20px;
+  color: #666;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.nav-parent:hover {
+  background-color: #f8f9fa;
+  color: #0066cc;
+  border-left-color: #0066cc;
+}
+
+.nav-parent.active {
+  background-color: #e3f2fd;
+  color: #0066cc;
+  border-left-color: #0066cc;
+  font-weight: 600;
+}
+
+.nav-parent i:first-child {
+  margin-right: 0.75rem;
+  width: 20px;
+  text-align: center;
+}
+
+.dropdown-icon {
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
+
+.nav-parent.active .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.nav-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background-color: #f8f9fa;
+}
+
+.nav-group.open .nav-submenu {
+  max-height: 600px;
+}
+
+.nav-subitem {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem 0.75rem 3rem;
+  color: #666;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  border-left: 3px solid transparent;
+}
+
+.nav-subitem:hover {
+  background-color: #e9ecef;
+  color: #0066cc;
+  border-left-color: #0066cc;
+}
+
+.nav-subitem.active {
+  background-color: #e3f2fd;
+  color: #0066cc;
+  border-left-color: #0066cc;
+  font-weight: 500;
+}
+
+/* Responsive for sidebar dropdown */
+@media (max-width: 768px) {
+  .nav-parent {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-subitem {
+    padding: 0.65rem 1rem 0.65rem 2.5rem;
+    font-size: 0.85rem;
+  }
+}

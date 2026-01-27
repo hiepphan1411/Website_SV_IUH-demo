@@ -84,51 +84,13 @@ const timelineData = [
   },
 ];
 
-//Render progress section
-function renderProgress() {
-  const data = progressData;
-
-  document.getElementById("totalCredits").textContent = data.totalCredits;
-  document.getElementById("completedCredits").textContent =
-    data.completedCredits;
-  document.getElementById("currentCredits").textContent = data.currentCredits;
-  document.getElementById("remainingCredits").textContent =
-    data.remainingCredits;
-  document.getElementById("progressDiff").textContent = data.progressDiff;
-
-  const completedPercent = (
-    (data.completedCredits / data.totalCredits) *
-    100
-  ).toFixed(1);
-  const currentPercent = (
-    (data.currentCredits / data.totalCredits) *
-    100
-  ).toFixed(1);
-  const remainingPercent = (
-    (data.remainingCredits / data.totalCredits) *
-    100
-  ).toFixed(1);
-
-  document.getElementById("overallPercentage").textContent =
-    completedPercent + "%";
-
-  //Update Kendo chart data
-  const chart = $("#chart").data("kendoChart");
-  if (chart) {
-    chart.setOptions({
-      series: [
-        { data: [parseFloat(completedPercent)], color: "#56a2e8" },
-        { data: [parseFloat(currentPercent)], color: "#ffb800" },
-        { data: [parseFloat(remainingPercent)], color: "#e0e0e0" },
-      ],
-    });
-  }
-}
-
 function renderTimeline() {
   const container = document.getElementById("timelineItems");
   const markersContainer = document.getElementById("timelineYearMarkers");
   const trackProgress = document.getElementById("timelineTrackProgress");
+
+  if (container) container.innerHTML = "";
+  if (markersContainer) markersContainer.innerHTML = "";
 
   const yearGroups = {};
   timelineData.forEach((sem) => {
@@ -268,6 +230,43 @@ function renderTimeline() {
         <div class="timeline-year-label">6/2026</div>
       `;
   markersContainer.appendChild(endMarker);
+}
+
+function renderProgress() {
+  const data = progressData;
+
+  // Update all progress data elements if they exist
+  const totalCreditsEl = document.getElementById("totalCredits");
+  const completedCreditsEl = document.getElementById("completedCredits");
+  const currentCreditsEl = document.getElementById("currentCredits");
+  const remainingCreditsEl = document.getElementById("remainingCredits");
+  const progressDiffEl = document.getElementById("progressDiff");
+  const overallPercentageEl = document.getElementById("overallPercentage");
+
+  if (totalCreditsEl) totalCreditsEl.textContent = data.totalCredits;
+  if (completedCreditsEl)
+    completedCreditsEl.textContent = data.completedCredits;
+  if (currentCreditsEl) currentCreditsEl.textContent = data.currentCredits;
+  if (remainingCreditsEl)
+    remainingCreditsEl.textContent = data.remainingCredits;
+  if (progressDiffEl) progressDiffEl.textContent = data.progressDiff;
+
+  const completedPercent = (
+    (data.completedCredits / data.totalCredits) *
+    100
+  ).toFixed(1);
+  const currentPercent = (
+    (data.currentCredits / data.totalCredits) *
+    100
+  ).toFixed(1);
+  const remainingPercent = (
+    (data.remainingCredits / data.totalCredits) *
+    100
+  ).toFixed(1);
+
+  if (overallPercentageEl) {
+    overallPercentageEl.textContent = completedPercent + "%";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cổng thông tin sinh viên</title>
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/common.css" />
     <script
       src="https://kit.fontawesome.com/6f955e325d.js"
       crossorigin="anonymous"
@@ -422,12 +423,108 @@
           margin: 12px 0;
         }
       }
+
+      /* Sidebar Dropdown Styles */
+      .nav-group {
+        margin-bottom: 0.25rem;
+      }
+
+      .nav-parent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        padding: 0.875rem 1.25rem;
+        color: #666;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+        position: relative;
+      }
+
+      .nav-parent:hover {
+        background-color: #f8f9fa;
+        color: #0066cc;
+        border-left-color: #0066cc;
+      }
+
+      .nav-parent.active {
+        background-color: #e3f2fd;
+        color: #0066cc;
+        border-left-color: #0066cc;
+        font-weight: 600;
+      }
+
+      .nav-parent i:first-child {
+        margin-right: 0.75rem;
+        width: 20px;
+        text-align: center;
+      }
+
+      .dropdown-icon {
+        font-size: 0.75rem;
+        transition: transform 0.3s ease;
+        margin-left: auto;
+      }
+
+      .nav-parent.active .dropdown-icon {
+        transform: rotate(180deg);
+      }
+
+      .nav-submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        background-color: #f8f9fa;
+      }
+
+      .nav-group.open .nav-submenu {
+        max-height: 600px;
+      }
+
+      .nav-subitem {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1.25rem 0.75rem 3rem;
+        color: #666;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        font-size: 0.9rem;
+        border-left: 3px solid transparent;
+      }
+
+      .nav-subitem:hover {
+        background-color: #e9ecef;
+        color: #0066cc;
+        border-left-color: #0066cc;
+      }
+
+      .nav-subitem.active {
+        background-color: #e3f2fd;
+        color: #0066cc;
+        border-left-color: #0066cc;
+        font-weight: 500;
+      }
+
+      /* Responsive for sidebar dropdown */
+      @media (max-width: 768px) {
+        .nav-parent {
+          padding: 0.75rem 1rem;
+        }
+
+        .nav-subitem {
+          padding: 0.65rem 1rem 0.65rem 2.5rem;
+          font-size: 0.85rem;
+        }
+      }
     </style>
   </head>
   <body>
     <!-- Header -->
     <header class="header-container">
       <div class="left-header-container">
+        <button class="hamburger-menu" id="hamburgerMenu">
+          <i class="fas fa-bars"></i>
+        </button>
         <div class="logo-div">
           <!-- Todo Logo -->
         </div>
@@ -460,57 +557,142 @@
     </header>
     <!-- Content -->
     <main class="main-content">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
       <!-- Sidebar -->
-      <aside class="sidebar">
+      <aside class="sidebar" id="sidebar">
         <nav class="nav-menu">
+          <!-- Trang chủ -->
           <a href="#" class="nav-item active">
             <i class="fas fa-home"></i>
             <span>Trang chủ</span>
           </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-user"></i>
-            <span>Thông tin sinh viên</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-calendar-week"></i>
-            <span>Lịch theo tuần</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-book-open"></i>
-            <span>Đăng ký học phần</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-chart-line"></i>
-            <span>Kết quả học tập</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-money-bill-wave"></i>
-            <span>Tra cứu công nợ</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-trophy"></i>
-            <span>Học bổng</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-folder-open"></i>
-            <span>Hồ sơ điện tử</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-pen-fancy"></i>
-            <span>Lịch thi</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-tasks"></i>
-            <span>Lịch theo tiến độ</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-bell"></i>
-            <span>Thông báo</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-poll"></i>
-            <span>Khảo sát</span>
-          </a>
+
+          <!-- Thông tin chung -->
+          <div class="nav-group">
+            <div class="nav-parent">
+              <i class="fas fa-info-circle"></i>
+              <span>Thông tin chung</span>
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+            <div class="nav-submenu">
+              <a href="#" class="nav-subitem">
+                <span>Đăng ký nội trú</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Hồ sơ điện tử</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Đề xuất cập nhật thông tin</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Đề xuất biểu mẫu</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Đăng ký chuyên ngành</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Lịch sử khai báo BHYT</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Khai báo thông tin BHYT</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Đề xuất xét tốt nghiệp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Học tập -->
+          <div class="nav-group">
+            <div class="nav-parent">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Học tập</span>
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+            <div class="nav-submenu">
+              <a href="#" class="nav-subitem">
+                <span>Kết quả học tập</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Thông tin điểm danh</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Kết quả rèn luyện</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Lịch theo tuần</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Lịch theo tiến độ</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Đăng ký phúc khảo</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Học phí -->
+          <div class="nav-group">
+            <div class="nav-parent">
+              <i class="fas fa-money-bill-wave"></i>
+              <span>Học phí</span>
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+            <div class="nav-submenu">
+              <a href="#" class="nav-subitem">
+                <span>Thanh toán trực tuyến</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Thanh toán nội trú</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Phiếu thu trực tuyến</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Tra cứu công nợ</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Đăng ký học phần -->
+          <div class="nav-group">
+            <div class="nav-parent">
+              <i class="fas fa-book-open"></i>
+              <span>Đăng ký học phần</span>
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+            <div class="nav-submenu">
+              <a href="#" class="nav-subitem">
+                <span>Đăng ký thi lại - thi cải thiện</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Đăng ký môn học điều kiện</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Chương trình khung</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Đăng ký học phần</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Khác -->
+          <div class="nav-group">
+            <div class="nav-parent">
+              <i class="fas fa-ellipsis-h"></i>
+              <span>Khác</span>
+              <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+            <div class="nav-submenu">
+              <a href="#" class="nav-subitem">
+                <span>Hộp thư sinh viên</span>
+              </a>
+              <a href="#" class="nav-subitem">
+                <span>Liên hệ góp ý</span>
+              </a>
+            </div>
+          </div>
         </nav>
       </aside>
       <!-- Details -->
@@ -1120,4 +1302,5 @@
     </main>
   </body>
   <script src="../js/main.js"></script>
+  <script src="../js/common.js"></script>
 </html>
