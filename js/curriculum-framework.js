@@ -34,7 +34,7 @@ const curriculumData = {
         stt: 3,
         semester: 2,
         knowledgeBlock: "GDDC",
-        courseName: "Pháp luật đại cương",
+        courseName: "Pháp luật đại cương 1",
         courseCode: "000902",
         prerequisite: "-",
         equivalent: "[010116]",
@@ -159,11 +159,11 @@ function isPrerequisiteCompleted(prerequisiteStr) {
 }
 
 function getPrerequisiteTooltip(prerequisiteStr) {
-  if (!prerequisiteStr || prerequisiteStr === "-") return "";
+  if (!prerequisiteStr || prerequisiteStr === "-") return null;
 
   //"000901 (b)" -> "000901")
   const match = prerequisiteStr.match(/(\d{6})/);
-  if (!match) return "";
+  if (!match) return null;
 
   const prereqCode = match[1];
 
@@ -175,12 +175,12 @@ function getPrerequisiteTooltip(prerequisiteStr) {
 
   const prereqCourse = allCourses.find((c) => c.courseCode === prereqCode);
 
-  if (!prereqCourse) return "";
+  if (!prereqCourse) return null;
 
-  const completedStatus = prereqCourse.completed
-    ? "Đã hoàn thành \u2713"
-    : "Ch\u01b0a hoàn thành";
-  return `Ti\u00ean \u0111\u1ec1: ${prereqCourse.courseName} (${prereqCourse.courseCode}) - ${completedStatus}`;
+  return {
+    courseName: prereqCourse.courseName,
+    completed: prereqCourse.completed,
+  };
 }
 
 function createTableRow(course, viewMode = "knowledgeBlock") {
@@ -189,13 +189,15 @@ function createTableRow(course, viewMode = "knowledgeBlock") {
   const bgStyle = course.completed
     ? ' style="background-color: #F4FFF5 !important;"'
     : "";
-  const tooltipText = getPrerequisiteTooltip(course.prerequisite);
-  const titleAttr = tooltipText ? ` title="${tooltipText}"` : "";
+  const tooltipData = getPrerequisiteTooltip(course.prerequisite);
+  const dataTooltip = tooltipData
+    ? ` data-tooltip="${encodeURIComponent(JSON.stringify(tooltipData))}"`
+    : "";
 
   if (viewMode === "semester") {
     //HK
     return `
-      <tr${lockedClass}${bgStyle}${titleAttr}>
+      <tr${lockedClass}${bgStyle}${dataTooltip}>
         <td>${course.stt}</td>
         <td>${course.knowledgeBlock}</td>
         <td>${course.courseName}</td>
@@ -212,7 +214,7 @@ function createTableRow(course, viewMode = "knowledgeBlock") {
   } else {
     //Khối kiến thức
     return `
-      <tr${lockedClass}${bgStyle}${titleAttr}>
+      <tr${lockedClass}${bgStyle}${dataTooltip}>
         <td>${course.stt}</td>
         <td>${course.semester}</td>
         <td>${course.courseName}</td>
@@ -672,12 +674,100 @@ function switchView(view) {
   }
 }
 
+// Custom Tooltip Functions
+let tooltipElement = null;
+
+function createTooltipElement() {
+  if (!tooltipElement) {
+    tooltipElement = document.createElement("div");
+    tooltipElement.className = "custom-tooltip";
+    document.body.appendChild(tooltipElement);
+  }
+  return tooltipElement;
+}
+
+function showTooltip(event, tooltipData) {
+  const tooltip = createTooltipElement();
+  const statusClass = tooltipData.completed ? "completed" : "not-completed";
+  const statusText = tooltipData.completed ? "Đã học" : "Chưa học";
+  const statusIcon = tooltipData.completed
+    ? '<i class="fa-solid fa-circle-check" style="color: #22C55E"></i>'
+    : '<i class="fa-solid fa-circle-xmark" style="color: #EA5455"></i>';
+  const requiredText = tooltipData.completed
+    ? "Đã hoàn thành chương trình"
+    : "Môn phải học tiên quyết";
+  const remindText = tooltipData.completed
+    ? "Môn học đã đủ điều kiện đăng ký."
+    : "<span class='remind-text'>Bạn <span class='text-danger'>CHƯA THỂ ĐĂNG KÝ</span> môn này do chưa hoàn thành học phần tiên quyết: <b>" +
+      tooltipData.courseName +
+      "</b>.</span>";
+
+  tooltip.innerHTML = `
+    <div class="tooltip-title">MÔN HỌC TIÊN QUYẾT</div>
+    <div class="tooltip-frame">
+        <div>
+            ${statusIcon}
+        </div>
+        <div class="tooltip-body">
+            <div class="tooltip-content">${tooltipData.courseName}</div>
+            <div class="tooltip-require">Yêu cầu: <i>${requiredText}</i></div>
+        </div>
+        <div class="tooltip-status ${statusClass}">${statusText}</div>
+    </div>
+    <div class="tooltip-remind">${remindText}</div>
+
+  `;
+
+  //Tooltip position
+  const x = event.clientX;
+  const y = event.clientY;
+
+  setTimeout(() => {
+    tooltip.classList.add("show");
+  }, 100);
+}
+
+function hideTooltip() {
+  if (tooltipElement) {
+    tooltipElement.classList.remove("show");
+  }
+}
+
+function attachTooltipListeners() {
+  const rows = document.querySelectorAll("tr[data-tooltip]");
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", function (e) {
+      const encodedData = this.getAttribute("data-tooltip");
+      if (encodedData) {
+        const tooltipData = JSON.parse(decodeURIComponent(encodedData));
+        showTooltip(e, tooltipData);
+      }
+    });
+
+    row.addEventListener("mousemove", function (e) {
+      if (tooltipElement && tooltipElement.classList.contains("show")) {
+        tooltipElement.style.left = e.clientX - 22 + "px";
+        tooltipElement.style.top = e.clientY - 180 + "px";
+      }
+    });
+
+    row.addEventListener("mouseleave", hideTooltip);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   switchView(currentView);
+  attachTooltipListeners();
 
   const tabBtns = document.querySelectorAll(".tab-btn");
   if (tabBtns.length >= 2) {
-    tabBtns[0].addEventListener("click", () => switchView("semester"));
-    tabBtns[1].addEventListener("click", () => switchView("knowledgeBlock"));
+    tabBtns[0].addEventListener("click", () => {
+      switchView("semester");
+      setTimeout(attachTooltipListeners, 100);
+    });
+    tabBtns[1].addEventListener("click", () => {
+      switchView("knowledgeBlock");
+      setTimeout(attachTooltipListeners, 100);
+    });
   }
 });
