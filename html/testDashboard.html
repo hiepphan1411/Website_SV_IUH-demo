@@ -174,7 +174,7 @@
                                 <div>
                                     <h6
                                         class="fw-bold mb-0"
-                                        style="font-size: 24px"
+                                        style="font-size: 22px"
                                     >
                                         Lịch hôm nay
                                     </h6>
@@ -347,62 +347,449 @@
                 </div>
 
                 <!-- Quick Function Container -->
-                <div class="quick-function-container">
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-calendar"></i>
-                        <span>Lịch theo tuần</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fas fa-book-open"></i>
-                        <span>Đăng ký học phần</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-chart-area"></i>
-                        <span>Kết quả học tập</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-money-bill-wave"></i>
-                        <span>Tra cứu công nợ</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-credit-card"></i>
-                        <span>Thanh toán trực tuyến</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-receipt"></i>
-                        <span>Phiếu thu tổng hợp</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-list-check"></i>
-                        <span>Lịch theo tiến độ</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-pen-fancy"></i>
-                        <span>Lịch thi</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-bell"></i>
-                        <span>Nhắc nhở</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fas fa-poll"></i>
-                        <span>Khảo sát</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fas fa-folder-open"></i>
-                        <span>Hồ sơ điện tử</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fas fa-trophy"></i>
-                        <span>Học bổng</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-bed"></i>
-                        <span>Đăng ký nội trú</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fab fa-wpforms"></i>
-                        <span>Đề xuất biểu mẫu</span>
+                <div class="card-access border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <div
+                            class="d-flex justify-content-between align-items-center mb-4"
+                        >
+                            <h5 class="fw-bold mb-0">Truy cập nhanh</h5>
+                            <div class="btn-group btn-group-sm">
+                                <button
+                                    class="btn btn-toggle active"
+                                    id="btnCompact"
+                                >
+                                    <i class="fas fa-compress-alt me-1"></i> Gần
+                                    đây
+                                </button>
+                                <button class="btn btn-toggle" id="btnExpanded">
+                                    <i class="fas fa-th me-1"></i> Tất cả
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Compact View -->
+                        <div id="quickAccessCompact" class="row g-3">
+                            <div class="col-2">
+                                <div
+                                    class="quick-access-item quick-access-compact card-access border-0 shadow-sm"
+                                >
+                                    <div
+                                        class="card-body p-3 d-flex align-items-center gap-3"
+                                    >
+                                        <div
+                                            class="quick-access-icon rounded-3 d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="
+                                                background-color: var(
+                                                    --primary-blue
+                                                );
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-chart-line text-white"
+                                            ></i>
+                                        </div>
+                                        <div>
+                                            <h6
+                                                class="mb-1 fw-semibold small"
+                                                style="font-size: 14px"
+                                            >
+                                                Kết quả học tập
+                                            </h6>
+                                            <p
+                                                class="mb-0 text-muted"
+                                                style="font-size: 12px"
+                                            >
+                                                5 phút trước
+                                            </p>
+                                        </div>
+                                        <div class="position-relative ms-2">
+                                            <span
+                                                class="notification-dot position-absolute rounded-circle"
+                                                style="
+                                                    background-color: var(
+                                                        --primary-blue
+                                                    );
+                                                "
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="card-access border-0 shadow-sm">
+                                    <div
+                                        class="card-body p-3 d-flex align-items-center gap-3"
+                                    >
+                                        <div
+                                            class="quick-access-icon rounded-3 d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="
+                                                background-color: var(
+                                                    --primary-blue
+                                                );
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-book text-white"
+                                            ></i>
+                                        </div>
+                                        <div>
+                                            <h6
+                                                class="mb-1 fw-semibold small"
+                                                style="font-size: 14px"
+                                            >
+                                                Đăng ký học phần
+                                            </h6>
+                                            <p
+                                                class="mb-0 text-muted"
+                                                style="font-size: 12px"
+                                            >
+                                                30 phút trước
+                                            </p>
+                                        </div>
+                                        <div class="position-relative ms-2">
+                                            <span
+                                                class="notification-dot position-absolute rounded-circle"
+                                                style="
+                                                    background-color: var(
+                                                        --primary-blue
+                                                    );
+                                                "
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="card-access border-0 shadow-sm">
+                                    <div
+                                        class="card-body p-3 d-flex align-items-center gap-3"
+                                    >
+                                        <div
+                                            class="quick-access-icon rounded-3 d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="
+                                                background-color: var(
+                                                    --primary-blue
+                                                );
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-calendar-alt text-white"
+                                            ></i>
+                                        </div>
+                                        <div>
+                                            <h6
+                                                class="mb-1 fw-semibold small"
+                                                style="font-size: 14px"
+                                            >
+                                                Lịch theo tuần
+                                            </h6>
+                                            <p
+                                                class="mb-0 text-muted"
+                                                style="font-size: 12px"
+                                            >
+                                                1 giờ trước
+                                            </p>
+                                        </div>
+                                        <div class="position-relative ms-2">
+                                            <span
+                                                class="notification-dot position-absolute rounded-circle"
+                                                style="
+                                                    background-color: var(
+                                                        --primary-blue
+                                                    );
+                                                "
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="card-access border-0 shadow-sm">
+                                    <div
+                                        class="card-body p-3 d-flex align-items-center gap-3"
+                                    >
+                                        <div
+                                            class="quick-access-icon rounded-3 d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="
+                                                background-color: var(
+                                                    --primary-blue
+                                                );
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-credit-card text-white"
+                                            ></i>
+                                        </div>
+                                        <div>
+                                            <h6
+                                                class="mb-1 fw-semibold small"
+                                                style="font-size: 14px"
+                                            >
+                                                Tra cứu công nợ
+                                            </h6>
+                                            <p
+                                                class="mb-0 text-muted"
+                                                style="font-size: 12px"
+                                            >
+                                                Hôm qua
+                                            </p>
+                                        </div>
+                                        <div class="position-relative ms-2">
+                                            <span
+                                                class="notification-dot position-absolute rounded-circle"
+                                                style="
+                                                    background-color: var(
+                                                        --primary-blue
+                                                    );
+                                                "
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="card-access border-0 shadow-sm">
+                                    <div
+                                        class="card-body p-3 d-flex align-items-center gap-3"
+                                    >
+                                        <div
+                                            class="quick-access-icon rounded-3 d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="
+                                                background-color: var(
+                                                    --primary-blue
+                                                );
+                                            "
+                                        >
+                                            <i
+                                                class="fas fa-id-card text-white"
+                                            ></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1 fw-semibold small">
+                                                Khảo sát
+                                            </h6>
+                                            <p
+                                                class="mb-0 text-muted"
+                                                style="font-size: 0.75rem"
+                                            >
+                                                Hôm qua
+                                            </p>
+                                        </div>
+                                        <div class="position-relative ms-2">
+                                            <span
+                                                class="notification-dot position-absolute rounded-circle"
+                                                style="
+                                                    background-color: var(
+                                                        --primary-blue
+                                                    );
+                                                "
+                                            ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expanded View - Auto Grid Layout -->
+                        <div id="quickAccessExpanded" class="d-none">
+                            <div class="quick-access-grid">
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Lịch theo tuần
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Đăng ký học phần
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Kết quả học tập
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Tra cứu công nợ
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Thanh toán trực tuyến
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Phiếu thu tổng hợp
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-list-check"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Lịch theo tiến độ
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Lịch thi
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-bell"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Nhắc nhở
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-id-card"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Khảo sát
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-folder"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Hồ sơ điện tử
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Học bổng
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Đăng ký nội trú
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-file-signature"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Đề xuất biểu mẫu
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-user-graduate"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Thông tin sinh viên
+                                    </h6>
+                                </div>
+
+                                <div
+                                    class="quick-access-item-expanded"
+                                    role="button"
+                                >
+                                    <div class="quick-access-icon-simple">
+                                        <i class="fas fa-comments"></i>
+                                    </div>
+                                    <h6 class="mb-0 small fw-semibold mt-2">
+                                        Góp ý
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -645,6 +1032,42 @@
     <script src="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/js/kendo.all.min.js"></script>
 
     <script>
+        document.querySelectorAll('.menu-link').forEach((link) => {
+            link.addEventListener('mouseenter', function () {
+                if (!this.classList.contains('active')) {
+                    this.classList.add('bg-light');
+                    this.style.color = 'var(--primary-color)';
+                }
+            });
+            link.addEventListener('mouseleave', function () {
+                if (!this.classList.contains('active')) {
+                    this.classList.remove('bg-light');
+                    this.style.color = '';
+                }
+            });
+        });
+
+        const btnCompact = document.getElementById('btnCompact');
+        const btnExpanded = document.getElementById('btnExpanded');
+        const quickAccessCompact =
+            document.getElementById('quickAccessCompact');
+        const quickAccessExpanded = document.getElementById(
+            'quickAccessExpanded',
+        );
+
+        btnCompact.addEventListener('click', function () {
+            quickAccessCompact.classList.remove('d-none');
+            quickAccessExpanded.classList.add('d-none');
+            btnCompact.classList.add('active');
+            btnExpanded.classList.remove('active');
+        });
+
+        btnExpanded.addEventListener('click', function () {
+            quickAccessCompact.classList.add('d-none');
+            quickAccessExpanded.classList.remove('d-none');
+            btnExpanded.classList.add('active');
+            btnCompact.classList.remove('active');
+        });
         $(document).ready(function () {
             // GPA Data
             const gpaData = {
