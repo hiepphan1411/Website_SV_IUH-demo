@@ -35,6 +35,7 @@ body {
   flex-direction: column;
   justify-content: start;
   gap: 20px;
+  padding: 0px 15px;
 }
 
 .header-section {

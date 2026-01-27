@@ -76,6 +76,15 @@
       <div id="sidebar-container"></div>
       <!-- Details -->
       <div class="container-lg">
+        <div class="header-section">
+          <div class="header-title">
+            Chương trình khung đào tạo và tiên đề học tập
+          </div>
+          <div class="header-subtitle">
+            Xem chương trình đào tạo theo từng học kỳ và kế hoạch học tập phù
+            hợp
+          </div>
+        </div>
         <!-- Progress Section -->
         <div class="content-wrapper">
           <div class="progress-section">
@@ -887,21 +896,6 @@
       }
       // End of DISABLED renderTimeline function
 
-      // Tab switching
-      document
-        .getElementById("semesterTab")
-        .addEventListener("click", function () {
-          this.classList.add("active");
-          document.getElementById("knowledgeTab").classList.remove("active");
-        });
-
-      document
-        .getElementById("knowledgeTab")
-        .addEventListener("click", function () {
-          this.classList.add("active");
-          document.getElementById("semesterTab").classList.remove("active");
-        });
-
       // Filter buttons
       document.querySelectorAll(".filter-btn").forEach((btn) => {
         btn.addEventListener("click", function () {
@@ -939,13 +933,6 @@
           return new bootstrap.Tooltip(tooltipTriggerEl);
         });
       });
-
-      // Search functionality
-      document
-        .getElementById("searchInput")
-        .addEventListener("input", function () {
-          const searchTerm = this.value.toLowerCase();
-        });
     </script>
   </body>
 </html>
