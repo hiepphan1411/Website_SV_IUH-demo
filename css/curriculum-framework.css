@@ -26,21 +26,20 @@ body {
 .container-lg {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   gap: 20px;
 }
 
 .header-section {
-  background-color: #f0f4f8;
-  padding: 30px 0 20px;
-  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
 }
 
 .header-title {
   font-size: 24px;
   font-weight: 700;
   color: #505050;
-  margin-bottom: 5px;
 }
 
 .header-subtitle {
@@ -67,15 +66,17 @@ body {
   font-weight: 600;
 }
 
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .semester-head-icon {
   height: 35px;
   width: 8px;
   background-color: var(--primary-blue);
   border-radius: 2px;
-}
-
-.progress-section {
-  margin-bottom: 30px;
 }
 
 .learning-progress-title {
@@ -107,8 +108,7 @@ body {
 .section-title {
   font-size: 20px;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 20px;
+  color: #505050;
 }
 
 .progress-label {
@@ -118,12 +118,6 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
-}
-
-.progress-label .badge {
-  font-size: 11px;
-  padding: 4px 8px;
-  margin-right: 5px;
 }
 
 .badge-completed {
@@ -249,12 +243,19 @@ body {
 
 .controls-section {
   width: 65%;
+  min-width: 400px;
   display: flex;
   justify-content: end;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .controls-section {
+    width: 100%;
+    min-width: 100%;
+  }
 }
 
 .content-wrapper-tab-group {
@@ -265,6 +266,8 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .tab-buttons {
@@ -335,6 +338,12 @@ body {
 
 .btn-custom.primary:hover {
   background-color: #0052a3;
+}
+
+.knowledge-block-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .knowledge-blocks {
@@ -468,10 +477,6 @@ body {
   background-color: #f9f9f9;
 }
 
-.section-header.expanded {
-  background-color: #f0f4f8;
-}
-
 .section-header-text {
   font-weight: 600;
   color: var(--primary-blue);
@@ -505,6 +510,7 @@ body {
 
 .table-frame {
   padding: 15px 20px 20px 20px;
+  overflow-x: auto;
 }
 
 .table-responsive {
@@ -519,6 +525,8 @@ body {
   font-size: 12px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
+  min-width: 100%;
+  width: max-content;
 }
 
 .table thead tr th:first-child {
@@ -541,6 +549,7 @@ body {
   color: #505050;
   border-bottom: 1px solid var(--table-border-color);
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 .table thead tr th {
@@ -620,10 +629,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   gap: 20px;
   padding: 20px;
   background-color: white;
+  overflow-x: auto;
 }
 
 .block-type {
@@ -636,13 +646,6 @@ body {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   font-size: 13px;
-}
-
-.course-section {
-  margin-bottom: 20px;
-  background-color: #f9f9f9;
-  border-radius: 4px;
-  overflow: hidden;
 }
 
 .footer-section {
