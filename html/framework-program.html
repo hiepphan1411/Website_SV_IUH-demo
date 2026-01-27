@@ -16,7 +16,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
+    <link rel="stylesheet" href="../css/curriculum-framework.css" />
+    <link rel="stylesheet" href="../css/index.css" />
     <style>
       :root {
         --color-completed: #5b9bd5;
@@ -141,13 +142,11 @@
         background: white;
         border-radius: 12px;
         padding: 2rem;
-        margin-bottom: 1rem;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
       .timeline-container {
         position: relative;
-        padding: 3rem 0 6rem;
       }
 
       .timeline-wrapper {
@@ -159,7 +158,7 @@
         justify-content: space-between;
         align-items: flex-start;
         position: relative;
-        padding-bottom: 4rem;
+        padding-bottom: 2rem;
       }
 
       .timeline-item {
@@ -351,8 +350,6 @@
       /* Timeline bottom section - simplified */
       .timeline-bottom {
         position: relative;
-        margin-top: 3rem;
-        padding-top: 2rem;
       }
 
       .timeline-track-container {
@@ -455,51 +452,10 @@
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
-      .tab-buttons {
-        display: flex;
-        gap: 0.75rem;
-        margin-bottom: 2rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid #e0e0e0;
-      }
-
-      .tab-btn {
-        padding: 0.75rem 2rem;
-        border-radius: 25px;
-        border: none;
-        font-weight: 500;
-        font-size: 0.938rem;
-        cursor: pointer;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .tab-btn.active {
-        background-color: var(--color-completed);
-        color: white;
-      }
-
-      .tab-btn:not(.active) {
-        background-color: #f5f5f5;
-        color: #666;
-      }
-
-      .tab-btn:not(.active):hover {
-        background-color: #e0e0e0;
-      }
-
-      .controls-bar {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-      }
-
       .search-box {
         flex: 1;
         min-width: 300px;
+        max-width: 400px;
       }
 
       .search-input {
@@ -632,203 +588,558 @@
     </style>
   </head>
   <body>
-    <div class="container-fluid" style="max-width: 1400px">
-      <!-- Page Header -->
-      <div class="page-header">
-        <h1 class="page-title">
-          Chương trình khung đào tạo và tiến độ học tập
-        </h1>
-        <p class="page-subtitle">
-          Xem chương trình đào tạo theo từng học kỳ và lập kế hoạch học tập phù
-          hợp
-        </p>
+    <!-- Header -->
+    <header class="header-container">
+      <div class="left-header-container">
+        <div class="logo-div">
+          <!-- Todo Logo -->
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Tìm kiếm..." />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
       </div>
+      <div class="right-header-container">
+        <div>
+          <i class="fa-regular fa-house"></i>
+          <span>Trang chủ</span>
+        </div>
+        <div>
+          <i class="fa-regular fa-bell"></i>
+          <span>Tin tức</span>
+        </div>
+        <div class="login-infor">
+          <div class="avatar">
+            <img
+              src="../img/user.png"
+              alt="User Image"
+              width="15"
+              height="15"
+            />
+          </div>
+          <span style="font-size: larger">Asc Test</span>
+        </div>
+      </div>
+    </header>
+    <!-- Content -->
+    <main class="main-content">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Trang chủ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Thông tin sinh viên</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-calendar-week"></i>
+            <span>Lịch theo tuần</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-book-open"></i>
+            <span>Đăng ký học phần</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Kết quả học tập</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Tra cứu công nợ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-trophy"></i>
+            <span>Học bổng</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-folder-open"></i>
+            <span>Hồ sơ điện tử</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-pen-fancy"></i>
+            <span>Lịch thi</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-tasks"></i>
+            <span>Lịch theo tiến độ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-bell"></i>
+            <span>Thông báo</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-poll"></i>
+            <span>Khảo sát</span>
+          </a>
+        </nav>
+      </aside>
+      <!-- Details -->
+      <div class="container-lg" style="max-width: 1400px">
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1 class="page-title">
+            Chương trình khung đào tạo và tiến độ học tập
+          </h1>
+          <p class="page-subtitle">
+            Xem chương trình đào tạo theo từng học kỳ và lập kế hoạch học tập
+            phù hợp
+          </p>
+        </div>
 
-      <!-- Progress Section -->
-      <div class="progress-section">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h2 class="section-title mb-0">Tiến độ học tập</h2>
-          <div class="d-flex gap-3 flex-wrap">
-            <div class="legend-item">
-              <span
-                class="legend-dot"
-                style="background-color: var(--color-completed)"
-              ></span>
+        <!-- TODO: Progress Section By css + bootstrap -->
+        <div class="progress-section">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="section-title mb-0">Tiến độ học tập</h2>
+            <div class="d-flex gap-3 flex-wrap">
+              <div class="legend-item">
+                <span
+                  class="legend-dot"
+                  style="background-color: var(--color-completed)"
+                ></span>
+                <span>Đã hoàn thành</span>
+              </div>
+              <div class="legend-item">
+                <span
+                  class="legend-dot"
+                  style="background-color: var(--color-current)"
+                ></span>
+                <span>Tín chỉ đang học</span>
+              </div>
+              <div class="legend-item">
+                <span
+                  class="legend-dot"
+                  style="background-color: var(--color-remaining)"
+                ></span>
+                <span>Tín chỉ còn lại</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="progress-label">
               <span>Đã hoàn thành</span>
+              <span class="progress-percentage" id="overallPercentage"
+                >75%</span
+              >
             </div>
-            <div class="legend-item">
-              <span
-                class="legend-dot"
-                style="background-color: var(--color-current)"
-              ></span>
-              <span>Tín chỉ đang học</span>
+            <div class="progress-bar-custom" id="overallProgressBar"></div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-value" style="color: #333" id="totalCredits">
+                162
+              </div>
+              <div class="stat-label">Tổng tín chỉ</div>
             </div>
-            <div class="legend-item">
-              <span
-                class="legend-dot"
-                style="background-color: var(--color-remaining)"
-              ></span>
-              <span>Tín chỉ còn lại</span>
+            <div class="stat-item">
+              <div
+                class="stat-value"
+                style="color: var(--color-completed)"
+                id="completedCredits"
+              >
+                122
+              </div>
+              <div class="stat-label">Đã hoàn thành</div>
+            </div>
+            <div class="stat-item">
+              <div
+                class="stat-value"
+                style="color: var(--color-current)"
+                id="currentCredits"
+              >
+                24
+              </div>
+              <div class="stat-label">Tín chỉ đang học</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" style="color: #666" id="remainingCredits">
+                16
+              </div>
+              <div class="stat-label">Tín chỉ còn lại</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" style="color: #ff6b00" id="progressDiff">
+                + 2%
+              </div>
+              <div class="stat-label">Tiến độ so với kế hoạch</div>
             </div>
           </div>
         </div>
-
-        <div class="mb-4">
-          <div class="progress-label">
-            <span>Đã hoàn thành</span>
-            <span class="progress-percentage" id="overallPercentage">75%</span>
+        <!-- Controls Section -->
+        <div class="content-wrapper-tab-group">
+          <div class="tab-buttons">
+            <button class="tab-btn active" id="semesterTab">
+              <span>Học kỳ</span>
+            </button>
+            <button class="tab-btn" id="knowledgeTab">
+              <span>Khối kiến thức</span>
+            </button>
           </div>
-          <div class="progress-bar-custom" id="overallProgressBar">
-            <!-- Progress segments will be added by JavaScript -->
+
+          <div class="controls-section">
+            <div class="search-box">
+              <input
+                type="text"
+                placeholder="Tìm kiếm môn học theo tên hoặc mã..."
+              />
+            </div>
+            <div class="filter-buttons">
+              <button class="filter-btn active" id="filterAll">
+                <i class="fas fa-list"></i>
+                <span>Tất cả</span>
+              </button>
+              <button class="filter-btn" id="filterNotStudied">
+                <i class="fas fa-clock"></i>
+                <span>Chưa học</span>
+              </button>
+              <button class="filter-btn" id="filterRequired">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Bắt buộc</span>
+              </button>
+            </div>
           </div>
         </div>
+        <!-- Timeline Section -->
+        <div class="timeline-section">
+          <h2 class="section-title">Lộ trình học tập</h2>
 
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-value" style="color: #333" id="totalCredits">
-              162
-            </div>
-            <div class="stat-label">Tổng tín chỉ</div>
-          </div>
-          <div class="stat-item">
-            <div
-              class="stat-value"
-              style="color: var(--color-completed)"
-              id="completedCredits"
-            >
-              122
-            </div>
-            <div class="stat-label">Đã hoàn thành</div>
-          </div>
-          <div class="stat-item">
-            <div
-              class="stat-value"
-              style="color: var(--color-current)"
-              id="currentCredits"
-            >
-              24
-            </div>
-            <div class="stat-label">Tín chỉ đang học</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" style="color: #666" id="remainingCredits">
-              16
-            </div>
-            <div class="stat-label">Tín chỉ còn lại</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" style="color: #ff6b00" id="progressDiff">
-              + 2%
-            </div>
-            <div class="stat-label">Tiến độ so với kế hoạch</div>
-          </div>
-        </div>
-      </div>
+          <div class="timeline-container">
+            <div class="timeline-wrapper">
+              <!-- Semester circles -->
+              <div class="timeline-items" id="timelineItems"></div>
 
-      <!-- Timeline Section -->
-      <div class="timeline-section">
-        <h2 class="section-title">Lộ trình học tập</h2>
-
-        <div class="timeline-container">
-          <div class="timeline-wrapper">
-            <!-- Semester circles -->
-            <div class="timeline-items" id="timelineItems">
-              <!-- Timeline items will be added by JavaScript -->
-            </div>
-
-            <!-- Timeline track with year markers -->
-            <div class="timeline-bottom">
-              <div class="timeline-track-container">
-                <div class="timeline-track">
+              <!-- Timeline track with year markers -->
+              <div class="timeline-bottom">
+                <div class="timeline-track-container">
+                  <div class="timeline-track">
+                    <div
+                      class="timeline-track-progress"
+                      id="timelineTrackProgress"
+                    ></div>
+                  </div>
                   <div
-                    class="timeline-track-progress"
-                    id="timelineTrackProgress"
+                    class="timeline-year-markers"
+                    id="timelineYearMarkers"
                   ></div>
-                </div>
-                <div class="timeline-year-markers" id="timelineYearMarkers">
-                  <!-- Year markers will be added by JavaScript -->
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="timeline-footer">
+            <div class="timeline-date">
+              <i class="fas fa-calendar-alt me-2"></i
+              ><span id="startDate">9/2022</span>
+            </div>
+            <div class="timeline-legends">
+              <div class="legend-item">
+                <span
+                  class="legend-dot"
+                  style="background-color: var(--color-green-completed)"
+                ></span>
+                <span>Hoàn thành</span>
+              </div>
+              <div class="legend-item">
+                <span
+                  class="legend-dot"
+                  style="background-color: var(--color-yellow-active)"
+                ></span>
+                <span>Đang học</span>
+              </div>
+              <div class="legend-item">
+                <span
+                  class="legend-dot"
+                  style="background-color: #e0e0e0"
+                ></span>
+                <span>Chưa học</span>
+              </div>
+            </div>
+            <div class="timeline-date">
+              <i class="fas fa-calendar-check me-2"></i
+              ><span id="endDate">6/2026</span>
+            </div>
+          </div>
         </div>
 
-        <div class="timeline-footer">
-          <div class="timeline-date">
-            <i class="fas fa-calendar-alt me-2"></i
-            ><span id="startDate">9/2022</span>
+        <!-- Content Section -->
+        <!-- Expandable Sections -->
+        <div class="content-wrapper">
+          <!-- Section 1 -->
+          <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+              <div class="semester-title">
+                <div class="semester-head-icon"></div>
+                <div>
+                  <div class="section-header-text">
+                    Khối kiến thức giáo dục đại cương
+                  </div>
+                  <div class="section-meta">
+                    Bắt buộc:
+                    <span class="bold-text">12 tín chỉ</span>
+                    • Tự chọn:
+                    <span class="bold-text">6 tín chỉ</span>
+                  </div>
+                </div>
+              </div>
+              <div class="section-icon">
+                <i class="fas fa-chevron-up"></i>
+              </div>
+            </div>
+            <div class="section-content">
+              <!-- Table will go here -->
+              <p>Nội dung khối kiến thức đại cương...</p>
+            </div>
           </div>
-          <div class="timeline-legends">
-            <div class="legend-item">
-              <span
-                class="legend-dot"
-                style="background-color: var(--color-green-completed)"
-              ></span>
-              <span>Hoàn thành</span>
+
+          <!-- Section 2 -->
+          <div class="expandable-section">
+            <div class="section-header expanded" onclick="toggleSection(this)">
+              <div class="semester-title">
+                <div class="semester-head-icon"></div>
+                <div>
+                  <div class="section-header-text">
+                    Khối kiến thức giáo dục chuyên nghiệp
+                  </div>
+                  <div class="section-meta">
+                    Bắt buộc:
+                    <span class="bold-text">6 tín chỉ</span>
+                    • Tự chọn:
+                    <span class="bold-text">6 tín chỉ</span>
+                  </div>
+                </div>
+              </div>
+              <div class="section-icon">
+                <i class="fas fa-chevron-up"></i>
+              </div>
             </div>
-            <div class="legend-item">
-              <span
-                class="legend-dot"
-                style="background-color: var(--color-yellow-active)"
-              ></span>
-              <span>Đang học</span>
-            </div>
-            <div class="legend-item">
-              <span class="legend-dot" style="background-color: #e0e0e0"></span>
-              <span>Chưa học</span>
+            <div class="section-content active">
+              <div class="subtitle-header">Học phần bắt buộc</div>
+              <div class="table-frame">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>HỌC KỲ</th>
+                      <th>TÊN MÔN HỌC/HỌC PHẦN</th>
+                      <th>MÃ HP</th>
+                      <th>HỌC PHẦN</th>
+                      <th>HP TƯƠNG ĐƯƠNG</th>
+                      <th>HP THAY THẾ</th>
+                      <th>SỐ TC</th>
+                      <th>SỐ TIẾT LÝ</th>
+                      <th>SỐ TIẾT THI</th>
+                      <th>ĐẠT</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>1</td>
+                      <td>Kỹ năng thăm gia quyết các vụ án dân sự</td>
+                      <td>000093</td>
+                      <td>-</td>
+                      <td>[010115]</td>
+                      <td>-</td>
+                      <td>3</td>
+                      <td>30</td>
+                      <td>30</td>
+                      <td><span class="checkmark">✓</span></td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>1</td>
+                      <td>Phương pháp điều tra xã hội học</td>
+                      <td>000901</td>
+                      <td>-</td>
+                      <td>[010006]</td>
+                      <td>-</td>
+                      <td>1</td>
+                      <td>10</td>
+                      <td>0</td>
+                      <td><span class="checkmark">✓</span></td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>1</td>
+                      <td>Pháp luật đại cương</td>
+                      <td>000902</td>
+                      <td>-</td>
+                      <td>[010116]</td>
+                      <td>-</td>
+                      <td>2</td>
+                      <td>20</td>
+                      <td>0</td>
+                      <td><span class="dash">-</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="subtitle-header">Học phần tự chọn</div>
+              <div class="elective-course">
+                <div style="width: 100%">
+                  <div class="block-type">
+                    TỰ CHỌN KHỐI KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP 1
+                  </div>
+                  <table class="table elective-table">
+                    <thead>
+                      <tr>
+                        <th>STT</th>
+                        <th>HỌC KỲ</th>
+                        <th>TÊN MÔN HỌC/HỌC PHẦN</th>
+                        <th>MÃ HP</th>
+                        <th>HỌC PHẦN</th>
+                        <th>HP TƯƠNG ĐƯƠNG</th>
+                        <th>HP THAY THẾ</th>
+                        <th>SỐ TC</th>
+                        <th>SỐ TIẾT LÝ</th>
+                        <th>SỐ TIẾT THI</th>
+                        <th>ĐẠT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kỹ năng thăm gia giải quyết các vụ án dân sự 1</td>
+                        <td>000093</td>
+                        <td>-</td>
+                        <td>[010115]</td>
+                        <td>-</td>
+                        <td>3</td>
+                        <td>30</td>
+                        <td>30</td>
+                        <td><span class="dash">-</span></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>Phương pháp điều tra xã hội học 1</td>
+                        <td>000901</td>
+                        <td>-</td>
+                        <td>[010006]</td>
+                        <td>-</td>
+                        <td>1</td>
+                        <td>10</td>
+                        <td>0</td>
+                        <td><span class="checkmark">✓</span></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>Pháp luật đại cương 1</td>
+                        <td>000902</td>
+                        <td>-</td>
+                        <td>[010116]</td>
+                        <td>-</td>
+                        <td>2</td>
+                        <td>20</td>
+                        <td>0</td>
+                        <td><span class="dash">-</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div style="width: 100%">
+                  <div class="block-type">
+                    TỰ CHỌN KHỐI KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP 2
+                  </div>
+                  <table class="table elective-table">
+                    <thead>
+                      <tr>
+                        <th>STT</th>
+                        <th>HỌC KỲ</th>
+                        <th>TÊN MÔN HỌC/HỌC PHẦN</th>
+                        <th>MÃ HP</th>
+                        <th>HỌC PHẦN</th>
+                        <th>HP TƯƠNG ĐƯƠNG</th>
+                        <th>HP THAY THẾ</th>
+                        <th>SỐ TC</th>
+                        <th>SỐ TIẾT LÝ</th>
+                        <th>SỐ TIẾT THI</th>
+                        <th>ĐẠT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Kỹ năng thăm gia giải quyết các vụ án dân sự 2</td>
+                        <td>000094</td>
+                        <td>000093 (b)</td>
+                        <td>[010115]</td>
+                        <td>-</td>
+                        <td>3</td>
+                        <td>30</td>
+                        <td>30</td>
+                        <td><span class="dash">-</span></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>Phương pháp điều tra xã hội học 2</td>
+                        <td>000905</td>
+                        <td>000901 (b)</td>
+                        <td>[010006]</td>
+                        <td>-</td>
+                        <td>1</td>
+                        <td>10</td>
+                        <td>0</td>
+                        <td><span class="dash">-</span></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>Pháp luật đại cương 2</td>
+                        <td>000906</td>
+                        <td>000902 (b)</td>
+                        <td>[010116]</td>
+                        <td>-</td>
+                        <td>2</td>
+                        <td>20</td>
+                        <td>0</td>
+                        <td><span class="dash">-</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="timeline-date">
-            <i class="fas fa-calendar-check me-2"></i
-            ><span id="endDate">6/2026</span>
+
+          <!-- Section 3 -->
+          <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+              <div class="semester-title">
+                <div class="semester-head-icon"></div>
+                <div>
+                  <div class="section-header-text">
+                    Khối kiến thức giáo dục chuyên nghiệp
+                  </div>
+                  <div class="section-meta">
+                    Bắt buộc:
+                    <span class="bold-text">6 tín chỉ</span>
+                    • Tự chọn:
+                    <span class="bold-text">6 tín chỉ</span>
+                  </div>
+                </div>
+              </div>
+              <div class="section-icon">
+                <i class="fas fa-chevron-up"></i>
+              </div>
+            </div>
+            <div class="section-content">
+              <p>Nội dung phần chưa xác định...</p>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- Content Section -->
-      <div class="content-section">
-        <div class="tab-buttons">
-          <button class="tab-btn active" id="semesterTab">
-            <i class="fas fa-calendar-alt"></i>
-            <span>Học kỳ</span>
-          </button>
-          <button class="tab-btn" id="knowledgeTab">
-            <i class="fas fa-book"></i>
-            <span>Khối kiến thức</span>
-          </button>
-        </div>
-
-        <div class="controls-bar">
-          <div class="search-box position-relative">
-            <i class="fas fa-search search-icon"></i>
-            <input
-              type="text"
-              class="search-input"
-              id="searchInput"
-              placeholder="Tìm kiếm môn học theo tên hoặc mã..."
-            />
-          </div>
-          <div class="filter-buttons">
-            <button class="filter-btn active" id="filterAll">
-              <i class="fas fa-list"></i>
-              <span>Tất cả</span>
-            </button>
-            <button class="filter-btn" id="filterNotStudied">
-              <i class="fas fa-clock"></i>
-              <span>Chưa học</span>
-            </button>
-            <button class="filter-btn" id="filterRequired">
-              <i class="fas fa-exclamation-circle"></i>
-              <span>Bắt buộc</span>
-            </button>
-          </div>
-        </div>
-
-        <div id="contentArea">
-          <!-- Content will be loaded here -->
-        </div>
-      </div>
-    </div>
+    </main>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -1136,6 +1447,34 @@
             .querySelectorAll(".filter-btn")
             .forEach((b) => b.classList.remove("active"));
           this.classList.add("active");
+        });
+      });
+
+      function toggleSection(header) {
+        const icon = header.querySelector(".section-icon");
+        const content = header.nextElementSibling;
+
+        // Close all other sections
+        document.querySelectorAll(".section-header").forEach((h) => {
+          if (h !== header) {
+            h.classList.remove("expanded");
+            h.querySelector(".section-icon").classList.remove("rotated");
+            h.nextElementSibling.classList.remove("active");
+          }
+        });
+
+        // Toggle current section
+        header.classList.toggle("expanded");
+        icon.classList.toggle("rotated");
+        content.classList.toggle("active");
+      }
+
+      $(function () {
+        var tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]'),
+        );
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
         });
       });
 

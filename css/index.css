@@ -22,8 +22,9 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   background-color: var(--light-bg);
   color: var(--text-dark);
   line-height: 1.6;
@@ -738,7 +739,7 @@ body {
   margin-bottom: 30px;
 }
 
-.progress-percentage {
+/* .progress-percentage {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -746,7 +747,7 @@ body {
   font-size: 24px;
   font-weight: bold;
   color: #00d95f;
-}
+} */
 
 .progress-legend {
   display: flex;

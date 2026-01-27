@@ -74,9 +74,9 @@ body {
   border-radius: 2px;
 }
 
-.progress-section {
+/* .progress-section {
   margin-bottom: 30px;
-}
+} */
 
 .learning-progress-title {
   display: flex;
@@ -111,7 +111,7 @@ body {
   margin-bottom: 20px;
 }
 
-.progress-label {
+/* .progress-label {
   font-size: 11px;
   color: #666;
   margin-bottom: 10px;
@@ -124,7 +124,7 @@ body {
   font-size: 11px;
   padding: 4px 8px;
   margin-right: 5px;
-}
+} */
 
 .badge-completed {
   font-size: 10px;
@@ -159,9 +159,9 @@ body {
   background-color: #e0e0e0;
 }
 
-.progress-percentage {
+/* .progress-percentage {
   color: #14358e;
-}
+} */
 
 .progress-bar-blue {
   background-color: var(--primary-blue);
@@ -505,6 +505,7 @@ body {
 
 .table-frame {
   padding: 15px 20px 20px 20px;
+  overflow-x: auto;
 }
 
 .table-responsive {
@@ -519,6 +520,8 @@ body {
   font-size: 12px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
+  min-width: 100%;
+  width: max-content;
 }
 
 .table thead tr th:first-child {
