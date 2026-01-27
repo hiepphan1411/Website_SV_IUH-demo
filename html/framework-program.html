@@ -520,23 +520,127 @@
           grid-template-columns: repeat(2, 1fr);
         }
 
-        .timeline-items {
-          overflow-x: auto;
-          padding-bottom: 1rem;
+        /* Mobile Timeline - Vertical Layout */
+        .timeline-wrapper {
+          display: none; /* Hide desktop timeline */
         }
 
-        .timeline-item {
-          min-width: 90px;
+        .timeline-container {
+          position: relative;
         }
 
-        .timeline-circle {
-          width: 60px;
-          height: 60px;
+        /* Mobile timeline will be rendered by JS */
+        .timeline-mobile {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          position: relative;
+          padding-left: 3rem;
+        }
+
+        .timeline-mobile::before {
+          content: "";
+          position: absolute;
+          left: 10px;
+          top: 0;
+          bottom: 0;
+          width: 3px;
+          background: linear-gradient(
+            to bottom,
+            var(--color-green-completed) 0%,
+            var(--color-green-completed) var(--progress-percent, 50%),
+            #e0e0e0 var(--progress-percent, 50%),
+            #e0e0e0 100%
+          );
+        }
+
+        .timeline-year-group {
+          position: relative;
+        }
+
+        .timeline-year-marker-mobile {
+          position: absolute;
+          left: -3rem;
+          top: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .timeline-year-marker-mobile .timeline-year-dot {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          margin-bottom: 0.5rem;
+          z-index: 2;
+        }
+
+        .timeline-year-marker-mobile .timeline-year-label {
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: #5b9bd5;
+          white-space: nowrap;
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
+        }
+
+        .timeline-semesters-horizontal {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        .timeline-semester-card {
+          background: white;
+          border: 2px solid #e0e0e0;
+          border-radius: 12px;
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+        .timeline-semester-card.completed {
+          border-color: var(--color-green-completed);
+          background-color: #f0f9ff;
+        }
+
+        .timeline-semester-card.active {
+          border-color: var(--color-yellow-active);
+          background-color: #fffbf0;
+        }
+
+        .timeline-semester-card.mixed {
+          border-color: var(--color-yellow-active);
+          background-color: #fffbf0;
+        }
+
+        .timeline-semester-card .timeline-circle {
+          width: 50px;
+          height: 50px;
+          font-size: 0.75rem;
+        }
+
+        .timeline-semester-card .timeline-info {
+          margin-bottom: 0;
+        }
+
+        .timeline-semester-card .timeline-semester {
           font-size: 0.813rem;
         }
 
-        .timeline-progress {
-          max-width: 90px;
+        .timeline-semester-card .timeline-credits {
+          font-size: 0.7rem;
+        }
+
+        .timeline-semester-card .timeline-progress {
+          max-width: 100px;
+        }
+
+        .timeline-semester-card .timeline-progress-bar {
+          height: 20px;
         }
 
         .timeline-footer {
@@ -546,11 +650,14 @@
         }
 
         .timeline-legends {
-          flex-direction: column;
-          gap: 0.75rem;
+          flex-direction: row;
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
         }
 
-        .controls-bar {
+        .controls-section {
+          width: 100%;
           flex-direction: column;
         }
 
@@ -560,14 +667,21 @@
 
         .filter-buttons {
           justify-content: stretch;
+          width: 100%;
         }
 
         .filter-btn {
           flex: 1;
         }
 
+        .content-wrapper-tab-group {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
         .tab-buttons {
           justify-content: stretch;
+          width: 100%;
         }
 
         .tab-btn {
@@ -583,6 +697,14 @@
 
         .stat-value {
           font-size: 1.75rem;
+        }
+
+        .timeline-mobile {
+          padding-left: 2.5rem;
+        }
+
+        .timeline-year-marker-mobile {
+          left: -2.5rem;
         }
       }
     </style>
@@ -935,7 +1057,7 @@
                       <th>ĐẠT</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="table-body">
                     <tr>
                       <td>1</td>
                       <td>1</td>
@@ -1236,7 +1358,186 @@
       document.addEventListener("DOMContentLoaded", function () {
         renderProgress();
         renderTimeline();
+        handleResize();
+        window.addEventListener("resize", handleResize);
       });
+
+      // Handle responsive timeline rendering
+      function handleResize() {
+        const isMobile = window.innerWidth <= 768;
+        const container = document.querySelector(".timeline-container");
+        const wrapper = container.querySelector(".timeline-wrapper");
+        let mobileTimeline = container.querySelector(".timeline-mobile");
+
+        if (isMobile) {
+          wrapper.style.display = "none";
+          if (!mobileTimeline) {
+            mobileTimeline = document.createElement("div");
+            mobileTimeline.className = "timeline-mobile";
+            container.appendChild(mobileTimeline);
+          }
+          renderMobileTimeline();
+        } else {
+          wrapper.style.display = "block";
+          if (mobileTimeline) {
+            mobileTimeline.remove();
+          }
+        }
+      }
+
+      // Render mobile timeline
+      function renderMobileTimeline() {
+        const container = document.querySelector(".timeline-mobile");
+        if (!container) return;
+
+        const yearGroups = {};
+        timelineData.forEach((sem) => {
+          if (!yearGroups[sem.year]) {
+            yearGroups[sem.year] = [];
+          }
+          yearGroups[sem.year].push(sem);
+        });
+
+        const uniqueYears = Object.keys(yearGroups);
+
+        const currentYearIndex = uniqueYears.indexOf(currentAcademicYear);
+        const totalYears = uniqueYears.length;
+
+        let progressPercent = 0;
+        if (currentYearIndex >= 0) {
+          progressPercent = (currentYearIndex / totalYears) * 100;
+        }
+
+        container.innerHTML = "";
+
+        uniqueYears.forEach((year, yearIndex) => {
+          const yearSems = yearGroups[year];
+          const dotClass = year <= currentAcademicYear ? "current" : "future";
+          const totalSemesters = timelineData.length;
+
+          const firstSemIndex = timelineData.findIndex((s) => s.year === year);
+
+          // Position in the middle between sem1 and sem2 of this year
+          // Middle = (index0 + index1) / 2 = index0 + 0.5
+          // Convert to percentage: (middle / total) * 100
+          const middlePosition = firstSemIndex + 1;
+          const progressPercent = (yearIndex / totalYears) * 100 + 3;
+
+          if (yearIndex === currentYearIndex && currentYearIndex >= 0) {
+            container.style.setProperty(
+              "--progress-percent",
+              progressPercent + "%",
+            );
+          } else if (currentYearIndex < 0) {
+            container.style.setProperty("--progress-percent", 100 + "%");
+          }
+          const yearGroup = document.createElement("div");
+          yearGroup.className = "timeline-year-group";
+
+          // Year marker
+          const yearMarker = document.createElement("div");
+          yearMarker.className = "timeline-year-marker-mobile";
+          yearMarker.innerHTML = `
+            <div class="timeline-year-dot ${dotClass}"></div>
+          `;
+          // <div class="timeline-year-label">${year}</div>;
+          yearGroup.appendChild(yearMarker);
+
+          // Semesters in horizontal layout
+          const semestersContainer = document.createElement("div");
+          semestersContainer.className = "timeline-semesters-horizontal";
+
+          yearSems.forEach((sem) => {
+            const card = document.createElement("div");
+            card.className = "timeline-semester-card";
+
+            const completedPercent =
+              (sem.completedCredits / sem.totalCredits) * 100;
+            const currentPercent =
+              (sem.currentCredits / sem.totalCredits) * 100;
+            const totalPercent = completedPercent + currentPercent;
+
+            // Determine card status
+            if (sem.status === "completed" && sem.progress === 100) {
+              card.classList.add("completed");
+            } else if (sem.status === "active") {
+              card.classList.add("active");
+            } else if (sem.status === "mixed") {
+              card.classList.add("mixed");
+            }
+
+            // Circle with progress
+            let circleClass = "";
+            let circleStyle = "";
+
+            if (sem.status === "completed" && sem.progress === 100) {
+              circleClass = "completed";
+            } else if (sem.status === "active" && sem.completedCredits === 0) {
+              circleClass = "active";
+            } else if (
+              (sem.status === "mixed" || totalPercent > 0) &&
+              sem.completedCredits > 0 &&
+              sem.currentCredits > 0
+            ) {
+              circleClass = "partial-mixed";
+              circleStyle = `style="--progress-green: ${completedPercent}; --progress-total: ${totalPercent}"`;
+            } else if (
+              sem.completedCredits > 0 &&
+              sem.completedCredits < sem.totalCredits
+            ) {
+              circleClass = "partial-green";
+              circleStyle = `style="--progress-green: ${completedPercent}"`;
+            } else if (sem.currentCredits > 0 && sem.completedCredits === 0) {
+              circleClass = "partial-yellow";
+              circleStyle = `style="--progress-yellow: ${currentPercent}"`;
+            } else {
+              circleClass = "future";
+            }
+
+            // Progress bar
+            let progressBarHTML = "";
+            let progressTextClass = "";
+
+            if (completedPercent > 0 && currentPercent > 0) {
+              progressBarHTML = `
+                <div class="timeline-progress-segment completed" style="width: ${completedPercent}%;"></div>
+                <div class="timeline-progress-segment active" style="width: ${currentPercent}%;"></div>
+              `;
+              progressTextClass = totalPercent > 50 ? "light" : "";
+            } else if (completedPercent > 0) {
+              progressBarHTML = `<div class="timeline-progress-segment completed" style="width: ${completedPercent}%;"></div>`;
+              progressTextClass = completedPercent > 50 ? "light" : "";
+            } else if (currentPercent > 0) {
+              progressBarHTML = `<div class="timeline-progress-segment active" style="width: ${currentPercent}%;"></div>`;
+              progressTextClass = currentPercent > 50 ? "light" : "";
+            }
+
+            const displayPercent = Math.round(totalPercent);
+            const displayCredits = `${sem.completedCredits + sem.currentCredits}/${sem.totalCredits}`;
+
+            card.innerHTML = `
+              <div class="timeline-circle ${circleClass}" ${circleStyle}>
+                <span>HK${sem.semester}</span>
+              </div>
+              <div class="timeline-info">
+                <div class="timeline-semester">Học kỳ ${sem.semester}</div>
+                <div class="timeline-credits">${displayCredits} tín chỉ</div>
+              </div>
+              <div class="timeline-progress">
+                <div class="timeline-progress-bar">
+                  ${progressBarHTML}
+                  <div class="timeline-progress-text ${progressTextClass}">${displayPercent}%</div>
+                </div>
+              </div>
+            `;
+
+            semestersContainer.appendChild(card);
+          });
+
+          yearGroup.appendChild(semestersContainer);
+          container.appendChild(yearGroup);
+        });
+      }
 
       // Render progress section
       function renderProgress() {
@@ -1299,6 +1600,8 @@
           );
           const markerPosition = ((firstSemIndex + 1) / totalSemesters) * 100;
           trackProgress.style.width = markerPosition + "%";
+        } else {
+          trackProgress.style.width = "100%";
         }
 
         // Render semester circles
@@ -1392,6 +1695,7 @@
         uniqueYears.forEach((year, yearIndex) => {
           const yearSems = yearGroups[year];
           const firstSemIndex = timelineData.findIndex((s) => s.year === year);
+          const totalSemesters = timelineData.length;
 
           // Position in the middle between sem1 and sem2 of this year
           // Middle = (index0 + index1) / 2 = index0 + 0.5
@@ -1417,10 +1721,12 @@
         });
 
         const endMarker = document.createElement("div");
+        let stylesCustom = "future";
+        stylesCustom = currentYearIndex >= 0 ? "future" : "current";
         endMarker.className = "timeline-year-marker";
         endMarker.style.left = "100%";
         endMarker.innerHTML = `
-        <div class="timeline-year-dot future"></div>
+        <div class="timeline-year-dot ${stylesCustom}"></div>
         <div class="timeline-year-label">6/2026</div>
       `;
         markersContainer.appendChild(endMarker);
