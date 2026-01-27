@@ -111,7 +111,7 @@ body {
   color: #505050;
 }
 
-.progress-label {
+/* .progress-label {
   font-size: 11px;
   color: #666;
   margin-bottom: 10px;
@@ -153,9 +153,9 @@ body {
   background-color: #e0e0e0;
 }
 
-.progress-percentage {
+/* .progress-percentage {
   color: #14358e;
-}
+} */
 
 .progress-bar-blue {
   background-color: var(--primary-blue);
