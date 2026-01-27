@@ -34,7 +34,7 @@ const curriculumData = {
         stt: 3,
         semester: 2,
         knowledgeBlock: "GDDC",
-        courseName: "Pháp luật đại cương",
+        courseName: "Pháp luật đại cương 1",
         courseCode: "000902",
         prerequisite: "-",
         equivalent: "[010116]",
@@ -125,7 +125,7 @@ const curriculumData = {
           knowledgeBlock: "GDDC",
           courseName: "Pháp luật đại cương 2",
           courseCode: "000906",
-          prerequisite: "000902 (b)",
+          prerequisite: "000902 (b), 000093 (b)",
           equivalent: "[010116]",
           replacement: "-",
           credits: 2,
@@ -141,11 +141,9 @@ const curriculumData = {
 function isPrerequisiteCompleted(prerequisiteStr) {
   if (!prerequisiteStr || prerequisiteStr === "-") return true;
 
-  //"000901 (b)" -> "000901")
-  const match = prerequisiteStr.match(/(\d{6})/);
-  if (!match) return true;
-
-  const prereqCode = match[1];
+  //"000902 (b), 000093 (b)" -> ["000902", "000093"]
+  const matches = prerequisiteStr.match(/\d{6}/g);
+  if (!matches || matches.length === 0) return true;
 
   const allCourses = [
     ...curriculumData.professionalEducation.mandatory,
@@ -153,19 +151,19 @@ function isPrerequisiteCompleted(prerequisiteStr) {
     ...curriculumData.professionalEducation.elective.block2,
   ];
 
-  const prereqCourse = allCourses.find((c) => c.courseCode === prereqCode);
-
-  return prereqCourse ? prereqCourse.completed : true;
+  // Check ALL are completed
+  return matches.every((prereqCode) => {
+    const prereqCourse = allCourses.find((c) => c.courseCode === prereqCode);
+    return prereqCourse ? prereqCourse.completed : true;
+  });
 }
 
 function getPrerequisiteTooltip(prerequisiteStr) {
-  if (!prerequisiteStr || prerequisiteStr === "-") return "";
+  if (!prerequisiteStr || prerequisiteStr === "-") return null;
 
-  //"000901 (b)" -> "000901")
-  const match = prerequisiteStr.match(/(\d{6})/);
-  if (!match) return "";
-
-  const prereqCode = match[1];
+  //"000902 (b), 000093 (b)" -> ["000902", "000093"]
+  const matches = prerequisiteStr.match(/\d{6}/g);
+  if (!matches || matches.length === 0) return null;
 
   const allCourses = [
     ...curriculumData.professionalEducation.mandatory,
@@ -173,14 +171,19 @@ function getPrerequisiteTooltip(prerequisiteStr) {
     ...curriculumData.professionalEducation.elective.block2,
   ];
 
-  const prereqCourse = allCourses.find((c) => c.courseCode === prereqCode);
+  const prerequisites = matches
+    .map((prereqCode) => {
+      const prereqCourse = allCourses.find((c) => c.courseCode === prereqCode);
+      if (!prereqCourse) return null;
+      return {
+        courseName: prereqCourse.courseName,
+        courseCode: prereqCode,
+        completed: prereqCourse.completed,
+      };
+    })
+    .filter((p) => p !== null);
 
-  if (!prereqCourse) return "";
-
-  const completedStatus = prereqCourse.completed
-    ? "Đã hoàn thành \u2713"
-    : "Ch\u01b0a hoàn thành";
-  return `Ti\u00ean \u0111\u1ec1: ${prereqCourse.courseName} (${prereqCourse.courseCode}) - ${completedStatus}`;
+  return prerequisites.length > 0 ? prerequisites : null;
 }
 
 function createTableRow(course, viewMode = "knowledgeBlock") {
@@ -189,13 +192,15 @@ function createTableRow(course, viewMode = "knowledgeBlock") {
   const bgStyle = course.completed
     ? ' style="background-color: #F4FFF5 !important;"'
     : "";
-  const tooltipText = getPrerequisiteTooltip(course.prerequisite);
-  const titleAttr = tooltipText ? ` title="${tooltipText}"` : "";
+  const tooltipData = getPrerequisiteTooltip(course.prerequisite);
+  const dataTooltip = tooltipData
+    ? ` data-tooltip="${encodeURIComponent(JSON.stringify(tooltipData))}"`
+    : "";
 
   if (viewMode === "semester") {
     //HK
     return `
-      <tr${lockedClass}${bgStyle}${titleAttr}>
+      <tr${lockedClass}${bgStyle}${dataTooltip}>
         <td>${course.stt}</td>
         <td>${course.knowledgeBlock}</td>
         <td>${course.courseName}</td>
@@ -212,7 +217,7 @@ function createTableRow(course, viewMode = "knowledgeBlock") {
   } else {
     //Khối kiến thức
     return `
-      <tr${lockedClass}${bgStyle}${titleAttr}>
+      <tr${lockedClass}${bgStyle}${dataTooltip}>
         <td>${course.stt}</td>
         <td>${course.semester}</td>
         <td>${course.courseName}</td>
@@ -672,12 +677,150 @@ function switchView(view) {
   }
 }
 
+// Custom Tooltip Functions
+let tooltipElement = null;
+let tooltipTimeout = null;
+
+function createTooltipElement() {
+  if (!tooltipElement) {
+    tooltipElement = document.createElement("div");
+    tooltipElement.className = "custom-tooltip";
+    document.body.appendChild(tooltipElement);
+  }
+  return tooltipElement;
+}
+
+function showTooltip(event, tooltipData) {
+  if (tooltipTimeout) {
+    clearTimeout(tooltipTimeout);
+    tooltipTimeout = null;
+  }
+
+  const tooltip = createTooltipElement();
+  const prerequisites = Array.isArray(tooltipData)
+    ? tooltipData
+    : [tooltipData];
+
+  const allCompleted = prerequisites.every((p) => p.completed);
+  const uncompletedCourses = prerequisites
+    .filter((p) => !p.completed)
+    .map((p) => p.courseName);
+
+  // Generate tooltip frames for each prerequisite
+  const tooltipFrames = prerequisites
+    .map((prereq) => {
+      const statusClass = prereq.completed ? "completed" : "not-completed";
+      const statusText = prereq.completed ? "Đã học" : "Chưa học";
+      const statusIcon = prereq.completed
+        ? '<i class="fa-solid fa-circle-check" style="color: #22C55E"></i>'
+        : '<i class="fa-solid fa-circle-xmark" style="color: #EA5455"></i>';
+      const requiredText = prereq.completed
+        ? "Đã hoàn thành chương trình"
+        : "Môn phải học tiên quyết";
+
+      return `
+      <div class="tooltip-frame">
+          <div>
+              ${statusIcon}
+          </div>
+          <div class="tooltip-body">
+              <div class="tooltip-content">${prereq.courseName}</div>
+              <div class="tooltip-require">Yêu cầu: <i>${requiredText}</i></div>
+          </div>
+          <div class="tooltip-status ${statusClass}">${statusText}</div>
+      </div>
+    `;
+    })
+    .join("");
+
+  const remindText = allCompleted
+    ? "Môn học đã đủ điều kiện đăng ký."
+    : `<span class='remind-text'>Bạn <span class='text-danger'>CHƯA THỂ ĐĂNG KÝ</span> môn này do chưa hoàn thành học phần tiên quyết: <b>${uncompletedCourses.join(", ")}</b>.</span>`;
+
+  tooltip.innerHTML = `
+    <div class="tooltip-title">MÔN HỌC TIÊN QUYẾT${prerequisites.length > 1 ? " (" + prerequisites.length + " môn)" : ""}</div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      ${tooltipFrames}
+    </div>
+    <div class="tooltip-remind">${remindText}</div>
+  `;
+
+  //Position
+  const x = event.clientX;
+  const y = event.clientY;
+
+  const tooltipLeft = x - 22;
+  tooltip.style.left = tooltipLeft + "px";
+
+  tooltip.style.visibility = "hidden";
+  tooltip.style.display = "block";
+
+  const tooltipHeight = tooltip.offsetHeight;
+  tooltip.style.top = y - tooltipHeight - 8 + "px";
+
+  tooltip.style.visibility = "visible";
+
+  const arrowLeft = x - tooltipLeft - 8;
+  tooltip.style.setProperty("--arrow-left", arrowLeft + "px");
+
+  tooltipTimeout = setTimeout(() => {
+    tooltip.classList.add("show");
+  }, 50);
+}
+
+function hideTooltip() {
+  // Clear any pending show timeout
+  if (tooltipTimeout) {
+    clearTimeout(tooltipTimeout);
+    tooltipTimeout = null;
+  }
+
+  if (tooltipElement) {
+    tooltipElement.classList.remove("show");
+  }
+}
+
+function attachTooltipListeners() {
+  const rows = document.querySelectorAll("tr[data-tooltip]");
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", function (e) {
+      const encodedData = this.getAttribute("data-tooltip");
+      if (encodedData) {
+        const tooltipData = JSON.parse(decodeURIComponent(encodedData));
+        showTooltip(e, tooltipData);
+      }
+    });
+
+    row.addEventListener("mousemove", function (e) {
+      if (tooltipElement && tooltipElement.classList.contains("show")) {
+        const tooltipLeft = e.clientX - 22;
+        const tooltipHeight = tooltipElement.offsetHeight;
+
+        tooltipElement.style.left = tooltipLeft + "px";
+        tooltipElement.style.top = e.clientY - tooltipHeight - 8 + "px";
+
+        const arrowLeft = e.clientX - tooltipLeft - 8;
+        tooltipElement.style.setProperty("--arrow-left", arrowLeft + "px");
+      }
+    });
+
+    row.addEventListener("mouseleave", hideTooltip);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   switchView(currentView);
+  attachTooltipListeners();
 
   const tabBtns = document.querySelectorAll(".tab-btn");
   if (tabBtns.length >= 2) {
-    tabBtns[0].addEventListener("click", () => switchView("semester"));
-    tabBtns[1].addEventListener("click", () => switchView("knowledgeBlock"));
+    tabBtns[0].addEventListener("click", () => {
+      switchView("semester");
+      setTimeout(attachTooltipListeners, 100);
+    });
+    tabBtns[1].addEventListener("click", () => {
+      switchView("knowledgeBlock");
+      setTimeout(attachTooltipListeners, 100);
+    });
   }
 });
