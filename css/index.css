@@ -945,7 +945,7 @@ body {
   }
 
   .second-priority-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
@@ -971,7 +971,7 @@ body {
   }
 
   .infor-text-container {
-    flex-direction: column;
+    gap: 20px;
   }
 
   .second-priority-container {
@@ -979,7 +979,8 @@ body {
   }
 
   .quick-function-container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
   }
 
   .grid-2-cols {
@@ -1005,8 +1006,8 @@ body {
   }
 
   .quick-fucntion-card {
-    min-height: 100px;
     padding: 15px 10px;
+    min-height: 100px;
   }
 
   .quick-fucntion-card i {
@@ -1027,7 +1028,7 @@ body {
 
   .title-kqht,
   .title-tkd {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -1177,146 +1178,18 @@ svg {
 }
 
 .gpa {
-  width: 85px;
-  height: 26px;
-
-  font-family: "Segoe UI";
-  font-style: normal;
-  font-weight: 400;
   font-size: 16px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-
   color: #333333;
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-}
-.point-green {
-  width: 10px;
-  height: 10px;
-
-  background: #46a357;
-  border-radius: 10px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-.point-blue {
-  /* Rectangle 48 */
-
-  width: 10px;
-  height: 10px;
-
-  background: #153898;
-  border-radius: 10px;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-.note {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px 0px 0.54px;
-  gap: 12px;
-
-  /* width: 885px; */
-  width: 100%;
-  height: 26.54px;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
-}
-.header-tkd {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 15.05px 20px 15.9843px;
-  width: 100%;
-  height: 62.82px;
-  background: #ffffff;
-}
-.title-tkd {
-  width: fit-content;
-  height: fit-content;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-  color: #505050;
-
-  flex: none;
-  order: 0;
-  flex-grow: 1;
-}
-#select-hk {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 4px 15px;
-  gap: 12px;
-  width: fit-content;
-  height: fit-content;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-}
-.grade-chart {
-  width: 100%;
-  padding: 16px 20px;
-  font-family: Arial, sans-serif;
 }
 
-.row {
-  display: grid !important;
-  grid-template-columns: 40px 1fr 60px;
-  align-items: center;
-  gap: 16px;
-  margin: 18px 0;
-}
-
-.label {
-  font-weight: 600;
-  color: #1f3fb8;
-  font-size: 14px;
-}
-
-.bar {
-  height: 14px !important;
-  background: #f2f9fd !important;
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-}
-
-.fill {
-  height: 100% !important;
-  background: #5fa8e8 !important;
-  border-radius: 8px;
-  display: block;
-}
-
-.count {
-  text-align: right;
-  color: #333;
-  font-weight: 500;
-}
 /* Responsive Design */
 @media (max-width: 1400px) {
   .section-3 {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-content {
+    padding: 1rem;
   }
 }
 
@@ -1467,4 +1340,384 @@ svg {
     gap: 10px;
     margin: 12px 0;
   }
+}
+
+/* New Progress Section Styles with Bootstrap */
+.progress-percentage-header {
+  font-size: 24px;
+  font-weight: 700;
+  color: #56a2e8;
+}
+
+/* GPA Display Card */
+.gpa-display-card {
+  background: linear-gradient(135deg, #4285f4 0%, #5fa5ff 100%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gpa-number {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.gpa-label {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.gpa-badge {
+  background: rgba(255, 255, 255, 0.2) !important;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+/* Progress Bar */
+.progress-section {
+  margin-top: 0;
+}
+
+.progress-label {
+  font-size: 13px;
+  color: #666;
+}
+
+.progress-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4285f4;
+}
+
+.progress-bar-wrapper {
+  height: 10px;
+  background-color: #e8f0fe;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #71d674 0%, #4caf50 100%);
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+/* Credit Status Grid */
+.credit-status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+.credit-box {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.credit-number {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.credit-completed .credit-number {
+  color: #4caf50;
+}
+
+.credit-remaining .credit-number {
+  color: #ff9800;
+}
+
+.credit-unit {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.credit-label {
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Current Status Section */
+.current-status-section {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.status-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.status-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-open {
+  background-color: #4caf50;
+  color: white;
+}
+
+.semester-info {
+  font-size: 14px;
+  color: #333;
+}
+
+.deadline-text {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.registration-summary {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.summary-row:last-child {
+  margin-bottom: 0;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: #666;
+}
+
+.summary-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Tiến độ học tập styles */
+.progress-percentage-header {
+  font-size: 20px;
+  font-weight: 700;
+  color: #4285f4;
+}
+
+.gpa-display-card {
+  background: linear-gradient(135deg, #4285f4 0%, #5fa5ff 100%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gpa-number {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.gpa-label {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.gpa-badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+/* Progress Bar */
+.progress-section {
+  margin-top: 0;
+}
+
+.progress-label {
+  font-size: 13px;
+  color: #666;
+}
+
+.progress-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4285f4;
+}
+
+.progress-bar-wrapper {
+  height: 10px;
+  background-color: #e8f0fe;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #71d674 0%, #4caf50 100%);
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+/* Credit Status Grid */
+.credit-status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+.credit-box {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.credit-number {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.credit-completed .credit-number {
+  color: #4caf50;
+}
+
+.credit-remaining .credit-number {
+  color: #ff9800;
+}
+
+.credit-unit {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.credit-label {
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Current Status Section */
+.current-status-section {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.status-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.status-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-open {
+  background-color: #4caf50;
+  color: white;
+}
+
+.semester-info {
+  font-size: 14px;
+  color: #333;
+}
+
+.deadline-text {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.registration-summary {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.summary-row:last-child {
+  margin-bottom: 0;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: #666;
+}
+
+.summary-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* GPA and Progress Container - Flex Row */
+.gpa-progress-container {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.gpa-display-card {
+  flex: 0 0 auto;
+  min-width: 200px;
+  background: linear-gradient(135deg, #4285f4 0%, #5fa5ff 100%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.progress-credit-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
