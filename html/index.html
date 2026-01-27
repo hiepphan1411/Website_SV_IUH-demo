@@ -1,917 +1,674 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Cổng thông tin sinh viên</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
-
-        <link
-            href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"
-            rel="stylesheet"
-        />
-
-        <link
-            href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.common.min.css"
-            rel="stylesheet"
-        />
-        <link
-            href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.default.min.css"
-            rel="stylesheet"
-        />
-
-        <link rel="stylesheet" href="../css/test.css" />
-        <script
-            src="https://kit.fontawesome.com/6f955e325d.js"
-            crossorigin="anonymous"
-        ></script>
-        <style></style>
-    </head>
-    <body>
-        <!-- Header -->
-        <header class="header-container">
-            <div class="left-header-container">
-                <div class="logo-div">
-                    <!-- Todo Logo -->
-                </div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Tìm kiếm..." />
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cổng thông tin sinh viên</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/index.css" />
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header-container">
+      <div class="left-header-container">
+        <div class="logo-div">
+          <!-- Todo Logo -->
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Tìm kiếm..." />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </div>
+      <div class="right-header-container">
+        <div>
+          <i class="fa-regular fa-house"></i>
+          <span>Trang chủ</span>
+        </div>
+        <div>
+          <i class="fa-regular fa-bell"></i>
+          <span>Tin tức</span>
+        </div>
+        <div class="login-infor">
+          <div class="avatar">
+            <img
+              src="../img/user.png"
+              alt="User Image"
+              width="15"
+              height="15"
+            />
+          </div>
+          <span style="font-size: larger">Asc Test</span>
+        </div>
+      </div>
+    </header>
+    <!-- Content -->
+    <main class="main-content">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Trang chủ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Thông tin sinh viên</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-calendar-week"></i>
+            <span>Lịch theo tuần</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-book-open"></i>
+            <span>Đăng ký học phần</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Kết quả học tập</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Tra cứu công nợ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-trophy"></i>
+            <span>Học bổng</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-folder-open"></i>
+            <span>Hồ sơ điện tử</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-pen-fancy"></i>
+            <span>Lịch thi</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-tasks"></i>
+            <span>Lịch theo tiến độ</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-bell"></i>
+            <span>Thông báo</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-poll"></i>
+            <span>Khảo sát</span>
+          </a>
+        </nav>
+      </aside>
+      <!-- Details -->
+      <div class="dashboard-content">
+        <!-- Highest priority -->
+        <div class="highest-priority-container">
+          <!-- Student Information Card -->
+          <div class="card-infor-container">
+            <div class="title">
+              <p>Thông tin sinh viên</p>
             </div>
-            <div class="right-header-container">
+            <div class="infor-card-body">
+              <div class="avatar-left">
+                <div class="student-avatar">
+                  <img src="../img/user.png" style="width: 50px" />
+                </div>
+                <a href="" class="details-link">Xem chi tiết</a>
+              </div>
+              <div class="infor-text-container">
                 <div>
-                    <i class="fa-regular fa-house"></i>
-                    <span>Trang chủ</span>
+                  <p>MSSV: <b>2552010678</b></p>
+                  <p>Họ tên: <b>Asc Test</b></p>
+                  <p>Giới tính: <b>Nam</b></p>
+                  <p>Ngày sinh: <b>01/01/2008</b></p>
+                  <p>Nơi sinh: <b>An Giang</b></p>
                 </div>
                 <div>
-                    <i class="fa-regular fa-bell"></i>
-                    <span>Tin tức</span>
+                  <p>Lớp học: <b>D.14.22.03</b></p>
+                  <p>Khóa học: <b>Khóa 2025</b></p>
+                  <p>Bậc đào tạo: <b>Đại học</b></p>
+                  <p>Loại hình đào tạo: <b>Chính quy</b></p>
+                  <p>Ngành: <b>Tài chính - Ngân hàng</b></p>
                 </div>
-                <div class="login-infor">
-                    <div class="avatar-header">
-                        <img
-                            src="../img/user.png"
-                            alt="User Image"
-                            width="15"
-                            height="15"
-                        />
-                    </div>
-                    <span style="font-size: larger">Asc Test</span>
-                </div>
+              </div>
             </div>
-        </header>
-        <!-- Content -->
-        <main class="main-content">
-            <!-- Sidebar -->
-            <aside class="sidebar">
-                <nav class="nav-menu">
-                    <a href="#" class="nav-item active">
-                        <i class="fas fa-home"></i>
-                        <span>Trang chủ</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-user"></i>
-                        <span>Thông tin sinh viên</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-calendar-week"></i>
-                        <span>Lịch theo tuần</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-book-open"></i>
-                        <span>Đăng ký học phần</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Kết quả học tập</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <span>Tra cứu công nợ</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-trophy"></i>
-                        <span>Học bổng</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-folder-open"></i>
-                        <span>Hồ sơ điện tử</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-pen-fancy"></i>
-                        <span>Lịch thi</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-tasks"></i>
-                        <span>Lịch theo tiến độ</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-bell"></i>
-                        <span>Thông báo</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-poll"></i>
-                        <span>Khảo sát</span>
-                    </a>
-                </nav>
-            </aside>
-            <!-- Details -->
-            <div class="dashboard-content">
-                <!-- Highest priority -->
-                <div class="container-fluid">
-                    <div class="row gap-3">
-                        <!-- student information -->
-                        <div class="col-xl-4 col-lg-3 student-card text-center">
-                            <div class="avatar-card mx-auto mb-3"></div>
-                            <h6 class="fw-bold mb-0">Asc Test</h6>
-                            <small class="fw-semibold text-muted"
-                                >2552010678</small
-                            >
-
-                            <div class="info-row">
-                                <span class="row-title">Ngày sinh:</span>
-                                <span class="fw-semibold row-content"
-                                    >01/01/2008</span
-                                >
-                            </div>
-                            <div class="info-row">
-                                <span class="row-title">Khóa học:</span>
-                                <span class="fw-semibold row-content"
-                                    >Khóa 2025</span
-                                >
-                            </div>
-                            <div class="info-row">
-                                <span class="row-title">Lớp học:</span>
-                                <span class="fw-semibold row-content"
-                                    >D.14.22.03</span
-                                >
-                            </div>
-                            <div class="info-row">
-                                <span class="row-title">Ngành:</span>
-                                <span class="fw-semibold row-content"
-                                    >Tài chính - Ngân hàng</span
-                                >
-                            </div>
-
-                            <a
-                                href="#"
-                                class="fw-bold profile-link mt-3 d-inline-block"
-                            >
-                                Xem chi tiết hồ sơ
-                            </a>
-                        </div>
-
-                        <!-- schedule -->
-
-                        <div class="schedule-card col-xl-6 d-flex flex-column">
-                            <div
-                                class="d-flex justify-content-between align-items-center mb-3"
-                            >
-                                <div>
-                                    <h6
-                                        class="fw-bold mb-0"
-                                        style="font-size: 24px"
-                                    >
-                                        Lịch hôm nay
-                                    </h6>
-                                    <small class="fw-semibold text-muted"
-                                        >Thứ Tư, 13 Tháng 01, 2026</small
-                                    >
-                                </div>
-                                <div class="badge-group">
-                                    <span
-                                        class="badge bg-primary-subtle text-primary border border-primary"
-                                    >
-                                        1 Lịch học
-                                    </span>
-                                    <span
-                                        class="badge bg-warning-subtle text-warning border border-warning"
-                                    >
-                                        1 Lịch thi
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="schedule-item-border">
-                                <!-- item 1 -->
-                                <div class="schedule-item blue">
-                                    <div class="time-box">
-                                        <span>Tiết</span>
-                                        <strong>1-3</strong>
-                                    </div>
-
-                                    <div class="schedule-info">
-                                        <p class="fw-semibold text-primary">
-                                            DHKTPM18A-420300314705
-                                        </p>
-                                        <div class="fw-semibold">
-                                            Thực tập doanh nghiệp
-                                        </div>
-                                        <div class="meta">
-                                            <i class="fa-solid fa-clock"></i>
-                                            6h30 - 9h10 &nbsp; • &nbsp;
-                                            <i
-                                                class="fa-solid fa-location-dot"
-                                            ></i>
-                                            Phòng A203
-                                        </div>
-                                    </div>
-
-                                    <div class="teacher">
-                                        Giảng viên<br />
-                                        <strong>TS. Nguyễn Thị Hạnh</strong>
-                                    </div>
-                                </div>
-
-                                <!-- item 2 -->
-                                <div class="schedule-item orange">
-                                    <div class="time-box">
-                                        <span>Tiết</span>
-                                        <strong>7-9</strong>
-                                    </div>
-
-                                    <div class="schedule-info">
-                                        <p class="fw-semibold text-warning">
-                                            DHKTPM18A-420300314705
-                                        </p>
-                                        <div class="fw-semibold">
-                                            Thực tập doanh nghiệp
-                                        </div>
-                                        <div class="meta">
-                                            <i class="fa-solid fa-clock"></i>
-                                            12h30 - 15h &nbsp; • &nbsp;
-                                            <i
-                                                class="fa-solid fa-location-dot"
-                                            ></i>
-                                            Phòng A403
-                                        </div>
-                                    </div>
-
-                                    <div class="teacher">
-                                        Giảng viên<br />
-                                        <strong>ThS. Trần Thế Trung</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-end mt-auto">
-                                <a href="#" class="profile-link course-code"
-                                    >Xem chi tiết
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- RIGHT: SUMMARY -->
-
-                        <div class="col-xl-2 sumary">
-                            <div class="summary-card blue">
-                                <div class="summary-title-study">
-                                    <i
-                                        class="fas fa-book-open"
-                                        style="font-size: 20px"
-                                    ></i>
-                                    <p>HỌC TẬP</p>
-                                </div>
-                                <div class="summary-desc-study blue">
-                                    Lịch học trong tuần
-                                </div>
-                                <div style="display: flex">
-                                    <p class="summary-value-study">2</p>
-                                    <p
-                                        style="
-                                            font-size: 11px;
-                                            color: var(--primary-blue);
-                                            font-style: italic;
-                                            margin-top: 14px;
-                                        "
-                                    >
-                                        môn học
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="summary-card orange">
-                                <div class="summary-title-exam">
-                                    <i
-                                        class="fa-solid fa-pen-fancy"
-                                        style="font-size: 20px"
-                                    ></i>
-                                    <p>KỲ THI</p>
-                                </div>
-                                <div class="summary-desc-exam orange">
-                                    Lịch thi sắp tới
-                                </div>
-                                <div style="display: flex">
-                                    <p class="summary-value-exam">1</p>
-                                    <p
-                                        style="
-                                            font-size: 11px;
-                                            color: var(--warning-orange);
-                                            font-style: italic;
-                                            margin-top: 14px;
-                                        "
-                                    >
-                                        môn học
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="summary-card gray">
-                                <div class="summary-title-remind">
-                                    <i
-                                        class="fa-solid fa-bell"
-                                        style="font-size: 20px"
-                                    ></i>
-                                    <p>NHẮC NHỞ</p>
-                                </div>
-                                <div class="summary-desc-remind gray">
-                                    Nhắc nhở mới
-                                </div>
-                                <div style="display: flex">
-                                    <p class="summary-value-exam">0</p>
-                                    <p
-                                        style="
-                                            font-size: 11px;
-                                            color: var(--primary-gray);
-                                            font-style: italic;
-                                            margin-top: 14px;
-                                        "
-                                    >
-                                        chưa xem
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Function Container -->
-                <div class="quick-function-container">
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-calendar"></i>
-                        <span>Lịch theo tuần</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fas fa-book-open"></i>
-                        <span>Đăng ký học phần</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-chart-area"></i>
-                        <span>Kết quả học tập</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-money-bill-wave"></i>
-                        <span>Tra cứu công nợ</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-credit-card"></i>
-                        <span>Thanh toán trực tuyến</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-receipt"></i>
-                        <span>Phiếu thu tổng hợp</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-list-check"></i>
-                        <span>Lịch theo tiến độ</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-pen-fancy"></i>
-                        <span>Lịch thi</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-bell"></i>
-                        <span>Nhắc nhở</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fas fa-poll"></i>
-                        <span>Khảo sát</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fas fa-folder-open"></i>
-                        <span>Hồ sơ điện tử</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fas fa-trophy"></i>
-                        <span>Học bổng</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fa-solid fa-bed"></i>
-                        <span>Đăng ký nội trú</span>
-                    </div>
-                    <div class="quick-fucntion-card">
-                        <i class="fab fa-wpforms"></i>
-                        <span>Đề xuất biểu mẫu</span>
-                    </div>
-                </div>
-
-                <section class="grid-2-cols section-info">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Tiến độ học tập</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="progress-container">
-                                <div class="progress-circle">
-                                    <svg
-                                        width="200"
-                                        height="200"
-                                        viewBox="0 0 200 200"
-                                    >
-                                        <circle
-                                            cx="100"
-                                            cy="100"
-                                            r="80"
-                                            fill="none"
-                                            stroke="#E8F4FF"
-                                            stroke-width="20"
-                                        />
-                                        <circle
-                                            cx="100"
-                                            cy="100"
-                                            r="80"
-                                            fill="none"
-                                            stroke="#3B9AFF"
-                                            stroke-width="20"
-                                            stroke-dasharray="502.4"
-                                            stroke-dashoffset="0"
-                                            transform="rotate(-90 100 100)"
-                                            stroke-linecap="round"
-                                        />
-
-                                        <circle
-                                            cx="100"
-                                            cy="100"
-                                            r="60"
-                                            fill="none"
-                                            stroke="#E8F8F0"
-                                            stroke-width="20"
-                                        />
-                                        <circle
-                                            cx="100"
-                                            cy="100"
-                                            r="60"
-                                            fill="none"
-                                            stroke="#C4D4D9"
-                                            stroke-width="20"
-                                            stroke-dasharray="376.8"
-                                            stroke-dashoffset="33.91"
-                                            transform="rotate(-90 100 100)"
-                                            stroke-linecap="round"
-                                        />
-                                        <circle
-                                            cx="100"
-                                            cy="100"
-                                            r="60"
-                                            fill="none"
-                                            stroke="#00D95F"
-                                            stroke-width="20"
-                                            stroke-dasharray="376.8"
-                                            stroke-dashoffset="64.056"
-                                            transform="rotate(-90 100 100)"
-                                            stroke-linecap="round"
-                                        />
-                                    </svg>
-                                    <div class="progress-percentage">83%</div>
-                                </div>
-
-                                <div class="progress-legend">
-                                    <div class="legend-item">
-                                        <span
-                                            class="legend-dot completed"
-                                        ></span>
-                                        <span class="legend-text"
-                                            >Đã hoàn thành:
-                                            <strong>135 tín chỉ</strong></span
-                                        >
-                                    </div>
-                                    <div class="legend-item">
-                                        <span class="legend-dot current"></span>
-                                        <span class="legend-text"
-                                            >Tổng tín chỉ:
-                                            <strong>162 tín chỉ</strong></span
-                                        >
-                                    </div>
-                                    <div class="legend-item">
-                                        <span
-                                            class="legend-dot remaining"
-                                        ></span>
-                                        <span class="legend-text"
-                                            >Đang học kỳ này:
-                                            <strong>12 tín chỉ</strong></span
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- thông tin học bổng -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Thông tin học bổng</h3>
-                            <select class="semester-select">
-                                <option>HK2 (2025 - 2026)</option>
-                            </select>
-                        </div>
-                        <div class="card-body">
-                            <div class="scholarship-list">
-                                <div
-                                    class="scholarship-item scholarship-approved"
-                                >
-                                    <div class="scholarship-header">
-                                        <div class="scholarship-name">
-                                            Học bổng khuyến khích học tập
-                                        </div>
-                                        <span
-                                            class="scholarship-status status-approved"
-                                        >
-                                            <i class="fas fa-check-circle"></i>
-                                            Đã duyệt
-                                        </span>
-                                    </div>
-                                    <div class="scholarship-details">
-                                        <div
-                                            class="scholarship-amount-approved"
-                                        >
-                                            70% học phí
-                                        </div>
-                                        <div class="scholarship-semester">
-                                            HK1 2024-2025
-                                        </div>
-                                    </div>
-                                    <div class="scholarship-date">
-                                        Ngày duyệt: 15/01/2025
-                                    </div>
-                                </div>
-                                <div
-                                    class="scholarship-item scholarship-pending"
-                                >
-                                    <div class="scholarship-header">
-                                        <div class="scholarship-name">
-                                            Học bổng tài năng CNTT
-                                        </div>
-                                        <span
-                                            class="scholarship-status status-pending"
-                                        >
-                                            <i class="fas fa-clock"></i> Đang
-                                            xét duyệt
-                                        </span>
-                                    </div>
-                                    <div class="scholarship-details">
-                                        <div class="scholarship-amount-pending">
-                                            5.000.000 VNĐ
-                                        </div>
-                                        <div class="scholarship-semester">
-                                            HK2 2024-2025
-                                        </div>
-                                    </div>
-                                    <div class="scholarship-date">
-                                        Ngày đăng ký: 02/02/2025
-                                    </div>
-                                    <div class="scholarship-progress">
-                                        <div class="scholarship-progress-bar">
-                                            <div
-                                                class="scholarship-progress-fill"
-                                                style="width: 65%"
-                                            ></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="scholarship-summary">
-                                    <div class="summary-item">
-                                        <span
-                                            >Tổng học bổng đã nhận:
-                                            <strong>2.000.000 VNĐ</strong></span
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="button-group">
-                                <button class="btn-primary-green btn-primary">
-                                    Xem chi tiết
-                                </button>
-                                <button class="btn-primary-blue btn-primary">
-                                    Đăng ký học bổng
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section-3 section-info">
-                    <div class="chart-container">
-                        <div class="chart-header">
-                            <h1 class="chart-title">
-                                Kết quả học tập theo học kỳ
-                            </h1>
-                            <select class="form-select" id="gradesSelect">
-                                <option value="4">Thang điểm 4</option>
-                                <option value="10">Thang điểm 10</option>
-                            </select>
-                        </div>
-
-                        <div class="chart-wrapper">
-                            <canvas id="gpaChart"></canvas>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="course-card">
-                            <div class="chart-header">
-                                <h1 class="chart-title">Lớp học phần học kỳ</h1>
-
-                                <select class="form-select" id="semesterSelect">
-                                    <option>HK1 (2025-2026)</option>
-                                    <option>HK2 (2025-2026)</option>
-                                </select>
-                            </div>
-
-                            <!-- List LHP -->
-                            <div id="courseList"></div>
-                        </div>
-                    </div>
-                </section>
+          </div>
+          <!-- Today Learning Schedule Card -->
+          <div class="today-schedule-card">
+            <div class="schedule-title">
+              <div class="schedule-icon-container">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <div class="today-schedule-text">
+                <span>Lịch học hôm nay</span>
+                <span style="font-weight: 700; font-size: 28px">1</span>
+              </div>
             </div>
-        </main>
-    </body>
-    <script src="../js/main.js"></script>
+            <div class="lesson-card">
+              <div class="lesson-title">
+                <div class="lesson-border">
+                  <span style="color: white">T1-3</span>
+                </div>
+                <p>Thực tập doanh nghiệp</p>
+              </div>
+              <div class="lesson-body">
+                <span> Lớp học phần: <b>DHKTPM18A</b> </span>
+                <span> Giảng viên: <b>Nguyễn Thị Hạnh</b> </span>
+                <span>Phòng học: <b>A02.03</b></span>
+              </div>
+            </div>
+            <div class="detail-link-container">
+              <span class="detail-link-forward"
+                >Xem chi tiết <i class="fa-solid fa-angle-right"></i
+              ></span>
+            </div>
+          </div>
+          <!-- Today Examination Schedule Card -->
+          <div class="today-schedule-card">
+            <div class="schedule-title">
+              <div
+                class="schedule-icon-container"
+                style="background-color: #f9b20020"
+              >
+                <i class="fas fa-clipboard-list" style="color: #fbb522"></i>
+              </div>
+              <div class="today-schedule-text">
+                <span>Lịch thi hôm nay</span>
+                <span style="font-weight: 700; font-size: 28px">0</span>
+              </div>
+            </div>
+            <div class="lesson-card" style="background-color: #f9b20020">
+              <span class="empty-text">Không có lịch hôm nay</span>
+            </div>
+            <div class="detail-link-container">
+              <span class="detail-link-forward" style="color: #fbb522"
+                >Xem chi tiết
+                <i class="fa-solid fa-angle-right" style="color: #fbb522"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+        <!-- Second priority -->
+        <section class="second-priority-container">
+          <div class="second-prio-card">
+            <div class="second-prio-icon schedule-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="second-prio-title schedule-title">
+              <span>Lịch học trong tuần</span>
+              <span class="counting">2</span>
+              <span class="small-text"></span>
+            </div>
+          </div>
+          <div class="second-prio-card">
+            <div class="second-prio-icon exam-icon">
+              <i class="fa-solid fa-pen-fancy"></i>
+            </div>
+            <div class="second-prio-title exam-title">
+              <span>Lịch thi trong tuần</span>
+              <span class="counting">0</span>
+              <span class="small-text">Không có lịch thi</span>
+            </div>
+          </div>
+          <div class="second-prio-card">
+            <div class="second-prio-icon announce-icon">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="second-prio-title announce-title">
+              <span>Thông báo mới</span>
+              <span class="counting">0</span>
+              <span class="small-text">Chưa xem</span>
+            </div>
+          </div>
+          <div class="second-prio-card">
+            <div class="second-prio-icon scholarship-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="second-prio-title scholarship-title">
+              <span>Học bổng</span>
+              <span class="counting">2</span>
+              <span class="small-text">Đã nhận</span>
+            </div>
+          </div>
+        </section>
+        <!-- Quick Function Container -->
+        <div class="quick-function-container">
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-calendar"></i>
+            <span>Lịch theo tuần</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fas fa-book-open"></i>
+            <span>Đăng ký học phần</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-chart-area"></i>
+            <span>Kết quả học tập</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-money-bill-wave"></i>
+            <span>Tra cứu công nợ</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-credit-card"></i>
+            <span>Thanh toán trực tuyến</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Phiếu thu tổng hợp</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-list-check"></i>
+            <span>Lịch theo tiến độ</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-pen-fancy"></i>
+            <span>Lịch thi</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-bell"></i>
+            <span>Nhắc nhở</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fas fa-poll"></i>
+            <span>Khảo sát</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fas fa-folder-open"></i>
+            <span>Hồ sơ điện tử</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fas fa-trophy"></i>
+            <span>Học bổng</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fa-solid fa-bed"></i>
+            <span>Đăng ký nội trú</span>
+          </div>
+          <div class="quick-fucntion-card">
+            <i class="fab fa-wpforms"></i>
+            <span>Đề xuất biểu mẫu</span>
+          </div>
+        </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <section class="grid-2-cols section-info">
+          <div class="card">
+            <div
+              class="card-header d-flex justify-content-between align-items-center"
+            >
+              <h3 class="mb-0">Tiến độ học tập</h3>
+              <span class="progress-percentage-header">83%</span>
+            </div>
+            <div class="card-body">
+              <!-- GPA and Progress Container -->
+              <div class="gpa-progress-container mb-3">
+                <!-- GPA Display Card -->
+                <div class="gpa-display-card rounded-4 text-white p-4">
+                  <div class="gpa-number fw-bold mb-2">3.62</div>
+                  <div class="gpa-label mb-2">GPA Tích lũy</div>
+                  <span class="badge gpa-badge">Xếp loại Giỏi</span>
+                </div>
 
-    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+                <!-- Progress and Credit Section -->
+                <div class="progress-credit-section">
+                  <!-- Progress Bar Section -->
+                  <div class="progress-section mb-3">
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-2"
+                    >
+                      <small class="progress-label">Tín chỉ tích lũy</small>
+                      <span class="progress-value">135/162</span>
+                    </div>
+                    <div class="progress-bar-wrapper">
+                      <div class="progress-bar-fill" style="width: 83%"></div>
+                    </div>
+                  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+                  <!-- Credit Status -->
+                  <div class="credit-status-grid">
+                    <div class="credit-box credit-completed">
+                      <div class="credit-number">135</div>
+                      <div class="credit-unit">tín chỉ</div>
+                      <div class="credit-label">Đã hoàn thành</div>
+                    </div>
+                    <div class="credit-box credit-remaining">
+                      <div class="credit-number">12</div>
+                      <div class="credit-unit">tín chỉ</div>
+                      <div class="credit-label">Còn lại</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/js/kendo.all.min.js"></script>
+              <!-- Current Status Section -->
+              <div class="current-status-section">
+                <h6 class="status-title">Trạng thái học phần hiện tại</h6>
 
-    <script>
-        $(document).ready(function () {
-            // GPA Data
-            const gpaData = {
-                grades: [
-                    'HK1 (2023-2024)',
-                    'HK2 (2023-2024)',
-                    'HK1 (2024-2025)',
-                    'HK2 (2024-2025)',
-                    'HK1 (2025-2026)',
-                    'HK2 (2025-2026)',
-                    'HK1 (2026-2027)',
-                    'HK2 (2026-2027)',
-                ],
-                yourGPA4: [2.5, 2.4, 2.7, 2.0, 3.5, 2.8, 3.2, 3.8],
-                averageGPA4: [2.3, 2.7, 2.5, 2.3, 2.8, 2.7, 3.1, 3.4],
-                yourGPA10: [7.5, 7.2, 7.7, 7.0, 8.5, 7.8, 8.2, 8.8],
-                averageGPA10: [7.3, 7.7, 7.5, 7.3, 7.8, 7.7, 8.1, 8.4],
-            };
+                <div class="status-badge-row">
+                  <span class="status-badge badge-open">ĐANG MỞ</span>
+                  <span class="semester-info">Học kỳ 2 (2024-2025)</span>
+                </div>
 
-            // Initialize chart
-            const ctx = document.getElementById('gpaChart').getContext('2d');
-            const chartConfig = {
-                type: 'line',
-                data: {
-                    labels: gpaData.grades,
-                    datasets: [
-                        {
-                            label: 'Your GPA',
-                            data: gpaData.yourGPA4,
-                            borderColor: '#6366f1',
-                            backgroundColor: 'rgba(99, 102, 241, 0.1)',
-                            borderWidth: 3,
-                            fill: true, // tô vùng dưới đường
-                            tension: 0.4,
-                            pointRadius: 5,
-                            pointBackgroundColor: '#6366f1',
-                            pointBorderColor: '#fff',
-                            pointBorderWidth: 2,
-                            pointHoverRadius: 7,
-                        },
-                        {
-                            label: 'Average GPA',
-                            data: gpaData.averageGPA4,
-                            borderColor: '#e87aa8',
-                            borderDash: [5, 5],
-                            backgroundColor: 'rgba(232, 122, 168, 0.05)',
-                            borderWidth: 2,
-                            fill: true,
-                            tension: 0.4,
-                            pointRadius: 5,
-                            pointBackgroundColor: '#e87aa8',
-                            pointBorderColor: '#fff',
-                            pointBorderWidth: 2,
-                            pointHoverRadius: 7,
-                        },
-                    ],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: {
-                        mode: 'index',
-                        intersect: false, // hovering over a column will show tooltip for all datasets
-                    },
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: true,
-                            backgroundColor: 'white',
-                            borderColor: '#e5eaf1',
-                            borderRadius: '12',
-                            borderWidth: 1,
-                            padding: 16,
-                            titleFont: { size: 14, weight: 'bold' },
-                            bodyFont: { size: 12 },
-                            displayColors: true,
-                            titleColor: (ctx) => {
-                                return ctx.chart.options.scales.y.max === 10
-                                    ? '#065f46' // hệ 10
-                                    : '#1e3a8a'; // hệ 4
-                            },
-                            bodyColor: '#374151',
-                            callbacks: {
-                                title: function (context) {
-                                    return context[0].label;
-                                },
-                                label: function (context) {
-                                    return (
-                                        context.dataset.label +
-                                        ': ' +
-                                        context.parsed.y.toFixed(2)
-                                    );
-                                },
-                                afterLabel: function (context) {
-                                    return '';
-                                },
-                            },
-                        },
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 4.0,
-                            ticks: {
-                                stepSize: 0.5,
-                                callback: function (value) {
-                                    return value.toFixed(1);
-                                },
-                            },
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.05)',
-                                drawBorder: false,
-                            },
-                        },
-                        x: {
-                            grid: {
-                                display: true,
-                                color: 'rgba(0, 0, 0, 0.05)',
-                                drawBorder: false,
-                            },
-                        },
-                    },
-                },
-            };
+                <div class="deadline-text">Đến 20/02/2025</div>
 
-            const gpaChart = new Chart(ctx, chartConfig);
+                <div class="registration-summary">
+                  <div class="summary-row">
+                    <span class="summary-label">Đã đăng ký:</span>
+                    <span class="summary-value">3 / 12 TC</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Tối đa:</span>
+                    <span class="summary-value">24 TC</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Thông tin học bổng</h3>
+              <select class="semester-select">
+                <option>HK2 (2025 - 2026)</option>
+              </select>
+            </div>
+            <div class="card-body">
+              <div class="scholarship-list">
+                <div class="scholarship-item scholarship-approved">
+                  <div class="scholarship-header">
+                    <div class="scholarship-name">
+                      Học bổng khuyến khích học tập
+                    </div>
+                    <span class="scholarship-status status-approved">
+                      <i class="fas fa-check-circle"></i> Đã duyệt
+                    </span>
+                  </div>
+                  <div class="scholarship-details">
+                    <div class="scholarship-amount-approved">2.000.000 VNĐ</div>
+                    <div class="scholarship-semester">HK1 2024-2025</div>
+                  </div>
+                  <div class="scholarship-date">Ngày duyệt: 15/01/2025</div>
+                </div>
+                <div class="scholarship-item scholarship-pending">
+                  <div class="scholarship-header">
+                    <div class="scholarship-name">Học bổng tài năng CNTT</div>
+                    <span class="scholarship-status status-pending">
+                      <i class="fas fa-clock"></i> Đang xét duyệt
+                    </span>
+                  </div>
+                  <div class="scholarship-details">
+                    <div class="scholarship-amount-pending">5.000.000 VNĐ</div>
+                    <div class="scholarship-semester">HK2 2024-2025</div>
+                  </div>
+                  <div class="scholarship-date">Ngày đăng ký: 02/02/2025</div>
+                </div>
+                <div class="scholarship-summary">
+                  <div class="summary-item">
+                    <span
+                      >Tổng học bổng đã nhận:
+                      <strong>2.000.000 VNĐ</strong></span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="button-group">
+                <button class="btn-primary-green btn-primary">
+                  Xem chi tiết
+                </button>
+                <button class="btn-primary-blue btn-primary">
+                  Đăng ký học bổng
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-3 section-info">
+          <div class="kqht">
+            <!-- header -->
+            <div class="header-kqht">
+              <h1 class="title-kqht">Kết quả học tập theo học kỳ</h1>
+              <div>
+                <select name="" id="thangdiem">
+                  <option value="Thang điểm 4">Thang điểm 4</option>
+                  <option value="Thang điểm 10">Thang điểm 10</option>
+                </select>
+              </div>
+            </div>
+            <!-- biểu đồ -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px 15px;
+                height: 100%;
 
-            // Grades dropdown handle
-            $('#gradesSelect').on('change', function () {
-                const selectedScale = $(this).val(); // lấy giá trị tại dropdown
+                flex: none;
+                order: 1;
+                align-self: stretch;
+                flex-grow: 0;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  padding: 5px 0px;
+                  width: 100%;
+                  height: 100%;
 
-                if (selectedScale === '10') {
-                    gpaChart.data.datasets[0].data = gpaData.yourGPA10;
-                    gpaChart.data.datasets[1].data = gpaData.averageGPA10;
+                  /* Inside auto layout */
+                  flex: none;
+                  order: 0;
+                  align-self: stretch;
+                  flex-grow: 0;
+                "
+              >
+                <div class="chart">
+                  <svg viewBox="0 0 860 340" preserveAspectRatio="none">
+                    <!-- Y labels -->
+                    <g class="y-labels">
+                      <text x="10" y="55">4.0</text>
+                      <text x="10" y="105">3.8</text>
+                      <text x="10" y="155">3.6</text>
+                      <text x="10" y="205">3.4</text>
+                      <text x="10" y="255">3.2</text>
+                      <text x="10" y="305">3.0</text>
+                    </g>
 
-                    gpaChart.options.scales.y.max = 10;
-                    gpaChart.options.scales.y.ticks.stepSize = 1;
-                    gpaChart.options.scales.y.ticks.callback = function (
-                        value,
-                    ) {
-                        return value.toFixed(1);
-                    };
-                } else {
-                    gpaChart.data.datasets[0].data = gpaData.yourGPA4;
-                    gpaChart.data.datasets[1].data = gpaData.averageGPA4;
+                    <!-- grid -->
+                    <g class="grid">
+                      <line x1="60" y1="50" x2="840" y2="50" />
+                      <line x1="60" y1="100" x2="840" y2="100" />
+                      <line x1="60" y1="150" x2="840" y2="150" />
+                      <line x1="60" y1="200" x2="840" y2="200" />
+                      <line x1="60" y1="250" x2="840" y2="250" />
+                      <line x1="60" y1="300" x2="840" y2="300" />
+                    </g>
 
-                    gpaChart.options.scales.y.max = 4.0;
-                    gpaChart.options.scales.y.ticks.stepSize = 0.5;
-                }
+                    <!-- Học kỳ-->
+                    <path
+                      class="area blue"
+                      d="M60,200 
+                                  L196,185 
+                                  L332,145 
+                                  L468,165 
+                                  L604,135 
+                                  L740,150
+                                  L740,300 L60,300 Z"
+                    />
 
-                gpaChart.update();
-            });
-        });
+                    <!-- Tích lũy -->
+                    <path
+                      class="area green"
+                      d="M60,200 
+                                  L196,195 
+                                  L332,180 
+                                  L468,170 
+                                  L604,160 
+                                  L740,155
+                                  L740,300 L60,300 Z"
+                    />
 
-        // Lớp học phần theo kỳ
-        $(document).ready(function () {
-            const courseData = {
-                'HK1 (2025-2026)': [
-                    {
-                        name: 'Kiến trúc và Thiết kế Phần mềm',
-                        code: '420300154901',
-                        credits: 4,
-                        teacher: 'ThS. Nguyễn Văn A',
-                        theory: { done: 8, total: 15 },
-                        practice: { done: 6, total: 12 },
-                    },
-                    {
-                        name: 'Công nghệ mới trong phát triển ứng dụng',
-                        code: '420300314705',
-                        credits: 3,
-                        teacher: 'ThS. Trần Thị B',
-                        theory: { done: 6, total: 12 },
-                        practice: { done: 6, total: 12 },
-                    },
-                ],
-                'HK2 (2025-2026)': [
-                    {
-                        name: 'Hệ thống thông tin quản lý',
-                        code: '420301998877',
-                        credits: 3,
-                        teacher: 'TS. Lê Văn C',
-                        theory: { done: 5, total: 15 },
-                        practice: { done: 4, total: 10 },
-                    },
-                ],
-            };
+                    <!-- line -->
+                    <polyline
+                      class="line blue"
+                      points="60,200 196,185 332,145 468,165 604,135 740,150"
+                    />
 
-            /* Render function card LHP */
-            function renderCourses(semester) {
-                const courses = courseData[semester] || [];
-                const $list = $('#courseList');
-                $list.empty();
+                    <polyline
+                      class="line green"
+                      points="60,200 196,195 332,180 468,170 604,160 740,155"
+                    />
 
-                if (!courses.length) {
-                    $list.html('<p class="text-muted">Không có học phần</p>');
-                    return;
-                }
+                    <!-- dot -->
+                    <g class="dots blue">
+                      <circle cx="60" cy="200" r="4" />
+                      <circle cx="196" cy="185" r="4" />
+                      <circle cx="332" cy="145" r="4" />
+                      <circle cx="468" cy="165" r="4" />
+                      <circle cx="604" cy="135" r="4" />
+                      <circle cx="740" cy="150" r="4" />
+                    </g>
 
-                courses.forEach((c) => {
-                    const theoryPercent =
-                        (c.theory.done / c.theory.total) * 100;
-                    const practicePercent =
-                        (c.practice.done / c.practice.total) * 100;
+                    <g class="dots green">
+                      <circle cx="60" cy="200" r="4" />
+                      <circle cx="196" cy="195" r="4" />
+                      <circle cx="332" cy="180" r="4" />
+                      <circle cx="468" cy="170" r="4" />
+                      <circle cx="604" cy="160" r="4" />
+                      <circle cx="740" cy="155" r="4" />
+                    </g>
+                    <!-- x labels -->
+                    <g class="x-labels">
+                      <text x="60" y="330">HK1/2022</text>
+                      <text x="196" y="330">HK2/2022</text>
+                      <text x="332" y="330">HK1/2023</text>
+                      <text x="468" y="330">HK2/2023</text>
+                      <text x="604" y="330">HK1/2024</text>
+                      <text x="740" y="330">HK2/2024</text>
+                    </g>
+                  </svg>
+                </div>
+                <div>
+                  <div class="note">
+                    <p class="point-blue"></p>
+                    <p class="gpa">GPA học kỳ</p>
+                  </div>
+                  <div class="note">
+                    <p class="point-green"></p>
+                    <p class="gpa">GPA tích lũy</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Thống kê điểm -->
+          <!-- header -->
+          <div class="tkd">
+            <div class="header-tkd">
+              <h1 class="title-tkd">Thống kê điểm</h1>
+              <div>
+                <select name="" id="select-hk">
+                  <option value="HK1 (2025-2026)">HK1 (2025-2026)</option>
+                  <option value="HK2 (2024-2025)">HK2 (2024-2025)</option>
+                  <option value="HK1 (2024-2025)">HK1 (2024-2025)</option>
+                  <option value="HK2 (2023-2024)">HK2 (2023-2024)</option>
+                  <option value="HK1 (2023-2024)">HK1 (2023-2024)</option>
+                  <option value="HK2 (2022-2023)">HK2 (2022-2023)</option>
+                  <option value="HK1 (2022-2023)">HK1 (2022-2023)</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <div class="grade-chart">
+                <div class="grade-row">
+                  <span class="label">A+</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 80%"></div>
+                  </div>
+                  <span class="count">4 môn</span>
+                </div>
 
-                    $list.append(`
-                          <div class="course-item mb-3">
-                              <div class="course-header d-flex">
-                                  <span class="faculty-badge flex-shrink-0">LHP</span>
-                              
-                                  <div class="course-info w-100">
-                                      <h6 class="course-title mb-1">${c.name}</h6>
-                                  
-                                      <div
-                                          class="course-meta d-flex flex-wrap gap-2 small text-muted "
-                                      >
-                                          <span>${c.code}</span>
-                                          <span class="credit-badge">${c.credits} TC</span>
-                                          <span>${c.teacher}</span>
-                                      </div>
-                                  </div>
-                              </div>
-                            
-                              <hr class="course-divider" />
-                            
-                              <div class="progress-section">
-                                  <div class="progress-title mb-2">Tiến độ học</div>
-                              
-                                  <!-- Lý thuyết -->
-                                  <div class="progress-row">
-                                      <span>Lý thuyết</span>
-                                      <span class="progress-value">
-                                          ${c.theory.done}/${c.theory.total} buổi
-                                      </span>
-                                  </div>
-                                  <div class="progress mb-2">
-                                      <div
-                                          class="progress-bar"
-                                          style="width:${theoryPercent}%"
-                                      ></div>
-                                  </div>
-                                
-                                  <!-- Thực hành -->
-                                  <div class="progress-row">
-                                      <span>Thực hành</span>
-                                      <span class="progress-value">
-                                          ${c.practice.done}/${c.practice.total} buổi
-                                      </span>
-                                  </div>
-                                  <div class="progress">
-                                      <div
-                                          class="progress-bar dark"
-                                          style="width:${practicePercent}%"
-                                      ></div>
-                                  </div>
-                              </div>
-                          </div>
-                        `);
-                });
-            }
+                <div class="grade-grade-row">
+                  <span class="label">A</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 40%"></div>
+                  </div>
+                  <span class="count">2 môn</span>
+                </div>
 
-            $('#semesterSelect').on('change', function () {
-                renderCourses(this.value);
-            });
+                <div class="grade-grade-row">
+                  <span class="label">B+</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
 
-            renderCourses($('#semesterSelect').val());
-        });
-    </script>
+                <div class="grade-grade-row">
+                  <span class="label">B</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
+
+                <div class="grade-grade-row">
+                  <span class="label">C+</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
+
+                <div class="grade-row">
+                  <span class="label">C</span>
+                  <div class="bar">
+                    <div class="fill" style="width: 20%"></div>
+                  </div>
+                  <span class="count">1 môn</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p
+                style="
+                  font-weight: 400;
+                  align-items: center;
+                  margin-top: -1px;
+                  margin-left: 19px;
+                  width: 550px;
+                  text-align: center;
+                  font-size: 14px;
+                  color: #333333;
+                "
+              >
+                Tổng môn đã học: 8
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script src="../js/main.js"></script>
 </html>
