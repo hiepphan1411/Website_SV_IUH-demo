@@ -1,215 +1,1180 @@
+const academicResultsData = [
+  {
+    hocKy: "HK1",
+    namHoc: "2022-2023",
+    monHoc: [
+      {
+        stt: 1,
+        maMonHoc: "420300200907",
+        tenMonHoc: "Nhập môn Tin học",
+        soTinChi: 2,
+        diem: {
+          giuaKy: 8.5,
+          thuongXuyen: [8.5, 8.0, 9.0, 10],
+          thucHanh: [],
+          cuoiKy: 8.0,
+          diemTK: 8.3,
+          diemHe10: 8.3,
+          diemHe4: 3.5,
+          diemChu: "B+",
+        },
+        xepLoai: "Khá",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 2,
+        maMonHoc: "420300323966",
+        tenMonHoc: "Toán cao cấp 1",
+        soTinChi: 3,
+        diem: {
+          giuaKy: 7.5,
+          thuongXuyen: [7.0, 8.0],
+          thucHanh: [],
+          cuoiKy: 8.5,
+          diemTK: 8.0,
+          diemHe10: 8.0,
+          diemHe4: 3.0,
+          diemChu: "B",
+        },
+        xepLoai: "Khá",
+        trangThai: "Đạt",
+      },
+    ],
+    tongKetHocKy: {
+      diemTrungBinhHocKy: 8.15,
+      diemTrungBinhTichLuyHe10: 8.15,
+      diemTrungBinhTichLuyHe4: 3.45,
+      tinChiDangKy: 15,
+      tinChiTichLuy: 15,
+      xepLoaiHocKy: "Khá",
+    },
+  },
+  {
+    hocKy: "HK2",
+    namHoc: "2022-2023",
+    monHoc: [
+      {
+        stt: 1,
+        maMonHoc: "420301032589",
+        tenMonHoc: "Kỹ năng giao tiếp chuyên ngành",
+        soTinChi: 2,
+        diem: {
+          giuaKy: 8.5,
+          thuongXuyen: [8.5, 9.0],
+          thucHanh: [8.0, 8.5],
+          cuoiKy: 8.0,
+          diemTK: 8.4,
+          diemHe10: 8.4,
+          diemHe4: 3.5,
+          diemChu: "B+",
+        },
+        xepLoai: "Khá",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 2,
+        maMonHoc: "420300324383",
+        tenMonHoc: "Giáo dục Quốc phòng và An ninh 1",
+        soTinChi: 3,
+        diem: {
+          giuaKy: 9.0,
+          thuongXuyen: [8.5],
+          thucHanh: [8.0],
+          cuoiKy: 9.0,
+          diemTK: 8.8,
+          diemHe10: 8.8,
+          diemHe4: 4.0,
+          diemChu: "A",
+        },
+        xepLoai: "Xuất sắc",
+        trangThai: "Đạt",
+      },
+    ],
+    tongKetHocKy: {
+      diemTrungBinhHocKy: 8.6,
+      diemTrungBinhTichLuyHe10: 8.38,
+      diemTrungBinhTichLuyHe4: 3.52,
+      tinChiDangKy: 16,
+      tinChiTichLuy: 31,
+      xepLoaiHocKy: "Giỏi",
+    },
+  },
+  {
+    hocKy: "HK1",
+    namHoc: "2023-2024",
+    monHoc: [
+      {
+        stt: 1,
+        maMonHoc: "420300200907",
+        tenMonHoc: "Lập trình hướng đối tượng",
+        soTinChi: 3,
+        diem: {
+          giuaKy: 9.0,
+          thuongXuyen: [9.0, 8.5],
+          thucHanh: [9.0, 8.5, 9.0],
+          cuoiKy: 9.0,
+          diemTK: 9.0,
+          diemHe10: 9.0,
+          diemHe4: 4.0,
+          diemChu: "A+",
+        },
+        xepLoai: "Xuất sắc",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 2,
+        maMonHoc: "420300200908",
+        tenMonHoc: "Cấu trúc dữ liệu và giải thuật",
+        soTinChi: 3,
+        diem: {
+          giuaKy: 8.5,
+          thuongXuyen: [8.5, 9.0],
+          thucHanh: [8.0, 8.5],
+          cuoiKy: 9.0,
+          diemTK: 8.7,
+          diemHe10: 8.7,
+          diemHe4: 4.0,
+          diemChu: "A",
+        },
+        xepLoai: "Xuất sắc",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 3,
+        maMonHoc: "420300200909",
+        tenMonHoc: "Cơ sở dữ liệu",
+        soTinChi: 3,
+        diem: {
+          giuaKy: 8.0,
+          thuongXuyen: [8.0, 8.5],
+          thucHanh: [8.5],
+          cuoiKy: 8.5,
+          diemTK: 8.3,
+          diemHe10: 8.3,
+          diemHe4: 3.5,
+          diemChu: "B+",
+        },
+        xepLoai: "Khá",
+        trangThai: "Đạt",
+      },
+    ],
+    tongKetHocKy: {
+      diemTrungBinhHocKy: 8.67,
+      diemTrungBinhTichLuyHe10: 8.48,
+      diemTrungBinhTichLuyHe4: 3.68,
+      tinChiDangKy: 18,
+      tinChiTichLuy: 49,
+      xepLoaiHocKy: "Giỏi",
+    },
+  },
+  {
+    hocKy: "HK2",
+    namHoc: "2023-2024",
+    monHoc: [
+      {
+        stt: 1,
+        maMonHoc: "420301032589",
+        tenMonHoc: "Phát triển ứng dụng Web",
+        soTinChi: 3,
+        diem: {
+          giuaKy: 8.5,
+          thuongXuyen: [8.5, 8.0],
+          thucHanh: [9.0, 8.5, 8.0],
+          cuoiKy: 8.0,
+          diemTK: 8.4,
+          diemHe10: 8.4,
+          diemHe4: 3.5,
+          diemChu: "B+",
+        },
+        xepLoai: "Khá",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 2,
+        maMonHoc: "420301032590",
+        tenMonHoc: "Mạng máy tính",
+        soTinChi: 3,
+        diem: {
+          giuaKy: 8.0,
+          thuongXuyen: [8.5, 8.0],
+          thucHanh: [8.0],
+          cuoiKy: 8.5,
+          diemTK: 8.3,
+          diemHe10: 8.3,
+          diemHe4: 3.5,
+          diemChu: "B+",
+        },
+        xepLoai: "Khá",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 3,
+        maMonHoc: "420301032591",
+        tenMonHoc: "Hệ quản trị cơ sở dữ liệu",
+        soTinChi: 2,
+        diem: {
+          giuaKy: 8.5,
+          thuongXuyen: [9.0],
+          thucHanh: [8.5, 9.0],
+          cuoiKy: 9.0,
+          diemTK: 8.8,
+          diemHe10: 8.8,
+          diemHe4: 4.0,
+          diemChu: "A",
+        },
+        xepLoai: "Xuất sắc",
+        trangThai: "Đạt",
+      },
+    ],
+    tongKetHocKy: {
+      diemTrungBinhHocKy: 8.5,
+      diemTrungBinhTichLuyHe10: 8.49,
+      diemTrungBinhTichLuyHe4: 3.61,
+      tinChiDangKy: 17,
+      tinChiTichLuy: 66,
+      xepLoaiHocKy: "Giỏi",
+    },
+  },
+  {
+    hocKy: "HK1",
+    namHoc: "2024-2025",
+    monHoc: [
+      {
+        stt: 1,
+        maMonHoc: "420301032592",
+        tenMonHoc: "Công nghệ phần mềm",
+        soTinChi: 3,
+        diem: {
+          giuaKy: 9.0,
+          thuongXuyen: [9.0, 8.5],
+          thucHanh: [9.0, 9.0],
+          cuoiKy: 9.5,
+          diemTK: 9.2,
+          diemHe10: 9.2,
+          diemHe4: 4.0,
+          diemChu: "A+",
+        },
+        xepLoai: "Xuất sắc",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 2,
+        maMonHoc: "420301032593",
+        tenMonHoc: "Trí tuệ nhân tạo",
+        soTinChi: 3,
+        diem: {
+          giuaKy: 8.5,
+          thuongXuyen: [9.0, 8.5],
+          thucHanh: [8.5, 9.0],
+          cuoiKy: 9.0,
+          diemTK: 8.8,
+          diemHe10: 8.8,
+          diemHe4: 4.0,
+          diemChu: "A",
+        },
+        xepLoai: "Xuất sắc",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 3,
+        maMonHoc: "420301032594",
+        tenMonHoc: "Kiến trúc máy tính",
+        soTinChi: 2,
+        diem: {
+          giuaKy: 8.5,
+          thuongXuyen: [8.5, 8.0],
+          thucHanh: [8.5],
+          cuoiKy: 9.0,
+          diemTK: 8.6,
+          diemHe10: 8.6,
+          diemHe4: 3.5,
+          diemChu: "B+",
+        },
+        xepLoai: "Khá",
+        trangThai: "Đạt",
+      },
+    ],
+    tongKetHocKy: {
+      diemTrungBinhHocKy: 8.9,
+      diemTrungBinhTichLuyHe10: 8.56,
+      diemTrungBinhTichLuyHe4: 3.75,
+      tinChiDangKy: 18,
+      tinChiTichLuy: 84,
+      xepLoaiHocKy: "Giỏi",
+    },
+  },
+  {
+    hocKy: "HK2",
+    namHoc: "2024-2025",
+    monHoc: [
+      {
+        stt: 1,
+        maMonHoc: "420300200907",
+        tenMonHoc: "Nhập môn Tin học",
+        soTinChi: 2,
+        diem: {
+          giuaKy: 8.5,
+          thuongXuyen: [8.5, 8.5],
+          thucHanh: [],
+          cuoiKy: 9.0,
+          diemTK: 8.8,
+          diemHe10: 9.01,
+          diemHe4: 4.0,
+          diemChu: "A+",
+        },
+        xepLoai: "Xuất sắc",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 2,
+        maMonHoc: "420301032589",
+        tenMonHoc: "Kỹ năng giao tiếp chuyên ngành",
+        soTinChi: 2,
+        diem: {
+          giuaKy: 8.5,
+          thuongXuyen: [8.5, 8.5],
+          thucHanh: [8.0, 8.0, 7.5],
+          cuoiKy: 8.0,
+          diemTK: 8.1,
+          diemHe10: 7.9,
+          diemHe4: 3.0,
+          diemChu: "B",
+        },
+        xepLoai: "Khá",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 3,
+        maMonHoc: "420300324383",
+        tenMonHoc: "Giáo dục Quốc phòng và An ninh 1",
+        soTinChi: 2,
+        diem: {
+          giuaKy: 8.5,
+          thuongXuyen: [8.5, 8.5],
+          thucHanh: [8.0],
+          cuoiKy: 9.0,
+          diemTK: 8.7,
+          diemHe10: 9.01,
+          diemHe4: 4.0,
+          diemChu: "A+",
+        },
+        xepLoai: "Xuất sắc",
+        trangThai: "Đạt",
+      },
+      {
+        stt: 4,
+        maMonHoc: "420300323966",
+        tenMonHoc: "Toán cao cấp 1",
+        soTinChi: 2,
+        diem: {
+          giuaKy: 9.0,
+          thuongXuyen: [10.0, 9.0],
+          thucHanh: [],
+          cuoiKy: 9.0,
+          diemTK: 9.3,
+          diemHe10: 9.1,
+          diemHe4: 4.0,
+          diemChu: "A+",
+        },
+        xepLoai: "Xuất sắc",
+        trangThai: "Đạt",
+      },
+    ],
+    tongKetHocKy: {
+      diemTrungBinhHocKy: 8.7,
+      diemTrungBinhTichLuyHe10: 8.6,
+      diemTrungBinhTichLuyHe4: 3.62,
+      tinChiDangKy: 12,
+      tinChiTichLuy: 96,
+      xepLoaiHocKy: "Giỏi",
+    },
+  },
+];
+
+// Thông tin tổng quan tích lũy
+const overallInfo = {
+  gpaTichLuy: 3.62,
+  xepLoai: "Giỏi",
+  tongTinChiHoanThanh: 142,
+  tongTinChiYeuCau: 162,
+  diemRenLuyen: 85,
+  diemRenLuyenXepLoai: "Khá",
+  diemTrungBinhHe10: 8.4,
+  xepLoaiTichLuyHe10: "Giỏi",
+  xepLoaiTichLuyHe10Sub: "Xuất sắc",
+};
+
+let gradeDistChart = null;
+let gpaTrendChart = null;
+let currentView = "current";
+let isInitialLoad = true;
+let currentFilter = "all";
+
 document.addEventListener("DOMContentLoaded", function () {
-  const gradeCtx = document.getElementById("gradeDistributionChart");
-  if (gradeCtx) {
-    new Chart(gradeCtx, {
-      type: "bar",
-      data: {
-        labels: ["A+", "A", "B+", "B", "C+", "C", "D"],
-        datasets: [
-          {
-            label: "Số môn",
-            data: [4, 2, 1, 1, 0, 0, 0],
-            backgroundColor: [
-              "#0d904f",
-              "#1a73e8",
-              "#0d904f",
-              "#1a73e8",
-              "#e37400",
-              "#ff9800",
-              "#f44336",
-            ],
-            borderRadius: 8,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
-          tooltip: {
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            padding: 12,
-            titleFont: {
-              size: 14,
-              weight: "bold",
-            },
-            bodyFont: {
-              size: 13,
-            },
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              stepSize: 1,
-            },
-            grid: {
-              color: "rgba(0, 0, 0, 0.05)",
-            },
-          },
-          x: {
-            grid: {
-              display: false,
-            },
-          },
-        },
-      },
-    });
-  }
+  renderOverallSummary();
+  renderSemesterTabs();
+  renderCurrentSemester();
+  initCharts();
+  isInitialLoad = false;
+});
 
-  // GPA Trend Chart
-  const gpaCtx = document.getElementById("gpaTrendChart");
-  if (gpaCtx) {
-    new Chart(gpaCtx, {
-      type: "line",
-      data: {
-        labels: ["HK1/22", "HK2/22", "HK1/23", "HK2/23", "HK1/24", "HK2/24"],
-        datasets: [
-          {
-            label: "GPA Học kỳ",
-            data: [3.45, 3.52, 3.68, 3.61, 3.75, 3.71],
-            borderColor: "#153898",
-            backgroundColor: "rgba(21, 56, 152, 0.1)",
-            tension: 0.4,
-            fill: true,
-            pointRadius: 6,
-            pointHoverRadius: 8,
-            pointBackgroundColor: "#153898",
-            pointBorderColor: "#fff",
-            pointBorderWidth: 2,
-            pointHoverBackgroundColor: "#153898",
-            pointHoverBorderColor: "#fff",
-            pointHoverBorderWidth: 3,
-          },
-          {
-            label: "GPA Tích lũy",
-            data: [3.45, 3.48, 3.54, 3.56, 3.6, 3.62],
-            borderColor: "#4caf50",
-            backgroundColor: "rgba(76, 175, 80, 0.1)",
-            tension: 0.4,
-            fill: true,
-            pointRadius: 6,
-            pointHoverRadius: 8,
-            pointBackgroundColor: "#4caf50",
-            pointBorderColor: "#fff",
-            pointBorderWidth: 2,
-            pointHoverBackgroundColor: "#4caf50",
-            pointHoverBorderColor: "#fff",
-            pointHoverBorderWidth: 3,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: true,
-            position: "top",
-            labels: {
-              padding: 15,
-              usePointStyle: true,
-              font: {
-                size: 13,
-                weight: "500",
-              },
-            },
-          },
-          tooltip: {
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            padding: 12,
-            titleFont: {
-              size: 14,
-              weight: "bold",
-            },
-            bodyFont: {
-              size: 13,
-            },
-            callbacks: {
-              label: function (context) {
-                return (
-                  context.dataset.label + ": " + context.parsed.y.toFixed(2)
-                );
-              },
-              afterLabel: function (context) {
-                // Thêm xếp loại
-                const value = context.parsed.y;
-                if (value >= 3.6) return "Xuất sắc";
-                if (value >= 3.2) return "Giỏi";
-                if (value >= 2.5) return "Khá";
-                if (value >= 2.0) return "Trung bình";
-                return "Yếu";
-              },
-            },
-          },
-        },
-        scales: {
-          y: {
-            min: 3.0,
-            max: 4.0,
-            ticks: {
-              stepSize: 0.2,
-              callback: function (value) {
-                return value.toFixed(1);
-              },
-              font: {
-                size: 12,
-              },
-            },
-            grid: {
-              color: "rgba(0, 0, 0, 0.05)",
-            },
-          },
-          x: {
-            grid: {
-              display: false,
-            },
-            ticks: {
-              font: {
-                size: 12,
-              },
-            },
-          },
-        },
-        interaction: {
-          mode: "index",
-          intersect: false,
-        },
-      },
-    });
-  }
+// Render phần tổng quan
+function renderOverallSummary() {
+  const latestSemester = academicResultsData[academicResultsData.length - 1];
 
-  const semesterTabs = document.querySelectorAll(".semester-tab");
-  semesterTabs.forEach((tab) => {
+  document.querySelector(".summary-card.primary .card-value").innerHTML =
+    `${overallInfo.gpaTichLuy}<span class="card-scale">/4.0</span>`;
+  document.querySelector(".summary-card.primary .card-badge span").textContent =
+    `Xếp loại: ${overallInfo.xepLoai}`;
+
+  document
+    .querySelectorAll(".summary-card")[1]
+    .querySelector(".card-value").innerHTML =
+    `${overallInfo.tongTinChiHoanThanh}<span class="card-scale">/${overallInfo.tongTinChiYeuCau}</span>`;
+
+  document
+    .querySelectorAll(".summary-card")[2]
+    .querySelector(".card-value").innerHTML =
+    `${overallInfo.diemRenLuyen}<span class="card-scale">/100</span>`;
+  document
+    .querySelectorAll(".summary-card")[2]
+    .querySelector(".card-sub-label").textContent =
+    overallInfo.diemRenLuyenXepLoai;
+
+  document
+    .querySelectorAll(".summary-card")[3]
+    .querySelector(".card-value").textContent = overallInfo.diemTrungBinhHe10;
+
+  document
+    .querySelectorAll(".summary-card")[4]
+    .querySelector(".card-value").textContent = overallInfo.xepLoaiTichLuyHe10;
+  document
+    .querySelectorAll(".summary-card")[4]
+    .querySelector(".card-sub-label").textContent =
+    overallInfo.xepLoaiTichLuyHe10Sub;
+}
+
+// Render semester tabs
+function renderSemesterTabs() {
+  const tabsContainer = document.querySelector(".semester-tabs");
+  const recentSemesters = academicResultsData.slice(-3);
+  const latestSemester = academicResultsData[academicResultsData.length - 1];
+
+  let html = `
+    <button class="btn-view-all semester-tab" data-view="all">
+      <i class="fas fa-list"></i>
+      <span>Xem tất cả</span>
+    </button>
+  `;
+
+  recentSemesters.forEach((semester, index) => {
+    const isLatest = index === recentSemesters.length - 1;
+    const semesterIndex = academicResultsData.indexOf(semester);
+    html += `
+      <button class="semester-tab ${isLatest ? "active" : ""}" data-semester="${semesterIndex}">
+        <div class="tab-title">${semester.hocKy} (${semester.namHoc})</div>
+        <div class="tab-subtitle">${isLatest ? "Học kỳ hiện tại" : "GPA: " + semester.tongKetHocKy.diemTrungBinhTichLuyHe4}</div>
+      </button>
+    `;
+  });
+
+  tabsContainer.innerHTML = html;
+
+  // Add event listeners
+  document.querySelectorAll(".semester-tab").forEach((tab) => {
     tab.addEventListener("click", function () {
-      semesterTabs.forEach((t) => t.classList.remove("active"));
+      document
+        .querySelectorAll(".semester-tab")
+        .forEach((t) => t.classList.remove("active"));
       this.classList.add("active");
-      const semester = this.dataset.semester;
-      console.log("Switched to:", semester);
-      //TODO: Chuyển tab
+
+      if (this.dataset.view === "all") {
+        currentView = "all";
+        renderAllSemesters();
+      } else {
+        currentView = parseInt(this.dataset.semester);
+        renderSemester(currentView);
+      }
+    });
+  });
+}
+
+// Reset cấu trúc bảng về ban đầu
+function resetTableStructure() {
+  const tableSection = document.querySelector(".table-section");
+  tableSection.innerHTML = `
+    <div class="table-header">
+      <h3>Bảng điểm chi tiết</h3>
+      <div class="table-actions">
+        <button class="action-btn active">
+          <i class="fas fa-check-circle"></i>
+          Tất cả
+        </button>
+        <button class="action-btn">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          Cần cải thiện
+        </button>
+      </div>
+    </div>
+    <div class="table-container">
+    </div>
+  `;
+}
+
+// Render học kỳ hiện tại
+function renderCurrentSemester() {
+  const latestIndex = academicResultsData.length - 1;
+  renderSemester(latestIndex);
+}
+
+// Render một học kỳ
+function renderSemester(index) {
+  const semester = academicResultsData[index];
+  if (document.querySelectorAll(".semester-table-wrapper").length > 0) {
+    resetTableStructure();
+  }
+
+  const statsCards = document.querySelectorAll(".stat-card");
+  statsCards[0].querySelector(".stat-number").textContent =
+    semester.monHoc.length;
+  statsCards[1].querySelector(".stat-number").textContent =
+    semester.tongKetHocKy.tinChiDangKy;
+  statsCards[2].querySelector(".stat-number").textContent =
+    semester.tongKetHocKy.diemTrungBinhTichLuyHe4;
+  statsCards[3].querySelector(".stat-number").textContent =
+    semester.tongKetHocKy.diemTrungBinhHocKy;
+
+  document.querySelector(".table-header h3").textContent =
+    `Bảng điểm chi tiết - ${semester.hocKy} (${semester.namHoc})`;
+
+  renderTable(semester);
+
+  scrollToTable();
+}
+
+function renderAllSemesters() {
+  const statsCards = document.querySelectorAll(".stat-card");
+  const totalMonHoc = academicResultsData.reduce(
+    (sum, s) => sum + s.monHoc.length,
+    0,
+  );
+  statsCards[0].querySelector(".stat-number").textContent = totalMonHoc;
+  statsCards[1].querySelector(".stat-number").textContent =
+    overallInfo.tongTinChiHoanThanh;
+  statsCards[2].querySelector(".stat-number").textContent =
+    overallInfo.gpaTichLuy;
+  statsCards[3].querySelector(".stat-number").textContent =
+    overallInfo.diemTrungBinhHe10;
+
+  // Replace table section with multiple tables
+  const tableSection = document.querySelector(".table-section");
+  let html = `
+    <div class="table-header" style="margin-bottom: 24px;">
+      <h3>Bảng điểm chi tiết - Tất cả học kỳ</h3>
+      <div class="table-actions">
+        <button class="action-btn active">
+          <i class="fas fa-check-circle"></i>
+          Tất cả
+        </button>
+        <button class="action-btn">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          Cần cải thiện
+        </button>
+      </div>
+    </div>
+  `;
+
+  academicResultsData.forEach((semester, semesterIndex) => {
+    const { maxThuongXuyen, maxThucHanh } = getMaxColumns(semester);
+
+    // Kiểm tra xem có môn nào hiển thị trong học kỳ này không
+    let hasVisibleSubjects = false;
+    if (currentFilter === "all") {
+      hasVisibleSubjects = true;
+    } else {
+      hasVisibleSubjects = semester.monHoc.some((mon) => mon.diem.diemTK < 7);
+    }
+
+    // Chỉ render nếu có môn hiển thị
+    if (hasVisibleSubjects) {
+      html += `
+        <div class="semester-table-wrapper" style="margin-bottom: 32px;">
+          <div style="background-color: #56A2E8; padding: 16px 24px;">
+            <h4 style="color: white; margin: 0; font-size: 18px; font-weight: 600;">
+              ${semester.hocKy} (${semester.namHoc})
+            </h4>
+          </div>
+          <div class="table-container" style="border-radius: 0 0 12px 12px; margin-top: 0;">
+            <table class="results-table">
+              ${renderTableHeader(maxThuongXuyen, maxThucHanh)}
+              <tbody>
+      `;
+
+      let visibleCount = 0;
+      semester.monHoc.forEach((mon, index) => {
+        const rowHtml = renderTableRow(
+          mon,
+          index + 1,
+          maxThuongXuyen,
+          maxThucHanh,
+        );
+        if (rowHtml) {
+          visibleCount++;
+          html += rowHtml;
+        }
+      });
+
+      const totalCols = 9 + maxThuongXuyen + maxThucHanh;
+      html += renderSummaryRow(semester, totalCols);
+      html += `
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+  });
+
+  tableSection.innerHTML = html;
+
+  // Scroll to table section
+  scrollToTable();
+}
+
+// Tính số cột thường xuyên và thực hành tối đa
+function getMaxColumns(data) {
+  let maxThuongXuyen = 0;
+  let maxThucHanh = 0;
+
+  const dataArray = Array.isArray(data) ? data : [data];
+
+  dataArray.forEach((semester) => {
+    semester.monHoc.forEach((mon) => {
+      maxThuongXuyen = Math.max(maxThuongXuyen, mon.diem.thuongXuyen.length);
+      maxThucHanh = Math.max(maxThucHanh, mon.diem.thucHanh.length);
     });
   });
 
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      filterBtns.forEach((b) => b.classList.remove("active"));
-      this.classList.add("active");
-    });
+  return { maxThuongXuyen, maxThucHanh };
+}
+
+// Render table header động
+function renderTableHeader(maxThuongXuyen, maxThucHanh) {
+  let thuongXuyenCols = "";
+  for (let i = 1; i <= maxThuongXuyen; i++) {
+    thuongXuyenCols += `<th>${i}</th>`;
+  }
+
+  let thucHanhCols = "";
+  for (let i = 1; i <= maxThucHanh; i++) {
+    thucHanhCols += `<th>${i}</th>`;
+  }
+
+  const totalCols = 9 + maxThuongXuyen + maxThucHanh;
+
+  return `
+    <thead>
+      <tr>
+        <th rowspan="2" style="width: 30px; min-width: 30px; max-width: 30px;">STT</th>
+        <th rowspan="2" style="width: 100px; min-width: 100px; max-width: 100px;">Mã môn học</th>
+        <th rowspan="2" style="width: 250px; min-width: 250px;">Tên môn học</th>
+        <th rowspan="2" style="width: 40px; min-width: 40px; max-width: 40px;">Số TC</th>
+        <th rowspan="2" style="width: 55px; min-width: 55px; max-width: 55px;">Giữa kỳ</th>
+        ${maxThuongXuyen > 0 ? `<th colspan="${maxThuongXuyen}" style="text-align: center; width: 100px; min-width: 70px;">Thường xuyên</th>` : "Thường xuyên"}
+        ${maxThucHanh > 0 ? `<th colspan="${maxThucHanh}" style="text-align: center; width: 100px; min-width: 70px;">Thực hành</th>` : ""}
+        <th rowspan="2" style="width: 55px; min-width: 55px; max-width: 55px;">Cuối kỳ</th>
+        <th rowspan="2" style="width: 85px; min-width: 85px; max-width: 85px;">Điểm tổng kết</th>
+        <th rowspan="2" style="width: 85px; min-width: 85px; max-width: 85px;">Thang điểm 4</th>
+        <th rowspan="2" style="width: 50px; min-width: 50px; max-width: 50px;">Điểm chữ</th>
+        <th rowspan="2" style="width: 80px; min-width: 80px; max-width: 80px;">Xếp loại</th>
+        <th rowspan="2" style="width: 70px; min-width: 70px; max-width: 70px;">Đạt</th>
+      </tr>
+      <tr>
+        ${thuongXuyenCols}
+        ${thucHanhCols}
+      </tr>
+    </thead>
+  `;
+}
+
+// Render bảng cho một học kỳ
+function renderTable(semester) {
+  const tableContainer = document.querySelector(".table-container");
+  const { maxThuongXuyen, maxThucHanh } = getMaxColumns(semester);
+
+  let html = `
+    <div style="background-color: #56A2E8; padding: 16px 24px;">
+      <h4 style="color: white; margin: 0; font-size: 18px; font-weight: 600;">
+        ${semester.hocKy} (${semester.namHoc})
+      </h4>
+    </div>
+    <table class="results-table">
+      ${renderTableHeader(maxThuongXuyen, maxThucHanh)}
+      <tbody>
+  `;
+
+  let visibleCount = 0;
+  semester.monHoc.forEach((mon, index) => {
+    const rowHtml = renderTableRow(mon, index + 1, maxThuongXuyen, maxThucHanh);
+    if (rowHtml) {
+      visibleCount++;
+      html += rowHtml;
+    }
   });
+
+  // Hiển thị thông báo nếu không có môn nào
+  if (visibleCount === 0) {
+    html += `
+      <tr>
+        <td colspan="${9 + maxThuongXuyen + maxThucHanh}" style="text-align: center; padding: 40px; color: #666;">
+          <i class="fas fa-check-circle" style="font-size: 48px; color: #4caf50; margin-bottom: 16px;"></i>
+          <p style="font-size: 16px; margin: 0;">Không có môn nào cần cải thiện</p>
+        </td>
+      </tr>
+    `;
+  }
+
+  const totalCols = 9 + maxThuongXuyen + maxThucHanh;
+  html += renderSummaryRow(semester, totalCols);
+  html += `
+      </tbody>
+    </table>
+  `;
+
+  tableContainer.innerHTML = html;
+}
+
+// Render một hàng trong bảng
+function renderTableRow(mon, stt, maxThuongXuyen = 3, maxThucHanh = 3) {
+  if (currentFilter === "needImprovement" && mon.diem.diemTK >= 7) {
+    return "";
+  }
+
+  const getGradeBadgeClass = (diemChu) => {
+    if (diemChu === "A+" || diemChu === "A") return "excellent";
+    if (diemChu === "B+" || diemChu === "B") return "good";
+    if (diemChu === "C+" || diemChu === "C") return "average";
+    return "poor";
+  };
+
+  let thuongXuyenCells = "";
+  for (let i = 0; i < maxThuongXuyen; i++) {
+    thuongXuyenCells += `<td class="text-center">${mon.diem.thuongXuyen[i] || "-"}</td>`;
+  }
+
+  let thucHanhCells = "";
+  for (let i = 0; i < maxThucHanh; i++) {
+    thucHanhCells += `<td class="text-center">${mon.diem.thucHanh[i] || "-"}</td>`;
+  }
+
+  return `
+    <tr>
+      <td class="text-center">${stt}</td>
+      <td class="text-center">${mon.maMonHoc}</td>
+      <td class="subject-name">${mon.tenMonHoc}</td>
+      <td class="text-center">${mon.soTinChi}</td>
+      <td class="text-center">${mon.diem.giuaKy || "-"}</td>
+      ${thuongXuyenCells}
+      ${thucHanhCells}
+      <td class="text-center">${mon.diem.cuoiKy || "-"}</td>
+      <td class="text-center">${mon.diem.diemTK.toFixed(2)}</td>
+      <td class="text-center">${mon.diem.diemHe4.toFixed(2)}</td>
+      <td class="text-center">
+        <span class="grade-badge ${getGradeBadgeClass(mon.diem.diemChu)}">${mon.diem.diemChu}</span>
+      </td>
+      <td class="text-center">
+        <span class="grade-badge ${getGradeBadgeClass(mon.diem.diemChu)}">${mon.xepLoai}</span>
+      </td>
+      <td class="text-center">
+        <span class="status-badge ${mon.trangThai === "Đạt" ? "passed" : "failed"}">${mon.trangThai}</span>
+      </td>
+    </tr>
+  `;
+}
+
+// Render hàng tổng kết
+function renderSummaryRow(semester, totalCols = 17) {
+  return `
+    <tr class="summary-row">
+      <td colspan="${totalCols}">
+        <div class="semester-summary">
+          <div class="semester-summary-title">
+            Tổng kết học kỳ ${semester.hocKy} (${semester.namHoc})
+          </div>
+          <div class="summary-stats">
+            <div class="summary-stat">
+              <div class="summary-stat-icon blue">
+                <i class="fas fa-award"></i>
+              </div>
+              <div class="summary-stat-content">
+                <div class="summary-stat-label">ĐIỂM TB HK</div>
+                <div class="summary-stat-value">${semester.tongKetHocKy.diemTrungBinhHocKy}</div>
+              </div>
+            </div>
+            <div class="summary-stat">
+              <div class="summary-stat-icon blue">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <div class="summary-stat-content">
+                <div class="summary-stat-label">ĐTB TÍCH LŨY (HỆ 10)</div>
+                <div class="summary-stat-value">${semester.tongKetHocKy.diemTrungBinhTichLuyHe10}</div>
+              </div>
+            </div>
+            <div class="summary-stat">
+              <div class="summary-stat-icon blue">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="summary-stat-content">
+                <div class="summary-stat-label">ĐTB TÍCH LŨY (HỆ 4)</div>
+                <div class="summary-stat-value">${semester.tongKetHocKy.diemTrungBinhTichLuyHe4}</div>
+              </div>
+            </div>
+            <div class="summary-stat">
+              <div class="summary-stat-icon blue">
+                <i class="fas fa-book"></i>
+              </div>
+              <div class="summary-stat-content">
+                <div class="summary-stat-label">TC ĐÃ ĐĂNG KÝ</div>
+                <div class="summary-stat-value">${semester.tongKetHocKy.tinChiDangKy}</div>
+              </div>
+            </div>
+            <div class="summary-stat">
+              <div class="summary-stat-icon blue">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="summary-stat-content">
+                <div class="summary-stat-label">TC ĐÃ TÍCH LŨY</div>
+                <div class="summary-stat-value">${semester.tongKetHocKy.tinChiTichLuy}</div>
+              </div>
+            </div>
+            <div class="summary-stat">
+              <div class="summary-stat-icon blue">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="summary-stat-content">
+                <div class="summary-stat-label">XẾP LOẠI HK</div>
+                <div class="summary-stat-value">${semester.tongKetHocKy.xepLoaiHocKy}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  `;
+}
+
+// Scroll to table section
+function scrollToTable() {
+  if (isInitialLoad) return;
 
   setTimeout(() => {
-    const progressBars = document.querySelectorAll(".stat-progress-bar");
-    progressBars.forEach((bar) => {
-      const width = bar.style.width;
-      bar.style.width = "0%";
-      setTimeout(() => {
-        bar.style.width = width;
-      }, 100);
+    const tableSection = document.querySelector(".table-section");
+    if (tableSection) {
+      tableSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, 500);
+}
+
+function initCharts() {
+  createGradeDistChartAll();
+  createGpaTrendChart();
+}
+
+// Tạo biểu đồ phân bố điểm cho tất cả học kỳ
+function createGradeDistChartAll() {
+  const gradeCtx = document.getElementById("gradeDistChart");
+  if (!gradeCtx) return;
+
+  const gradeCount = {
+    "A+": 0,
+    A: 0,
+    "B+": 0,
+    B: 0,
+    "C+": 0,
+    C: 0,
+    D: 0,
+    F: 0,
+  };
+
+  academicResultsData.forEach((semester) => {
+    semester.monHoc.forEach((mon) => {
+      gradeCount[mon.diem.diemChu]++;
     });
-  }, 300);
+  });
+
+  const labels = Object.keys(gradeCount).filter((key) => gradeCount[key] > 0);
+  const data = labels.map((label) => gradeCount[label]);
+  const colors = labels.map(getGradeColor);
+
+  if (gradeDistChart) {
+    gradeDistChart.destroy();
+  }
+
+  gradeDistChart = new Chart(gradeCtx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Số môn",
+          data: data,
+          backgroundColor: colors,
+          borderRadius: 8,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+          padding: 12,
+          titleFont: {
+            size: 14,
+            weight: "bold",
+          },
+          bodyFont: {
+            size: 13,
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1,
+            font: {
+              size: window.innerWidth < 768 ? 10 : 12,
+            },
+          },
+          grid: {
+            color: "rgba(0, 0, 0, 0.05)",
+          },
+        },
+        x: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            font: {
+              size: window.innerWidth < 768 ? 10 : 12,
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
+// Đếm số điểm chữ
+function countGrades(semester) {
+  const gradeCount = {
+    "A+": 0,
+    A: 0,
+    "B+": 0,
+    B: 0,
+    "C+": 0,
+    C: 0,
+    D: 0,
+    F: 0,
+  };
+
+  semester.monHoc.forEach((mon) => {
+    gradeCount[mon.diem.diemChu]++;
+  });
+
+  return gradeCount;
+}
+
+// Lấy màu theo điểm chữ
+function getGradeColor(grade) {
+  const colorMap = {
+    "A+": "#28a745",
+    A: "#5cb85c",
+    "B+": "#5bc0de",
+    B: "#0275d8",
+    "C+": "#f0ad4e",
+    C: "#ff9800",
+    D: "#d9534f",
+    F: "#292b2c",
+  };
+  return colorMap[grade] || "#ccc";
+}
+
+// Tạo biểu đồ xu hướng GPA
+function createGpaTrendChart() {
+  const gpaCtx = document.getElementById("gpaTrendChart");
+  if (!gpaCtx) return;
+
+  const labels = academicResultsData.map(
+    (s) => `${s.hocKy}/${s.namHoc.split("-")[0].slice(-2)}`,
+  );
+  const gpaHocKy = academicResultsData.map(
+    (s) => s.tongKetHocKy.diemTrungBinhTichLuyHe4,
+  );
+  const gpaTichLuy = academicResultsData.map(
+    (s) => s.tongKetHocKy.diemTrungBinhTichLuyHe4,
+  );
+
+  if (gpaTrendChart) {
+    gpaTrendChart.destroy();
+  }
+
+  gpaTrendChart = new Chart(gpaCtx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "GPA Học kỳ",
+          data: gpaHocKy,
+          borderColor: "#153898",
+          backgroundColor: "rgba(21, 56, 152, 0.1)",
+          tension: 0.4,
+          fill: true,
+          pointRadius: window.innerWidth < 768 ? 4 : 6,
+          pointHoverRadius: window.innerWidth < 768 ? 6 : 8,
+          pointBackgroundColor: "#153898",
+          pointBorderColor: "#fff",
+          pointBorderWidth: 2,
+        },
+        {
+          label: "GPA Tích lũy",
+          data: gpaTichLuy,
+          borderColor: "#4caf50",
+          backgroundColor: "rgba(76, 175, 80, 0.1)",
+          tension: 0.4,
+          fill: true,
+          pointRadius: window.innerWidth < 768 ? 4 : 6,
+          pointHoverRadius: window.innerWidth < 768 ? 6 : 8,
+          pointBackgroundColor: "#4caf50",
+          pointBorderColor: "#fff",
+          pointBorderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: "top",
+          labels: {
+            padding: window.innerWidth < 768 ? 10 : 15,
+            usePointStyle: true,
+            font: {
+              size: window.innerWidth < 768 ? 11 : 13,
+              weight: "500",
+            },
+          },
+        },
+        tooltip: {
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+          padding: 12,
+          titleFont: {
+            size: window.innerWidth < 768 ? 12 : 14,
+            weight: "bold",
+          },
+          bodyFont: {
+            size: window.innerWidth < 768 ? 11 : 13,
+          },
+          callbacks: {
+            title: function (context) {
+              const index = context[0].dataIndex;
+              const semester = academicResultsData[index];
+              return `${semester.hocKy} (${semester.namHoc})`;
+            },
+            label: function (context) {
+              return context.dataset.label + ": " + context.parsed.y.toFixed(2);
+            },
+            afterLabel: function (context) {
+              const value = context.parsed.y;
+              if (value >= 3.6) return "Xuất sắc";
+              if (value >= 3.2) return "Giỏi";
+              if (value >= 2.5) return "Khá";
+              if (value >= 2.0) return "Trung bình";
+              return "Yếu";
+            },
+          },
+        },
+      },
+      scales: {
+        y: {
+          min: 3.0,
+          max: 4.0,
+          ticks: {
+            stepSize: 0.2,
+            callback: function (value) {
+              return value.toFixed(1);
+            },
+            font: {
+              size: window.innerWidth < 768 ? 10 : 12,
+            },
+          },
+          grid: {
+            color: "rgba(0, 0, 0, 0.05)",
+          },
+        },
+        x: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            font: {
+              size: window.innerWidth < 768 ? 10 : 12,
+            },
+          },
+        },
+      },
+      interaction: {
+        mode: "index",
+        intersect: false,
+      },
+    },
+  });
+}
+
+// Xử lý lọc bảng điểm
+document.addEventListener("click", function (e) {
+  const filterBtn = e.target.closest(".action-btn");
+  if (filterBtn) {
+    document
+      .querySelectorAll(".action-btn")
+      .forEach((b) => b.classList.remove("active"));
+    filterBtn.classList.add("active");
+
+    const btnText = filterBtn.textContent.trim();
+    if (btnText.includes("Cần cải thiện")) {
+      currentFilter = "needImprovement";
+    } else {
+      currentFilter = "all";
+    }
+
+    if (currentView === "all") {
+      renderAllSemesters();
+    } else if (typeof currentView === "number") {
+      renderSemester(currentView);
+    }
+  }
+});
+
+// Xử lý responsive cho biểu đồ
+let resizeTimer;
+window.addEventListener("resize", function () {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function () {
+    if (gradeDistChart) {
+      gradeDistChart.destroy();
+      createGradeDistChartAll();
+    }
+    if (gpaTrendChart) {
+      gpaTrendChart.destroy();
+      createGpaTrendChart();
+    }
+  }, 250);
 });

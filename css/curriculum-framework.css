@@ -28,6 +28,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 20px 0;
 }
 
 .container-lg {
@@ -782,6 +783,12 @@ body {
   transition: transform 0.3s;
 }
 
+.section-summary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .section-icon.rotated {
   transform: rotate(-180deg);
 }
@@ -817,7 +824,11 @@ body {
   width: max-content;
 }
 
-.table thead tr th:first-child {
+.column-center {
+  text-align: center;
+}
+
+.table thead tr th:last-child {
   border-top-left-radius: 8px;
 }
 
@@ -879,6 +890,10 @@ body {
 }
 
 .table tbody tr td {
+  background-color: transparent;
+}
+
+.table thead tr th {
   background-color: transparent;
 }
 
