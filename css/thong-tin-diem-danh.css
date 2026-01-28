@@ -1,0 +1,21 @@
+.attendance-total-card {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.authorized-leave {
+  background-color: #fff3d7;
+  color: #ff9800;
+}
+
+.unauthorized-leave {
+  background-color: #fef2f2;
+  color: #e61515;
+}
+
+#semesterButtonGroup {
+  display: flex;
+  gap: 8px;
+}
