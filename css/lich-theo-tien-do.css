@@ -363,6 +363,13 @@ body {
   background-color: #fafafa;
 }
 
+.schedule-table tbody td.course-cell {
+  position: sticky;
+  left: 0;
+  z-index: 20;
+  background-color: #fafafa;
+}
+
 .course-code {
   color: #1890ff;
   font-weight: 600;
