@@ -201,34 +201,34 @@ function createTableRow(course, viewMode = "knowledgeBlock") {
     //HK
     return `
       <tr${lockedClass}${bgStyle}${dataTooltip}>
-        <td>${course.stt}</td>
-        <td>${course.knowledgeBlock}</td>
+        <td class="column-center">${course.stt}</td>
+        <td class="column-center">${course.knowledgeBlock}</td>
         <td>${course.courseName}</td>
-        <td>${course.courseCode}</td>
-        <td>${course.prerequisite}</td>
-        <td>${course.equivalent}</td>
-        <td>${course.replacement}</td>
-        <td>${course.credits}</td>
-        <td>${course.theoryHours}</td>
-        <td>${course.practiceHours}</td>
-        <td>${course.completed ? '<span class="checkmark">✓</span>' : '<span class="dash">-</span>'}</td>
+        <td class="column-center">${course.courseCode}</td>
+        <td class="column-center">${course.prerequisite}</td>
+        <td class="column-center">${course.equivalent}</td>
+        <td class="column-center">${course.replacement}</td>
+        <td class="column-center">${course.credits}</td>
+        <td class="column-center">${course.theoryHours}</td>
+        <td class="column-center">${course.practiceHours}</td>
+        <td class="column-center">${course.completed ? '<span class="checkmark">✓</span>' : '<span class="dash">-</span>'}</td>
       </tr>
     `;
   } else {
     //Khối kiến thức
     return `
       <tr${lockedClass}${bgStyle}${dataTooltip}>
-        <td>${course.stt}</td>
-        <td>${course.semester}</td>
+        <td class="column-center">${course.stt}</td>
+        <td class="column-center">${course.semester}</td>
         <td>${course.courseName}</td>
-        <td>${course.courseCode}</td>
-        <td>${course.prerequisite}</td>
-        <td>${course.equivalent}</td>
-        <td>${course.replacement}</td>
-        <td>${course.credits}</td>
-        <td>${course.theoryHours}</td>
-        <td>${course.practiceHours}</td>
-        <td>${course.completed ? '<span class="checkmark">✓</span>' : '<span class="dash">-</span>'}</td>
+        <td class="column-center">${course.courseCode}</td>
+        <td class="column-center">${course.prerequisite}</td>
+        <td class="column-center">${course.equivalent}</td>
+        <td class="column-center">${course.replacement}</td>
+        <td class="column-center">${course.credits}</td>
+        <td class="column-center">${course.theoryHours}</td>
+        <td class="column-center">${course.practiceHours}</td>
+        <td class="column-center">${course.completed ? '<span class="checkmark">✓</span>' : '<span class="dash">-</span>'}</td>
       </tr>
     `;
   }
@@ -285,17 +285,17 @@ function renderKnowledgeBlockView() {
           <table class="table mandatory-courses-table">
             <thead>
               <tr>
-                <th>STT</th>
-                <th>HỌC KỲ</th>
+                <th class="column-center">STT</th>
+                <th class="column-center">HỌC KỲ</th>
                 <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                <th>MÃ HP</th>
-                <th>HỌC PHẦN</th>
-                <th>HP TƯƠNG ĐƯƠNG</th>
-                <th>HP THAY THẾ</th>
-                <th>SỐ TC</th>
-                <th>SỐ TIẾT LÝ</th>
-                <th>SỐ TIẾT THI</th>
-                <th>ĐẠT</th>
+                <th class="column-center">MÃ HP</th>
+                <th class="column-center">HỌC PHẦN</th>
+                <th class="column-center">HP TƯƠNG ĐƯƠNG</th>
+                <th class="column-center">HP THAY THẾ</th>
+                <th class="column-center">SỐ TC</th>
+                <th class="column-center">SỐ TIẾT LÝ</th>
+                <th class="column-center">SỐ TIẾT THI</th>
+                <th class="column-center">ĐẠT</th>
               </tr>
             </thead>
             <tbody>

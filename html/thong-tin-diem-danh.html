@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông tin điểm danh</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/themes/base/jquery-ui.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/curriculum-framework.css" />
+    <link rel="stylesheet" href="../css/thong-tin-diem-danh.css" />
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-section">
+        <div class="header-title">Thông tin điểm danh</div>
+        <div class="header-subtitle">
+          Theo dõi số tiết nghỉ chi tiết trong các kỳ của sinh viên.
+        </div>
+      </div>
+
+      <div
+        class="container-lg"
+        style="
+          min-height: calc(100vh - 200px);
+          display: flex;
+          flex-direction: column;
+        "
+      >
+        <!-- Controls Section -->
+        <div class="content-wrapper-tab-group">
+          <div class="search-box" style="flex: 1; min-width: 300px">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Tìm kiếm khóa học..."
+            />
+          </div>
+          <div class="action-buttons">
+            <button class="btn-custom primary" id="filterAll">
+              <i class="fas fa-bars"></i>
+              Tất cả
+            </button>
+            <div id="semesterButtonGroup">
+              <!-- JavaScript Render -->
+            </div>
+          </div>
+        </div>
+        <!-- Semester Attendance Table -->
+        <div class="content-wrapper" id="expandableSections" style="flex: 1">
+          <!-- JavaScript Render -->
+        </div>
+
+        <div class="footer-section" style="margin-top: auto">© 2025</div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/attendance-status.js"></script>
+    <script src="../js/thong-tin-diem-danh.js"></script>
+    <script src="../js//toggle-utils.js"></script>
+  </body>
+</html>
