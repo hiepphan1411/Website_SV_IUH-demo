@@ -10,8 +10,14 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../css/academic-results.css" />
+    <link rel="stylesheet" href="../css/common.css" />
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/themes/base/jquery-ui.min.css"
+      href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.common.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.default.min.css"
       rel="stylesheet"
     />
     <!-- Font Awesome -->
@@ -19,1123 +25,413 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../css/academic-results.css" />
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/common.css" />
-    <link
-      href="https://kendo.cdn.telerik.com/2016.3.1118/styles/kendo.common.min.css"
-      rel="stylesheet"
-    />
-
-    <link
-      href="https://kendo.cdn.telerik.com/2016.3.1118/styles/kendo.default.min.css"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <!-- Header -->
-    <header class="header-container">
-      <div class="left-header-container">
-        <button class="hamburger-menu" id="hamburgerMenu">
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="logo-div">
-          <!-- Todo Logo -->
-        </div>
-        <div class="search-bar">
-          <input type="text" placeholder="Tìm kiếm..." />
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-      </div>
-      <div class="right-header-container">
-        <div>
-          <i class="fa-regular fa-house"></i>
-          <span>Trang chủ</span>
-        </div>
-        <div>
-          <i class="fa-regular fa-bell"></i>
-          <span>Tin tức</span>
-        </div>
-        <div class="login-infor">
-          <div class="avatar">
-            <img
-              src="../img/user.png"
-              alt="User Image"
-              width="15"
-              height="15"
-            />
-          </div>
-          <span style="font-size: larger">Asc Test</span>
-        </div>
-      </div>
-    </header>
-    <!-- Content -->
+    <div id="header-container"></div>
+
+    <!-- Main Content  -->
     <main class="main-content">
-      <div class="sidebar-overlay" id="sidebarOverlay"></div>
       <!-- Sidebar -->
-      <aside class="sidebar" id="sidebar">
-        <nav class="nav-menu">
-          <!-- Trang chủ -->
-          <a href="#" class="nav-item nav-parent active">
-            <i class="fas fa-home"></i>
-            <span style="width: 90%">Trang chủ</span>
-          </a>
+      <div id="sidebar-container"></div>
 
-          <!-- Thông tin chung -->
-          <div class="nav-group">
-            <div class="nav-parent">
-              <i class="fas fa-info-circle"></i>
-              <span>Thông tin chung</span>
-              <i class="fas fa-chevron-down dropdown-icon"></i>
+      <!-- Content Area -->
+      <div class="dashboard-content content-area">
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1 class="page-title">Kết quả học tập</h1>
+          <p class="page-subtitle">Xem điểm số và kết quả học tập của bạn</p>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+          <div class="summary-card primary" style="max-width: 300px">
+            <div class="card-label">GPA Tích lũy</div>
+            <div class="card-value">
+              3.62<span class="card-scale">/4.0</span>
             </div>
-            <div class="nav-submenu">
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký nội trú</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Hồ sơ điện tử</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đề xuất cập nhật thông tin</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đề xuất biểu mẫu</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký chuyên ngành</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Lịch sử khai báo BHYT</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Khai báo thông tin BHYT</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đề xuất xét tốt nghiệp</span>
-              </a>
+            <div class="card-badge">
+              <i class="fas fa-star"></i>
+              <span>Xếp loại: Giỏi</span>
             </div>
           </div>
-
-          <!-- Học tập -->
-          <div class="nav-group">
-            <div class="nav-parent">
-              <i class="fas fa-graduation-cap"></i>
-              <span>Học tập</span>
-              <i class="fas fa-chevron-down dropdown-icon"></i>
+          <!-- Section 2 -->
+          <div class="d-flex flex-column gap-3">
+            <div class="summary-card">
+              <div class="card-label">Tổng tín chỉ hoàn thành</div>
+              <div class="card-value card-value-content">
+                142<span class="card-scale">/162</span>
+              </div>
             </div>
-            <div class="nav-submenu">
-              <a href="#" class="nav-subitem">
-                <span>Kết quả học tập</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Thông tin điểm danh</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Kết quả rèn luyện</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Lịch theo tuần</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Lịch theo tiến độ</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký phúc khảo</span>
-              </a>
+            <div class="summary-card">
+              <div class="card-label">Điểm rèn luyện</div>
+              <div class="d-flex flex-row align-items-center gap-2">
+                <div class="card-value card-value-content">
+                  85<span class="card-scale">/100</span>
+                </div>
+                <div class="card-sub-label">Khá</div>
+              </div>
             </div>
           </div>
-
-          <!-- Học phí -->
-          <div class="nav-group">
-            <div class="nav-parent">
-              <i class="fas fa-money-bill-wave"></i>
-              <span>Học phí</span>
-              <i class="fas fa-chevron-down dropdown-icon"></i>
+          <div class="d-flex flex-column gap-3">
+            <div class="summary-card">
+              <div class="card-label">Điểm trung bình (Hệ 10)</div>
+              <div class="card-value card-value-content">8.40</div>
             </div>
-            <div class="nav-submenu">
-              <a href="#" class="nav-subitem">
-                <span>Thanh toán trực tuyến</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Thanh toán nội trú</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Phiếu thu trực tuyến</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Tra cứu công nợ</span>
-              </a>
+            <div class="summary-card">
+              <div class="card-label">Xếp loại tích lũy (Hệ 10)</div>
+              <div class="d-flex flex-row align-items-center gap-2">
+                <div class="card-value card-value-content">Giỏi</div>
+                <div class="card-sub-label">Xuất sắc</div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <!-- Đăng ký học phần -->
-          <div class="nav-group">
-            <div class="nav-parent">
-              <i class="fas fa-book-open"></i>
-              <span>Đăng ký học phần</span>
-              <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-            <div class="nav-submenu">
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký thi lại - thi cải thiện</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký môn học điều kiện</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Chương trình khung</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Đăng ký học phần</span>
-              </a>
-            </div>
+        <div class="semester-selection">
+          <!-- Semester Tabs -->
+          <h4
+            style="
+              margin-bottom: 16px;
+              font-size: 16px;
+              font-weight: 600;
+              color: #1a1a1a;
+            "
+          >
+            Chọn học kỳ
+          </h4>
+          <div class="semester-tabs">
+            <button class="btn-view-all semester-tab">
+              <i class="fas fa-list"></i>
+              <span>Xem tất cả</span>
+            </button>
+            <button class="semester-tab">
+              <div class="tab-title">HK1 (2023-2024)</div>
+              <div class="tab-subtitle">GPA: 3.68</div>
+            </button>
+            <button class="semester-tab">
+              <div class="tab-title">HK2 (2023-2024)</div>
+              <div class="tab-subtitle">GPA: 3.61</div>
+            </button>
+            <button class="semester-tab">
+              <div class="tab-title">HK1 (2024-2025)</div>
+              <div class="tab-subtitle">GPA: 3.75</div>
+            </button>
+            <button class="semester-tab active">
+              <div class="tab-title">HK2 (2024-2025)</div>
+              <div class="tab-subtitle">Học kỳ hiện tại</div>
+            </button>
           </div>
 
-          <!-- Khác -->
-          <div class="nav-group">
-            <div class="nav-parent">
-              <i class="fas fa-ellipsis-h"></i>
-              <span>Khác</span>
-              <i class="fas fa-chevron-down dropdown-icon"></i>
+          <!-- Statistics Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon blue">
+                <i class="fas fa-book"></i>
+              </div>
+              <div class="stat-content">
+                <div class="stat-number">7</div>
+                <div class="stat-text">Môn học</div>
+              </div>
             </div>
-            <div class="nav-submenu">
-              <a href="#" class="nav-subitem">
-                <span>Hộp thư sinh viên</span>
-              </a>
-              <a href="#" class="nav-subitem">
-                <span>Liên hệ góp ý</span>
-              </a>
+
+            <div class="stat-card">
+              <div class="stat-icon blue">
+                <i class="fas fa-coins"></i>
+              </div>
+              <div class="stat-content">
+                <div class="stat-number">12</div>
+                <div class="stat-text">Tín chỉ</div>
+              </div>
             </div>
-          </div>
-        </nav>
-      </aside>
-      <!-- Details -->
-      <div class="container-lg">
-        <div class="results-content">
-          <!-- Page Header -->
-          <div class="page-header">
-            <div class="header-left">
-              <h1 class="page-title">
+
+            <div class="stat-card">
+              <div class="stat-icon orange">
                 <i class="fas fa-chart-line"></i>
-                Kết quả học tập
-              </h1>
-              <p class="page-subtitle">
-                Xem điểm số và kết quả học tập của bạn
-              </p>
-            </div>
-          </div>
-
-          <!-- GPA Summary Cards -->
-          <div class="gpa-summary-section">
-            <div class="gpa-card main-gpa">
-              <div class="gpa-icon">
-                <i class="fas fa-graduation-cap"></i>
               </div>
-              <div class="gpa-content">
-                <div class="gpa-label">GPA Tích lũy</div>
-                <div class="gpa-value">3.62</div>
-                <div class="gpa-scale">/4.0</div>
-                <div class="gpa-rank">
-                  <i class="fas fa-star"></i>
-                  <span>Xếp loại: Giỏi</span>
-                </div>
+              <div class="stat-content">
+                <div class="stat-number">3.75</div>
+                <div class="stat-text">GPA HK này</div>
               </div>
             </div>
 
-            <div class="stats-grid">
-              <div class="stat-item">
-                <div class="stat-label">Tổng tín chỉ hoàn thành</div>
-                <div class="stat-value">142/162</div>
-                <div class="stat-progress">
-                  <div class="stat-progress-bar" style="width: 87.6%"></div>
-                </div>
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <i class="fas fa-award"></i>
               </div>
-
-              <div class="stat-item">
-                <div class="stat-label">Điểm trung bình (Hệ 10)</div>
-                <div class="stat-value">8.40</div>
-              </div>
-
-              <div class="stat-item">
-                <div class="stat-label">Điểm rèn luyện</div>
-                <div class="stat-value">85/100</div>
-                <div class="stat-badge good">Khá</div>
-              </div>
-
-              <div class="stat-item">
-                <div class="stat-label">Xếp loại tích lũy</div>
-                <div class="stat-value">Giỏi</div>
-                <div class="stat-badge excellent">Xuất sắc</div>
+              <div class="stat-content">
+                <div class="stat-number">8.40</div>
+                <div class="stat-text">Điểm TB (Hệ 10)</div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Semester Selector -->
-          <div class="semester-section">
-            <div class="semester-tabs">
-              <button class="semester-tab active" data-semester="HK2-2024">
-                <div class="tab-title">HK2 (2024-2025)</div>
-                <div class="tab-subtitle">Học kỳ hiện tại</div>
+        <!-- Table Section -->
+        <div class="table-section">
+          <div class="table-header">
+            <h3>Bảng điểm chi tiết - HK2 (2024-2025)</h3>
+            <div class="table-actions">
+              <button class="action-btn">
+                <i class="fas fa-check-circle"></i>
+                Tất cả
               </button>
-              <button class="semester-tab" data-semester="HK1-2024">
-                <div class="tab-title">HK1 (2024-2025)</div>
-                <div class="tab-subtitle">GPA: 3.75</div>
+              <button class="action-btn">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Cần cải thiện
               </button>
-              <button class="semester-tab" data-semester="HK2-2023">
-                <div class="tab-title">HK2 (2023-2024)</div>
-                <div class="tab-subtitle">GPA: 3.61</div>
-              </button>
-              <button class="semester-tab" data-semester="HK1-2023">
-                <div class="tab-title">HK1 (2023-2024)</div>
-                <div class="tab-subtitle">GPA: 3.68</div>
-              </button>
-              <button class="btn-view-all">
-                <i class="fas fa-list"></i>
-                <span>Xem tất cả</span>
-              </button>
-            </div>
-
-            <!-- Current Semester Info -->
-            <div class="current-semester-info">
-              <div class="semester-stats">
-                <div class="semester-stat-item">
-                  <i class="fas fa-book"></i>
-                  <div>
-                    <div class="stat-number">7</div>
-                    <div class="stat-text">Môn học</div>
-                  </div>
-                </div>
-                <div class="semester-stat-item">
-                  <i class="fas fa-coins"></i>
-                  <div>
-                    <div class="stat-number">12</div>
-                    <div class="stat-text">Tín chỉ</div>
-                  </div>
-                </div>
-                <div class="semester-stat-item highlight">
-                  <i class="fas fa-chart-line"></i>
-                  <div>
-                    <div class="stat-number">3.75</div>
-                    <div class="stat-text">GPA HK này</div>
-                  </div>
-                </div>
-                <div class="semester-stat-item">
-                  <i class="fas fa-award"></i>
-                  <div>
-                    <div class="stat-number">8.40</div>
-                    <div class="stat-text">Điểm TB (Hệ 10)</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
-          <!-- Results Table -->
-          <div class="results-table-section">
-            <div class="table-header">
-              <h3>
-                <i class="fas fa-table"></i>
-                Bảng điểm chi tiết - HK2 (2024-2025)
-              </h3>
-              <div class="table-actions">
-                <div class="filter-group">
-                  <button class="filter-btn active">
-                    <i class="fas fa-check-circle"></i>
-                    Tất cả
-                  </button>
-                  <button class="filter-btn">
-                    <i class="fas fa-clock"></i>
-                    Chưa có điểm
-                  </button>
-                  <button class="filter-btn">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Cần cải thiện
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div class="table-container">
-              <table class="results-table">
-                <tbody>
-                  <!-- HK1 (2022-2023) -->
-                  <tr class="semester-header">
-                    <td colspan="17">HK1 (2022 - 2023)</td>
-                  </tr>
-                  <tr class="column-header">
-                    <th class="th-center">STT</th>
-                    <th>Mã môn học</th>
-                    <th>Tên môn học</th>
-                    <th class="th-center">Số TC</th>
-                    <th class="th-center">Giữa kỳ</th>
-                    <th class="th-center" colspan="3">Thường xuyên</th>
-                    <th class="th-center" colspan="3">Thực hành</th>
-                    <th class="th-center">Cuối kỳ</th>
-                    <th class="th-center">Điểm TK</th>
-                    <th class="th-center">Thang điểm 4</th>
-                    <th class="th-center">Điểm chữ</th>
-                    <th class="th-center">Xếp loại</th>
-                    <th class="th-center">Trạng thái</th>
-                  </tr>
-                  <tr class="sub-header">
-                    <th colspan="4"></th>
-                    <th></th>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th colspan="6"></th>
-                  </tr>
-                  <tr class="grade-row excellent">
-                    <td class="td-center">1</td>
-                    <td>420300200907</td>
-                    <td class="subject-name">Nhập môn Tin học</td>
-                    <td class="td-center">2</td>
-                    <td class="td-center">8.50</td>
-                    <td class="td-center">9.00</td>
-                    <td class="td-center">8.50</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">9.00</td>
-                    <td class="td-center grade-point">9.50</td>
-                    <td class="td-center grade-point">9.10</td>
-                    <td class="td-center grade-point">4.00</td>
-                    <td class="td-center">
-                      <span class="grade-letter excellent">A+</span>
-                    </td>
-                    <td class="td-center">
-                      <span class="grade-status excellent">Xuất sắc</span>
-                    </td>
-                    <td class="td-center">
-                      <span class="status-badge passed">Đạt</span>
-                    </td>
-                  </tr>
-                  <tr class="grade-row good">
-                    <td class="td-center">2</td>
-                    <td>420301032589</td>
-                    <td class="subject-name">Kỹ năng giao tiếp chuyên ngành</td>
-                    <td class="td-center">2</td>
-                    <td class="td-center">7.50</td>
-                    <td class="td-center">7.50</td>
-                    <td class="td-center">7.50</td>
-                    <td class="td-center">8.00</td>
-                    <td class="td-center">8.00</td>
-                    <td class="td-center">7.50</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">8.00</td>
-                    <td class="td-center grade-point">8.00</td>
-                    <td class="td-center grade-point">7.90</td>
-                    <td class="td-center grade-point">3.00</td>
-                    <td class="td-center">
-                      <span class="grade-letter good">B</span>
-                    </td>
-                    <td class="td-center">
-                      <span class="grade-status good">Khá</span>
-                    </td>
-                    <td class="td-center">
-                      <span class="status-badge passed">Đạt</span>
-                    </td>
-                  </tr>
-                  <tr class="grade-row excellent">
-                    <td class="td-center">3</td>
-                    <td>420300324383</td>
-                    <td class="subject-name">
-                      Giáo dục Quốc phòng và An ninh 1
-                    </td>
-                    <td class="td-center">4</td>
-                    <td class="td-center">8.50</td>
-                    <td class="td-center">9.50</td>
-                    <td class="td-center">8.00</td>
-                    <td class="td-center">8.00</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">7.00</td>
-                    <td class="td-center grade-point">7.00</td>
-                    <td class="td-center grade-point">7.80</td>
-                    <td class="td-center grade-point">3.00</td>
-                    <td class="td-center">
-                      <span class="grade-letter good">B</span>
-                    </td>
-                    <td class="td-center">
-                      <span class="grade-status good">Khá</span>
-                    </td>
-                    <td class="td-center">
-                      <span class="status-badge passed">Đạt</span>
-                    </td>
-                  </tr>
-                  <tr class="grade-row excellent">
-                    <td class="td-center">4</td>
-                    <td>420300323966</td>
-                    <td class="subject-name">Toán cao cấp 1</td>
-                    <td class="td-center">2</td>
-                    <td class="td-center">9.00</td>
-                    <td class="td-center">10.00</td>
-                    <td class="td-center">9.00</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">-</td>
-                    <td class="td-center">9.00</td>
-                    <td class="td-center grade-point">9.00</td>
-                    <td class="td-center grade-point">9.10</td>
-                    <td class="td-center grade-point">4.00</td>
-                    <td class="td-center">
-                      <span class="grade-letter excellent">A+</span>
-                    </td>
-                    <td class="td-center">
-                      <span class="grade-status excellent">Xuất sắc</span>
-                    </td>
-                    <td class="td-center">
-                      <span class="status-badge passed">Đạt</span>
-                    </td>
-                  </tr>
-                  <tr class="summary-row">
-                    <td colspan="17">
-                      <div class="semester-summary">
-                        <div class="summary-header">
-                          <i class="fas fa-chart-pie"></i>
-                          <span>Tổng kết học kỳ HK1 (2022-2023)</span>
+          <div class="table-container">
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">STT</th>
+                  <th rowspan="2">Mã môn học</th>
+                  <th rowspan="2">Tên môn học</th>
+                  <th rowspan="2">Số TC</th>
+                  <th rowspan="2">Giữa kỳ</th>
+                  <th colspan="3">Thường xuyên</th>
+                  <th colspan="3">Thực hành</th>
+                  <th rowspan="2">Cuối kỳ</th>
+                  <th rowspan="2">Điểm TK</th>
+                  <th rowspan="2">Thang điểm 4</th>
+                  <th rowspan="2">Điểm chữ</th>
+                  <th rowspan="2">Xếp loại</th>
+                  <th rowspan="2">Trạng thái</th>
+                </tr>
+                <tr>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">1</td>
+                  <td class="text-center">420300200907</td>
+                  <td class="subject-name">Nhập môn Tin học</td>
+                  <td class="text-center">2</td>
+                  <td class="text-center">8.5</td>
+                  <td class="text-center">8.5</td>
+                  <td class="text-center">8.5</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">9.00</td>
+                  <td class="text-center">9.01</td>
+                  <td class="text-center">4.00</td>
+                  <td class="text-center">
+                    <span class="grade-badge excellent">A+</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="grade-badge excellent">Xuất sắc</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="status-badge passed">Đạt</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center">1</td>
+                  <td class="text-center">420301032589</td>
+                  <td class="subject-name">Kỹ năng giao tiếp chuyên ngành</td>
+                  <td class="text-center">2</td>
+                  <td class="text-center">8.5</td>
+                  <td class="text-center">8.5</td>
+                  <td class="text-center">8.5</td>
+                  <td class="text-center">8.00</td>
+                  <td class="text-center">8.00</td>
+                  <td class="text-center">7.50</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">8.00</td>
+                  <td class="text-center">7.90</td>
+                  <td class="text-center">3.00</td>
+                  <td class="text-center">
+                    <span class="grade-badge good">B</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="grade-badge good">Khá</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="status-badge passed">Đạt</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center">1</td>
+                  <td class="text-center">420300324383</td>
+                  <td class="subject-name">Giáo dục Quốc phòng và An ninh 1</td>
+                  <td class="text-center">2</td>
+                  <td class="text-center">8.5</td>
+                  <td class="text-center">8.5</td>
+                  <td class="text-center">8.5</td>
+                  <td class="text-center">8.00</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">9.00</td>
+                  <td class="text-center">9.01</td>
+                  <td class="text-center">4.00</td>
+                  <td class="text-center">
+                    <span class="grade-badge excellent">A+</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="grade-badge excellent">Xuất sắc</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="status-badge passed">Đạt</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center">1</td>
+                  <td class="text-center">420300323966</td>
+                  <td class="subject-name">Toán cao cấp 1</td>
+                  <td class="text-center">2</td>
+                  <td class="text-center">9.00</td>
+                  <td class="text-center">10.00</td>
+                  <td class="text-center">9.00</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">-</td>
+                  <td class="text-center">9.00</td>
+                  <td class="text-center">9.10</td>
+                  <td class="text-center">4.00</td>
+                  <td class="text-center">
+                    <span class="grade-badge excellent">A+</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="grade-badge excellent">Xuất sắc</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="status-badge passed">Đạt</span>
+                  </td>
+                </tr>
+                <tr class="summary-row">
+                  <td colspan="17">
+                    <div class="semester-summary">
+                      <div class="semester-summary-title">
+                        Tổng kết học kỳ HK2 (2024-2023)
+                      </div>
+                      <div class="summary-stats">
+                        <div class="summary-stat">
+                          <div class="summary-stat-icon blue">
+                            <i class="fas fa-award"></i>
+                          </div>
+                          <div class="summary-stat-content">
+                            <div class="summary-stat-label">ĐIỂM TB HK</div>
+                            <div class="summary-stat-value">8.40</div>
+                          </div>
                         </div>
-                        <div class="summary-grid">
-                          <div class="summary-item highlight">
-                            <div class="summary-icon">
-                              <i class="fas fa-award"></i>
-                            </div>
-                            <div class="summary-content">
-                              <div class="summary-label">Điểm TB HK</div>
-                              <div class="summary-value">8.40</div>
-                            </div>
+                        <div class="summary-stat">
+                          <div class="summary-stat-icon blue">
+                            <i class="fas fa-calendar-alt"></i>
                           </div>
-                          <div class="summary-item">
-                            <div class="summary-icon">
-                              <i class="fas fa-calculator"></i>
+                          <div class="summary-stat-content">
+                            <div class="summary-stat-label">
+                              ĐTB TÍCH LŨY (HỆ 10)
                             </div>
-                            <div class="summary-content">
-                              <div class="summary-label">
-                                ĐTB tích lũy (Hệ 10)
-                              </div>
-                              <div class="summary-value">8.40</div>
-                            </div>
+                            <div class="summary-stat-value">8.40</div>
                           </div>
-                          <div class="summary-item">
-                            <div class="summary-icon">
-                              <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="summary-content">
-                              <div class="summary-label">
-                                ĐTB tích lũy (Hệ 4)
-                              </div>
-                              <div class="summary-value">3.55</div>
-                            </div>
+                        </div>
+                        <div class="summary-stat">
+                          <div class="summary-stat-icon blue">
+                            <i class="fas fa-chart-line"></i>
                           </div>
-                          <div class="summary-item">
-                            <div class="summary-icon">
-                              <i class="fas fa-book"></i>
+                          <div class="summary-stat-content">
+                            <div class="summary-stat-label">
+                              ĐTB TÍCH LŨY (HỆ 4)
                             </div>
-                            <div class="summary-content">
-                              <div class="summary-label">TC đã đăng ký</div>
-                              <div class="summary-value">11</div>
-                            </div>
+                            <div class="summary-stat-value">3.55</div>
                           </div>
-                          <div class="summary-item">
-                            <div class="summary-icon">
-                              <i class="fas fa-check-circle"></i>
-                            </div>
-                            <div class="summary-content">
-                              <div class="summary-label">TC đã tích lũy</div>
-                              <div class="summary-value">11</div>
-                            </div>
+                        </div>
+                        <div class="summary-stat">
+                          <div class="summary-stat-icon blue">
+                            <i class="fas fa-book"></i>
                           </div>
-                          <div class="summary-item highlight">
-                            <div class="summary-icon">
-                              <i class="fas fa-star"></i>
-                            </div>
-                            <div class="summary-content">
-                              <div class="summary-label">Xếp loại HK</div>
-                              <div class="summary-value">Giỏi</div>
-                            </div>
+                          <div class="summary-stat-content">
+                            <div class="summary-stat-label">TC ĐÃ ĐĂNG KÝ</div>
+                            <div class="summary-stat-value">11</div>
+                          </div>
+                        </div>
+                        <div class="summary-stat">
+                          <div class="summary-stat-icon blue">
+                            <i class="fas fa-check-circle"></i>
+                          </div>
+                          <div class="summary-stat-content">
+                            <div class="summary-stat-label">TC ĐÃ TÍCH LŨY</div>
+                            <div class="summary-stat-value">11</div>
+                          </div>
+                        </div>
+                        <div class="summary-stat">
+                          <div class="summary-stat-icon blue">
+                            <i class="fas fa-star"></i>
+                          </div>
+                          <div class="summary-stat-content">
+                            <div class="summary-stat-label">XẾP LOẠI HK</div>
+                            <div class="summary-stat-value">Giỏi</div>
                           </div>
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Phân bố điểm theo học kỳ</h3>
+              <select class="form-select form-select-sm" style="width: auto">
+                <option>HK2 (2024-2025)</option>
+              </select>
+            </div>
+            <div class="chart-body">
+              <canvas id="gradeDistChart"></canvas>
             </div>
           </div>
 
-          <!-- Charts Section -->
-          <div class="charts-section">
-            <div class="chart-card">
-              <div class="chart-header">
-                <h3>
-                  <i class="fas fa-chart-bar"></i>
-                  Phân bố điểm theo học kỳ
-                </h3>
-                <select class="chart-select">
-                  <option>HK2 (2024-2025)</option>
-                  <option>HK1 (2024-2025)</option>
-                </select>
-              </div>
-              <div class="chart-body">
-                <canvas id="gradeDistributionChart"></canvas>
-              </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Xu hướng GPA qua các học kỳ</h3>
             </div>
-
-            <div class="chart-card">
-              <div class="chart-header">
-                <h3>
-                  <i class="fas fa-chart-line"></i>
-                  Xu hướng GPA qua các học kỳ
-                </h3>
-              </div>
-              <div class="chart-body">
-                <canvas id="gpaTrendChart"></canvas>
-              </div>
+            <div class="chart-body">
+              <canvas id="gpaTrendChart"></canvas>
             </div>
           </div>
         </div>
-        <div class="footer-section">© 2025</div>
       </div>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
-
-    <script src="https://kendo.cdn.telerik.com/2016.3.1118/js/kendo.all.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/common.js"></script>
-
     <script>
-      // Current academic year
-
-      // Initialize
-      document.addEventListener("DOMContentLoaded", function () {
-        handleResize();
-        window.addEventListener("resize", handleResize);
-      });
-
-      $("#chart").kendoChart({
-        chartArea: {
-          height: 30,
-          background: "#f4fbff",
-        },
-        legend: { visible: false },
-        seriesDefaults: {
-          type: "bar",
-          stack: true,
-        },
-        series: [
-          { data: [60], color: "#56a2e8" }, // xanh
-          { data: [15], color: "#ffb800" }, // vàng
-          { data: [25], color: "#e0e0e0" }, // xám
-        ],
-        valueAxis: {
-          min: 0,
-          max: 100,
-          visible: false,
-          majorGridLines: { visible: false },
-          minorGridLines: { visible: false },
-        },
-        categoryAxis: {
-          categories: [""],
-          visible: false,
-          majorGridLines: { visible: false },
-          minorGridLines: { visible: false },
-        },
-        tooltip: {
-          visible: true,
-          template: "#= value #%",
-        },
-        dataBound: function () {
-          var svg = $("#chart svg");
-
-          svg.find("rect[fill]").each(function () {
-            var rect = $(this);
-            var fill = rect.attr("fill");
-
-            if (fill && !fill.includes("url")) {
-              rect.attr("rx", 8);
-              rect.attr("ry", 8);
-            }
-          });
-        },
-      });
-
-      // function adjustTooltipPosition(element) {
-      //   const tooltip = element.querySelector(".semester-tooltip");
-      //   if (!tooltip) return;
-
-      //   const rect = element.getBoundingClientRect();
-      //   const tooltipRect = tooltip.getBoundingClientRect();
-      //   const viewportHeight = window.innerHeight;
-
-      //   // Check if there's enough space above
-      //   const spaceAbove = rect.top;
-      //   const spaceBelow = viewportHeight - rect.bottom;
-      //   const tooltipHeight = tooltipRect.height || 200;
-
-      //   if (spaceAbove < tooltipHeight + 20 && spaceBelow > spaceAbove) {
-      //     tooltip.classList.add("tooltip-bottom");
-      //   } else {
-      //     tooltip.classList.remove("tooltip-bottom");
-      //   }
-      // }
-
-      // Add hover listeners to adjust tooltip position
-      // function addTooltipListeners() {
-      //   document
-      //     .querySelectorAll(".timeline-item, .timeline-semester-card")
-      //     .forEach((item) => {
-      //       item.addEventListener("mouseenter", () =>
-      //         adjustTooltipPosition(item),
-      //       );
-      //     });
-      // }
-
-      // Handle responsive timeline rendering
-      function handleResize() {
-        const isMobile = window.innerWidth <= 768;
-        const container = document.querySelector(".timeline-container");
-        if (!container) return;
-
-        const wrapper = container.querySelector(".timeline-wrapper");
-        let mobileTimeline = container.querySelector(".timeline-mobile");
-
-        if (isMobile) {
-          if (wrapper) wrapper.style.display = "none";
-          if (!mobileTimeline) {
-            mobileTimeline = document.createElement("div");
-            mobileTimeline.className = "timeline-mobile";
-            container.appendChild(mobileTimeline);
-          }
-          renderMobileTimeline();
-        } else {
-          if (wrapper) wrapper.style.display = "block";
-          if (mobileTimeline) {
-            mobileTimeline.remove();
-          }
-        }
-
-        // setTimeout(addTooltipListeners, 100);
-      }
-
-      // Render mobile timeline
-      function renderMobileTimeline() {
-        const container = document.querySelector(".timeline-mobile");
-        if (!container) return;
-
-        // Clear existing content first to prevent double rendering
-        container.innerHTML = "";
-
-        const yearGroups = {};
-        timelineData.forEach((sem) => {
-          if (!yearGroups[sem.year]) {
-            yearGroups[sem.year] = [];
-          }
-          yearGroups[sem.year].push(sem);
-        });
-
-        const uniqueYears = Object.keys(yearGroups);
-
-        const currentYearIndex = uniqueYears.indexOf(currentAcademicYear);
-        const totalYears = uniqueYears.length;
-
-        let progressPercent = 0;
-        if (currentYearIndex >= 0) {
-          progressPercent = (currentYearIndex / totalYears) * 100;
-        }
-
-        // Don't clear innerHTML here, already done at the start of function
-
-        uniqueYears.forEach((year, yearIndex) => {
-          const yearSems = yearGroups[year];
-          const dotClass = year <= currentAcademicYear ? "current" : "future";
-          const totalSemesters = timelineData.length;
-
-          const firstSemIndex = timelineData.findIndex((s) => s.year === year);
-
-          // Position in the middle between sem1 and sem2 of this year
-          // Middle = (index0 + index1) / 2 = index0 + 0.5
-          // Convert to percentage: (middle / total) * 100
-          const middlePosition = firstSemIndex + 1;
-          const progressPercent = (yearIndex / totalYears) * 100 + 3;
-
-          if (yearIndex === currentYearIndex && currentYearIndex >= 0) {
-            container.style.setProperty(
-              "--progress-percent",
-              progressPercent + "%",
-            );
-          } else if (currentYearIndex < 0) {
-            container.style.setProperty("--progress-percent", 100 + "%");
-          }
-          const yearGroup = document.createElement("div");
-          yearGroup.className = "timeline-year-group";
-
-          // Year marker
-          const yearMarker = document.createElement("div");
-          yearMarker.className = "timeline-year-marker-mobile";
-          yearMarker.innerHTML = `
-            <div class="timeline-year-dot ${dotClass}"></div>
-          `;
-          // <div class="timeline-year-label">${year}</div>;
-          yearGroup.appendChild(yearMarker);
-
-          // Semesters in horizontal layout
-          const semestersContainer = document.createElement("div");
-          semestersContainer.className = "timeline-semesters-horizontal";
-
-          yearSems.forEach((sem) => {
-            const card = document.createElement("div");
-            card.className = "timeline-semester-card";
-
-            const completedPercent =
-              (sem.completedCredits / sem.totalCredits) * 100;
-            const currentPercent =
-              (sem.currentCredits / sem.totalCredits) * 100;
-            const totalPercent = completedPercent + currentPercent;
-
-            // Determine card status
-            if (sem.status === "completed" && sem.progress === 100) {
-              card.classList.add("completed");
-            } else if (sem.status === "active") {
-              card.classList.add("active");
-            } else if (sem.status === "mixed") {
-              card.classList.add("mixed");
-            }
-
-            // Circle with progress
-            let circleClass = "";
-            let circleStyle = "";
-
-            if (sem.status === "completed" && sem.progress === 100) {
-              circleClass = "completed";
-            } else if (sem.status === "active" && sem.completedCredits === 0) {
-              circleClass = "active";
-            } else if (
-              (sem.status === "mixed" || totalPercent > 0) &&
-              sem.completedCredits > 0 &&
-              sem.currentCredits > 0
-            ) {
-              circleClass = "partial-mixed";
-              circleStyle = `style="--progress-green: ${completedPercent}; --progress-total: ${totalPercent}"`;
-            } else if (
-              sem.completedCredits > 0 &&
-              sem.completedCredits < sem.totalCredits
-            ) {
-              circleClass = "partial-green";
-              circleStyle = `style="--progress-green: ${completedPercent}"`;
-            } else if (sem.currentCredits > 0 && sem.completedCredits === 0) {
-              circleClass = "partial-yellow";
-              circleStyle = `style="--progress-yellow: ${currentPercent}"`;
-            } else {
-              circleClass = "future";
-            }
-
-            // Progress bar
-            let progressBarHTML = "";
-            let progressTextClass = "";
-
-            if (completedPercent > 0 && currentPercent > 0) {
-              progressBarHTML = `
-                <div class="timeline-progress-segment completed" style="width: ${completedPercent}%;"></div>
-                <div class="timeline-progress-segment active" style="width: ${currentPercent}%;"></div>
-              `;
-              progressTextClass = totalPercent > 50 ? "light" : "";
-            } else if (completedPercent > 0) {
-              progressBarHTML = `<div class="timeline-progress-segment completed" style="width: ${completedPercent}%;"></div>`;
-              progressTextClass = completedPercent > 50 ? "light" : "";
-            } else if (currentPercent > 0) {
-              progressBarHTML = `<div class="timeline-progress-segment active" style="width: ${currentPercent}%;"></div>`;
-              progressTextClass = currentPercent > 50 ? "light" : "";
-            }
-
-            const displayPercent = Math.round(totalPercent);
-            const displayCredits = `${sem.completedCredits + sem.currentCredits}/${sem.totalCredits}`;
-            const remainingCredits =
-              sem.totalCredits - sem.completedCredits - sem.currentCredits;
-
-            card.innerHTML = `
-              <div class="timeline-circle ${circleClass}" ${circleStyle}>
-                <span>HK${sem.semester}</span>
-              </div>
-              <div class="timeline-info">
-                <div class="timeline-semester">Học kỳ ${sem.semester}</div>
-                <div class="timeline-credits">${displayCredits} tín chỉ</div>
-              </div>
-              <div class="timeline-progress">
-                <div class="timeline-progress-bar">
-                  ${progressBarHTML}
-                  <div class="timeline-progress-text ${progressTextClass}">${displayPercent}%</div>
-                </div>
-              </div>
-              <div class="semester-tooltip">
-                <div class="tooltip-row">
-                  <span class="tooltip-label">Học kỳ:</span>
-                  <span class="tooltip-value">HK${sem.semester}</span>
-                </div>
-                <div class="tooltip-row">
-                  <span class="tooltip-label">Đã học:</span>
-                  <span class="tooltip-value">${sem.completedCredits}/${sem.totalCredits} TC</span>
-                </div>
-                <div class="tooltip-row">
-                  <span class="tooltip-label">Đang học:</span>
-                  <span class="tooltip-value">${sem.currentCredits} TC</span>
-                </div>
-              </div>
-            `;
-
-            semestersContainer.appendChild(card);
-          });
-
-          yearGroup.appendChild(semestersContainer);
-          container.appendChild(yearGroup);
-        });
-      }
-
-      // renderProgress and renderTimeline are now in study-progress.js
-      // Removed duplicate functions to fix double rendering issue
-
-      function renderTimeline_DISABLED() {
-        const container = document.getElementById("timelineItems");
-        const markersContainer = document.getElementById("timelineYearMarkers");
-        const trackProgress = document.getElementById("timelineTrackProgress");
-
-        const yearGroups = {};
-        timelineData.forEach((sem) => {
-          if (!yearGroups[sem.year]) {
-            yearGroups[sem.year] = [];
-          }
-          yearGroups[sem.year].push(sem);
-        });
-
-        const uniqueYears = Object.keys(yearGroups);
-        const totalSemesters = timelineData.length;
-
-        const currentYearIndex = uniqueYears.indexOf(currentAcademicYear);
-        if (currentYearIndex >= 0) {
-          const yearSems = yearGroups[currentAcademicYear];
-          const firstSemIndex = timelineData.findIndex(
-            (s) => s.year === currentAcademicYear,
-          );
-          const markerPosition = ((firstSemIndex + 1) / totalSemesters) * 100;
-          trackProgress.style.width = markerPosition + "%";
-        } else {
-          trackProgress.style.width = "100%";
-        }
-
-        // Render semester circles
-        timelineData.forEach((sem, index) => {
-          const item = document.createElement("div");
-          item.className = "timeline-item";
-
-          const completedPercent =
-            (sem.completedCredits / sem.totalCredits) * 100;
-          const currentPercent = (sem.currentCredits / sem.totalCredits) * 100;
-          const totalPercent = completedPercent + currentPercent;
-
-          let circleClass = "";
-          let circleStyle = "";
-          let circleContent = `<span>HK${sem.semester}</span>`;
-
-          if (sem.status === "completed" && sem.progress === 100) {
-            circleClass = "completed";
-          } else if (sem.status === "active" && sem.completedCredits === 0) {
-            circleClass = "active";
-          } else if (
-            (sem.status === "mixed" || totalPercent > 0) &&
-            sem.completedCredits > 0 &&
-            sem.currentCredits > 0
-          ) {
-            circleClass = "partial-mixed";
-            circleStyle = `style="--progress-green: ${completedPercent}; --progress-total: ${totalPercent}"`;
-          } else if (
-            sem.completedCredits > 0 &&
-            sem.completedCredits < sem.totalCredits
-          ) {
-            circleClass = "partial-green";
-            circleStyle = `style="--progress-green: ${completedPercent}"`;
-          } else if (sem.currentCredits > 0 && sem.completedCredits === 0) {
-            circleClass = "partial-yellow";
-            circleStyle = `style="--progress-yellow: ${currentPercent}"`;
-          } else {
-            circleClass = "future";
-          }
-
-          let progressBarHTML = "";
-          let progressTextClass = "";
-
-          if (completedPercent > 0 && currentPercent > 0) {
-            progressBarHTML = `
-            <div class="timeline-progress-segment completed" style="width: ${completedPercent}%;"></div>
-            <div class="timeline-progress-segment active" style="width: ${currentPercent}%;"></div>
-          `;
-            progressTextClass = totalPercent > 50 ? "light" : "";
-          } else if (completedPercent > 0) {
-            progressBarHTML = `<div class="timeline-progress-segment completed" style="width: ${completedPercent}%;"></div>`;
-            progressTextClass = completedPercent > 50 ? "light" : "";
-          } else if (currentPercent > 0) {
-            progressBarHTML = `<div class="timeline-progress-segment active" style="width: ${currentPercent}%;"></div>`;
-            progressTextClass = currentPercent > 50 ? "light" : "";
-          }
-
-          const displayPercent = Math.round(totalPercent);
-          const displayCredits = `${sem.completedCredits + sem.currentCredits}/${sem.totalCredits}`;
-          const remainingCredits =
-            sem.totalCredits - sem.completedCredits - sem.currentCredits;
-
-          item.innerHTML = `
-          <div class="timeline-circle-wrapper">
-            <div class="timeline-circle ${circleClass}" ${circleStyle}>
-              ${circleContent}
-            </div>
-          </div>
-          <div class="timeline-info">
-            <div class="timeline-semester">Học kỳ ${sem.semester}</div>
-            <div class="timeline-credits">${displayCredits} tín chỉ</div>
-          </div>
-          <div class="timeline-progress">
-            <div class="timeline-progress-bar">
-              ${progressBarHTML}
-              <div class="timeline-progress-text ${progressTextClass}">${displayPercent}%</div>
-            </div>
-          </div>
-          <div class="semester-tooltip">
-            <div class="tooltip-row">
-              <span class="tooltip-label">Học kỳ:</span>
-              <span class="tooltip-value">HK${sem.semester}</span>
-            </div>
-            <div class="tooltip-row">
-              <span class="tooltip-label">Đã học:</span>
-              <span class="tooltip-value">${sem.completedCredits}/${sem.totalCredits} TC</span>
-            </div>
-            <div class="tooltip-row">
-              <span class="tooltip-label">Đang học:</span>
-              <span class="tooltip-value">${sem.currentCredits} TC</span>
-            </div>
-          </div>
-        `;
-
-          container.appendChild(item);
-        });
-
-        const startMarker = document.createElement("div");
-        startMarker.className = "timeline-year-marker";
-        startMarker.style.left = "0%";
-        startMarker.innerHTML = `
-        <div class="timeline-year-dot current"></div>
-        <div class="timeline-year-label">9/2022</div>
-      `;
-        markersContainer.appendChild(startMarker);
-
-        uniqueYears.forEach((year, yearIndex) => {
-          const yearSems = yearGroups[year];
-          const firstSemIndex = timelineData.findIndex((s) => s.year === year);
-          const totalSemesters = timelineData.length;
-
-          // Position in the middle between sem1 and sem2 of this year
-          // Middle = (index0 + index1) / 2 = index0 + 0.5
-          // Convert to percentage: (middle / total) * 100
-          const middlePosition = firstSemIndex + 1;
-          const positionPercent = (middlePosition / totalSemesters) * 100;
-
-          const marker = document.createElement("div");
-          marker.className = "timeline-year-marker";
-          marker.style.left = positionPercent + "%";
-
-          const dotClass = year <= currentAcademicYear ? "current" : "future";
-          const semestersList = yearSems
-            .map((s) => `HK${s.semester}`)
-            .join(", ");
-
-          marker.innerHTML = `
-          <div class="timeline-year-dot ${dotClass}"></div>
-          <div class="timeline-year-label">${year}</div>
-          <div class="timeline-year-semesters">${semestersList}</div>
-        `;
-          markersContainer.appendChild(marker);
-        });
-
-        const endMarker = document.createElement("div");
-        let stylesCustom = "future";
-        stylesCustom = currentYearIndex >= 0 ? "future" : "current";
-        endMarker.className = "timeline-year-marker";
-        endMarker.style.left = "100%";
-        endMarker.innerHTML = `
-        <div class="timeline-year-dot ${stylesCustom}"></div>
-        <div class="timeline-year-label">6/2026</div>
-      `;
-        markersContainer.appendChild(endMarker);
-
-        // addTooltipListeners();
-      }
-      // End of DISABLED renderTimeline function
-
-      // Tab switching
-      document
-        .getElementById("semesterTab")
-        .addEventListener("click", function () {
-          this.classList.add("active");
-          document.getElementById("knowledgeTab").classList.remove("active");
-        });
-
-      document
-        .getElementById("knowledgeTab")
-        .addEventListener("click", function () {
-          this.classList.add("active");
-          document.getElementById("semesterTab").classList.remove("active");
-        });
-
-      // Filter buttons
-      document.querySelectorAll(".filter-btn").forEach((btn) => {
-        btn.addEventListener("click", function () {
-          document
-            .querySelectorAll(".filter-btn")
-            .forEach((b) => b.classList.remove("active"));
-          this.classList.add("active");
-        });
-      });
-
-      function toggleSection(header) {
-        const icon = header.querySelector(".section-icon");
-        const content = header.nextElementSibling;
-
-        // Close all other sections
-        document.querySelectorAll(".section-header").forEach((h) => {
-          if (h !== header) {
-            h.classList.remove("expanded");
-            h.querySelector(".section-icon").classList.remove("rotated");
-            h.nextElementSibling.classList.remove("active");
+      fetch("component/sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar-container").innerHTML = html;
+
+          if (typeof initializeSidebar === "function") {
+            initializeSidebar();
           }
         });
 
-        // Toggle current section
-        header.classList.toggle("expanded");
-        icon.classList.toggle("rotated");
-        content.classList.toggle("active");
-      }
-
-      $(function () {
-        var tooltipTriggerList = [].slice.call(
-          document.querySelectorAll('[data-bs-toggle="tooltip"]'),
-        );
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-          return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-      });
-
-      // Search functionality
-      document
-        .getElementById("searchInput")
-        .addEventListener("input", function () {
-          const searchTerm = this.value.toLowerCase();
+      fetch("component/header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
         });
     </script>
+
+    <script src="../js/common.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/js/kendo.all.min.js"></script>
+    <script src="../js/academic-results.js"></script>
   </body>
 </html>

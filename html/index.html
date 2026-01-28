@@ -32,38 +32,7 @@
   </head>
   <body>
     <!-- Header -->
-    <header class="header-container">
-      <div class="left-header-container">
-        <div class="logo-div">
-          <!-- Todo Logo -->
-        </div>
-        <div class="search-bar">
-          <input type="text" placeholder="Tìm kiếm..." />
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-      </div>
-      <div class="right-header-container">
-        <div>
-          <i class="fa-regular fa-house"></i>
-          <span>Trang chủ</span>
-        </div>
-        <div>
-          <i class="fa-regular fa-bell"></i>
-          <span>Tin tức</span>
-        </div>
-        <div class="login-infor">
-          <div class="avatar-header">
-            <img
-              src="../img/user.png"
-              alt="User Image"
-              width="15"
-              height="15"
-            />
-          </div>
-          <span style="font-size: larger">Asc Test</span>
-        </div>
-      </div>
-    </header>
+    <div id="header-container"></div>
     <!-- Content -->
     <main class="main-content">
       <!-- Sidebar -->
@@ -718,10 +687,15 @@
       .then((html) => {
         document.getElementById("sidebar-container").innerHTML = html;
 
-        // Initialize sidebar after it's loaded
         if (typeof initializeSidebar === "function") {
           initializeSidebar();
         }
+      });
+
+    fetch("component/header.html")
+      .then((res) => res.text())
+      .then((html) => {
+        document.getElementById("header-container").innerHTML = html;
       });
   </script>
   <script src="../js/main.js"></script>

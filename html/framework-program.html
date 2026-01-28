@@ -34,44 +34,9 @@
   </head>
   <body>
     <!-- Header -->
-    <header class="header-container">
-      <div class="left-header-container">
-        <button class="hamburger-menu" id="hamburgerMenu">
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="logo-div">
-          <!-- Todo Logo -->
-        </div>
-        <div class="search-bar">
-          <input type="text" placeholder="Tìm kiếm..." />
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-      </div>
-      <div class="right-header-container">
-        <div>
-          <i class="fa-regular fa-house"></i>
-          <span>Trang chủ</span>
-        </div>
-        <div>
-          <i class="fa-regular fa-bell"></i>
-          <span>Tin tức</span>
-        </div>
-        <div class="login-infor">
-          <div class="avatar">
-            <img
-              src="../img/user.png"
-              alt="User Image"
-              width="15"
-              height="15"
-            />
-          </div>
-          <span style="font-size: larger">Asc Test</span>
-        </div>
-      </div>
-    </header>
+    <div id="header-container"></div>
     <!-- Content -->
     <main class="main-content">
-      <div class="sidebar-overlay" id="sidebarOverlay"></div>
       <!-- Sidebar -->
       <div id="sidebar-container"></div>
       <!-- Details -->
@@ -403,16 +368,16 @@
         .then((html) => {
           document.getElementById("sidebar-container").innerHTML = html;
 
-          // Initialize sidebar after it's loaded
           if (typeof initializeSidebar === "function") {
             initializeSidebar();
           }
         });
-      // Initialize
-      document.addEventListener("DOMContentLoaded", function () {
-        handleResize();
-        window.addEventListener("resize", handleResize);
-      });
+
+      fetch("component/header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
+        });
 
       $("#chart").kendoChart({
         chartArea: {
@@ -882,25 +847,7 @@
         <div class="timeline-year-label">6/2026</div>
       `;
         markersContainer.appendChild(endMarker);
-
-        // addTooltipListeners();
       }
-      // End of DISABLED renderTimeline function
-
-      // Tab switching
-      document
-        .getElementById("semesterTab")
-        .addEventListener("click", function () {
-          this.classList.add("active");
-          document.getElementById("knowledgeTab").classList.remove("active");
-        });
-
-      document
-        .getElementById("knowledgeTab")
-        .addEventListener("click", function () {
-          this.classList.add("active");
-          document.getElementById("semesterTab").classList.remove("active");
-        });
 
       // Filter buttons
       document.querySelectorAll(".filter-btn").forEach((btn) => {
