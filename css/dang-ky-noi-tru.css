@@ -1,0 +1,623 @@
+.dorm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dorm-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 15px 20px;
+}
+
+.dorm-section-full {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dorm-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #505050;
+  padding: 2px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  border-left: 4px solid #0ea5e9;
+  border-radius: 4px;
+}
+
+.dorm-section-header {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.dorm-section-content {
+  padding: 0 15px;
+}
+
+.dorm-section-content-full {
+  background-color: #fbfcfd;
+  border-top: 1px solid #e4e4e4;
+}
+
+.dorm-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.dorm-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dorm-form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  /* color: var(--dorm-text); */
+}
+
+.dorm-required {
+  color: #f65050;
+  margin-left: 2px;
+}
+
+.dorm-input,
+.dorm-select {
+  padding: 8px 12px;
+  border: 1px solid #e4e4e4;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.dorm-input:focus,
+.dorm-select:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.dorm-textarea {
+  padding: 12px;
+  border: 1px solid #e4e4e4;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  min-height: 120px;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.dorm-textarea:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* Month Tabs */
+.dorm-month-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dorm-month-tab {
+  padding: 8px 16px;
+  border: 1px solid #e4e4e4;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #505050;
+  transition: all 0.2s ease;
+}
+
+.dorm-month-tab:hover {
+  border-color: #0ea5e9;
+  background: #f0f7ff;
+}
+
+.dorm-month-tab.active {
+  background: #f3fafe;
+  color: #12a6e9;
+  border-color: #12a6e9;
+}
+
+/* Room Selection */
+.dorm-room-selection {
+  display: flex;
+  flex-direction: column;
+}
+
+.dorm-room-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  padding: 10px 25px 20px 25px;
+  align-items: flex-end;
+  background: #fbfcfd;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.secondary-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a4a4a4;
+}
+
+.dorm-room-display {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 20px;
+}
+
+.dorm-building-list {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px 5px 10px 25px;
+}
+
+.dorm-building-item {
+  padding: 10px 20px;
+  border: 1px solid #e4e4e4;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  background: white;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dorm-building-item:hover {
+  border-color: #0ea5e9;
+  background: #f0f7ff;
+}
+
+.dorm-building-item.active {
+  background: white;
+  color: #0ea5e9;
+  border-color: #0ea5e9;
+  font-weight: 600;
+}
+
+.dorm-building-count {
+  background: #e8ecf1;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.dorm-building-item.active .dorm-building-count {
+  background: #e3f2fd;
+  color: #0ea5e9;
+}
+
+#floorTabsContainer {
+  border-left: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+  background-color: white;
+}
+
+.dorm-floor-list {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.dorm-floor-tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid #e4e4e4;
+}
+
+.dorm-floor-tab {
+  padding: 10px 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #505050;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.dorm-floor-tab:hover {
+  color: #0ea5e9;
+}
+
+.dorm-floor-tab.active {
+  color: #0ea5e9;
+  font-weight: 600;
+}
+
+.dorm-floor-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #0ea5e9;
+}
+
+.dorm-floor-content {
+  display: none;
+  padding: 0 20px 20px 20px;
+}
+
+.dorm-floor-content.active {
+  display: block;
+}
+
+.dorm-room-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.dorm-room-card {
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  padding: 12px;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.dorm-room-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dorm-room-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.dorm-room-code {
+  font-size: 14px;
+  font-weight: 600;
+  color: #505050;
+}
+
+.dorm-room-capacity {
+  font-size: 11px;
+  color: #999;
+  background: #f5f5f5;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.dorm-bed-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.dorm-bed-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid #e4e4e4;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dorm-bed-item:hover {
+  border-color: #0ea5e9;
+  background: #f0f7ff;
+}
+
+.dorm-bed-icon {
+  font-size: 24px;
+  color: #cbd5e1;
+}
+
+.dorm-bed-icon.occupied {
+  color: #ef4444;
+}
+
+.dorm-bed-icon.selected {
+  color: #0ea5e9;
+}
+
+.dorm-bed-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #505050;
+}
+
+.dorm-room-legend {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: auto;
+  padding: 20px 0 0 0;
+  background: #fbfcfd;
+  border-radius: 6px;
+}
+
+.dorm-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #505050;
+}
+
+.dorm-legend-icon {
+  font-size: 18px;
+}
+
+.dorm-legend-icon.available {
+  color: #cbd5e1;
+}
+
+.dorm-legend-icon.occupied {
+  color: #ef4444;
+}
+
+.dorm-legend-icon.selected {
+  color: #0ea5e9;
+}
+
+.dorm-selected-room {
+  padding: 4px 15px;
+  background: #fbfcfd;
+  border-radius: 6px;
+  min-height: 60px;
+  margin-top: auto;
+}
+
+#selectedRoom {
+  background-color: #f3fafe;
+  padding: 15px 25px;
+  margin-top: 15px;
+}
+
+.dorm-selected-room-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+  color: #505050;
+}
+
+.dorm-selected-room-info i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 6px;
+  color: white;
+  background-color: #0ea5e9;
+}
+
+.dorm-selected-room-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.selected-room-text {
+  font-size: 14px;
+  color: #505050;
+  font-weight: 600;
+}
+
+/* Price Table */
+.dorm-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 20px 0 20px;
+}
+
+.dorm-price-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1px solid #e4e4e4;
+  background-color: white;
+  overflow: hidden;
+}
+
+.dorm-price-table thead {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background: #f8fafc;
+  color: #4982b6;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.dorm-price-table thead tr {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.dorm-price-table thead tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.dorm-price-table thead tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.dorm-price-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #505050;
+  border-bottom: 2px solid #e4e4e4;
+}
+
+.dorm-price-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e4e4e4;
+  color: #505050;
+}
+
+.dorm-price-table tbody tr:hover {
+  background: #fbfcfd;
+}
+
+.dorm-total-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 35px;
+  background: #f3fafe;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #505050;
+}
+
+.dorm-price-amount {
+  color: #0ea5e9;
+  font-size: 18px;
+}
+
+/* Terms */
+.dorm-terms {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background: #fef3cd;
+  border-left: 4px solid #febb13;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #856404;
+  margin-top: 20px;
+}
+
+.dorm-terms p {
+  margin: 0;
+}
+
+.dorm-link {
+  color: #0ea5e9;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dorm-link:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+.dorm-btn-primary,
+.dorm-btn-secondary {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dorm-btn-primary {
+  background: #0ea5e9;
+  color: white;
+}
+
+.dorm-btn-primary:hover {
+  background: #0052a3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
+.dorm-btn-primary:active {
+  transform: translateY(0);
+}
+
+.dorm-btn-secondary {
+  background: #fbfcfd;
+  color: #505050;
+  border: 1px solid #e4e4e4;
+}
+
+.dorm-btn-secondary:hover {
+  background: #e8ecf1;
+}
+
+.dorm-form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 30px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dorm-room-display {
+    grid-template-columns: 1fr;
+  }
+
+  .dorm-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dorm-room-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .dorm-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dorm-form-actions {
+    flex-direction: column;
+  }
+
+  .dorm-btn-primary,
+  .dorm-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -28,7 +28,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px 0;
+  margin-top: 15px;
 }
 
 .container-lg {
@@ -43,6 +43,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: start;
+}
+
+.header-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
 }
 
 .header-title {
@@ -1077,7 +1084,7 @@ body {
   color: #999;
   font-size: 12px;
   background-color: white;
-  margin-top: 30px;
+  margin-top: auto;
   border-radius: 4px;
 }
 
@@ -2073,4 +2080,8 @@ body {
   .timeline-year-marker-mobile {
     left: -2.5rem;
   }
+}
+
+.grid-2x2 {
+  grid-template-columns: repeat(2, 1fr);
 }
