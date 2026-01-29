@@ -1,157 +1,224 @@
-// Prevent multiple initializations
-let sidebarInitialized = false;
-
-function initializeSidebar() {
-  if (sidebarInitialized) return;
-  sidebarInitialized = true;
-
-  const navParents = document.querySelectorAll(".nav-parent");
-
-  navParents.forEach((parent) => {
-    parent.addEventListener("click", function (e) {
-      e.preventDefault();
-      const navGroup = this.parentElement;
-
-      if (!navGroup.classList.contains("nav-group")) return;
-
-      const isOpen = navGroup.classList.contains("open");
-
-      document.querySelectorAll(".nav-group").forEach((group) => {
-        group.classList.remove("open");
-        group.querySelector(".nav-parent").classList.remove("active");
-      });
-
-      if (!isOpen) {
-        navGroup.classList.add("open");
-        this.classList.add("active");
-      }
-    });
+// Load components
+fetch("../html/component/sidebar.html")
+  .then((res) => res.text())
+  .then((html) => {
+    document.getElementById("sidebar-container").innerHTML = html;
   });
 
-  document.querySelectorAll(".nav-subitem").forEach((subitem) => {
-    subitem.addEventListener("click", function (e) {
-      e.stopPropagation();
-
-      document.querySelectorAll(".nav-subitem").forEach((item) => {
-        item.classList.remove("active");
-      });
-
-      this.classList.add("active");
-    });
+fetch("../html/component/header.html")
+  .then((res) => res.text())
+  .then((html) => {
+    document.getElementById("header-container").innerHTML = html;
   });
 
-  const hamburgerMenu = document.getElementById("hamburgerMenu");
-  const sidebar = document.getElementById("sidebar");
-  let sidebarOverlay = document.getElementById("sidebarOverlay");
+const SidebarManager = (function () {
+  let initialized = false;
+  let overlay = null;
+  let eventListeners = [];
 
-  if (!sidebarOverlay) {
-    sidebarOverlay = document.createElement("div");
-    sidebarOverlay.id = "sidebarOverlay";
-    sidebarOverlay.className = "sidebar-overlay";
-    document.body.appendChild(sidebarOverlay);
-  }
-
-  if (hamburgerMenu && sidebar) {
-    hamburgerMenu.addEventListener("click", function (e) {
-      e.preventDefault();
-      sidebar.classList.toggle("active");
-      sidebarOverlay.classList.toggle("active");
-    });
-
-    sidebarOverlay.addEventListener("click", function () {
-      sidebar.classList.remove("active");
-      sidebarOverlay.classList.remove("active");
-    });
-
-    const navItems = sidebar.querySelectorAll(".nav-item, .nav-subitem");
-    navItems.forEach((item) => {
-      item.addEventListener("click", function () {
-        if (window.innerWidth <= 768) {
-          sidebar.classList.remove("active");
-          sidebarOverlay.classList.remove("active");
-        }
-      });
-    });
-  }
-}
-
-// Toggle sidebar functionality
-let sidebarToggleInitialized = false;
-
-function initializeSidebarToggle() {
-  if (sidebarToggleInitialized) return;
-  sidebarToggleInitialized = true;
-
-  const sidebarToggle = document.getElementById("sidebarToggle");
-  const hamburgerMenu = document.getElementById("hamburgerMenu");
-  const sidebar = document.getElementById("sidebar");
-  const mainContent = document.querySelector(".main-content");
-
-  let overlay = document.getElementById("sidebarOverlay");
-  if (!overlay) {
-    overlay = document.createElement("div");
-    overlay.id = "sidebarOverlay";
-    overlay.className = "sidebar-overlay";
-    document.body.appendChild(overlay);
-  }
-
-  if (sidebarToggle && sidebar && mainContent) {
-    mainContent.classList.add("sidebar-open");
-
-    sidebarToggle.addEventListener("click", function (e) {
-      e.preventDefault();
-      sidebar.classList.toggle("collapsed");
-      const icon = this.querySelector("i");
-
-      if (sidebar.classList.contains("collapsed")) {
-        mainContent.classList.remove("sidebar-open");
-        mainContent.classList.add("sidebar-collapsed");
-        icon.className = "fas fa-chevron-right";
-      } else {
-        mainContent.classList.add("sidebar-open");
-        mainContent.classList.remove("sidebar-collapsed");
-        icon.className = "fas fa-chevron-left";
+  function cleanup() {
+    eventListeners.forEach(({ element, event, handler }) => {
+      if (element) {
+        element.removeEventListener(event, handler);
       }
     });
+    eventListeners = [];
   }
 
-  // Mobile hamburger menu
-  if (hamburgerMenu && sidebar && overlay) {
-    hamburgerMenu.addEventListener("click", function (e) {
-      e.preventDefault();
-      sidebar.classList.toggle("active");
-      overlay.classList.toggle("active");
-    });
+  function addTrackedListener(element, event, handler) {
+    if (element) {
+      element.addEventListener(event, handler);
+      eventListeners.push({ element, event, handler });
+    }
+  }
 
-    overlay.addEventListener("click", function () {
+  function createOverlay() {
+    if (!overlay || !document.body.contains(overlay)) {
+      overlay = document.createElement("div");
+      overlay.id = "sidebarOverlay";
+      overlay.className = "sidebar-overlay";
+      document.body.appendChild(overlay);
+    }
+    return overlay;
+  }
+
+  function closeSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar && overlay) {
       sidebar.classList.remove("active");
       overlay.classList.remove("active");
+    }
+  }
+
+  function initializeNavigation() {
+    const navGroups = document.querySelectorAll(".nav-group");
+
+    navGroups.forEach((navGroup) => {
+      const parent = navGroup.querySelector(".nav-parent");
+      if (!parent) return;
+
+      const clickHandler = function (e) {
+        e.preventDefault();
+        const isOpen = navGroup.classList.contains("open");
+
+        document.querySelectorAll(".nav-group").forEach((group) => {
+          if (group !== navGroup) {
+            group.classList.remove("open");
+            const groupParent = group.querySelector(".nav-parent");
+            if (groupParent) groupParent.classList.remove("active");
+          }
+        });
+
+        if (!isOpen) {
+          navGroup.classList.add("open");
+          parent.classList.add("active");
+        } else {
+          navGroup.classList.remove("open");
+          parent.classList.remove("active");
+        }
+      };
+
+      addTrackedListener(parent, "click", clickHandler);
     });
 
-    // Close on navigation
-    const navItems = sidebar.querySelectorAll(".nav-item, .nav-subitem");
-    navItems.forEach((item) => {
-      item.addEventListener("click", function () {
+    document.querySelectorAll(".nav-item:not(.nav-parent)").forEach((item) => {
+      const clickHandler = function () {
         if (window.innerWidth <= 768) {
-          sidebar.classList.remove("active");
-          overlay.classList.remove("active");
+          closeSidebar();
         }
-      });
+      };
+      addTrackedListener(item, "click", clickHandler);
+    });
+
+    // Handle submenu items
+    document.querySelectorAll(".nav-subitem").forEach((subitem) => {
+      const clickHandler = function (e) {
+        e.stopPropagation();
+
+        document.querySelectorAll(".nav-subitem").forEach((item) => {
+          item.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+        if (window.innerWidth <= 768) {
+          closeSidebar();
+        }
+      };
+
+      addTrackedListener(subitem, "click", clickHandler);
     });
   }
-}
+
+  function initializeToggle() {
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const sidebar = document.getElementById("sidebar");
+    const mainContent = document.querySelector(".main-content");
+
+    if (sidebarToggle && sidebar && mainContent) {
+      // Set initial state
+      if (window.innerWidth > 768) {
+        mainContent.classList.add("sidebar-open");
+      }
+
+      const toggleHandler = function (e) {
+        e.preventDefault();
+        sidebar.classList.toggle("collapsed");
+        const icon = this.querySelector("i");
+
+        if (sidebar.classList.contains("collapsed")) {
+          mainContent.classList.remove("sidebar-open");
+          mainContent.classList.add("sidebar-collapsed");
+          if (icon) icon.className = "fas fa-chevron-right";
+        } else {
+          mainContent.classList.add("sidebar-open");
+          mainContent.classList.remove("sidebar-collapsed");
+          if (icon) icon.className = "fas fa-chevron-left";
+        }
+      };
+
+      addTrackedListener(sidebarToggle, "click", toggleHandler);
+    }
+  }
+
+  function initializeMobile() {
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+    const sidebar = document.getElementById("sidebar");
+
+    if (!hamburgerMenu || !sidebar) return;
+
+    const hamburgerHandler = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+    };
+
+    const overlayHandler = function (e) {
+      e.preventDefault();
+      closeSidebar();
+    };
+
+    addTrackedListener(hamburgerMenu, "click", hamburgerHandler);
+    addTrackedListener(overlay, "click", overlayHandler);
+  }
+
+  return {
+    initialize: function () {
+      if (initialized) {
+        console.warn("Sidebar already initialized");
+        return;
+      }
+
+      const sidebar = document.getElementById("sidebar");
+      const sidebarToggle = document.getElementById("sidebarToggle");
+
+      if (!sidebar) {
+        console.warn("Sidebar element not found");
+        return;
+      }
+
+      cleanup();
+
+      createOverlay();
+
+      initializeNavigation();
+      initializeToggle();
+      initializeMobile();
+
+      initialized = true;
+      console.log("Sidebar initialized successfully");
+    },
+
+    destroy: function () {
+      cleanup();
+      if (overlay && document.body.contains(overlay)) {
+        document.body.removeChild(overlay);
+      }
+      overlay = null;
+      initialized = false;
+    },
+
+    isInitialized: function () {
+      return initialized;
+    },
+  };
+})();
 
 document.addEventListener("DOMContentLoaded", function () {
-  const observer = new MutationObserver(function (mutations) {
+  const checkSidebar = setInterval(() => {
+    const sidebar = document.getElementById("sidebar");
     const sidebarToggle = document.getElementById("sidebarToggle");
-    if (sidebarToggle) {
-      initializeSidebarToggle();
-      observer.disconnect();
-    }
-  });
 
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-  });
+    if (sidebar || sidebarToggle) {
+      clearInterval(checkSidebar);
+      setTimeout(() => {
+        SidebarManager.initialize();
+      }, 100);
+    }
+  }, 50);
+
+  setTimeout(() => {
+    clearInterval(checkSidebar);
+  }, 5000);
 });
