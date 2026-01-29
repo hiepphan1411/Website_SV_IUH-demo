@@ -16,8 +16,6 @@ body {
   color: #333;
 }
 
-/* Removed conflicting .main-layout and .sidebar styles - using common.css instead */
-
 .container-lg {
   gap: 20px;
   padding: 20px 20px;
