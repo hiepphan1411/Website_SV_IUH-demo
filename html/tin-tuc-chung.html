@@ -3,17 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thông tin điểm danh</title>
+    <title>Tin tức chung</title>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/themes/base/jquery-ui.min.css"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="../css/curriculum-framework.css" />
-    <link rel="stylesheet" href="../css/thong-tin-diem-danh.css" />
+    <link rel="stylesheet" href="../css/tin-tuc.css" />
     <link rel="stylesheet" href="../css/common.css" />
     <script
       src="https://kit.fontawesome.com/6f955e325d.js"
@@ -26,42 +22,40 @@
     <main class="main-content">
       <!-- Sidebar -->
       <div id="sidebar-container"></div>
-      <!-- Progress Section -->
+      <!-- Details -->
       <div class="container">
-        <div class="header-section">
-          <div class="header-title">Thông tin điểm danh</div>
-          <div class="header-subtitle">
-            Theo dõi số tiết nghỉ chi tiết trong các kỳ của sinh viên.
-          </div>
-        </div>
-
-        <div class="content-wrapper-column">
-          <!-- Controls Section -->
-          <div class="content-wrapper-tab-group">
-            <div class="search-box" style="flex: 1; min-width: 300px">
-              <input
-                type="text"
-                id="searchInput"
-                placeholder="Tìm kiếm khóa học..."
-              />
+        <!-- Header Section -->
+        <div class="container-lg">
+          <div class="header-horizontal">
+            <div class="header-section">
+              <div class="header-title">Tin tức chung</div>
+              <div class="header-subtitle">
+                Cập nhật thông tin mới nhất từ nhà trường
+              </div>
             </div>
-            <div class="action-buttons">
-              <button class="btn-custom primary" id="filterAll">
-                <i class="fas fa-bars"></i>
-                Tất cả
-              </button>
-              <div id="semesterButtonGroup">
-                <!-- JavaScript Render -->
+            <div class="news-legend">
+              <div class="sub-news-legend">
+                <span class="legend-news-item unread-legend"></span>
+                Chưa đọc
+              </div>
+              <div class="sub-news-legend">
+                <span class="legend-news-item read-legend"></span>
+                Đã đọc
               </div>
             </div>
           </div>
-          <!-- Semester Attendance Table -->
-          <div class="content-wrapper" id="expandableSections">
-            <!-- JavaScript Render -->
-          </div>
 
-          <div class="footer-section" style="margin-top: auto">© 2025</div>
+          <!-- Main Content -->
+          <div class="news-container">
+            <!-- Featured News Section -->
+            <div class="featured-news-right" id="newsListContainer">
+              <!-- JavaScript Render -->
+            </div>
+          </div>
         </div>
+
+        <!-- Footer -->
+        <div class="footer-section">© 2025.</div>
       </div>
     </main>
     <script>
@@ -84,8 +78,6 @@
     <script src="../js/common.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/attendance-status.js"></script>
-    <script src="../js/thong-tin-diem-danh.js"></script>
-    <script src="../js//toggle-utils.js"></script>
+    <script src="../js/tin-tuc-chung.js"></script>
   </body>
 </html>

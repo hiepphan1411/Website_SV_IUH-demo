@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tin tức</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/curriculum-framework.css" />
+    <link rel="stylesheet" href="../css/tin-tuc.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <!-- Content -->
+    <main class="main-content">
+      <!-- Sidebar -->
+      <div id="sidebar-container"></div>
+      <!-- Details -->
+      <div class="container">
+        <!-- Header Section -->
+        <div class="header-section">
+          <div class="header-title">Tin tức</div>
+          <div class="header-subtitle">
+            Cập nhật thông tin mới nhất từ nhà trường và lớp học
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="news-main-container">
+          <div class="news-container">
+            <div class="news-title">
+              <div class="news-title-icon">
+                <i class="fas fa-bullhorn"></i>
+                Tin tức chung
+              </div>
+              <a href="tin-tuc-chung.html" class="news-view-all">Xem tất cả</a>
+            </div>
+            <!-- Featured News Section -->
+            <div class="featured-news-wrapper">
+              <div class="featured-news-left">
+                <div class="featured-news-image" id="featuredNewsImage">
+                  <i class="fas fa-newspaper"></i>
+                </div>
+                <div class="featured-news-meta">
+                  <i class="far fa-clock"></i>
+                  <span id="featuredNewsDate">
+                    <!-- JavaScript Render -->
+                  </span>
+                </div>
+                <div class="featured-news-title" id="featuredNewsTitle">
+                  <!-- JavaScript Render -->
+                </div>
+                <div
+                  class="featured-news-description"
+                  id="featuredNewsDescription"
+                >
+                  <!-- JavaScript Render -->
+                </div>
+                <a href="#" class="featured-news-button" id="featuredNewsBtn">
+                  <span class="featured-news-button-icon">
+                    <i class="fas fa-arrow-right"></i>
+                  </span>
+                  Xem chi tiết
+                </a>
+              </div>
+
+              <div class="featured-news-right" id="newsListContainer">
+                <!-- JavaScript Render -->
+              </div>
+            </div>
+          </div>
+
+          <!-- News Grid Section -->
+          <div class="news-grid-wrapper">
+            <div class="news-grid-header">
+              <div class="news-grid-title">
+                <span class="news-grid-title-icon">
+                  <i class="fas fa-newspaper"></i>
+                </span>
+                Tin tức sinh viên theo lớp A.01
+              </div>
+              <a href="#" class="news-view-all" id="viewAllBtn">Xem tất cả</a>
+            </div>
+            <div class="news-grid" id="newsGridContainer">
+              <!-- News cards will be populated here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">© 2025.</div>
+      </div>
+    </main>
+    <script>
+      fetch("component/sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar-container").innerHTML = html;
+
+          if (typeof initializeSidebar === "function") {
+            initializeSidebar();
+          }
+        });
+
+      fetch("component/header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
+        });
+    </script>
+    <script src="../js/common.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/tin-tuc.js"></script>
+  </body>
+</html>
