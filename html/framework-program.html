@@ -10,7 +10,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/themes/base/jquery-ui.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -18,754 +21,81 @@
     />
     <link rel="stylesheet" href="../css/curriculum-framework.css" />
     <link rel="stylesheet" href="../css/index.css" />
-    <style>
-      :root {
-        --color-completed: #5b9bd5;
-        --color-current: #ffc107;
-        --color-remaining: #c5c5c5;
-        --color-green-completed: #70ad47;
-        --color-yellow-active: #ffc107;
-        --border-thickness: 5px;
-      }
-
-      body {
-        background-color: #f5f5f5;
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-      }
-
-      .page-header {
-        background: white;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .page-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 0.5rem;
-      }
-
-      .page-subtitle {
-        font-size: 0.875rem;
-        color: #666;
-        margin: 0;
-      }
-
-      /* Progress Section */
-      .progress-section {
-        background: white;
-        border-radius: 12px;
-        padding: 2rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-
-      .section-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        color: #333;
-      }
-
-      .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.875rem;
-        color: #666;
-      }
-
-      .legend-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-      }
-
-      .progress-bar-custom {
-        height: 12px;
-        border-radius: 6px;
-        background-color: #f0f0f0;
-        overflow: hidden;
-        margin-bottom: 1.5rem;
-      }
-
-      .progress-segment {
-        height: 100%;
-        float: left;
-      }
-
-      .progress-label {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.875rem;
-        color: #666;
-        margin-bottom: 0.5rem;
-      }
-
-      .progress-percentage {
-        font-weight: 600;
-        color: #333;
-      }
-
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 1px;
-        background: #e0e0e0;
-        border-radius: 8px;
-        overflow: hidden;
-      }
-
-      .stat-item {
-        background: white;
-        padding: 1.5rem 1rem;
-        text-align: center;
-      }
-
-      .stat-value {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        line-height: 1;
-      }
-
-      .stat-label {
-        font-size: 0.813rem;
-        color: #666;
-      }
-
-      /* Timeline Section */
-      .timeline-section {
-        background: white;
-        border-radius: 12px;
-        padding: 2rem;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-
-      .timeline-container {
-        position: relative;
-      }
-
-      .timeline-wrapper {
-        position: relative;
-      }
-
-      .timeline-items {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        position: relative;
-        padding-bottom: 2rem;
-      }
-
-      .timeline-item {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-      }
-
-      .timeline-circle-wrapper {
-        position: relative;
-        margin-bottom: 1rem;
-        z-index: 2;
-      }
-
-      .timeline-circle {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-        font-size: 0.938rem;
-        background: white;
-        position: relative;
-        border: var(--border-thickness) solid transparent;
-      }
-
-      .timeline-circle.completed {
-        border-color: var(--color-green-completed);
-      }
-
-      .timeline-circle.active {
-        border-color: var(--color-yellow-active);
-      }
-
-      .timeline-circle.future {
-        border-color: #d0d0d0;
-      }
-
-      /* Circle with partial progress - using border with gradient via ::before */
-      .timeline-circle.partial-green,
-      .timeline-circle.partial-mixed,
-      .timeline-circle.partial-yellow {
-        border: none;
-      }
-
-      .timeline-circle.partial-green::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 50%;
-        padding: var(--border-thickness);
-        background: conic-gradient(
-          var(--color-green-completed) 0deg,
-          var(--color-green-completed) calc(var(--progress-green) * 3.6deg),
-          #d0d0d0 calc(var(--progress-green) * 3.6deg),
-          #d0d0d0 360deg
-        );
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-      }
-
-      .timeline-circle.partial-mixed::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 50%;
-        padding: var(--border-thickness);
-        background: conic-gradient(
-          var(--color-green-completed) 0deg,
-          var(--color-green-completed) calc(var(--progress-green) * 3.6deg),
-          var(--color-yellow-active) calc(var(--progress-green) * 3.6deg),
-          var(--color-yellow-active) calc(var(--progress-total) * 3.6deg),
-          #d0d0d0 calc(var(--progress-total) * 3.6deg),
-          #d0d0d0 360deg
-        );
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-      }
-
-      .timeline-circle.partial-yellow::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 50%;
-        padding: var(--border-thickness);
-        background: conic-gradient(
-          var(--color-yellow-active) 0deg,
-          var(--color-yellow-active) calc(var(--progress-yellow) * 3.6deg),
-          #d0d0d0 calc(var(--progress-yellow) * 3.6deg),
-          #d0d0d0 360deg
-        );
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-      }
-
-      .timeline-circle > span {
-        position: relative;
-        z-index: 1;
-        color: #333;
-      }
-
-      .timeline-circle.future > span {
-        color: #999;
-      }
-
-      .timeline-info {
-        text-align: center;
-        margin-bottom: 0.75rem;
-      }
-
-      .timeline-semester {
-        font-weight: 600;
-        font-size: 0.813rem;
-        color: #333;
-        margin-bottom: 0.25rem;
-      }
-
-      .timeline-credits {
-        font-size: 0.75rem;
-        color: #666;
-      }
-
-      .timeline-progress {
-        width: 100%;
-        max-width: 120px;
-        position: relative;
-      }
-
-      .timeline-progress-bar {
-        height: 24px;
-        background-color: #e0e0e0;
-        border-radius: 12px;
-        overflow: hidden;
-        position: relative;
-        display: flex;
-      }
-
-      .timeline-progress-segment {
-        height: 100%;
-        transition: width 0.3s ease;
-      }
-
-      .timeline-progress-segment.completed {
-        background-color: var(--color-green-completed);
-      }
-
-      .timeline-progress-segment.active {
-        background-color: var(--color-yellow-active);
-      }
-
-      .timeline-progress-text {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: #333;
-        white-space: nowrap;
-        z-index: 1;
-      }
-
-      .timeline-progress-text.light {
-        color: white;
-      }
-
-      /* Timeline bottom section - simplified */
-      .timeline-bottom {
-        position: relative;
-      }
-
-      .timeline-track-container {
-        position: relative;
-        height: 80px;
-        margin-bottom: 2rem;
-      }
-
-      .timeline-track {
-        position: absolute;
-        top: 8px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background-color: #e0e0e0;
-      }
-
-      .timeline-track-progress {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        background-color: var(--color-green-completed);
-        transition: width 0.3s ease;
-      }
-
-      /* Year markers positioned absolutely to align with semester circles */
-      .timeline-year-markers {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-      }
-
-      .timeline-year-marker {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transform: translateX(-50%);
-      }
-
-      .timeline-year-dot {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        margin-bottom: 0.75rem;
-        position: relative;
-        z-index: 2;
-      }
-
-      .timeline-year-dot.current {
-        background-color: var(--color-green-completed);
-      }
-
-      .timeline-year-dot.future {
-        background-color: #d0d0d0;
-      }
-
-      .timeline-year-label {
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: #5b9bd5;
-        margin-bottom: 0.25rem;
-        text-align: center;
-      }
-
-      .timeline-year-semesters {
-        font-size: 0.75rem;
-        color: #666;
-        text-align: center;
-        white-space: nowrap;
-      }
-
-      .timeline-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 1.5rem;
-        border-top: 1px solid #e0e0e0;
-        margin-top: 1rem;
-      }
-
-      .timeline-date {
-        font-size: 0.875rem;
-        color: #666;
-      }
-
-      .timeline-legends {
-        display: flex;
-        gap: 2rem;
-      }
-
-      /* Content Section */
-      .content-section {
-        background: white;
-        border-radius: 12px;
-        padding: 2rem;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-
-      .search-box {
-        flex: 1;
-        min-width: 300px;
-        max-width: 400px;
-      }
-
-      .search-input {
-        width: 100%;
-        padding: 0.75rem 1rem 0.75rem 2.5rem;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-size: 0.875rem;
-      }
-
-      .search-icon {
-        position: absolute;
-        left: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #999;
-      }
-
-      .filter-buttons {
-        display: flex;
-        gap: 0.75rem;
-        flex-wrap: wrap;
-      }
-
-      .filter-btn {
-        padding: 0.75rem 1.5rem;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background: white;
-        font-size: 0.875rem;
-        cursor: pointer;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .filter-btn:hover {
-        border-color: var(--color-completed);
-        background-color: #f8f9fa;
-      }
-
-      .filter-btn.active {
-        background-color: var(--color-completed);
-        color: white;
-        border-color: var(--color-completed);
-      }
-
-      /* Responsive */
-      @media (max-width: 768px) {
-        .page-header {
-          padding: 1rem;
-        }
-
-        .progress-section,
-        .timeline-section,
-        .content-section {
-          padding: 1.5rem;
-        }
-
-        .stats-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .timeline-items {
-          overflow-x: auto;
-          padding-bottom: 1rem;
-        }
-
-        .timeline-item {
-          min-width: 90px;
-        }
-
-        .timeline-circle {
-          width: 60px;
-          height: 60px;
-          font-size: 0.813rem;
-        }
-
-        .timeline-progress {
-          max-width: 90px;
-        }
-
-        .timeline-footer {
-          flex-direction: column;
-          gap: 1rem;
-          text-align: center;
-        }
-
-        .timeline-legends {
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-
-        .controls-bar {
-          flex-direction: column;
-        }
-
-        .search-box {
-          min-width: 100%;
-        }
-
-        .filter-buttons {
-          justify-content: stretch;
-        }
-
-        .filter-btn {
-          flex: 1;
-        }
-
-        .tab-buttons {
-          justify-content: stretch;
-        }
-
-        .tab-btn {
-          flex: 1;
-          justify-content: center;
-        }
-      }
-
-      @media (max-width: 576px) {
-        .stats-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .stat-value {
-          font-size: 1.75rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="../css/common.css" />
+    <link
+      href="https://kendo.cdn.telerik.com/2016.3.1118/styles/kendo.common.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://kendo.cdn.telerik.com/2016.3.1118/styles/kendo.default.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Header -->
-    <header class="header-container">
-      <div class="left-header-container">
-        <div class="logo-div">
-          <!-- Todo Logo -->
-        </div>
-        <div class="search-bar">
-          <input type="text" placeholder="Tìm kiếm..." />
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-      </div>
-      <div class="right-header-container">
-        <div>
-          <i class="fa-regular fa-house"></i>
-          <span>Trang chủ</span>
-        </div>
-        <div>
-          <i class="fa-regular fa-bell"></i>
-          <span>Tin tức</span>
-        </div>
-        <div class="login-infor">
-          <div class="avatar">
-            <img
-              src="../img/user.png"
-              alt="User Image"
-              width="15"
-              height="15"
-            />
-          </div>
-          <span style="font-size: larger">Asc Test</span>
-        </div>
-      </div>
-    </header>
+    <div id="header-container"></div>
     <!-- Content -->
     <main class="main-content">
       <!-- Sidebar -->
-      <aside class="sidebar">
-        <nav class="nav-menu">
-          <a href="#" class="nav-item active">
-            <i class="fas fa-home"></i>
-            <span>Trang chủ</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-user"></i>
-            <span>Thông tin sinh viên</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-calendar-week"></i>
-            <span>Lịch theo tuần</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-book-open"></i>
-            <span>Đăng ký học phần</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-chart-line"></i>
-            <span>Kết quả học tập</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-money-bill-wave"></i>
-            <span>Tra cứu công nợ</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-trophy"></i>
-            <span>Học bổng</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-folder-open"></i>
-            <span>Hồ sơ điện tử</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-pen-fancy"></i>
-            <span>Lịch thi</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-tasks"></i>
-            <span>Lịch theo tiến độ</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-bell"></i>
-            <span>Thông báo</span>
-          </a>
-          <a href="#" class="nav-item">
-            <i class="fas fa-poll"></i>
-            <span>Khảo sát</span>
-          </a>
-        </nav>
-      </aside>
+      <div id="sidebar-container"></div>
       <!-- Details -->
-      <div class="container-lg" style="max-width: 1400px">
-        <!-- Page Header -->
-        <div class="page-header">
-          <h1 class="page-title">
-            Chương trình khung đào tạo và tiến độ học tập
-          </h1>
-          <p class="page-subtitle">
-            Xem chương trình đào tạo theo từng học kỳ và lập kế hoạch học tập
-            phù hợp
-          </p>
-        </div>
+      <div class="container-lg">
+        <!-- Progress Section -->
+        <div class="content-wrapper">
+          <div class="progress-section">
+            <div class="learning-progress-title">
+              <div class="section-title">Tiến độ học tập</div>
 
-        <!-- TODO: Progress Section By css + bootstrap -->
-        <div class="progress-section">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="section-title mb-0">Tiến độ học tập</h2>
-            <div class="d-flex gap-3 flex-wrap">
-              <div class="legend-item">
+              <div class="progress-label">
                 <span
-                  class="legend-dot"
-                  style="background-color: var(--color-completed)"
-                ></span>
-                <span>Đã hoàn thành</span>
-              </div>
-              <div class="legend-item">
+                  ><i class="fa-solid fa-circle badge-completed"></i> Đã hoàn
+                  thành</span
+                >
                 <span
-                  class="legend-dot"
-                  style="background-color: var(--color-current)"
-                ></span>
-                <span>Tín chỉ đang học</span>
-              </div>
-              <div class="legend-item">
+                  ><i class="fa-solid fa-circle badge-progress"></i> Tin chỉ
+                  đang học</span
+                >
                 <span
-                  class="legend-dot"
-                  style="background-color: var(--color-remaining)"
-                ></span>
-                <span>Tín chỉ còn lại</span>
+                  ><i class="fa-solid fa-circle badge-notstart"></i> Tin chỉ còn
+                  lại</span
+                >
               </div>
             </div>
-          </div>
 
-          <div class="mb-4">
-            <div class="progress-label">
-              <span>Đã hoàn thành</span>
-              <span class="progress-percentage" id="overallPercentage"
-                >75%</span
-              >
+            <div class="progress-bar-div">
+              <div class="progress-bar-title">
+                <div>Đã hoàn thành</div>
+                <div>
+                  <span class="progress-percentage" id="overallPercentage"
+                    >75%</span
+                  >
+                </div>
+              </div>
+              <div id="chart" class="progress-chart" style="width: 100%"></div>
             </div>
-            <div class="progress-bar-custom" id="overallProgressBar"></div>
-          </div>
 
-          <div class="stats-grid">
-            <div class="stat-item">
-              <div class="stat-value" style="color: #333" id="totalCredits">
-                162
+            <div class="stats-container">
+              <div class="stat-box">
+                <div class="stat-number green" id="totalCredits">162</div>
+                <div class="stat-label">Tổng tin chỉ</div>
               </div>
-              <div class="stat-label">Tổng tín chỉ</div>
-            </div>
-            <div class="stat-item">
-              <div
-                class="stat-value"
-                style="color: var(--color-completed)"
-                id="completedCredits"
-              >
-                122
+              <div class="stat-box">
+                <div class="stat-number blue" id="completedCredits">122</div>
+                <div class="stat-label">Đã hoàn thành</div>
               </div>
-              <div class="stat-label">Đã hoàn thành</div>
-            </div>
-            <div class="stat-item">
-              <div
-                class="stat-value"
-                style="color: var(--color-current)"
-                id="currentCredits"
-              >
-                24
+              <div class="stat-box">
+                <div class="stat-number yellow" id="currentCredits">24</div>
+                <div class="stat-label">Tin chỉ đang học</div>
               </div>
-              <div class="stat-label">Tín chỉ đang học</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value" style="color: #666" id="remainingCredits">
-                16
+              <div class="stat-box">
+                <div class="stat-number gray" id="remainingCredits">16</div>
+                <div class="stat-label">Tin chỉ còn lại</div>
               </div>
-              <div class="stat-label">Tín chỉ còn lại</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value" style="color: #ff6b00" id="progressDiff">
-                + 2%
+              <div class="stat-box-end">
+                <div class="stat-number yellow" id="progressDiff">+ 2%</div>
+                <div class="stat-label">Tiến độ so với kế hoạch</div>
               </div>
-              <div class="stat-label">Tiến độ so với kế hoạch</div>
             </div>
           </div>
         </div>
@@ -773,12 +103,8 @@
         <!-- Controls Section -->
         <div class="content-wrapper-tab-group">
           <div class="tab-buttons">
-            <button class="tab-btn active" id="semesterTab">
-              <span>Học kỳ</span>
-            </button>
-            <button class="tab-btn" id="knowledgeTab">
-              <span>Khối kiến thức</span>
-            </button>
+            <button class="tab-btn active">Học kỳ</button>
+            <button class="tab-btn">Khối kiến thức</button>
           </div>
 
           <div class="controls-section">
@@ -788,389 +114,570 @@
                 placeholder="Tìm kiếm môn học theo tên hoặc mã..."
               />
             </div>
-            <div class="filter-buttons">
-              <button class="filter-btn active" id="filterAll">
-                <i class="fas fa-list"></i>
-                <span>Tất cả</span>
+            <div class="action-buttons">
+              <button class="btn-custom primary">
+                <i class="fas fa-bars"></i>
+                Tất cả
               </button>
-              <button class="filter-btn" id="filterNotStudied">
-                <i class="fas fa-clock"></i>
-                <span>Chưa học</span>
+              <button class="btn-custom">
+                <i class="fab fa-leanpub"></i>
+                Chưa học
               </button>
-              <button class="filter-btn" id="filterRequired">
-                <i class="fas fa-exclamation-circle"></i>
-                <span>Bắt buộc</span>
+              <button class="btn-custom">
+                <i class="far fa-calendar-alt"></i>
+                Bắt buộc
               </button>
             </div>
           </div>
         </div>
 
         <!-- Timeline Section -->
-        <div class="timeline-section">
-          <h2 class="section-title">Lộ trình học tập</h2>
+        <div class="content-wrapper">
+          <div class="timeline-section">
+            <h2 class="section-title">Lộ trình học tập</h2>
 
-          <div class="timeline-container">
-            <div class="timeline-wrapper">
-              <!-- Semester circles -->
-              <div class="timeline-items" id="timelineItems"></div>
+            <div class="timeline-container">
+              <div class="timeline-wrapper">
+                <!-- Semester circles -->
+                <div class="timeline-items" id="timelineItems"></div>
 
-              <!-- Timeline track with year markers -->
-              <div class="timeline-bottom">
-                <div class="timeline-track-container">
-                  <div class="timeline-track">
+                <!-- Timeline track with year markers -->
+                <div class="timeline-bottom">
+                  <div class="timeline-track-container">
+                    <div class="timeline-track">
+                      <div
+                        class="timeline-track-progress"
+                        id="timelineTrackProgress"
+                      ></div>
+                    </div>
                     <div
-                      class="timeline-track-progress"
-                      id="timelineTrackProgress"
+                      class="timeline-year-markers"
+                      id="timelineYearMarkers"
                     ></div>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-footer">
+              <div class="timeline-date">
+                <i class="fas fa-calendar-alt me-2"></i
+                ><span id="startDate">9/2022</span>
+              </div>
+              <!-- <div class="timeline-legends">
+                <div class="legend-item">
+                  <span
+                    class="legend-dot"
+                    style="background-color: var(--color-green-completed)"
+                  ></span>
+                  <span>Hoàn thành</span>
+                </div>
+                <div class="legend-item">
+                  <span
+                    class="legend-dot"
+                    style="background-color: var(--color-yellow-active)"
+                  ></span>
+                  <span>Đang học</span>
+                </div>
+                <div class="legend-item">
+                  <span
+                    class="legend-dot"
+                    style="background-color: #e0e0e0"
+                  ></span>
+                  <span>Chưa học</span>
+                </div>
+              </div> -->
+              <div class="legend">
+                <div class="legend-item">
                   <div
-                    class="timeline-year-markers"
-                    id="timelineYearMarkers"
+                    class="legend-color"
+                    style="background-color: var(--success-green)"
                   ></div>
+                  <span>Hoàn thành</span>
+                </div>
+                <div class="legend-item">
+                  <div
+                    class="legend-color"
+                    style="background-color: var(--primary-yellow)"
+                  ></div>
+                  <span>Đang học</span>
+                </div>
+                <div class="legend-item">
+                  <div
+                    class="legend-color"
+                    style="background-color: #ccc"
+                  ></div>
+                  <span>Chưa học</span>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="timeline-footer">
-            <div class="timeline-date">
-              <i class="fas fa-calendar-alt me-2"></i
-              ><span id="startDate">9/2022</span>
-            </div>
-            <div class="timeline-legends">
-              <div class="legend-item">
-                <span
-                  class="legend-dot"
-                  style="background-color: var(--color-green-completed)"
-                ></span>
-                <span>Hoàn thành</span>
+              <div class="timeline-date">
+                <i class="fas fa-calendar-check me-2"></i
+                ><span id="endDate">6/2026</span>
               </div>
-              <div class="legend-item">
-                <span
-                  class="legend-dot"
-                  style="background-color: var(--color-yellow-active)"
-                ></span>
-                <span>Đang học</span>
-              </div>
-              <div class="legend-item">
-                <span
-                  class="legend-dot"
-                  style="background-color: #e0e0e0"
-                ></span>
-                <span>Chưa học</span>
-              </div>
-            </div>
-            <div class="timeline-date">
-              <i class="fas fa-calendar-check me-2"></i
-              ><span id="endDate">6/2026</span>
             </div>
           </div>
         </div>
 
-        <!-- Content Section -->
-        <!-- Expandable Sections -->
+        <!-- Knowledge Blocks Overview -->
         <div class="content-wrapper">
-          <!-- Section 1 -->
-          <div class="expandable-section">
-            <div class="section-header" onclick="toggleSection(this)">
-              <div class="semester-title">
-                <div class="semester-head-icon"></div>
-                <div>
-                  <div class="section-header-text">
-                    Khối kiến thức giáo dục đại cương
-                  </div>
-                  <div class="section-meta">
-                    Bắt buộc:
-                    <span class="bold-text">12 tín chỉ</span>
-                    • Tự chọn:
-                    <span class="bold-text">6 tín chỉ</span>
-                  </div>
+          <div class="knowledge-block-overview">
+            <div class="section-title">Tổng quan khối kiến thức</div>
+
+            <div class="knowledge-blocks">
+              <div class="knowledge-block">
+                <div class="circle-progress">
+                  <svg viewBox="0 0 120 120">
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#e9ecef"
+                      stroke-width="8"
+                    />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#ffb800"
+                      stroke-width="8"
+                      stroke-dasharray="157 314"
+                      stroke-dashoffset="0"
+                    />
+                  </svg>
+                  <div class="circle-text yellow">GDDC</div>
+                </div>
+                <div class="block-title">Giáo dục đại cương</div>
+                <div class="block-code">32/31 tin chỉ</div>
+                <div class="block-progress">
+                  <div class="block-progress-bar yellow"></div>
                 </div>
               </div>
-              <div class="section-icon">
-                <i class="fas fa-chevron-up"></i>
-              </div>
-            </div>
-            <div class="section-content">
-              <!-- Table will go here -->
-              <p>Nội dung khối kiến thức đại cương...</p>
-            </div>
-          </div>
 
-          <!-- Section 2 -->
-          <div class="expandable-section">
-            <div class="section-header expanded" onclick="toggleSection(this)">
-              <div class="semester-title">
-                <div class="semester-head-icon"></div>
-                <div>
-                  <div class="section-header-text">
-                    Khối kiến thức giáo dục chuyên nghiệp
-                  </div>
-                  <div class="section-meta">
-                    Bắt buộc:
-                    <span class="bold-text">6 tín chỉ</span>
-                    • Tự chọn:
-                    <span class="bold-text">6 tín chỉ</span>
-                  </div>
+              <div class="knowledge-block">
+                <div class="circle-progress">
+                  <svg viewBox="0 0 120 120">
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#e9ecef"
+                      stroke-width="8"
+                    />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#ffb800"
+                      stroke-width="8"
+                      stroke-dasharray="157 314"
+                      stroke-dashoffset="0"
+                    />
+                  </svg>
+                  <div class="circle-text yellow">GDCN</div>
+                </div>
+                <div class="block-title">Giáo dục chuyên nghiệp</div>
+                <div class="block-code">65/96 tin chỉ</div>
+                <div class="block-progress">
+                  <div class="block-progress-bar yellow"></div>
                 </div>
               </div>
-              <div class="section-icon">
-                <i class="fas fa-chevron-up"></i>
-              </div>
-            </div>
-            <div class="section-content active">
-              <div class="subtitle-header">Học phần bắt buộc</div>
-              <div class="table-frame">
-                <table class="table" id="mandatory-courses-table">
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th>HỌC KỲ</th>
-                      <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                      <th>MÃ HP</th>
-                      <th>HỌC PHẦN</th>
-                      <th>HP TƯƠNG ĐƯƠNG</th>
-                      <th>HP THAY THẾ</th>
-                      <th>SỐ TC</th>
-                      <th>SỐ TIẾT LÝ</th>
-                      <th>SỐ TIẾT THI</th>
-                      <th>ĐẠT</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- JavaScript Render -->
-                  </tbody>
-                </table>
-              </div>
 
-              <div class="subtitle-header">Học phần tự chọn</div>
-              <div class="elective-course">
-                <div style="width: max-content; min-width: 100%">
-                  <div class="block-type">
-                    TỰ CHỌN KHỐI KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP 1
-                  </div>
-                  <table
-                    class="table elective-table"
-                    id="elective-block1-table"
-                  >
-                    <thead>
-                      <tr>
-                        <th>STT</th>
-                        <th>HỌC KỲ</th>
-                        <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                        <th>MÃ HP</th>
-                        <th>HỌC PHẦN</th>
-                        <th>HP TƯƠNG ĐƯƠNG</th>
-                        <th>HP THAY THẾ</th>
-                        <th>SỐ TC</th>
-                        <th>SỐ TIẾT LÝ</th>
-                        <th>SỐ TIẾT THI</th>
-                        <th>ĐẠT</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- JavaScript Render -->
-                    </tbody>
-                  </table>
+              <div class="knowledge-block">
+                <div class="circle-progress">
+                  <svg viewBox="0 0 120 120">
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#e9ecef"
+                      stroke-width="8"
+                    />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="50"
+                      fill="none"
+                      stroke="#28a745"
+                      stroke-width="8"
+                      stroke-dasharray="251 314"
+                      stroke-dashoffset="0"
+                    />
+                  </svg>
+                  <div class="circle-text green">N/A</div>
                 </div>
-
-                <div style="width: max-content; min-width: 100%">
-                  <div class="block-type">
-                    TỰ CHỌN KHỐI KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP 2
-                  </div>
-                  <table
-                    class="table elective-table"
-                    id="elective-block2-table"
-                  >
-                    <thead>
-                      <tr>
-                        <th>STT</th>
-                        <th>HỌC KỲ</th>
-                        <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                        <th>MÃ HP</th>
-                        <th>HỌC PHẦN</th>
-                        <th>HP TƯƠNG ĐƯƠNG</th>
-                        <th>HP THAY THẾ</th>
-                        <th>SỐ TC</th>
-                        <th>SỐ TIẾT LÝ</th>
-                        <th>SỐ TIẾT THI</th>
-                        <th>ĐẠT</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- JavaScript Render -->
-                    </tbody>
-                  </table>
+                <div class="block-title">Chưa xác định</div>
+                <div class="block-code">22/22 tin chỉ</div>
+                <div class="block-progress">
+                  <div class="block-progress-bar"></div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Section 3 -->
-          <div class="expandable-section">
-            <div class="section-header" onclick="toggleSection(this)">
-              <div class="semester-title">
-                <div class="semester-head-icon"></div>
-                <div>
-                  <div class="section-header-text">
-                    Khối kiến thức giáo dục chuyên nghiệp
-                  </div>
-                  <div class="section-meta">
-                    Bắt buộc:
-                    <span class="bold-text">6 tín chỉ</span>
-                    • Tự chọn:
-                    <span class="bold-text">6 tín chỉ</span>
-                  </div>
-                </div>
-              </div>
-              <div class="section-icon">
-                <i class="fas fa-chevron-up"></i>
-              </div>
+          <div class="legend">
+            <div class="legend-item">
+              <div
+                class="legend-color"
+                style="background-color: var(--success-green)"
+              ></div>
+              <span>Hoàn thành</span>
             </div>
-            <div class="section-content">
-              <p>Nội dung phần chưa xác định...</p>
+            <div class="legend-item">
+              <div
+                class="legend-color"
+                style="background-color: var(--primary-yellow)"
+              ></div>
+              <span>Đang học</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #ccc"></div>
+              <span>Chưa học</span>
             </div>
           </div>
         </div>
+
+        <!-- Expandable Sections -->
+        <div class="content-wrapper" id="expandableSections">
+          <!-- JavaScript Render -->
+        </div>
+
+        <div class="footer-section">© 2025</div>
       </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
 
     <script src="../js/curriculum-framework.js"></script>
 
+    <script src="../js/study-progress.js"></script>
+
+    <script src="https://kendo.cdn.telerik.com/2016.3.1118/js/kendo.all.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/common.js"></script>
+
     <script>
-      // Data defaults
-      const progressData = {
-        totalCredits: 162,
-        completedCredits: 122,
-        currentCredits: 24,
-        remainingCredits: 16,
-        progressDiff: "+2%",
-      };
+      fetch("component/sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar-container").innerHTML = html;
 
-      // Current academic year
-      const currentAcademicYear = "2023-2024";
+          if (typeof initializeSidebar === "function") {
+            initializeSidebar();
+          }
+        });
 
-      const timelineData = [
-        {
-          semester: 1,
-          year: "2022-2023",
-          status: "completed",
-          progress: 100,
-          completedCredits: 12,
-          totalCredits: 12,
-          currentCredits: 0,
-        },
-        {
-          semester: 2,
-          year: "2022-2023",
-          status: "completed",
-          progress: 100,
-          completedCredits: 12,
-          totalCredits: 12,
-          currentCredits: 0,
-        },
-        {
-          semester: 3,
-          year: "2023-2024",
-          status: "completed",
-          progress: 71,
-          completedCredits: 15,
-          totalCredits: 21,
-          currentCredits: 0,
-        },
-        {
-          semester: 4,
-          year: "2023-2024",
-          status: "active",
-          progress: 100,
-          completedCredits: 0,
-          totalCredits: 19,
-          currentCredits: 19,
-        },
-        {
-          semester: 5,
-          year: "2024-2025",
-          status: "mixed",
-          progress: 74,
-          completedCredits: 10,
-          totalCredits: 19,
-          currentCredits: 4,
-        },
-        {
-          semester: 6,
-          year: "2024-2025",
-          status: "future",
-          progress: 0,
-          completedCredits: 0,
-          totalCredits: 21,
-          currentCredits: 0,
-        },
-        {
-          semester: 7,
-          year: "2025-2026",
-          status: "future",
-          progress: 0,
-          completedCredits: 0,
-          totalCredits: 15,
-          currentCredits: 0,
-        },
-        {
-          semester: 8,
-          year: "2025-2026",
-          status: "future",
-          progress: 0,
-          completedCredits: 0,
-          totalCredits: 15,
-          currentCredits: 0,
-        },
-      ];
+      fetch("component/header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
+        });
 
-      // Initialize
-      document.addEventListener("DOMContentLoaded", function () {
-        renderProgress();
-        renderTimeline();
+      $("#chart").kendoChart({
+        chartArea: {
+          height: 30,
+          background: "#f4fbff",
+        },
+        legend: { visible: false },
+        seriesDefaults: {
+          type: "bar",
+          stack: true,
+        },
+        series: [
+          { data: [60], color: "#56a2e8" }, // xanh
+          { data: [15], color: "#ffb800" }, // vàng
+          { data: [25], color: "#e0e0e0" }, // xám
+        ],
+        valueAxis: {
+          min: 0,
+          max: 100,
+          visible: false,
+          majorGridLines: { visible: false },
+          minorGridLines: { visible: false },
+        },
+        categoryAxis: {
+          categories: [""],
+          visible: false,
+          majorGridLines: { visible: false },
+          minorGridLines: { visible: false },
+        },
+        tooltip: {
+          visible: true,
+          template: "#= value #%",
+        },
+        dataBound: function () {
+          var svg = $("#chart svg");
+
+          svg.find("rect[fill]").each(function () {
+            var rect = $(this);
+            var fill = rect.attr("fill");
+
+            if (fill && !fill.includes("url")) {
+              rect.attr("rx", 8);
+              rect.attr("ry", 8);
+            }
+          });
+        },
       });
 
-      // Render progress section
-      function renderProgress() {
-        const data = progressData;
+      // function adjustTooltipPosition(element) {
+      //   const tooltip = element.querySelector(".semester-tooltip");
+      //   if (!tooltip) return;
 
-        document.getElementById("totalCredits").textContent = data.totalCredits;
-        document.getElementById("completedCredits").textContent =
-          data.completedCredits;
-        document.getElementById("currentCredits").textContent =
-          data.currentCredits;
-        document.getElementById("remainingCredits").textContent =
-          data.remainingCredits;
-        document.getElementById("progressDiff").textContent = data.progressDiff;
+      //   const rect = element.getBoundingClientRect();
+      //   const tooltipRect = tooltip.getBoundingClientRect();
+      //   const viewportHeight = window.innerHeight;
 
-        const completedPercent = (
-          (data.completedCredits / data.totalCredits) *
-          100
-        ).toFixed(1);
-        const currentPercent = (
-          (data.currentCredits / data.totalCredits) *
-          100
-        ).toFixed(1);
-        const remainingPercent = (
-          (data.remainingCredits / data.totalCredits) *
-          100
-        ).toFixed(1);
+      //   // Check if there's enough space above
+      //   const spaceAbove = rect.top;
+      //   const spaceBelow = viewportHeight - rect.bottom;
+      //   const tooltipHeight = tooltipRect.height || 200;
 
-        document.getElementById("overallPercentage").textContent =
-          completedPercent + "%";
+      //   if (spaceAbove < tooltipHeight + 20 && spaceBelow > spaceAbove) {
+      //     tooltip.classList.add("tooltip-bottom");
+      //   } else {
+      //     tooltip.classList.remove("tooltip-bottom");
+      //   }
+      // }
 
-        const progressBar = document.getElementById("overallProgressBar");
-        progressBar.innerHTML = `
-        <div class="progress-segment" style="width: ${completedPercent}%; background-color: var(--color-completed);"></div>
-        <div class="progress-segment" style="width: ${currentPercent}%; background-color: var(--color-current);"></div>
-        <div class="progress-segment" style="width: ${remainingPercent}%; background-color: var(--color-remaining);"></div>
-      `;
+      // Add hover listeners to adjust tooltip position
+      // function addTooltipListeners() {
+      //   document
+      //     .querySelectorAll(".timeline-item, .timeline-semester-card")
+      //     .forEach((item) => {
+      //       item.addEventListener("mouseenter", () =>
+      //         adjustTooltipPosition(item),
+      //       );
+      //     });
+      // }
+
+      // Handle responsive timeline rendering
+      function handleResize() {
+        const isMobile = window.innerWidth <= 768;
+        const container = document.querySelector(".timeline-container");
+        if (!container) return;
+
+        const wrapper = container.querySelector(".timeline-wrapper");
+        let mobileTimeline = container.querySelector(".timeline-mobile");
+
+        if (isMobile) {
+          if (wrapper) wrapper.style.display = "none";
+          if (!mobileTimeline) {
+            mobileTimeline = document.createElement("div");
+            mobileTimeline.className = "timeline-mobile";
+            container.appendChild(mobileTimeline);
+          }
+          renderMobileTimeline();
+
+          // Add click handlers to mobile timeline cards
+          setTimeout(() => {
+            const mobileCards = document.querySelectorAll(
+              ".timeline-semester-card",
+            );
+            mobileCards.forEach((card) => {
+              card.addEventListener("click", function () {
+                const semester = this.getAttribute("data-semester");
+                if (window.scrollToSemester) {
+                  window.scrollToSemester(semester);
+                }
+              });
+            });
+          }, 100);
+        } else {
+          if (wrapper) wrapper.style.display = "block";
+          if (mobileTimeline) {
+            mobileTimeline.remove();
+          }
+        }
+
+        // setTimeout(addTooltipListeners, 100);
       }
 
-      function renderTimeline() {
+      // Render mobile timeline
+      function renderMobileTimeline() {
+        const container = document.querySelector(".timeline-mobile");
+        if (!container) return;
+
+        // Clear existing content first to prevent double rendering
+        container.innerHTML = "";
+
+        const yearGroups = {};
+        timelineData.forEach((sem) => {
+          if (!yearGroups[sem.year]) {
+            yearGroups[sem.year] = [];
+          }
+          yearGroups[sem.year].push(sem);
+        });
+
+        const uniqueYears = Object.keys(yearGroups);
+
+        const currentYearIndex = uniqueYears.indexOf(currentAcademicYear);
+        const totalYears = uniqueYears.length;
+
+        let progressPercent = 0;
+        if (currentYearIndex >= 0) {
+          progressPercent = (currentYearIndex / totalYears) * 100;
+        }
+
+        // Don't clear innerHTML here, already done at the start of function
+
+        uniqueYears.forEach((year, yearIndex) => {
+          const yearSems = yearGroups[year];
+          const dotClass = year <= currentAcademicYear ? "current" : "future";
+          const totalSemesters = timelineData.length;
+
+          const firstSemIndex = timelineData.findIndex((s) => s.year === year);
+
+          // Position in the middle between sem1 and sem2 of this year
+          // Middle = (index0 + index1) / 2 = index0 + 0.5
+          // Convert to percentage: (middle / total) * 100
+          const middlePosition = firstSemIndex + 1;
+          const progressPercent = (yearIndex / totalYears) * 100 + 3;
+
+          if (yearIndex === currentYearIndex && currentYearIndex >= 0) {
+            container.style.setProperty(
+              "--progress-percent",
+              progressPercent + "%",
+            );
+          } else if (currentYearIndex < 0) {
+            container.style.setProperty("--progress-percent", 100 + "%");
+          }
+          const yearGroup = document.createElement("div");
+          yearGroup.className = "timeline-year-group";
+
+          // Year marker
+          const yearMarker = document.createElement("div");
+          yearMarker.className = "timeline-year-marker-mobile";
+          yearMarker.innerHTML = `
+            <div class="timeline-year-dot ${dotClass}"></div>
+          `;
+          // <div class="timeline-year-label">${year}</div>;
+          yearGroup.appendChild(yearMarker);
+
+          // Semesters in horizontal layout
+          const semestersContainer = document.createElement("div");
+          semestersContainer.className = "timeline-semesters-horizontal";
+
+          yearSems.forEach((sem) => {
+            const card = document.createElement("div");
+            card.className = "timeline-semester-card";
+            card.setAttribute("data-semester", sem.semester);
+            card.style.cursor = "pointer";
+
+            const completedPercent =
+              (sem.completedCredits / sem.totalCredits) * 100;
+            const currentPercent =
+              (sem.currentCredits / sem.totalCredits) * 100;
+            const totalPercent = completedPercent + currentPercent;
+
+            // Determine card status
+            if (sem.status === "completed" && sem.progress === 100) {
+              card.classList.add("completed");
+            } else if (sem.status === "active") {
+              card.classList.add("active");
+            } else if (sem.status === "mixed") {
+              card.classList.add("mixed");
+            }
+
+            // Circle with progress
+            let circleClass = "";
+            let circleStyle = "";
+
+            if (sem.status === "completed" && sem.progress === 100) {
+              circleClass = "completed";
+            } else if (sem.status === "active" && sem.completedCredits === 0) {
+              circleClass = "active";
+            } else if (
+              (sem.status === "mixed" || totalPercent > 0) &&
+              sem.completedCredits > 0 &&
+              sem.currentCredits > 0
+            ) {
+              circleClass = "partial-mixed";
+              circleStyle = `style="--progress-green: ${completedPercent}; --progress-total: ${totalPercent}"`;
+            } else if (
+              sem.completedCredits > 0 &&
+              sem.completedCredits < sem.totalCredits
+            ) {
+              circleClass = "partial-green";
+              circleStyle = `style="--progress-green: ${completedPercent}"`;
+            } else if (sem.currentCredits > 0 && sem.completedCredits === 0) {
+              circleClass = "partial-yellow";
+              circleStyle = `style="--progress-yellow: ${currentPercent}"`;
+            } else {
+              circleClass = "future";
+            }
+
+            // Progress bar
+            let progressBarHTML = "";
+            let progressTextClass = "";
+
+            if (completedPercent > 0 && currentPercent > 0) {
+              progressBarHTML = `
+                <div class="timeline-progress-segment completed" style="width: ${completedPercent}%;"></div>
+                <div class="timeline-progress-segment active" style="width: ${currentPercent}%;"></div>
+              `;
+              progressTextClass = totalPercent > 50 ? "light" : "";
+            } else if (completedPercent > 0) {
+              progressBarHTML = `<div class="timeline-progress-segment completed" style="width: ${completedPercent}%;"></div>`;
+              progressTextClass = completedPercent > 50 ? "light" : "";
+            } else if (currentPercent > 0) {
+              progressBarHTML = `<div class="timeline-progress-segment active" style="width: ${currentPercent}%;"></div>`;
+              progressTextClass = currentPercent > 50 ? "light" : "";
+            }
+
+            const displayPercent = Math.round(totalPercent);
+            const displayCredits = `${sem.completedCredits + sem.currentCredits}/${sem.totalCredits}`;
+            const remainingCredits =
+              sem.totalCredits - sem.completedCredits - sem.currentCredits;
+
+            card.innerHTML = `
+              <div class="timeline-circle ${circleClass}" ${circleStyle}>
+                <span>HK${sem.semester}</span>
+              </div>
+              <div class="timeline-info">
+                <div class="timeline-semester">Học kỳ ${sem.semester}</div>
+                <div class="timeline-credits">${displayCredits} tín chỉ</div>
+              </div>
+              <div class="timeline-progress">
+                <div class="timeline-progress-bar">
+                  ${progressBarHTML}
+                  <div class="timeline-progress-text ${progressTextClass}">${displayPercent}%</div>
+                </div>
+              </div>
+              <div class="semester-tooltip">
+                <div class="tooltip-row">
+                  <span class="tooltip-label">Học kỳ:</span>
+                  <span class="tooltip-value">HK${sem.semester}</span>
+                </div>
+                <div class="tooltip-row">
+                  <span class="tooltip-label">Đã học:</span>
+                  <span class="tooltip-value">${sem.completedCredits}/${sem.totalCredits} TC</span>
+                </div>
+                <div class="tooltip-row">
+                  <span class="tooltip-label">Đang học:</span>
+                  <span class="tooltip-value">${sem.currentCredits} TC</span>
+                </div>
+              </div>
+            `;
+
+            semestersContainer.appendChild(card);
+          });
+
+          yearGroup.appendChild(semestersContainer);
+          container.appendChild(yearGroup);
+        });
+      }
+
+      // renderProgress and renderTimeline are now in study-progress.js
+      // Removed duplicate functions to fix double rendering issue
+
+      function renderTimeline_DISABLED() {
         const container = document.getElementById("timelineItems");
         const markersContainer = document.getElementById("timelineYearMarkers");
         const trackProgress = document.getElementById("timelineTrackProgress");
@@ -1194,6 +701,8 @@
           );
           const markerPosition = ((firstSemIndex + 1) / totalSemesters) * 100;
           trackProgress.style.width = markerPosition + "%";
+        } else {
+          trackProgress.style.width = "100%";
         }
 
         // Render semester circles
@@ -1253,6 +762,8 @@
 
           const displayPercent = Math.round(totalPercent);
           const displayCredits = `${sem.completedCredits + sem.currentCredits}/${sem.totalCredits}`;
+          const remainingCredits =
+            sem.totalCredits - sem.completedCredits - sem.currentCredits;
 
           item.innerHTML = `
           <div class="timeline-circle-wrapper">
@@ -1268,6 +779,20 @@
             <div class="timeline-progress-bar">
               ${progressBarHTML}
               <div class="timeline-progress-text ${progressTextClass}">${displayPercent}%</div>
+            </div>
+          </div>
+          <div class="semester-tooltip">
+            <div class="tooltip-row">
+              <span class="tooltip-label">Học kỳ:</span>
+              <span class="tooltip-value">HK${sem.semester}</span>
+            </div>
+            <div class="tooltip-row">
+              <span class="tooltip-label">Đã học:</span>
+              <span class="tooltip-value">${sem.completedCredits}/${sem.totalCredits} TC</span>
+            </div>
+            <div class="tooltip-row">
+              <span class="tooltip-label">Đang học:</span>
+              <span class="tooltip-value">${sem.currentCredits} TC</span>
             </div>
           </div>
         `;
@@ -1287,6 +812,7 @@
         uniqueYears.forEach((year, yearIndex) => {
           const yearSems = yearGroups[year];
           const firstSemIndex = timelineData.findIndex((s) => s.year === year);
+          const totalSemesters = timelineData.length;
 
           // Position in the middle between sem1 and sem2 of this year
           // Middle = (index0 + index1) / 2 = index0 + 0.5
@@ -1312,29 +838,16 @@
         });
 
         const endMarker = document.createElement("div");
+        let stylesCustom = "future";
+        stylesCustom = currentYearIndex >= 0 ? "future" : "current";
         endMarker.className = "timeline-year-marker";
         endMarker.style.left = "100%";
         endMarker.innerHTML = `
-        <div class="timeline-year-dot future"></div>
+        <div class="timeline-year-dot ${stylesCustom}"></div>
         <div class="timeline-year-label">6/2026</div>
       `;
         markersContainer.appendChild(endMarker);
       }
-
-      // Tab switching
-      document
-        .getElementById("semesterTab")
-        .addEventListener("click", function () {
-          this.classList.add("active");
-          document.getElementById("knowledgeTab").classList.remove("active");
-        });
-
-      document
-        .getElementById("knowledgeTab")
-        .addEventListener("click", function () {
-          this.classList.add("active");
-          document.getElementById("semesterTab").classList.remove("active");
-        });
 
       // Filter buttons
       document.querySelectorAll(".filter-btn").forEach((btn) => {
