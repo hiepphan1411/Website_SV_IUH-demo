@@ -1,303 +1,367 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Đăng ký học phần</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Đăng ký học phần</title>
 
-    <link href="../lib/bootstrap@5.3.8.min.css" rel="stylesheet" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
 
-    <link
-      href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"
-      rel="stylesheet"
-    />
+        <link
+            href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"
+            rel="stylesheet"
+        />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.common.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.default.min.css"
-      rel="stylesheet"
-    />
+        <link
+            href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.common.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.default.min.css"
+            rel="stylesheet"
+        />
 
-    <link rel="stylesheet" href="../css/common.css" />
+        <link rel="stylesheet" href="../css/common.css" />
 
-    <script
-      src="https://kit.fontawesome.com/6f955e325d.js"
-      crossorigin="anonymous"
-    ></script>
+        <script
+            src="https://kit.fontawesome.com/6f955e325d.js"
+            crossorigin="anonymous"
+        ></script>
 
-    <link rel="stylesheet" href="../css/dang-ky-hoc-phan.css" />
-  </head>
-  <body>
-    <!-- Header -->
-    <div id="header-container"></div>
-    <!-- Content -->
-    <main class="main-content">
-      <!-- Sidebar -->
-      <div id="sidebar-container"></div>
-      <!-- Details -->
-      <div class="container-lg">
-        <div class="container-main">
-          <!-- Học phần đang mở -->
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: 20px;
-              margin-bottom: 20px;
-              align-items: stretch;
-            "
-          >
-            <!-- Học phần đang mở -->
-            <div class="section-header">
-              <h3 class="section-title fw-bold">Học phần đang mở</h3>
-
-              <div
-                style="
-                  display: flex;
-                  gap: 15px;
-                  width: 100%;
-                  align-items: center;
-                  margin-top: 15px;
-                  justify-content: space-between;
-                "
-              >
-                <div class="search-bar-dkhp">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-
-                  <input
-                    type="text"
-                    id="searchCourse"
-                    placeholder="Tìm kiếm môn học"
-                  />
-                </div>
-                <select class="form-select" id="semesterSelect">
-                  <option>HK1 (2025-2026)</option>
-                  <option>HK2 (2025-2026)</option>
-                </select>
-              </div>
-
-              <div class="tab-nav row">
-                <button class="tab-item active col-xl-4" data-tab="new">
-                  <i class="fa-solid fa-circle-plus"></i>
-
-                  Đăng ký mới
-                </button>
-                <button class="tab-item col-xl-4" data-tab="retake">
-                  <i class="fa-solid fa-arrow-rotate-left"></i>
-                  Học lại
-                </button>
-                <button class="tab-item col-xl-4" data-tab="improve">
-                  <i class="fa-solid fa-arrow-trend-up"></i>Cải thiện
-                </button>
-              </div>
-
-              <div class="table-wrapper">
-                <table class="table-courses" id="courseTable">
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th>Mã môn</th>
-                      <th>Tên môn học</th>
-                      <th>TC</th>
-                      <th>Bắt buộc</th>
-                      <th>Điều kiện</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Lịch biểu dự kiến -->
-            <div class="schedule-container">
-              <h3 class="section-title fw-bold">
-                Đã đăng ký, lịch biểu dự kiến
-              </h3>
-
-              <div class="schedule-stats">
-                <div class="stat-item">
-                  <div
+        <link rel="stylesheet" href="../css/dang-ky-hoc-phan.css" />
+    </head>
+    <body>
+        <!-- Header -->
+        <div id="header-container"></div>
+        <!-- Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <div id="sidebar-container"></div>
+            <!-- Details -->
+            <div class="container-fluid">
+                <!-- Học phần đang mở -->
+                <div
                     style="
-                      font-size: 12px;
-                      color: #2a4591;
-                      font-weight: bold;
-                      margin-top: 3px;
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 20px;
+                        margin-bottom: 20px;
+                        align-items: stretch;
                     "
-                  >
-                    Tổng tín chỉ đăng ký
-                  </div>
-                  <div class="d-flex">
-                    <div class="stat-number" id="creditCount">0</div>
-                    <div class="stat-label">tín chỉ</div>
-                  </div>
-                </div>
-                <div class="stat-item">
-                  <div
-                    style="
-                      font-size: 12px;
-                      color: #2a4591;
-                      font-weight: bold;
-                      margin-top: 3px;
-                    "
-                  >
-                    Tổng môn đăng ký
-                  </div>
-                  <div class="d-flex">
-                    <div class="stat-number" id="courseCount">0</div>
-                    <div class="stat-label">môn</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="schedule-grid" id="scheduleGrid"></div>
-
-              <div class="mobile-schedule-list" id="mobileScheduleList">
-                <div class="mobile-day-tabs" id="mobileDayTabs">
-                  <button class="mobile-day-tab active" data-day="2">
-                    Th 2
-                  </button>
-                  <button class="mobile-day-tab" data-day="3">Th 3</button>
-                  <button class="mobile-day-tab" data-day="4">Th 4</button>
-                  <button class="mobile-day-tab" data-day="5">Th 5</button>
-                  <button class="mobile-day-tab" data-day="6">Th 6</button>
-                  <button class="mobile-day-tab weekend" data-day="7">
-                    Th 7
-                  </button>
-                  <button class="mobile-day-tab weekend" data-day="8">
-                    CN
-                  </button>
-                </div>
-                <div id="mobileScheduleContent"></div>
-              </div>
-
-              <div class="legend">
-                <div class="legend-item">
-                  <div class="legend-color theory-legend"></div>
-                  <span>Lý thuyết</span>
-                </div>
-                <div class="legend-item">
-                  <div class="legend-color practice-legend"></div>
-                  <span>Thực hành</span>
-                </div>
-                <div class="legend-item">
-                  <div class="legend-color online-legend"></div>
-                  <span>Trực tuyến</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- lớp học phần chờ đăng ký và chi tiết -->
-          <div class="two-column">
-            <!-- Lớp học phần chờ đăng ký -->
-            <div class="section-left">
-              <h3 class="section-title fw-bold" style="margin-bottom: 15px">
-                Lớp học phần chờ đăng ký
-              </h3>
-              <div class="section-label">
-                <input type="checkbox" id="conflictFreeCheckbox" />
-                <label for="conflictFreeCheckbox"
-                  >Hiện thị lớp học phần không trùng lịch</label
                 >
-              </div>
-              <table class="class-table" id="waitingClassTable">
-                <thead>
-                  <tr>
-                    <th>STT</th>
-                    <th>THÔNG TIN LỚP HỌC PHẦN</th>
-                    <th style="text-align: left; width: 180px">TRẠNG THÁI</th>
-                  </tr>
-                </thead>
-                <tbody id="waitingClassBody">
-                  <tr>
-                    <td
-                      colspan="3"
-                      class="text-center text-muted"
-                      style="padding: 30px"
-                    >
-                      Chọn một môn học để xem danh sách lớp
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                    <!-- Học phần đang mở -->
+                    <div class="section-header">
+                        <h3 class="section-title fw-bold">Học phần đang mở</h3>
 
-            <!-- Chi tiết lớp học phần -->
-            <div class="section-right">
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  margin-bottom: 15px;
-                "
-              >
-                <h3 class="section-title fw-bold" style="margin-bottom: 0">
-                  Chi tiết lớp học phần
-                </h3>
-                <a class="schedule-empty" href="#">Kiểm tra lịch trống</a>
-              </div>
+                        <div
+                            style="
+                                display: flex;
+                                gap: 15px;
+                                width: 100%;
+                                align-items: center;
+                                margin-top: 15px;
+                                justify-content: space-between;
+                            "
+                        >
+                            <div class="search-bar-dkhp">
+                                <i class="fa-solid fa-magnifying-glass"></i>
 
-              <div id="classDetailContainer">
-                <div class="empty-state">
-                  <!-- <div class="empty-state-icon"></div> -->
-                  <p>Chọn một lớp học phần để xem chi tiết</p>
+                                <input
+                                    type="text"
+                                    id="searchCourse"
+                                    placeholder="Tìm kiếm môn học"
+                                />
+                            </div>
+                            <select class="form-select" id="semesterSelect">
+                                <option>HK1 (2025-2026)</option>
+                                <option>HK2 (2025-2026)</option>
+                            </select>
+                        </div>
+
+                        <div class="tab-nav row">
+                            <button
+                                class="tab-item active col-xl-4"
+                                data-tab="new"
+                            >
+                                <i class="fa-solid fa-circle-plus"></i>
+
+                                Đăng ký mới
+                            </button>
+                            <button class="tab-item col-xl-4" data-tab="retake">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                                Học lại
+                            </button>
+                            <button
+                                class="tab-item col-xl-4"
+                                data-tab="improve"
+                            >
+                                <i class="fa-solid fa-arrow-trend-up"></i>Cải
+                                thiện
+                            </button>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="table-courses" id="courseTable">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã môn</th>
+                                        <th>Tên môn học</th>
+                                        <th>TC</th>
+                                        <th>Bắt buộc</th>
+                                        <th>Điều kiện</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Lịch biểu dự kiến -->
+                    <div class="schedule-container">
+                        <h3 class="section-title fw-bold">
+                            Đã đăng ký, lịch biểu dự kiến
+                        </h3>
+
+                        <div class="schedule-stats">
+                            <div class="stat-item">
+                                <div
+                                    style="
+                                        font-size: 12px;
+                                        color: #2a4591;
+                                        font-weight: bold;
+                                        margin-top: 3px;
+                                    "
+                                >
+                                    Tổng tín chỉ đăng ký
+                                </div>
+                                <div class="d-flex">
+                                    <div class="stat-number" id="creditCount">
+                                        0
+                                    </div>
+                                    <div class="stat-label">tín chỉ</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div
+                                    style="
+                                        font-size: 12px;
+                                        color: #2a4591;
+                                        font-weight: bold;
+                                        margin-top: 3px;
+                                    "
+                                >
+                                    Tổng môn đăng ký
+                                </div>
+                                <div class="d-flex">
+                                    <div class="stat-number" id="courseCount">
+                                        0
+                                    </div>
+                                    <div class="stat-label">môn</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="schedule-grid" id="scheduleGrid"></div>
+
+                        <div
+                            class="mobile-schedule-list"
+                            id="mobileScheduleList"
+                        >
+                            <div class="mobile-day-tabs" id="mobileDayTabs">
+                                <button
+                                    class="mobile-day-tab active"
+                                    data-day="2"
+                                >
+                                    Th 2
+                                </button>
+                                <button class="mobile-day-tab" data-day="3">
+                                    Th 3
+                                </button>
+                                <button class="mobile-day-tab" data-day="4">
+                                    Th 4
+                                </button>
+                                <button class="mobile-day-tab" data-day="5">
+                                    Th 5
+                                </button>
+                                <button class="mobile-day-tab" data-day="6">
+                                    Th 6
+                                </button>
+                                <button
+                                    class="mobile-day-tab weekend"
+                                    data-day="7"
+                                >
+                                    Th 7
+                                </button>
+                                <button
+                                    class="mobile-day-tab weekend"
+                                    data-day="8"
+                                >
+                                    CN
+                                </button>
+                            </div>
+                            <div id="mobileScheduleContent"></div>
+                        </div>
+
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-color theory-legend"></div>
+                                <span>Lý thuyết</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color practice-legend"></div>
+                                <span>Thực hành</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color online-legend"></div>
+                                <span>Trực tuyến</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+
+                <!-- lớp học phần chờ đăng ký và chi tiết -->
+                <div class="two-column">
+                    <!-- Lớp học phần chờ đăng ký -->
+                    <div class="section-left">
+                        <h3
+                            class="section-title fw-bold"
+                            style="margin-bottom: 15px"
+                        >
+                            Lớp học phần chờ đăng ký
+                        </h3>
+                        <div class="section-label">
+                            <input type="checkbox" id="conflictFreeCheckbox" />
+                            <label for="conflictFreeCheckbox"
+                                >Hiện thị lớp học phần không trùng lịch</label
+                            >
+                        </div>
+                        <table class="class-table" id="waitingClassTable">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>THÔNG TIN LỚP HỌC PHẦN</th>
+                                    <th style="text-align: left; width: 180px">
+                                        TRẠNG THÁI
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="waitingClassBody">
+                                <tr>
+                                    <td
+                                        colspan="3"
+                                        class="text-center text-muted"
+                                        style="padding: 30px"
+                                    >
+                                        Chọn một môn học để xem danh sách lớp
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Chi tiết lớp học phần -->
+                    <div class="section-right">
+                        <div
+                            style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-bottom: 15px;
+                            "
+                        >
+                            <h3
+                                class="section-title fw-bold"
+                                style="margin-bottom: 0"
+                            >
+                                Chi tiết lớp học phần
+                            </h3>
+                            <a class="schedule-empty" href="#"
+                                >Kiểm tra lịch trống</a
+                            >
+                        </div>
+
+                        <div id="classDetailContainer">
+                            <div class="empty-state">
+                                <!-- <div class="empty-state-icon"></div> -->
+                                <p>Chọn một lớp học phần để xem chi tiết</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- lớp học phần đã đăng ký -->
+                <div class="registered-section">
+                    <h3 class="section-title fw-bold">
+                        Lớp học phần đã đăng ký
+                    </h3>
+
+                    <table class="registered-table" id="registeredTable">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã HP</th>
+                                <th>TÊN HP</th>
+                                <th>LỚP HỌC DỰ KIẾN</th>
+                                <th>TC</th>
+                                <th>Nhóm TH</th>
+                                <th>TRẠNG THÁI ĐK</th>
+                                <th>NGÀY DK</th>
+                                <th>HỌC PHÍ</th>
+                                <th>HN NỘP</th>
+                                <th>TT HỌC PHÍ</th>
+                                <th>TT LHP</th>
+                                <th>THAO TÁC</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registeredTableBody">
+                            <tr>
+                                <td
+                                    colspan="13"
+                                    class="text-center text-muted"
+                                    style="padding: 30px"
+                                >
+                                    Chưa có lớp học phần đã đăng ký
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-          </div>
+        </main>
 
-          <!-- lớp học phần đã đăng ký -->
-          <div class="registered-section">
-            <h3 class="section-title fw-bold">Lớp học phần đã đăng ký</h3>
+        <script>
+            fetch('component/sidebar.html')
+                .then((res) => res.text())
+                .then((html) => {
+                    document.getElementById('sidebar-container').innerHTML =
+                        html;
 
-            <table class="registered-table" id="registeredTable">
-              <thead>
-                <tr>
-                  <th>STT</th>
-                  <th>Mã HP</th>
-                  <th>TÊN HP</th>
-                  <th>LỚP HỌC DỰ KIẾN</th>
-                  <th>TC</th>
-                  <th>Nhóm TH</th>
-                  <th>TrẠNG THÁI ĐK</th>
-                  <th>NGÀY DK</th>
-                  <th>HỌC PHÍ</th>
-                  <th>HN NỘP</th>
-                  <th>TT HỌC PHÍ</th>
-                  <th>TT LHP</th>
-                  <th>THAO TÁC</th>
-                </tr>
-              </thead>
-              <tbody id="registeredTableBody">
-                <tr>
-                  <td
-                    colspan="13"
-                    class="text-center text-muted"
-                    style="padding: 30px"
-                  >
-                    Chưa có lớp học phần đã đăng ký
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </main>
-    <script src="../js/common.js"></script>
+                    if (typeof initializeSidebar === 'function') {
+                        initializeSidebar();
+                    }
+                });
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+            fetch('component/header.html')
+                .then((res) => res.text())
+                .then((html) => {
+                    document.getElementById('header-container').innerHTML =
+                        html;
+                });
+        </script>
+        <script src="../js/common.js"></script>
 
-    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <script src="https://kendo.cdn.telerik.com/2016.3.1118/js/kendo.all.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2016.3.1118/js/kendo.all.min.js"></script>
 
-    <script src="../js/dang-ky-hoc-phan.js"></script>
-  </body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="../js/dang-ky-hoc-phan.js"></script>
+    </body>
 </html>
