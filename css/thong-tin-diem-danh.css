@@ -1,3 +1,9 @@
+.content-wrapper-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .attendance-total-card {
   padding: 4px 12px;
   border-radius: 16px;
