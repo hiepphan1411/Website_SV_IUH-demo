@@ -816,7 +816,6 @@ body {
 
 .table-responsive {
   border-radius: 8px;
-  overflow: hidden;
 }
 
 .table {
@@ -828,6 +827,7 @@ body {
   border: 1px solid var(--border-color);
   min-width: 100%;
   width: max-content;
+  overflow: hidden;
 }
 
 .column-center {

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết khảo sát</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/curriculum-framework.css" />
+    <link rel="stylesheet" href="../css/chi-tiet-khao-sat.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <!-- Main Content -->
+    <main class="main-content">
+      <div id="sidebar-container"></div>
+      <div class="container" style="margin-top: 20px">
+        <!-- Header -->
+        <div class="header-section">
+          <h1 class="header-title">
+            Phiếu khảo sát môn học và tình hình giảng dạy
+          </h1>
+        </div>
+
+        <!-- Survey Info Card -->
+        <div class="content-wrapper">
+          <div class="row g-4">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="sv-detail-info-label">MÔN HỌC</div>
+              <div class="sv-detail-info-value" id="courseName">
+                Kế toán tài chính
+              </div>
+              <div class="sv-detail-info-code" id="courseCode">
+                Mã HP: DKT021401
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="sv-detail-info-label">LOẠI HỌC PHẦN</div>
+              <div class="sv-detail-info-value" id="courseName">
+                Kế toán tài chính
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="sv-detail-info-label">GIẢNG VIÊN</div>
+              <div class="sv-detail-info-value" id="instructorName">
+                TS. Phan Phước Hiệp
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="sv-detail-info-label">HỌC KỲ / NĂM HỌC</div>
+              <div class="sv-detail-info-value" id="semester">
+                Đợt 1 HK1 - 2024-2025
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instruction Card -->
+        <div class="sv-detail-instruction-card">
+          <div class="sv-detail-instruction-icon">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <div class="sv-detail-instruction-content">
+            <p class="sv-detail-instruction-text">
+              Anh chị sinh viên hãy chọn mức độ đánh giá tương ứng theo thang
+              điểm từ
+              <strong>1 đến 5</strong> cho từng vấn đề trong quá trình học môn
+              học.
+            </p>
+            <p class="sv-detail-instruction-scale">
+              <span class="sv-detail-scale-item"
+                >(5: Rất hài lòng | 4: Hài lòng | 3: Bình thường | 2: Không hài
+                lòng | 1: Rất không hài lòng)</span
+              >
+            </p>
+          </div>
+        </div>
+
+        <!-- Survey Content -->
+        <div id="surveyContent"></div>
+
+        <!-- Footer -->
+        <div class="sv-detail-footer">
+          <div class="sv-detail-footer-left">
+            <div class="sv-detail-status-indicator">
+              <span class="sv-detail-status-dot"></span>
+              <span class="sv-detail-status-text">Đang soạn thảo</span>
+            </div>
+          </div>
+          <div class="sv-detail-footer-right">
+            <button class="sv-detail-btn sv-detail-btn-submit">
+              <i class="fas fa-paper-plane"></i> Gửi khảo sát
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      fetch("component/sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar-container").innerHTML = html;
+          if (typeof initializeSidebar === "function") {
+            initializeSidebar();
+          }
+        });
+
+      fetch("component/header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/chi-tiet-khao-sat.js"></script>
+    <script src="../js/common.js"></script>
+  </body>
+</html>
