@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khảo sát sự kiện</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/curriculum-framework.css" />
+    <link rel="stylesheet" href="../css/khao-sat-su-kien.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/de-xuat-bieu-mau.css" />
+
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <!-- Main Content -->
+    <main class="main-content">
+      <div id="sidebar-container"></div>
+      <div class="container" style="margin-top: 20px">
+        <!-- Header -->
+        <div class="header-section">
+          <h1 class="header-title">Khảo sát sự kiện</h1>
+          <p class="header-subtitle">
+            Vui lòng hoàn thành các khảo sát để đánh giá đơn vị đạo tạo phát
+            triển tốt hơn
+          </p>
+        </div>
+
+        <!-- Content -->
+        <div class="content-section-full">
+          <!-- Tab Control -->
+          <div class="fs-tab-control" style="padding: 10px 20px 0 0">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="pending">
+                <i class="fas fa-list"></i> Danh sách phiếu chưa khảo sát
+              </button>
+              <button class="tab-btn" data-tab="completed">
+                <i class="fas fa-check"></i> Danh sách phiếu đã khảo sát
+              </button>
+            </div>
+          </div>
+
+          <!-- Pending Surveys -->
+          <div id="pending-tab" class="fs-tab-content active">
+            <div id="pendingSurveysList" class="sv-survey-list"></div>
+            <div id="pendingEmpty" class="sv-empty-state" style="display: none">
+              <i class="fas fa-inbox"></i>
+              <p>Không có phiếu khảo sát nào cần hoàn thành</p>
+            </div>
+          </div>
+
+          <!-- Completed Surveys -->
+          <div id="completed-tab" class="fs-tab-content">
+            <div id="completedSurveysList" class="sv-survey-list"></div>
+            <div
+              id="completedEmpty"
+              class="sv-empty-state"
+              style="display: none"
+            >
+              <i class="fas fa-inbox"></i>
+              <p>Chưa có phiếu khảo sát nào được hoàn thành</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">© 2026</div>
+      </div>
+    </main>
+    <script>
+      fetch("component/sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar-container").innerHTML = html;
+          if (typeof initializeSidebar === "function") {
+            initializeSidebar();
+          }
+        });
+
+      fetch("component/header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/khao-sat-su-kien.js"></script>
+    <script src="../js/common.js"></script>
+  </body>
+</html>
