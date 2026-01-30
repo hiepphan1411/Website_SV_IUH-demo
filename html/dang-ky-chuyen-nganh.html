@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký chuyên ngành</title>
+
+    <!-- Bootstrap 5.3.8 -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- jQuery UI CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui/1.14.1/themes/base/jquery-ui.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Kendo UI CSS -->
+    <link
+      href="https://kendo.cdn.telerik.com/2016.3.1118/styles/kendo.common.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://kendo.cdn.telerik.com/2016.3.1118/styles/kendo.default.min.css"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="../css/common.css" />
+
+    <link rel="stylesheet" href="../css/dang-ky-chuyen-nganh.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <!-- MAIN LAYOUT -->
+    <main class="main-content">
+      <!-- SIDEBAR DASHBOARD  -->
+      <div id="sidebar-container"></div>
+
+      <!-- PAGE CONTENT -->
+      <div class="container-fluid">
+        <div class="p-3 bg-white rounded-3">
+          <div class="mb-3">
+            <h5 class="fw-bold mb-0" style="font-size: 20px; color: #505050">
+              Đăng ký chuyên ngành
+            </h5>
+          </div>
+
+          <div id="statusAlert" class="mb-3">
+            <div
+              id="warningAlert"
+              class="alert alert-warning mb-0"
+              role="alert"
+              style="background-color: #fff3cd; border: 1px solid #ffc107"
+            >
+              <div class="d-flex align-items-start gap-2">
+                <i
+                  class="fa-solid fa-circle-exclamation text-warning"
+                  style="margin-top: 2px"
+                ></i>
+                <div style="font-size: 14px">
+                  <strong>Lưu ý:</strong> Việc đăng ký chuyên ngành chỉ được
+                  thực hiện <strong>1 lần duy nhất</strong> và không được hoàn
+                  tác sau khi xác nhận. Hãy cân nhắc kỹ lưỡng trước khi đăng ký.
+                </div>
+              </div>
+            </div>
+
+            <!-- Info Alert - Already Registered -->
+            <div
+              id="infoAlert"
+              class="alert alert-warning mb-0 d-none"
+              role="alert"
+              style="background-color: #fff3cd; border: 1px solid #ffc107"
+            >
+              <div class="d-flex align-items-start gap-2">
+                <i
+                  class="fas fa-exclamation-circle text-warning"
+                  style="margin-top: 2px"
+                ></i>
+                <div style="font-size: 14px">
+                  <strong>Lưu ý:</strong> Hiện tại sinh viên không được phép
+                  thực hiện đăng ký chuyên ngành. Vui lòng liên hệ
+                  <strong>Phòng Đào Tạo</strong> để biết thêm chi tiết về kế
+                  hoạch và điều kiện đăng ký.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- State 1: Already Registered - Show Info -->
+          <div id="registrationInfo" class="d-none">
+            <div class="card border-0 shadow-sm mb-3">
+              <div class="card-body p-4">
+                <h6
+                  class="mb-3"
+                  style="font-size: 16px; font-weight: bold; color: #505050"
+                >
+                  Thông tin chuyên ngành hiện tại
+                </h6>
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div
+                      class="p-3"
+                      style="background-color: #f8f9fa; border-radius: 8px"
+                    >
+                      <div
+                        class="text-uppercase text-muted mb-2 fw-bold"
+                        style="
+                          font-size: 11px;
+
+                          letter-spacing: 0.5px;
+                        "
+                      >
+                        CHUYÊN NGÀNH
+                      </div>
+                      <div
+                        class="fw-bold mb-1"
+                        style="font-size: 16px"
+                        id="displaySpecialty"
+                      >
+                        Công nghệ thông tin
+                      </div>
+                      <div class="text-muted" style="font-size: 13px">
+                        Khoa Công nghệ thông tin
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div
+                      class="p-3"
+                      style="background-color: #f8f9fa; border-radius: 8px"
+                    >
+                      <div
+                        class="text-uppercase text-muted mb-2"
+                        style="
+                          font-size: 11px;
+                          font-weight: 600;
+                          letter-spacing: 0.5px;
+                        "
+                      >
+                        LỚP HỌC
+                      </div>
+                      <div
+                        class="fw-bold mb-1"
+                        style="font-size: 16px"
+                        id="displayCode"
+                      >
+                        D09.40.01
+                      </div>
+                      <div class="text-muted" style="font-size: 13px">
+                        Khóa học 2024 - 2029
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- State 2: Not Registered - Show Form -->
+          <div id="registrationForm">
+            <div class="card border-0 shadow-sm">
+              <div class="card-body p-4">
+                <h6 class="mb-3" style="font-size: 15px; font-weight: 600">
+                  Ngành Công nghệ thông tin
+                </h6>
+
+                <!-- Registration Form -->
+                <form id="specialtyForm">
+                  <div class="row align-items-end g-3">
+                    <div class="col-md-1">
+                      <label
+                        for="specialtySelect"
+                        class="form-label mb-2"
+                        style="font-size: 14px; font-weight: 500; padding: 2px"
+                        >Chuyên ngành:</label
+                      >
+                    </div>
+                    <div class="col-md-9">
+                      <select
+                        id="specialtySelect"
+                        class="form-select"
+                        required
+                        style="font-size: 14px; padding: 10px 12px"
+                      >
+                        <option value="" selected disabled>
+                          Chọn chuyên ngành
+                        </option>
+                        <option value="D09.40.01">
+                          D09.40.01 - Công nghệ phần mềm
+                        </option>
+                        <option value="D09.40.02">
+                          D09.40.02 - Hệ thống thông tin
+                        </option>
+                        <option value="D09.40.03">
+                          D09.40.03 - Khoa học dữ liệu
+                        </option>
+                        <option value="D09.40.04">
+                          D09.40.04 - An toàn thông tin
+                        </option>
+                        <option value="D09.40.05">
+                          D09.40.05 - Trí tuệ nhân tạo
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <button
+                        type="submit"
+                        class="btn btn-primary w-100"
+                        style="padding: 10px; font-size: 14px; font-weight: 600"
+                      >
+                        ĐĂNG KÝ
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../js/common.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui/1.14.1/jquery-ui.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2016.3.1118/js/kendo.all.min.js"></script>
+    <script src="../js/dang-ky-chuyen-nganh.js"></script>
+  </body>
+</html>
