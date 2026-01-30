@@ -144,7 +144,6 @@ function setupTabSwitching() {
     btn.addEventListener("click", function () {
       const tabName = this.getAttribute("data-tab");
 
-      // Remove active class from all buttons and contents
       document.querySelectorAll(".tab-btn").forEach((b) => {
         b.classList.remove("active");
       });
@@ -152,7 +151,6 @@ function setupTabSwitching() {
         c.classList.remove("active");
       });
 
-      // Add active class to clicked button and corresponding content
       this.classList.add("active");
       document.getElementById(`${tabName}-tab`).classList.add("active");
     });
@@ -164,7 +162,6 @@ function useForm(formId) {
   if (form) {
     document.getElementById("modalFormName").value = form.title;
     document.getElementById("registerModal").classList.add("active");
-    // Store current form ID for later use
     window.currentFormId = formId;
   }
 }
