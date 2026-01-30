@@ -1,0 +1,9 @@
+.registered-table th,
+.registered-table td {
+    text-align: center;
+}
+
+.registered-table th:nth-child(3),
+.registered-table td:nth-child(2) {
+    text-align: left;
+}
