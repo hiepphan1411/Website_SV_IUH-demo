@@ -203,6 +203,8 @@ function submitRegisterForm() {
     price: "-",
     total: "-",
     date: new Date().toLocaleDateString("vi-VN"),
+    status: "waiting",
+    approvedDate: "-",
   };
 
   historyData.unshift(newHistoryItem);
