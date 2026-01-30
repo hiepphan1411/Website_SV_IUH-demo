@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thanh toán trực tuyến</title>
+    <title>Thanh toán dịch vụ</title>
 
     <!-- Bootstrap CSS -->
     <link href="../lib/bootstrap@5.3.8.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/common.css" />
     <link rel="stylesheet" href="../css/thanh-toan-truc-tuyen.css" />
+    <link rel="stylesheet" href="../css/thanh-toan-dich-vu.css" />
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -28,9 +29,9 @@
       <div class="section-content content-area">
         <!-- Page Header -->
         <div class="page-header">
-          <h1 class="page-title">Thanh toán trực tuyến</h1>
+          <h1 class="page-title">Thanh toán dịch vụ</h1>
           <p class="page-subtitle">
-            Quản lý và thực hiện các giao dịch thanh toán trực tuyến
+            Quản lý và thực hiện các giao dịch thanh toán dịch vụ
           </p>
         </div>
 
@@ -38,13 +39,20 @@
         <div class="payment-layout">
           <div class="payment-section">
             <div class="section-header">
-              <div class="section-title">Danh sách khoản thu</div>
-              <select class="filter-dropdown">
-                <option>Tất cả</option>
-                <option>Học phí</option>
-                <option>Khoản thu khác</option>
-                <option>Bắt buộc</option>
-              </select>
+              <div class="section-title">Các khoản thu dịch vụ</div>
+              <div class="d-flex flex-row align-items-center gap-2">
+                <div class="search-box">
+                  <input type="text" placeholder="Nhập mã/Nội dung thu..." />
+                </div>
+                <select class="form-select">
+                  <option>Tất cả</option>
+                  <option>Lệ phí</option>
+                </select>
+                <button class="search-btn">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  Tìm kiếm
+                </button>
+              </div>
             </div>
 
             <div class="table-wrapper">

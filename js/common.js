@@ -90,7 +90,6 @@ const SidebarManager = (function () {
       addTrackedListener(item, "click", clickHandler);
     });
 
-    // Handle submenu items
     document.querySelectorAll(".nav-subitem").forEach((subitem) => {
       const clickHandler = function (e) {
         e.stopPropagation();
@@ -116,7 +115,6 @@ const SidebarManager = (function () {
     const mainContent = document.querySelector(".main-content");
 
     if (sidebarToggle && sidebar && mainContent) {
-      // Set initial state
       if (window.innerWidth > 768) {
         mainContent.classList.add("sidebar-open");
       }
@@ -187,7 +185,6 @@ const SidebarManager = (function () {
       initializeMobile();
 
       initialized = true;
-      console.log("Sidebar initialized successfully");
     },
 
     destroy: function () {

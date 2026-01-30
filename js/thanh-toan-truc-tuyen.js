@@ -17,13 +17,25 @@ function toggleSelect(button) {
 
 function updateSelectedItems() {
   const selectedRows = document.querySelectorAll("tbody tr.selected");
+  const allRows = document.querySelectorAll("tbody tr");
   const selectedItemsList = document.getElementById("selectedItemsList");
   const selectedCount = document.getElementById("selectedCount");
   const selectedItemsTotal = document.getElementById("selectedItemsTotal");
   const selectedTotalAmount = document.getElementById("selectedTotalAmount");
+  const selectAllBtn = document.querySelector(".select-all-btn");
 
   selectedCount.textContent = selectedRows.length;
   selectedItemsList.innerHTML = "";
+
+  if (selectedRows.length === allRows.length && allRows.length > 0) {
+    selectAllBtn.disabled = true;
+    selectAllBtn.classList.add("btn-disabled");
+    selectAllBtn.innerHTML = 'Chọn tất cả <i class="fas fa-arrow-right"></i>';
+  } else {
+    selectAllBtn.disabled = false;
+    selectAllBtn.classList.remove("btn-disabled");
+    selectAllBtn.innerHTML = 'Chọn tất cả <i class="fas fa-arrow-right"></i>';
+  }
 
   let total = 0;
 
@@ -154,8 +166,8 @@ function copyToClipboard(text) {
 
 let countdownInterval;
 function startCountdown() {
-  let minutes = 29;
-  let seconds = 58;
+  let minutes = 30;
+  let seconds = 0;
 
   clearInterval(countdownInterval);
 
@@ -182,8 +194,22 @@ function startCountdown() {
   }, 1000);
 }
 
-document.getElementById("qrModal").addEventListener("click", function (e) {
-  if (e.target === this) {
-    closeModal();
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("paymentBtn");
+  if (this.disabled) {
+    e.preventDefault();
+    return;
   }
+  if (!btn) return;
+
+  btn.addEventListener("click", function () {
+    const total = calculateTotal();
+
+    const totalPaymentElement = document.getElementById("totalPayment");
+    if (totalPaymentElement) {
+      totalPaymentElement.textContent = `${total.toLocaleString("vi-VN")} VNĐ`;
+    }
+
+    startCountdown();
+  });
 });
