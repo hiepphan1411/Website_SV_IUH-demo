@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ghi chú nhắc nhở</title>
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+
+        <link
+            href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"
+            rel="stylesheet"
+        />
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.common.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.default.min.css"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="../css/common.css" />
+
+        <link rel="stylesheet" href="../css/ghi-chu-nhac-nho.css" />
+
+        <script
+            src="https://kit.fontawesome.com/6f955e325d.js"
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <div id="header-container"></div>
+
+        <!-- Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <div id="sidebar-container"></div>
+
+            <!-- Details -->
+            <div class="container-fluid">
+                <div>
+                    <div class="header-notes-remind">
+                        <h5 class="notes-title">Ghi chú nhắc nhở</h5>
+                        <div class="filter-btns d-flex gap-3">
+                            <button
+                                class="btn btn-primary active"
+                                data-filter="all"
+                            >
+                                Tất cả (<span id="totalCount">0</span>)
+                            </button>
+                            <button
+                                class="btn btn-outline-secondary"
+                                data-filter="new"
+                            >
+                                Mới
+                            </button>
+                            <button
+                                class="btn btn-outline-secondary"
+                                data-filter="expired"
+                            >
+                                Hết hạn
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Accordion sẽ được render bằng JavaScript -->
+                    <div class="accordion" id="notesAccordion"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+        <script src="https://kendo.cdn.telerik.com/2016.3.1118/js/kendo.all.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            fetch('component/sidebar.html')
+                .then((res) => res.text())
+                .then((html) => {
+                    document.getElementById('sidebar-container').innerHTML =
+                        html;
+
+                    if (typeof initializeSidebar === 'function') {
+                        initializeSidebar();
+                    }
+                });
+
+            fetch('component/header.html')
+                .then((res) => res.text())
+                .then((html) => {
+                    document.getElementById('header-container').innerHTML =
+                        html;
+                });
+        </script>
+        <script src="../js/common.js"></script>
+        <script src="../js/ghi-chu-nhac-nho.js"></script>
+    </body>
+</html>
