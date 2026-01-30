@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đề xuất biểu mẫu</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/curriculum-framework.css" />
+    <link rel="stylesheet" href="../css/de-xuat-bieu-mau.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <!-- Content -->
+    <main class="main-content">
+      <!-- Sidebar -->
+      <div id="sidebar-container"></div>
+      <!-- Details -->
+      <div class="container" style="margin-top: 20px">
+        <!-- Header Section -->
+        <div class="header-section">
+          <div class="header-title">Đề xuất biểu mẫu</div>
+          <div class="header-subtitle">
+            Yêu cầu cấp giấy tờ và biểu mẫu hành chính trực tuyến.
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+          <!-- Tab Buttons -->
+          <div class="fs-tab-control">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="forms">
+                <i class="fas fa-list me-1"></i> Đề xuất biểu mẫu
+              </button>
+              <button class="tab-btn" data-tab="history">
+                <i class="fas fa-history me-1"></i> Lịch sử đề xuất biểu mẫu
+              </button>
+            </div>
+          </div>
+
+          <!-- Tab 1: Forms Grid -->
+          <div class="fs-tab-content active" id="forms-tab">
+            <div class="fs-forms-grid">
+              <!-- Forms will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Tab 2: History Table -->
+          <div class="fs-tab-content" id="history-tab">
+            <div class="table-frame">
+              <div class="table-responsive">
+                <table class="table fs-history-table">
+                  <thead>
+                    <tr>
+                      <th class="text-center">STT</th>
+                      <th>TÊN BIỂU MẪU ĐỀ XUẤT</th>
+                      <th class="text-center">SỐ LƯỢNG</th>
+                      <th class="text-end">ĐƠN GIÁ</th>
+                      <th class="text-end">THÀNH TIỀN</th>
+                      <th class="text-center">NGÀY GỬI ĐỀ XUẤT</th>
+                      <th class="text-center">TRẠNG THÁI</th>
+                      <th class="text-center">NGÀY GIẢI QUYẾT</th>
+                    </tr>
+                  </thead>
+                  <tbody id="history-table-body">
+                    <!-- History items will be populated by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">© 2025</div>
+      </div>
+    </main>
+
+    <!-- Modal: Register Form to Export -->
+    <div class="fs-modal-overlay" id="registerModal">
+      <div class="fs-modal-dialog">
+        <div class="fs-modal-content">
+          <div class="fs-modal-header">
+            <h2 class="fs-modal-title">Đăng ký biểu mẫu để xuất</h2>
+          </div>
+          <div class="fs-modal-body">
+            <form id="registerFormModal">
+              <div class="fs-form-group">
+                <label class="fs-form-label">
+                  Tên biểu mẫu để xuất
+                  <span class="fs-required">*</span>
+                </label>
+                <input
+                  type="text"
+                  class="fs-form-input"
+                  id="modalFormName"
+                  placeholder="Giấy xác nhận sinh viên"
+                  required
+                />
+              </div>
+
+              <div class="fs-row">
+                <div class="fs-col-6">
+                  <div class="fs-form-group">
+                    <label class="fs-form-label">
+                      Năm học
+                      <span class="fs-required">*</span>
+                    </label>
+                    <select
+                      class="fs-form-select"
+                      id="modalAcademicYear"
+                      required
+                    >
+                      <option value="">Chọn năm học</option>
+                      <option value="2024-2025">2024-2025</option>
+                      <option value="2025-2026">2025-2026</option>
+                      <option value="2026-2027">2026-2027</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="fs-col-6">
+                  <div class="fs-form-group">
+                    <label class="fs-form-label">
+                      Số lượng
+                      <span class="fs-required">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      class="fs-form-input"
+                      id="modalQuantity"
+                      value="1"
+                      min="1"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="fs-form-group">
+                <label class="fs-form-label">Thông tin yêu cầu</label>
+                <textarea
+                  class="fs-form-textarea"
+                  id="modalRequirements"
+                  placeholder="Nhập thông tin yêu cầu"
+                  rows="4"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="fs-modal-footer">
+            <button class="fs-btn-cancel" onclick="closeRegisterModal()">
+              Hủy
+            </button>
+            <button class="fs-btn-save" onclick="submitRegisterForm()">
+              Lưu
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      fetch("component/sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar-container").innerHTML = html;
+
+          if (typeof initializeSidebar === "function") {
+            initializeSidebar();
+          }
+        });
+
+      fetch("component/header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/de-xuat-bieu-mau.js"></script>
+    <script src="../js/common.js"></script>
+  </body>
+</html>
