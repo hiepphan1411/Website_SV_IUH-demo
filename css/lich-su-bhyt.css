@@ -1,0 +1,81 @@
+/* BHYT History Styles */
+:root {
+  --bhyt-primary: #0066cc;
+  --bhyt-danger: #dc3545;
+  --bhyt-success: #28a745;
+  --bhyt-warning: #ffc107;
+  --bhyt-info: #17a2b8;
+  --bhyt-border: #e0e0e0;
+  --bhyt-text: #505050;
+}
+
+.bhyt-history-status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bhyt-history-status-badge.pending {
+  background-color: #fff5ec;
+  color: #ff9f43;
+}
+
+.bhyt-history-status-badge.approved {
+  background-color: #e2f3ec;
+  color: #4caf50;
+}
+
+.bhyt-history-status-badge.rejected {
+  background-color: #fdeeee;
+  color: #ea5455;
+}
+
+/* Date Input Styling */
+.search-box select,
+.search-box input[type="date"] {
+  padding: 10px 12px;
+  border: 1px solid var(--bhyt-border);
+  border-radius: 6px;
+  font-size: 13px;
+  background-color: white;
+}
+
+.search-box select:focus,
+.search-box input[type="date"]:focus {
+  outline: none;
+  border-color: var(--bhyt-primary);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.search-box input[type="date"]::placeholder {
+  color: #999;
+}
+
+.search-box .input-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--bhyt-text);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .content-wrapper-tab-group {
+    flex-direction: column;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .action-buttons {
+    width: 100%;
+  }
+
+  .action-buttons .btn-custom {
+    flex: 1;
+  }
+}

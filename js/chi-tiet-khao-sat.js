@@ -1,105 +1,294 @@
-const surveyData = {
+const surveyInfo = {
   courseName: "Kế toán tài chính",
   courseCode: "DKT021401",
   instructorName: "ThS. Nguyễn Văn A",
   semester: "Đợt 1 HK1 - 2024-2025",
-  sections: [
-    {
-      head: "Khảo sát môn học",
-      questions: [
-        {
-          title: "Chuẩn bị trước khi vào nội dung học phần",
-          questions: [
-            "Chuẩn đầu ra của học phần được xây dựng rõ ràng và phù hợp với chương trình đào tạo ngành.",
-            "Đề cương chi tiết học phần được cung cấp đầy đủ và đúng thời gian.",
-            "Nội dung học phần được giới thiệu rõ ràng ngay từ đầu học kỳ.",
-          ],
-        },
-        {
-          title: "Quá trình đào tạo trong học phần",
-          questions: [
-            "Lịch học của học phần được thực hiện đúng kế hoạch đã công bố.",
-            "Nội dung giảng dạy bám sát đề cương chi tiết học phần.",
-            "Phương pháp giảng dạy giúp người học dễ tiếp thu kiến thức.",
-          ],
-        },
-        {
-          title: "Kết quả sau khi hoàn thành học phần",
-          questions: [
-            "Kiến thức học được đáp ứng chuẩn đầu ra của học phần.",
-            "Học phần giúp người học vận dụng kiến thức vào thực tế.",
-            "Nội dung học phần có giá trị cho việc học tập và nghề nghiệp sau này.",
-          ],
-        },
-        {
-          title: "Cảm nhận chung về môn học",
-          questions: [
-            "Mức độ hài lòng chung của bạn đối với học phần này.",
-            "Khối lượng kiến thức của học phần là phù hợp.",
-            "Bạn sẵn sàng giới thiệu học phần này cho sinh viên khác.",
-          ],
-        },
-      ],
-    },
-    {
-      head: "Đánh giá hoạt động giảng dạy của giảng viên",
-      questions: [
-        {
-          title: "Chuẩn bị trước khi giảng dạy",
-          questions: [
-            "Giảng viên chuẩn bị bài giảng đầy đủ trước mỗi buổi học.",
-            "Tài liệu học tập được giảng viên cung cấp rõ ràng và dễ hiểu.",
-            "Mục tiêu bài học được giảng viên trình bày cụ thể.",
-          ],
-        },
-        {
-          title: "Quá trình giảng dạy",
-          questions: [
-            "Giảng viên truyền đạt nội dung rõ ràng, dễ hiểu.",
-            "Giảng viên sử dụng phương pháp giảng dạy phù hợp với môn học.",
-            "Giảng viên khuyến khích sinh viên tham gia trao đổi trong giờ học.",
-          ],
-        },
-        {
-          title: "Đánh giá kết quả học tập",
-          questions: [
-            "Hình thức kiểm tra, đánh giá phản ánh đúng nội dung đã học.",
-            "Tiêu chí đánh giá kết quả học tập được công bố rõ ràng.",
-            "Việc chấm điểm đảm bảo tính công bằng và khách quan.",
-          ],
-        },
-        {
-          title: "Cảm nhận chung về giảng viên",
-          questions: [
-            "Giảng viên nhiệt tình và có trách nhiệm trong giảng dạy.",
-            "Giảng viên sẵn sàng hỗ trợ sinh viên khi cần thiết.",
-            "Bạn hài lòng với phong cách giảng dạy của giảng viên.",
-          ],
-        },
-      ],
-    },
-  ],
 };
+
+const surveyQuestions = [
+  {
+    ID: 1,
+    CauHoi: "Khảo sát môn học",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 1,
+    IDCauHoiCha: null,
+    IDLoaiCauTL: null,
+    IsCauHoiCha: true,
+    IsBatBuoc: false,
+    STT: 1,
+    TreeLevel: 1,
+  },
+
+  {
+    ID: 2,
+    CauHoi: "Chuẩn bị trước khi vào nội dung học phần",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 1,
+    IDCauHoiCha: 1,
+    IDLoaiCauTL: null,
+    IsCauHoiCha: true,
+    IsBatBuoc: false,
+    STT: 1,
+    TreeLevel: 2,
+  },
+  {
+    ID: 3,
+    CauHoi:
+      "Chuẩn đầu ra của học phần được xây dựng rõ ràng và phù hợp với chương trình đào tạo ngành.",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 1,
+    IDCauHoiCha: 2,
+    IDLoaiCauTL: 1,
+    IsCauHoiCha: false,
+    IsBatBuoc: true,
+    STT: 1,
+    TreeLevel: 3,
+  },
+  {
+    ID: 4,
+    CauHoi:
+      "Đề cương chi tiết học phần được cung cấp đầy đủ và đúng thời gian.",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 1,
+    IDCauHoiCha: 2,
+    IDLoaiCauTL: 1,
+    IsCauHoiCha: false,
+    IsBatBuoc: true,
+    STT: 2,
+    TreeLevel: 3,
+  },
+  {
+    ID: 5,
+    CauHoi: "Nội dung học phần được giới thiệu rõ ràng ngay từ đầu học kỳ.",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 1,
+    IDCauHoiCha: 2,
+    IDLoaiCauTL: 1,
+    IsCauHoiCha: false,
+    IsBatBuoc: true,
+    STT: 3,
+    TreeLevel: 3,
+  },
+  {
+    ID: 6,
+    CauHoi: "Đánh giá hoạt động giảng dạy của giảng viên",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 2,
+    IDCauHoiCha: null,
+    IDLoaiCauTL: null,
+    IsCauHoiCha: true,
+    IsBatBuoc: false,
+    STT: 1,
+    TreeLevel: 1,
+  },
+  {
+    ID: 7,
+    CauHoi: "Quá trình giảng dạy",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 2,
+    IDCauHoiCha: 6,
+    IDLoaiCauTL: null,
+    IsCauHoiCha: true,
+    IsBatBuoc: false,
+    STT: 1,
+    TreeLevel: 2,
+  },
+  {
+    ID: 8,
+    CauHoi: "Giảng viên truyền đạt nội dung rõ ràng, dễ hiểu.",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 2,
+    IDCauHoiCha: 7,
+    IDLoaiCauTL: 1,
+    IsCauHoiCha: false,
+    IsBatBuoc: true,
+    STT: 1,
+    TreeLevel: 3,
+  },
+  {
+    ID: 9,
+    CauHoi: "Giảng viên sử dụng phương pháp giảng dạy phù hợp với môn học.",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 2,
+    IDCauHoiCha: 7,
+    IDLoaiCauTL: 1,
+    IsCauHoiCha: false,
+    IsBatBuoc: true,
+    STT: 2,
+    TreeLevel: 3,
+  },
+  {
+    ID: 10,
+    CauHoi:
+      "Giảng viên khuyến khích sinh viên tham gia trao đổi trong giờ học.",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 2,
+    IDCauHoiCha: 7,
+    IDLoaiCauTL: 1,
+    IsCauHoiCha: false,
+    IsBatBuoc: true,
+    STT: 3,
+    TreeLevel: 3,
+  },
+  {
+    ID: 11,
+    CauHoi: "Test câu hỏi.",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 3,
+    IDCauHoiCha: 8,
+    IDLoaiCauTL: 2,
+    IsCauHoiCha: false,
+    IsBatBuoc: true,
+    STT: 1,
+    TreeLevel: 4,
+  },
+  {
+    ID: 12,
+    CauHoi: "Test câu hỏi.",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 4,
+    IDCauHoiCha: 11,
+    IDLoaiCauTL: 3,
+    IsCauHoiCha: false,
+    IsBatBuoc: true,
+    STT: 1,
+    TreeLevel: 5,
+  },
+  {
+    ID: 13,
+    CauHoi: "Test câu hỏi.",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 5,
+    IDCauHoiCha: 12,
+    IDLoaiCauTL: 4,
+    IsCauHoiCha: false,
+    IsBatBuoc: true,
+    STT: 1,
+    TreeLevel: 6,
+  },
+  {
+    ID: 14,
+    CauHoi: "Test câu hỏi.",
+    IDPhieuKS: "KS2025_001",
+    IDNhomCauHoi: 3,
+    IDCauHoiCha: 8,
+    IDLoaiCauTL: 3,
+    IsCauHoiCha: false,
+    IsBatBuoc: true,
+    STT: 1,
+    TreeLevel: 4,
+  },
+];
 
 const responses = {};
 
-function loadSurveyData(data = surveyData) {
-  document.getElementById("courseName").textContent = data.courseName;
-  document.getElementById("courseCode").textContent =
-    `Mã HP: ${data.courseCode}`;
-  document.getElementById("instructorName").textContent = data.instructorName;
-  document.getElementById("semester").textContent = data.semester;
+function buildTree(questions) {
+  const tree = [];
+  const map = {};
 
-  renderSurveyContent(data);
+  questions.forEach((q) => {
+    map[q.ID] = { ...q, children: [] };
+  });
+
+  questions.forEach((q) => {
+    if (q.IDCauHoiCha === null) {
+      tree.push(map[q.ID]);
+    } else {
+      if (map[q.IDCauHoiCha]) {
+        map[q.IDCauHoiCha].children.push(map[q.ID]);
+      }
+    }
+  });
+
+  return tree;
 }
 
-function renderSurveyContent(data) {
+function renderQuestionInput(question, questionId) {
+  const type = question.IDLoaiCauTL;
+
+  switch (type) {
+    case 1: // Rating 1-5
+      return `
+        <div class="sv-detail-rating">
+          <span class="sv-detail-rating-label">RẤT KHÔNG HÀI LÒNG</span>
+          <div class="sv-detail-rating-buttons">
+            <button class="sv-detail-rating-btn" data-question="${questionId}" data-value="1">1</button>
+            <button class="sv-detail-rating-btn" data-question="${questionId}" data-value="2">2</button>
+            <button class="sv-detail-rating-btn" data-question="${questionId}" data-value="3">3</button>
+            <button class="sv-detail-rating-btn" data-question="${questionId}" data-value="4">4</button>
+            <button class="sv-detail-rating-btn" data-question="${questionId}" data-value="5">5</button>
+          </div>
+          <span class="sv-detail-rating-label">RẤT HÀI LÒNG</span>
+        </div>
+      `;
+
+    case 2: // Text input
+      return `
+        <div class="sv-detail-text-input">
+          <textarea 
+            class="sv-detail-textarea" 
+            data-question="${questionId}" 
+            placeholder="Nhập ý kiến của bạn..."
+            rows="3"
+            ${question.IsBatBuoc ? "required" : ""}
+          ></textarea>
+        </div>
+      `;
+
+    case 3: // Multiple choice checkboxes
+      return `
+        <div class="sv-detail-checkbox-group">
+          <label class="sv-detail-checkbox-item">
+            <input type="checkbox" data-question="${questionId}" value="option1" />
+            <span>Tùy chọn 1</span>
+          </label>
+          <label class="sv-detail-checkbox-item">
+            <input type="checkbox" data-question="${questionId}" value="option2" />
+            <span>Tùy chọn 2</span>
+          </label>
+          <label class="sv-detail-checkbox-item">
+            <input type="checkbox" data-question="${questionId}" value="option3" />
+            <span>Tùy chọn 3</span>
+          </label>
+        </div>
+      `;
+
+    case 4: // True/False
+      return `
+        <div class="sv-detail-boolean">
+          <label class="sv-detail-radio-item">
+            <input type="radio" name="${questionId}" data-question="${questionId}" value="true" />
+            <span>Đúng</span>
+          </label>
+          <label class="sv-detail-radio-item">
+            <input type="radio" name="${questionId}" data-question="${questionId}" value="false" />
+            <span>Sai</span>
+          </label>
+        </div>
+      `;
+
+    default:
+      return "";
+  }
+}
+
+function loadSurveyInfo() {
+  document.getElementById("courseName").textContent = surveyInfo.courseName;
+  document.getElementById("courseCode").textContent =
+    `Mã HP: ${surveyInfo.courseCode}`;
+  document.getElementById("instructorName").textContent =
+    surveyInfo.instructorName;
+  document.getElementById("semester").textContent = surveyInfo.semester;
+}
+
+function renderSurveyContent() {
   const container = document.getElementById("surveyContent");
   if (!container) return;
 
   container.innerHTML = "";
 
-  const sectionLabels = ["A", "B", "C", "D", "E"];
+  const tree = buildTree(surveyQuestions);
+  const sectionLabels = ["A", "B", "C", "D", "E", "F", "G", "H"];
   const romanNumerals = [
     "I",
     "II",
@@ -113,59 +302,108 @@ function renderSurveyContent(data) {
     "X",
   ];
 
-  data.sections.forEach((section, sectionIndex) => {
+  console.log("Tree:", tree);
+
+  function renderQuestions(items, parentDiv, parentNumber = "") {
+    let currentNumber = 1;
+
+    items.forEach((item) => {
+      if (item.IDLoaiCauTL !== null) {
+        const questionId = `q${item.ID}`;
+        const questionGroup = document.createElement("div");
+        questionGroup.className = "sv-detail-question-group";
+        questionGroup.setAttribute("data-required", item.IsBatBuoc);
+        questionGroup.setAttribute("data-level", item.TreeLevel);
+
+        // Padding 20px for each level > 3
+        // const basePadding = 0;
+        // const paddingIncrement = 20;
+        // const paddingLeft =
+        //   item.TreeLevel > 3
+        //     ? (item.TreeLevel - 3) * paddingIncrement
+        //     : basePadding;
+        const paddingLeft = item.TreeLevel > 3 ? 25 : 0;
+
+        if (paddingLeft > 0) {
+          questionGroup.style.paddingLeft = `${paddingLeft}px`;
+        }
+
+        // Add border for nested questions (level > 3)
+        if (item.TreeLevel > 3) {
+          questionGroup.style.borderLeft = "1px solid #e4e4e4";
+        }
+
+        const requiredMark = item.IsBatBuoc
+          ? '<span class="sv-required">*</span>'
+          : "";
+
+        // Build question number based on parent
+        const displayNumber = parentNumber
+          ? `${parentNumber}.${currentNumber}`
+          : currentNumber.toString();
+
+        questionGroup.innerHTML = `
+          <div class="sv-detail-question-text">
+            ${displayNumber}. ${item.CauHoi} ${requiredMark}
+          </div>
+          ${renderQuestionInput(item, questionId)}
+        `;
+
+        parentDiv.appendChild(questionGroup);
+
+        // Render nested questions inside this question group
+        if (item.children && item.children.length > 0) {
+          const childrenContainer = document.createElement("div");
+          childrenContainer.className = "sv-detail-children-container";
+          questionGroup.appendChild(childrenContainer);
+          renderQuestions(item.children, childrenContainer, displayNumber);
+        }
+
+        currentNumber++;
+      } else {
+        // No input type -> render children
+        if (item.children && item.children.length > 0) {
+          renderQuestions(item.children, parentDiv, parentNumber);
+        }
+      }
+    });
+  }
+
+  //TreeLevel 1 (A, B, C...)
+  tree.forEach((section, sectionIndex) => {
+    if (section.TreeLevel !== 1) return;
+
     const sectionWrapper = document.createElement("div");
     sectionWrapper.className = "content-wrapper";
 
-    //A, B, C...
+    //Section Header
     const sectionHeader = document.createElement("div");
     sectionHeader.className = "sv-detail-section-header";
     sectionHeader.innerHTML = `
       <div class="sv-detail-section-label">${sectionLabels[sectionIndex] || sectionIndex + 1}</div>
-      <div class="sv-detail-section-title">${section.head.toUpperCase()}</div>
+      <div class="sv-detail-section-title">${section.CauHoi.toUpperCase()}</div>
     `;
     sectionWrapper.appendChild(sectionHeader);
 
-    let questionNumber = 1;
+    const questionNumberRef = { num: 1 };
 
-    //I, II, III...
-    section.questions.forEach((subsection, subsectionIndex) => {
+    //TreeLevel 2 (I, II, III...)
+    section.children.forEach((subsection, subsectionIndex) => {
+      if (subsection.TreeLevel !== 2) return;
+
       const subsectionDiv = document.createElement("div");
       subsectionDiv.className = "sv-detail-section";
 
-      // Subsection Title
+      //Subsection Title
       const subsectionTitle = document.createElement("div");
       subsectionTitle.className = "sv-detail-subsection-title";
-      subsectionTitle.textContent = `${romanNumerals[subsectionIndex] || subsectionIndex + 1}. ${subsection.title.toUpperCase()}`;
+      subsectionTitle.textContent = `${romanNumerals[subsectionIndex] || subsectionIndex + 1}. ${subsection.CauHoi.toUpperCase()}`;
       subsectionDiv.appendChild(subsectionTitle);
 
-      // Questions
-      subsection.questions.forEach((questionText) => {
-        const questionId = `q${sectionIndex}_${subsectionIndex}_${questionNumber}`;
-
-        const questionGroup = document.createElement("div");
-        questionGroup.className = "sv-detail-question-group";
-
-        questionGroup.innerHTML = `
-          <div class="sv-detail-question-text">
-            ${questionNumber}. ${questionText}
-          </div>
-          <div class="sv-detail-rating">
-            <span class="sv-detail-rating-label">RẤT KHÔNG HÀI LÒNG</span>
-            <div class="sv-detail-rating-buttons">
-              <button class="sv-detail-rating-btn" data-question="${questionId}" data-value="1">1</button>
-              <button class="sv-detail-rating-btn" data-question="${questionId}" data-value="2">2</button>
-              <button class="sv-detail-rating-btn" data-question="${questionId}" data-value="3">3</button>
-              <button class="sv-detail-rating-btn" data-question="${questionId}" data-value="4">4</button>
-              <button class="sv-detail-rating-btn" data-question="${questionId}" data-value="5">5</button>
-            </div>
-            <span class="sv-detail-rating-label">RẤT HÀI LÒNG</span>
-          </div>
-        `;
-
-        subsectionDiv.appendChild(questionGroup);
-        questionNumber++;
-      });
+      //Render all questions recursively (TreeLevel 3+)
+      if (subsection.children && subsection.children.length > 0) {
+        renderQuestions(subsection.children, subsectionDiv, "");
+      }
 
       sectionWrapper.appendChild(subsectionDiv);
     });
@@ -175,9 +413,9 @@ function renderSurveyContent(data) {
 }
 
 function setupRatingButtons() {
-  const buttons = document.querySelectorAll(".sv-detail-rating-btn");
-
-  buttons.forEach((button) => {
+  //Rating buttons - 1
+  const ratingButtons = document.querySelectorAll(".sv-detail-rating-btn");
+  ratingButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const question = this.getAttribute("data-question");
       const value = this.getAttribute("data-value");
@@ -188,10 +426,44 @@ function setupRatingButtons() {
       questionButtons.forEach((btn) => btn.classList.remove("active"));
 
       this.classList.add("active");
-
       responses[question] = value;
+    });
+  });
 
-      console.log(`[v0] Question ${question} answered with value ${value}`);
+  //Text inputs - 2
+  const textInputs = document.querySelectorAll(".sv-detail-textarea");
+  textInputs.forEach((textarea) => {
+    textarea.addEventListener("input", function () {
+      const question = this.getAttribute("data-question");
+      responses[question] = this.value;
+    });
+  });
+
+  //Checkboxes - 3
+  const checkboxes = document.querySelectorAll(
+    '.sv-detail-checkbox-group input[type="checkbox"]',
+  );
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      const question = this.getAttribute("data-question");
+      const allCheckboxes = document.querySelectorAll(
+        `input[data-question="${question}"]`,
+      );
+      const selected = Array.from(allCheckboxes)
+        .filter((cb) => cb.checked)
+        .map((cb) => cb.value);
+      responses[question] = selected;
+    });
+  });
+
+  //Radio buttons - 4
+  const radioButtons = document.querySelectorAll(
+    '.sv-detail-boolean input[type="radio"]',
+  );
+  radioButtons.forEach((radio) => {
+    radio.addEventListener("change", function () {
+      const question = this.getAttribute("data-question");
+      responses[question] = this.value;
     });
   });
 }
@@ -211,52 +483,53 @@ function setupActionButtons() {
 
 function saveDraft() {
   const draftData = {
-    survey: surveyData,
+    surveyInfo: surveyInfo,
     responses: responses,
     savedAt: new Date().toLocaleString("vi-VN"),
   };
 
   localStorage.setItem("surveyDraft", JSON.stringify(draftData));
-
   alert("Bản nháp đã được lưu thành công!");
-
-  console.log("[v0] Survey draft saved:", draftData);
 }
 
 function submitSurvey() {
-  // Validate all questions are answered
-  const totalQuestions = document.querySelectorAll(
-    ".sv-detail-question-group",
-  ).length;
-  const answeredQuestions = Object.keys(responses).length;
+  // Validate all required questions are answered
+  const requiredQuestions = document.querySelectorAll(
+    '.sv-detail-question-group[data-required="true"]',
+  );
+  const unanswered = [];
 
-  if (answeredQuestions < totalQuestions) {
+  requiredQuestions.forEach((questionGroup) => {
+    const questionId = questionGroup
+      .querySelector("[data-question]")
+      ?.getAttribute("data-question");
+    if (questionId && !responses[questionId]) {
+      unanswered.push(questionId);
+    }
+  });
+
+  if (unanswered.length > 0) {
     alert(
-      `Vui lòng trả lời tất cả các câu hỏi (${answeredQuestions}/${totalQuestions})`,
+      `Vui lòng trả lời tất cả các câu hỏi bắt buộc (còn ${unanswered.length} câu chưa trả lời)`,
     );
     return;
   }
 
   const submitData = {
-    survey: surveyData,
+    surveyInfo: surveyInfo,
     responses: responses,
     submittedAt: new Date().toLocaleString("vi-VN"),
   };
 
-  console.log("[v0] Survey submitted:", submitData);
-
+  console.log("[Survey] Submitted:", submitData);
   alert("Khảo sát đã được gửi thành công! Cảm ơn bạn đã tham gia.");
 
   localStorage.removeItem("surveyDraft");
 
   setTimeout(() => {
-    window.location.href = "survey-event.html";
+    window.location.href = "khao-sat-su-kien.html";
   }, 1000);
 }
-
-window.setSurveyData = function (data) {
-  loadSurveyData(data);
-};
 
 window.getSurveyResponses = function () {
   return responses;
@@ -267,10 +540,20 @@ window.clearResponses = function () {
   document
     .querySelectorAll(".sv-detail-rating-btn.active")
     .forEach((btn) => btn.classList.remove("active"));
+  document
+    .querySelectorAll(".sv-detail-textarea")
+    .forEach((textarea) => (textarea.value = ""));
+  document
+    .querySelectorAll('input[type="checkbox"]:checked')
+    .forEach((cb) => (cb.checked = false));
+  document
+    .querySelectorAll('input[type="radio"]:checked')
+    .forEach((radio) => (radio.checked = false));
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadSurveyData();
+  loadSurveyInfo();
+  renderSurveyContent();
   setupRatingButtons();
   setupActionButtons();
 });
