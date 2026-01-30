@@ -122,7 +122,7 @@
           </div>
         </div>
 
-        <!-- Timeline Section -->
+        <!-- Timeline Section-->
         <div class="content-wrapper">
           <div class="timeline-section">
             <h2 class="section-title">Lộ trình học tập</h2>
@@ -824,7 +824,6 @@
         markersContainer.appendChild(endMarker);
       }
 
-      // Filter buttons
       document.querySelectorAll(".filter-btn").forEach((btn) => {
         btn.addEventListener("click", function () {
           document
@@ -838,7 +837,6 @@
         const icon = header.querySelector(".section-icon");
         const content = header.nextElementSibling;
 
-        // Close all other sections
         document.querySelectorAll(".section-header").forEach((h) => {
           if (h !== header) {
             h.classList.remove("expanded");
@@ -847,7 +845,6 @@
           }
         });
 
-        // Toggle current section
         header.classList.toggle("expanded");
         icon.classList.toggle("rotated");
         content.classList.toggle("active");
@@ -861,6 +858,12 @@
           return new bootstrap.Tooltip(tooltipTriggerEl);
         });
       });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        handleResize();
+      });
+
+      window.addEventListener("resize", handleResize);
     </script>
   </body>
 </html>

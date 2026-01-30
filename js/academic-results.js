@@ -43,6 +43,7 @@ const academicResultsData = [
     tongKetHocKy: {
       diemTrungBinhHocKy: 8.15,
       diemTrungBinhTichLuyHe10: 8.15,
+      diemTrungBinhHe4: 3.52,
       diemTrungBinhTichLuyHe4: 3.45,
       tinChiDangKy: 15,
       tinChiTichLuy: 15,
@@ -93,7 +94,8 @@ const academicResultsData = [
     tongKetHocKy: {
       diemTrungBinhHocKy: 8.6,
       diemTrungBinhTichLuyHe10: 8.38,
-      diemTrungBinhTichLuyHe4: 3.52,
+      diemTrungBinhHe4: 3.89,
+      diemTrungBinhTichLuyHe4: 3.75,
       tinChiDangKy: 16,
       tinChiTichLuy: 31,
       xepLoaiHocKy: "Giỏi",
@@ -161,7 +163,8 @@ const academicResultsData = [
     tongKetHocKy: {
       diemTrungBinhHocKy: 8.67,
       diemTrungBinhTichLuyHe10: 8.48,
-      diemTrungBinhTichLuyHe4: 3.68,
+      diemTrungBinhHe4: 3.8,
+      diemTrungBinhTichLuyHe4: 3.76,
       tinChiDangKy: 18,
       tinChiTichLuy: 49,
       xepLoaiHocKy: "Giỏi",
@@ -229,7 +232,8 @@ const academicResultsData = [
     tongKetHocKy: {
       diemTrungBinhHocKy: 8.5,
       diemTrungBinhTichLuyHe10: 8.49,
-      diemTrungBinhTichLuyHe4: 3.61,
+      diemTrungBinhHe4: 3.9,
+      diemTrungBinhTichLuyHe4: 3.82,
       tinChiDangKy: 17,
       tinChiTichLuy: 66,
       xepLoaiHocKy: "Giỏi",
@@ -297,7 +301,8 @@ const academicResultsData = [
     tongKetHocKy: {
       diemTrungBinhHocKy: 8.9,
       diemTrungBinhTichLuyHe10: 8.56,
-      diemTrungBinhTichLuyHe4: 3.75,
+      diemTrungBinhHe4: 3.89,
+      diemTrungBinhTichLuyHe4: 3.8,
       tinChiDangKy: 18,
       tinChiTichLuy: 84,
       xepLoaiHocKy: "Giỏi",
@@ -383,7 +388,8 @@ const academicResultsData = [
     tongKetHocKy: {
       diemTrungBinhHocKy: 8.7,
       diemTrungBinhTichLuyHe10: 8.6,
-      diemTrungBinhTichLuyHe4: 3.62,
+      diemTrungBinhHe4: 3.7,
+      diemTrungBinhTichLuyHe4: 3.75,
       tinChiDangKy: 12,
       tinChiTichLuy: 96,
       xepLoaiHocKy: "Giỏi",
@@ -393,7 +399,7 @@ const academicResultsData = [
 
 // Thông tin tổng quan tích lũy
 const overallInfo = {
-  gpaTichLuy: 3.62,
+  gpaTichLuy: 3.75,
   xepLoai: "Giỏi",
   tongTinChiHoanThanh: 142,
   tongTinChiYeuCau: 162,
@@ -418,7 +424,6 @@ document.addEventListener("DOMContentLoaded", function () {
   isInitialLoad = false;
 });
 
-// Render phần tổng quan
 function renderOverallSummary() {
   const latestSemester = academicResultsData[academicResultsData.length - 1];
 
@@ -744,7 +749,6 @@ function renderTable(semester) {
   tableContainer.innerHTML = html;
 }
 
-// Render một hàng trong bảng
 function renderTableRow(mon, stt, maxThuongXuyen = 3, maxThucHanh = 3) {
   if (currentFilter === "needImprovement" && mon.diem.diemTK >= 7) {
     return "";
@@ -970,7 +974,6 @@ function createGradeDistChartAll() {
   });
 }
 
-// Đếm số điểm chữ
 function countGrades(semester) {
   const gradeCount = {
     "A+": 0,
@@ -1014,7 +1017,7 @@ function createGpaTrendChart() {
     (s) => `${s.hocKy}/${s.namHoc.split("-")[0].slice(-2)}`,
   );
   const gpaHocKy = academicResultsData.map(
-    (s) => s.tongKetHocKy.diemTrungBinhTichLuyHe4,
+    (s) => s.tongKetHocKy.diemTrungBinhHe4,
   );
   const gpaTichLuy = academicResultsData.map(
     (s) => s.tongKetHocKy.diemTrungBinhTichLuyHe4,

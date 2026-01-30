@@ -26,7 +26,7 @@
       <div id="sidebar-container"></div>
 
       <!-- Content Area -->
-      <div class="section-content content-area">
+      <div class="section-content-main content-area">
         <!-- Page Header -->
         <div class="page-header">
           <h1 class="page-title">Thanh toán dịch vụ</h1>
@@ -59,11 +59,14 @@
               <table class="payment-table">
                 <thead>
                   <tr>
-                    <th style="width: 40px">STT</th>
+                    <th style="width: 30px">STT</th>
                     <th style="width: 80px">Mã</th>
-                    <th style="width: auto">Nội dung thu</th>
-                    <th style="width: 50px">Tín chỉ</th>
-                    <th style="width: 120px">Bắt buộc</th>
+                    <th style="width: auto; min-width: 200px">Nội dung thu</th>
+                    <th style="width: 50px">Loại khoản thu</th>
+                    <th style="width: 120px">Số lượng</th>
+                    <th style="text-align: right; width: auto">
+                      Đơn giá (VNĐ)
+                    </th>
                     <th style="text-align: right; width: auto">
                       Số tiền (VNĐ)
                     </th>
@@ -72,20 +75,23 @@
                 </thead>
                 <tbody>
                   <tr
-                    data-code="TN"
-                    data-code="TN"
-                    data-amount="1000000"
-                    data-name="Học phí tốt nghiệp"
+                    data-code="KT2301"
+                    data-amount="24000"
+                    data-name="Thu phí đoàn năm học 2025 - 2026"
                   >
                     <td>1</td>
-                    <td><strong>TN</strong></td>
-                    <td>Học phí tốt nghiệp</td>
-                    <td style="text-align: center">-</td>
+                    <td><strong>KT2301</strong></td>
+                    <td>Thu phí đoàn năm học 2025 - 2026</td>
+
                     <td>
-                      <span class="status-badge required"> Bắt buộc </span>
+                      <span class="status-badge required"> Lệ phí </span>
+                    </td>
+                    <td style="text-align: center">1</td>
+                    <td style="text-align: right">
+                      <span class="amount">24.000</span>
                     </td>
                     <td style="text-align: right">
-                      <span class="amount">1.000.000</span>
+                      <span class="amount">24.000</span>
                     </td>
                     <td class="action-cell">
                       <button class="select-btn" onclick="toggleSelect(this)">
@@ -95,85 +101,22 @@
                     </td>
                   </tr>
                   <tr
-                    data-code="001549"
-                    data-amount="3380000"
-                    data-name="Kiến trúc và Thiết kế Phần mềm"
+                    data-code="KT2001"
+                    data-amount="24000"
+                    data-name="Thu phí hội năm học 2025 - 2026"
                   >
                     <td>2</td>
-                    <td><strong>001549</strong></td>
-                    <td>Kiến trúc và Thiết kế Phần mềm</td>
-                    <td style="text-align: center">4</td>
+                    <td><strong>KT2001</strong></td>
+                    <td>Thu phí hội năm học 2025 - 2026</td>
                     <td>
-                      <span class="status-badge optional"> Tùy chọn </span>
+                      <span class="status-badge required"> Lệ phí </span>
+                    </td>
+                    <td style="text-align: center">1</td>
+                    <td style="text-align: right">
+                      <span class="amount">24.000</span>
                     </td>
                     <td style="text-align: right">
-                      <span class="amount">3.380.000</span>
-                    </td>
-                    <td class="action-cell">
-                      <button class="select-btn" onclick="toggleSelect(this)">
-                        Chọn
-                        <i class="fas fa-arrow-right"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr
-                    data-code="003147"
-                    data-amount="2630000"
-                    data-name="Công nghệ mới trong phát triển ứng dụng CNTT"
-                  >
-                    <td>3</td>
-                    <td><strong>003147</strong></td>
-                    <td>Công nghệ mới trong phát triển ứng dụng CNTT</td>
-                    <td style="text-align: center">3</td>
-                    <td>
-                      <span class="status-badge optional"> Tùy chọn </span>
-                    </td>
-                    <td style="text-align: right">
-                      <span class="amount">2.630.000</span>
-                    </td>
-                    <td class="action-cell">
-                      <button class="select-btn" onclick="toggleSelect(this)">
-                        Chọn
-                        <i class="fas fa-arrow-right"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr
-                    data-code="003098"
-                    data-amount="3750000"
-                    data-name="Thực tập doanh nghiệp"
-                  >
-                    <td>4</td>
-                    <td><strong>003098</strong></td>
-                    <td>Thực tập doanh nghiệp</td>
-                    <td style="text-align: center">5</td>
-                    <td>
-                      <span class="status-badge optional"> Tùy chọn </span>
-                    </td>
-                    <td style="text-align: right">
-                      <span class="amount">3.750.000</span>
-                    </td>
-                    <td class="action-cell">
-                      <button class="select-btn" onclick="toggleSelect(this)">
-                        Chọn
-                        <i class="fas fa-arrow-right"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr
-                    data-code="BHYT2026"
-                    data-amount="632000"
-                    data-name="Thu bảo hiểm y tế năm 2026"
-                  >
-                    <td>5</td>
-                    <td><strong>BHYT2026</strong></td>
-                    <td>Thu bảo hiểm y tế năm 2026</td>
-                    <td style="text-align: center">-</td>
-                    <td>
-                      <span class="status-badge optional"> Tùy chọn </span>
-                    </td>
-                    <td style="text-align: right">
-                      <span class="amount">632.000</span>
+                      <span class="amount">24.000</span>
                     </td>
                     <td class="action-cell">
                       <button class="select-btn" onclick="toggleSelect(this)">
