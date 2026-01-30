@@ -323,7 +323,6 @@ const classes = {
       ],
       practiceClasses: [],
     },
-    // Lớp 03 - Đã khóa (100/100 = 100%)
     {
       id: "03",
       courseCode: "THCS102",
@@ -362,9 +361,7 @@ const classes = {
     },
   ],
 
-  // Môn 3: Cơ sở dữ liệu - THCS201
   3: [
-    // Lớp 01 - Chờ sinh viên đăng ký (35/120 = 29%)
     {
       id: "01",
       courseCode: "THCS201",
