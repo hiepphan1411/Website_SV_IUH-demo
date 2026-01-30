@@ -469,12 +469,7 @@ function setupRatingButtons() {
 }
 
 function setupActionButtons() {
-  const draftBtn = document.querySelector(".sv-detail-btn-draft");
   const submitBtn = document.querySelector(".sv-detail-btn-submit");
-
-  if (draftBtn) {
-    draftBtn.addEventListener("click", saveDraft);
-  }
 
   if (submitBtn) {
     submitBtn.addEventListener("click", submitSurvey);
