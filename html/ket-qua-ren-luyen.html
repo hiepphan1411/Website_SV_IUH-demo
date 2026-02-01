@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kết quả rèn luyện</title>
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="../css/common.css" />
+        <link rel="stylesheet" href="../css/ket-qua-ren-luyen.css" />
+        <link rel="stylesheet" href="../css/dang-ky-muon-phong.css" />
+
+        <script
+            src="https://kit.fontawesome.com/6f955e325d.js"
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <div id="header-container"></div>
+
+        <!-- Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <div id="sidebar-container"></div>
+
+            <!-- Details -->
+            <div class="container-fluid">
+                <div class="header-section">
+                    <div class="header-title">Kết quả rèn luyện</div>
+                    <div class="header-subtitle">
+                        Theo dõi điểm rèn luyện và lịch sử vi phạm theo từng học
+                        kỳ
+                    </div>
+                </div>
+
+                <!-- Semester Cards -->
+                <div class="content-section"></div>
+            </div>
+        </main>
+
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            fetch('component/sidebar.html')
+                .then((res) => res.text())
+                .then((html) => {
+                    document.getElementById('sidebar-container').innerHTML =
+                        html;
+
+                    if (typeof initializeSidebar === 'function') {
+                        initializeSidebar();
+                    }
+                });
+
+            fetch('component/header.html')
+                .then((res) => res.text())
+                .then((html) => {
+                    document.getElementById('header-container').innerHTML =
+                        html;
+                });
+        </script>
+        <script src="../js/common.js"></script>
+        <script src="../js/ket-qua-ren-luyen.js"></script>
+    </body>
+</html>
