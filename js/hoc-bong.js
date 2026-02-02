@@ -274,7 +274,7 @@ function renderApplicationCard(app) {
 function renderScholarshipCard(scholarship) {
   const requirements = scholarship.requirements
     .map((req) => {
-      const metClass = req.met ? "met" : "";
+      const metClass = req.met ? "met" : "not-met";
       const icon = req.met ? "fa-check" : "fa-circle";
       return `
       <div class="requirement-item ${metClass}">
@@ -320,6 +320,53 @@ function renderScholarshipCard(scholarship) {
   `;
 }
 
+function renderScholarshipTable(scholarship) {
+  const requirementsCompact = scholarship.requirements
+    .map((req) => {
+      const metClass = req.met ? "met" : "not-met";
+      const icon = req.met ? "fa-check" : "fa-circle";
+      return `
+      <div class="requirement-compact ${metClass}">
+        <i class="fas ${icon}"></i>
+        <span>${req.text}</span>
+      </div>
+    `;
+    })
+    .join("");
+
+  const applyButton = scholarship.isAutomatic
+    ? `<button class="btn-table disabled" disabled>Tự động xét</button>`
+    : `<button class="btn-table btn-primary" data-bs-toggle="modal" data-bs-target="#applyModal" data-scholarship-id="${scholarship.id}">Đăng ký</button>`;
+
+  return `
+    <tr data-scholarship-id="${scholarship.id}">
+      <td>
+        <div class="scholarship-name">${scholarship.title}</div>
+        <span class="type-badge ${scholarship.typeBadgeClass}">${scholarship.typeBadge}</span>
+      </td>
+      <td>
+        <div class="amount-highlight">${scholarship.amount}</div>
+        <div style="font-size: 0.75rem; color: #6b7280;">${scholarship.amountNote}</div>
+      </td>
+      <td>
+        <div class="requirements-compact">
+          ${requirementsCompact}
+        </div>
+      </td>
+      <td>
+        <div style="font-size: 0.75rem; color: #6b7280; margin-bottom: 0.25rem;">${scholarship.deadline}</div>
+        <div style="font-size: 0.75rem; color: #6b7280;">${scholarship.slots}</div>
+      </td>
+      <td>
+        <div class="table-actions">
+          ${applyButton}
+          <button class="btn-table" data-bs-toggle="modal" data-bs-target="#detailModal" data-scholarship-id="${scholarship.id}">Chi tiết</button>
+        </div>
+      </td>
+    </tr>
+  `;
+}
+
 function renderApplications() {
   const container = document.querySelector(".applications-list");
   if (!container) return;
@@ -330,13 +377,38 @@ function renderApplications() {
   updateFilterCounts();
 }
 
-function renderScholarships() {
+function renderScholarships(viewMode = "grid") {
   const container = document.querySelector(".scholarships-grid");
   if (!container) return;
 
-  container.innerHTML = scholarshipData.availableScholarships
-    .map((s) => renderScholarshipCard(s))
-    .join("");
+  if (viewMode === "table") {
+    container.classList.add("table-view");
+    const tableRows = scholarshipData.availableScholarships
+      .map((s) => renderScholarshipTable(s))
+      .join("");
+
+    container.innerHTML = `
+      <table class="scholarship-table">
+        <thead>
+          <tr>
+            <th>Tên học bổng</th>
+            <th>Mức học bổng</th>
+            <th>Điều kiện</th>
+            <th>Thông tin</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+    `;
+  } else {
+    container.classList.remove("table-view");
+    container.innerHTML = scholarshipData.availableScholarships
+      .map((s) => renderScholarshipCard(s))
+      .join("");
+  }
 }
 
 function updateFilterCounts() {
@@ -363,6 +435,18 @@ function updateFilterCounts() {
 document.addEventListener("DOMContentLoaded", function () {
   renderApplications();
   renderScholarships();
+
+  // View toggle functionality
+  const viewToggleBtns = document.querySelectorAll(".view-toggle-btn");
+  viewToggleBtns.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      viewToggleBtns.forEach((b) => b.classList.remove("active"));
+      this.classList.add("active");
+
+      const viewMode = this.dataset.view;
+      renderScholarships(viewMode);
+    });
+  });
 
   const filterTabs = document.querySelectorAll(".filter-tab");
   filterTabs.forEach((tab) => {
@@ -396,10 +480,13 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("click", function (e) {
     if (
       e.target.closest(".btn-details") &&
-      e.target.closest(".scholarship-card")
+      (e.target.closest(".scholarship-card") ||
+        e.target.closest(".scholarship-table"))
     ) {
-      const card = e.target.closest(".scholarship-card");
-      const scholarshipId = parseInt(card.dataset.scholarshipId);
+      const element =
+        e.target.closest(".scholarship-card") ||
+        e.target.closest("tr[data-scholarship-id]");
+      const scholarshipId = parseInt(element.dataset.scholarshipId);
       const scholarship = scholarshipData.availableScholarships.find(
         (s) => s.id === scholarshipId,
       );
@@ -409,7 +496,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (e.target.closest(".btn-apply:not(.disabled)")) {
-      const card = e.target.closest(".scholarship-card");
+      const card =
+        e.target.closest(".scholarship-card") ||
+        e.target.closest("tr[data-scholarship-id]");
       if (card) {
         const scholarshipId = parseInt(card.dataset.scholarshipId);
         openApplyModal(scholarshipId);
