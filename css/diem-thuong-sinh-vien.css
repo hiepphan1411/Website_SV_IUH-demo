@@ -1,0 +1,117 @@
+.badge {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 550;
+  font-size: 12px;
+}
+
+.badge-completed {
+  color: #4caf50;
+  background-color: #e9fbea;
+}
+
+.badge-progress {
+  color: #ff9f43;
+  background-color: #fff3d7;
+}
+
+.badge-denied {
+  color: #ea5455;
+  background-color: #fdeeee;
+}
+
+.badge-total {
+  color: #666666;
+  background-color: #ebedf3;
+}
+
+.badge-improved {
+  color: #56a2e8;
+  background-color: #f4fbff;
+}
+
+.stat-cards-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: calc(25% - 15px);
+  border-radius: 8px;
+  gap: 20px;
+  border: 1px solid #e4e4e4;
+}
+
+.stat-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-card .stats-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.value-total {
+  color: #505050;
+}
+
+.value-completed {
+  color: #348137;
+}
+
+.value-improved {
+  color: #2a4591;
+}
+
+.value-progress {
+  color: #7c2d12;
+}
+
+@media (max-width: 1200px) {
+  .stat-card {
+    width: calc(50% - 10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .stat-card {
+    width: 100%;
+  }
+
+  .stat-cards-grid {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đề xuất khen thưởng</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/curriculum-framework.css" />
+    <link rel="stylesheet" href="../css/de-xuat-khen-thuong.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <!-- Content -->
+    <main class="main-content">
+      <!-- Sidebar -->
+      <div id="sidebar-container"></div>
+      <!-- Details -->
+      <div class="container" style="margin-top: 20px">
+        <!-- Header Section -->
+        <div class="header-section">
+          <div class="header-title">Đề xuất khen thưởng</div>
+          <div class="header-subtitle">
+            Theo dõi, quản lý đề xuất khen thưởng.
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+          <!-- Filter and Search -->
+          <div
+            class="w-100 d-flex flex-wrap mb-4 align-items-end justify-content-between"
+          >
+            <div class="search-box">
+              <select id="periodSelect" class="form-control">
+                <option value="">Tất cả</option>
+                <option value="dot1-hk1">HK1 2024-2025</option>
+                <option value="dot2-hk1">HK1 2024-2025</option>
+                <option value="dot1-hk2">HK2 2024-2025</option>
+              </select>
+            </div>
+
+            <div class="d-flex gap-3">
+              <button class="button btn-add">Thêm</button>
+              <button class="button btn-propose">Đề xuất</button>
+              <button class="button btn-delete">Xóa</button>
+            </div>
+          </div>
+
+          <!-- Table Section -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="text-center">STT</th>
+                  <th class="text-center">
+                    <input type="checkbox" id="checkAllRow" />
+                  </th>
+                  <th class="text-center">NGÀY KHEN THƯỞNG</th>
+                  <th class="ps-4">TÊN KHEN THƯỞNG</th>
+                  <th class="text-center">ĐÍNH KÈM</th>
+                  <th class="ps-4">ĐỢT</th>
+                  <th class="ps-4">GHI CHÚ</th>
+                  <th class="text-center">TRẠNG THÁI</th>
+                  <th class="text-center">THAO TÁC</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                <!-- JavaScript Render -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">© 2026</div>
+      </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="certificateModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Tạo chứng chỉ đề xuất mới</h2>
+            <button class="modal-close" onclick="closeModal()">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="formModal">
+              <div class="form-row">
+                <div class="form-col-4">
+                  <div class="form-group">
+                    <label class="form-label">
+                      ĐỢT
+                      <span class="required">*</span>
+                    </label>
+                    <select class="form-input" id="rewardPeriod" required>
+                      <option value="">Chọn đợt</option>
+                      <option value="HK1 (2023-2024)">HK1 (2023-2024)</option>
+                      <option value="HK2 (2023-2024)">HK2 (2023-2024)</option>
+                      <option value="HK1 (2023-2024)">HK1 (2024-2025)</option>
+                      <option value="HK2 (2023-2024)">HK2 (2024-2025)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-col-4">
+                  <div class="form-group">
+                    <label class="form-label">
+                      TÊN KHEN THƯỞNG
+                      <span class="required">*</span>
+                    </label>
+                    <select class="form-input" id="name" required>
+                      <option value="">Chọn khen thưởng</option>
+                      <option value="Thưởng dự án">Thưởng dự án</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-col-4">
+                  <div class="form-group">
+                    <label class="form-label">
+                      NGÀY KHEN THƯỞNG
+                      <span class="required">*</span>
+                    </label>
+                    <input type="date" class="form-input" id="rewardDate" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">GHI CHÚ</label>
+                <textarea
+                  class="form-textarea"
+                  id="note"
+                  rows="3"
+                  placeholder="Nhập ghi chú"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">ĐÍNH KÈM</label>
+                <div class="file-upload-area" id="fileUploadArea">
+                  <input type="file" id="fileInput" multiple hidden />
+                  <div
+                    class="upload-placeholder"
+                    onclick="document.getElementById('fileInput').click()"
+                  >
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p>Nhấn để chọn file hoặc kéo thả file vào đây</p>
+                    <small>PDF, JPG, PNG - Tối đa 5MB mỗi file</small>
+                  </div>
+                  <div class="file-list" id="fileList"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="certificate-modal-footer">
+            <button class="btn-cancel" onclick="closeModal()">Hủy</button>
+            <button class="btn-save" onclick="submitForm()">
+              <i class="fa-solid fa-floppy-disk"></i>
+              Lưu thay đổi
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/de-xuat-khen-thuong.js"></script>
+    <script src="../js/common.js"></script>
+  </body>
+</html>

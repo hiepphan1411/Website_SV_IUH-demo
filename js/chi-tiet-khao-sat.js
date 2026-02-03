@@ -302,8 +302,6 @@ function renderSurveyContent() {
     "X",
   ];
 
-  console.log("Tree:", tree);
-
   function renderQuestions(items, parentDiv, parentNumber = "") {
     let currentNumber = 1;
 
@@ -368,6 +366,8 @@ function renderSurveyContent() {
       }
     });
   }
+
+  console.log("Tree: ", tree);
 
   //TreeLevel 1 (A, B, C...)
   tree.forEach((section, sectionIndex) => {
@@ -469,12 +469,7 @@ function setupRatingButtons() {
 }
 
 function setupActionButtons() {
-  const draftBtn = document.querySelector(".sv-detail-btn-draft");
   const submitBtn = document.querySelector(".sv-detail-btn-submit");
-
-  if (draftBtn) {
-    draftBtn.addEventListener("click", saveDraft);
-  }
 
   if (submitBtn) {
     submitBtn.addEventListener("click", submitSurvey);
