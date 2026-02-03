@@ -19,10 +19,59 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--light-bg);
+    font-family:
+        -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+        Arial, sans-serif;
+    background-color: #e8eef5;
     color: var(--text-dark);
     line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.grade-main {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+.header-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-bottom: 20px;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #505050;
+}
+.header-subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: #8e8e8e;
+}
+
+.semesterSelect {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.form-select {
+    width: 250px;
+}
+
+.btn-print {
+    color: #ffffff;
+    background-color: #56a2e8;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+}
+.btn-print:hover {
+    color: #56a2e8;
+    background-color: #e6e6e6;
+    transition: 0.3s;
 }
 
 .bg-light-custom {
@@ -174,31 +223,6 @@ body {
     min-width: 80px;
 }
 
-.status-excellent {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-}
-
-.status-good {
-    background-color: #e3f2fd;
-    color: #1976d2;
-}
-
-.status-average {
-    background-color: #fff3e0;
-    color: #e65100;
-}
-
-.status-weak {
-    background-color: #fce4ec;
-    color: #c2185b;
-}
-
-.status-poor {
-    background-color: #ffebee;
-    color: #d32f2f;
-}
-
 /* 
    TABLE
   */
@@ -207,8 +231,12 @@ body {
     background: white;
     border-radius: 8px;
     overflow: hidden;
+    border: 1px solid var(--border-color);
     box-shadow: var(--shadow);
-    margin-bottom: 2rem;
+}
+
+.total-row td:last-child {
+    border-top-right-radius: 8px;
 }
 
 .total-row td {
@@ -226,7 +254,7 @@ body {
 
 .table-header {
     padding: 15px;
-    border-bottom: 2px solid var(--border-color);
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -269,15 +297,21 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: nowrap;
-    border: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
 }
+.detail-table thead th:last-child,
+.detail-table thead td:last-child,
+.detail-table tbody td:last-child {
+    border-right: none;
+}
+
 .detail-table thead th:nth-child(2) {
     text-align: left;
 }
 
 .detail-table tbody td {
     padding: 10px 15px;
-    border: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
     font-size: 13px;
     text-align: center;
     vertical-align: middle;
@@ -300,64 +334,13 @@ body {
 }
 
 .note-item {
-    font-size: 0.8rem;
+    font-size: 13px;
     line-height: 1.4;
     color: var(--text-light);
 }
 
 .note-item div {
-    margin: 0.25rem 0;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.action-buttons .btn {
-    padding: 0.75rem 1.5rem;
-    font-weight: 600;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-}
-
-.action-buttons .btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
-}
-
-.action-buttons .btn-primary:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(86, 162, 232, 0.3);
-}
-
-.action-buttons .btn-secondary {
-    background-color: #e0e0e0;
-    border-color: #e0e0e0;
-    color: var(--text-dark);
-}
-
-.action-buttons .btn-secondary:hover {
-    background-color: #d0d0d0;
-    border-color: #d0d0d0;
-}
-
-.footer {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 2rem 0;
-    margin-top: 3rem;
-    text-align: center;
-}
-
-.footer p {
-    margin: 0;
-    opacity: 0.9;
+    margin: 5px 0;
 }
 
 @media (max-width: 1024px) {
@@ -492,8 +475,8 @@ body {
 }
 
 .category-row {
-    background-color: #f7faff !important;
-    color: #003087 !important;
+    background-color: #f7faff;
+    color: #003087;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -514,18 +497,18 @@ body {
 
 .category-row td:first-child {
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 13px;
     padding-left: 2rem !important;
 }
 
 .category-row td:first-child::before {
     content: '▶';
     position: absolute;
-    left: 0.5rem;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
     transition: transform 0.3s ease;
-    font-size: 0.75rem;
+    font-size: 13px;
     color: #003087;
 }
 
@@ -533,16 +516,10 @@ body {
     transform: translateY(-50%) rotate(90deg);
 }
 
-/* Hide child rows by default */
-.child-row {
-    transition: all 0.3s ease;
-}
-
 .child-row.hide {
     display: none;
 }
 
-/* Sub-category styling */
 .sub-category-row {
     background-color: #fafbff !important;
 }
@@ -551,9 +528,8 @@ body {
     font-weight: 500;
 }
 
-/* Level 1: I.1, I.2,*/
 .child-row td:first-child {
-    padding-left: 2rem !important;
+    padding-left: 25px !important;
 }
 
 .child-row[data-parent^='I'] td:nth-child(2),
@@ -569,7 +545,6 @@ body {
     font-weight: 600;
 }
 
-/* Indent for different levels based on STT column content */
 tr td:first-child:is([data-level='1']) {
     padding-left: 2rem !important;
 }
@@ -582,32 +557,25 @@ tr td:first-child:is([data-level='3']) {
     padding-left: 4rem !important;
 }
 
-/* Text alignment */
 .detail-table .text-start {
     text-align: left !important;
 }
 
-/* Default: normal weight */
 .detail-table tbody td {
     font-weight: 400;
 }
 
-/* Pattern I.1, I.2, II.1*/
-.detail-table tbody tr[data-level='1'] td:nth-child(2) {
+.detail-table tbody tr[data-level='1'] td {
     font-weight: 700 !important;
 }
 
-/* Pattern I.1.1, I.1.2, I.2.1... */
-.detail-table tbody tr[data-level='2'] td:nth-child(2) {
+.detail-table tbody tr[data-level='2'] td {
     font-weight: 600 !important;
 }
-
-/* Pattern with -*/
-.detail-table tbody tr[data-level='3'] td:nth-child(2) {
+.detail-table tbody tr[data-level='3'] td {
     font-weight: 400 !important;
 }
 
-/* Note items styling */
 .note-item {
     display: flex;
     flex-direction: column;
@@ -616,11 +584,201 @@ tr td:first-child:is([data-level='3']) {
 }
 
 .note-item div:first-child {
-    color: #666;
+    color: #505050;
     font-style: italic;
 }
 
 .note-item div:last-child {
     font-weight: 500;
     color: #003087;
+}
+
+.custom-file-upload input[type='file'] {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.custom-file-upload .file-upload-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    height: fit-content;
+    background-color: #56a2e8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.custom-file-upload .file-upload-btn:hover {
+    background-color: #4a90e2;
+    box-shadow: 0 2px 8px rgba(86, 162, 232, 0.3);
+}
+
+.custom-file-upload .file-upload-btn:active {
+    transform: translateY(0);
+}
+
+.custom-file-upload .file-upload-btn i {
+    font-size: 16px;
+}
+
+.custom-file-upload .file-name {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-confirm {
+    color: #ffffff;
+    background-color: #56a2e8;
+    border: none;
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: 10px 25px;
+}
+.btn-confirm:hover {
+    color: #56a2e8;
+    background-color: #e6e6e6;
+    transition: 0.3s;
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+.self-score-input:read-only {
+    background-color: #f8f9fa !important;
+    cursor: not-allowed;
+}
+
+@media print {
+    .btn-print,
+    .btn-confirm,
+    .semesterSelect,
+    #header-container,
+    #sidebar-container,
+    .sidebar,
+    header,
+    nav {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        margin: 0;
+        padding: 0;
+        font-size: 10px !important;
+    }
+
+    .main-content {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+
+    .container-fluid {
+        margin: 0 !important;
+        padding: 10px !important;
+        max-width: 100% !important;
+    }
+
+    .header-section {
+        margin-bottom: 10px;
+        page-break-after: avoid;
+    }
+
+    .header-title {
+        font-size: 16px !important;
+        margin-bottom: 5px;
+    }
+
+    .header-subtitle {
+        font-size: 10px !important;
+    }
+
+    .table-section {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    .detail-table {
+        font-size: 9px !important;
+    }
+
+    .detail-table th,
+    .detail-table td {
+        padding: 4px 6px !important;
+        font-size: 9px !important;
+        line-height: 1.2 !important;
+    }
+
+    .detail-table th {
+        font-size: 9px !important;
+        font-weight: 600;
+    }
+
+    .total-row td {
+        font-size: 14px;
+        padding: 8px 6px;
+        font-weight: 700;
+    }
+
+    .category-row {
+        font-weight: 700;
+    }
+
+    .category-row td strong,
+    .category-row strong {
+        font-weight: 700;
+    }
+
+    .child-row td {
+        font-weight: 400 !important;
+    }
+
+    .note-item {
+        font-size: 8px !important;
+    }
+
+    .note-item div {
+        margin-bottom: 2px;
+    }
+
+    input[type='text'],
+    input[type='number'],
+    .custom-file-upload {
+        font-size: 8px !important;
+        padding: 2px 4px !important;
+        height: auto !important;
+        min-height: 20px !important;
+    }
+
+    .file-upload-btn {
+        font-size: 8px !important;
+        padding: 2px 6px !important;
+    }
+
+    .file-name {
+        font-size: 7px !important;
+    }
+
+    @page {
+        size: A4 landscape;
+        margin: 10mm;
+    }
 }

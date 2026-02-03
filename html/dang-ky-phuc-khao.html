@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Đăng ký phúc khảo</title>
+
+        <link href="../lib/bootstrap@5.3.8.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="../css/common.css" />
+
+        <script
+            src="https://kit.fontawesome.com/6f955e325d.js"
+            crossorigin="anonymous"
+        ></script>
+
+        <link
+            rel="stylesheet"
+            href="../css/dang-ky-thi-lai-thi-cai-thien.css"
+        />
+    </head>
+    <body>
+        <!-- Header -->
+        <div id="header-container"></div>
+
+        <!-- Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <div id="sidebar-container"></div>
+            <div class="container-fluid">
+                <div class="page-header">Đăng ký phúc khảo</div>
+
+                <div class="d-flex align-items-center gap-3 mb-4 mt-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <span
+                            style="
+                                color: #505050;
+                                font-weight: 500;
+                                font-size: 13px;
+                            "
+                            >Kết quả</span
+                        >
+                        <div class="tab-buttons">
+                            <button class="btn active" data-tab="lan-1">
+                                Lần 1
+                            </button>
+                            <button class="btn" data-tab="lan-2">Lần 2</button>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <span
+                            style="
+                                color: #505050;
+                                font-weight: 500;
+                                font-size: 13px;
+                            "
+                            >Học kỳ</span
+                        >
+                        <select class="form-select" id="semesterSelect">
+                            <option value="HK1 (2025-2026)">
+                                HK1 (2025 - 2026)
+                            </option>
+                            <option value="HK2 (2024-2025)">
+                                HK2 (2024 - 2025)
+                            </option>
+                            <option value="HK1 (2024-2025)">
+                                HK1 (2024 - 2025)
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div
+                        class="d-flex justify-content-between align-items-center mb-3"
+                    >
+                        <div class="section-header">
+                            MÔN HỌC ĐƯỢC PHÉP ĐĂNG KÝ
+                        </div>
+                        <button
+                            class="btn-refresh"
+                            onclick="refreshAllowedTable()"
+                        >
+                            Làm mới
+                        </button>
+                    </div>
+
+                    <div class="table-container scroll-container">
+                        <table class="custom-table" id="allowedTable">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-col">
+                                        <input
+                                            type="checkbox"
+                                            class="custom-checkbox"
+                                            id="selectAll"
+                                        />
+                                    </th>
+                                    <th>MÃ MÔN</th>
+                                    <th>TÊN MÔN HỌC</th>
+                                    <th>LỚP HỌC PHẦN</th>
+
+                                    <th class="text-center-col">SỐ TÍN CHỈ</th>
+                                    <th class="text-center-col">ĐIỂM THI</th>
+                                    <th class="text-center-col">
+                                        THỜI HẠN PHÚC KHẢO
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="allowedTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn-register" onclick="registerSubjects()">
+                        Đăng ký
+                    </button>
+                </div>
+
+                <div>
+                    <div class="section-header mb-3">
+                        MÔN HỌC ĐÃ ĐĂNG KÝ PHÚC KHẢO
+                    </div>
+
+                    <div class="table-container scroll-container">
+                        <table
+                            class="custom-table registered-table"
+                            id="registeredTable"
+                        >
+                            <thead>
+                                <tr>
+                                    <th class="text-center-col">STT</th>
+                                    <th>MÃ MÔN</th>
+                                    <th>MÃ LHP</th>
+                                    <th>TÊN MÔN HỌC</th>
+                                    <th class="text-center-col">ĐIỂM THI</th>
+                                    <th class="text-center-col">LỆ PHÍ</th>
+                                    <th class="text-center-col">TT LỆ PHÍ</th>
+                                    <th class="text-center-col">
+                                        ĐIỂM PHÚC KHẢO
+                                    </th>
+                                    <th>PHẢN HỒI PHÚC KHẢO</th>
+                                    <th class="text-center-col">TRẠNG THÁI</th>
+                                    <th>LÝ DO</th>
+                                </tr>
+                            </thead>
+                            <tbody id="registeredTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            fetch('component/sidebar.html')
+                .then((res) => res.text())
+                .then((html) => {
+                    document.getElementById('sidebar-container').innerHTML =
+                        html;
+
+                    if (typeof initializeSidebar === 'function') {
+                        initializeSidebar();
+                    }
+                });
+
+            fetch('component/header.html')
+                .then((res) => res.text())
+                .then((html) => {
+                    document.getElementById('header-container').innerHTML =
+                        html;
+                });
+        </script>
+        <script src="../js/common.js"></script>
+        <script src="../js/dang-ky-phuc-khao.js"></script>
+    </body>
+</html>
