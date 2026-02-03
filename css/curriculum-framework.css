@@ -2098,3 +2098,25 @@ body {
 .grid-2x2 {
   grid-template-columns: repeat(2, 1fr);
 }
+
+.button {
+  border: none;
+  padding: 4px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-add {
+  background-color: #56a2e8;
+  color: #ffffff;
+}
+
+.btn-add:hover {
+  background-color: #2e86de;
+}
+
+.required {
+  color: #ee2929;
+  font-size: 14px;
+}
