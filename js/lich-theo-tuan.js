@@ -717,19 +717,13 @@ const scheduleData = {
     ],
 };
 
-// ==============================================
-// GLOBAL VARIABLES
-// ==============================================
-const TODAY = new Date(); // Ngày hôm nay - không thay đổi
+const TODAY = new Date();
 let currentMonth = TODAY.getMonth();
 let currentYear = TODAY.getFullYear();
-let selectedDate = null; // Ngày được CHỌN BỞI USER (click vào mini calendar) - null = không chọn
-let viewDate = new Date(TODAY); // Tuần đang XEM (dùng cho navigation)
-let activeFilter = 'all'; // 'all', 'study', 'exam'
+let selectedDate = null;
+let viewDate = new Date(TODAY);
+let activeFilter = 'all';
 
-// ==============================================
-// CONSTANTS
-// ==============================================
 const MONTH_NAMES = [
     'Tháng 1',
     'Tháng 2',
@@ -757,9 +751,6 @@ const DAY_NAMES = [
 const TIME_PERIODS = ['Sáng', 'Trưa', 'Chiều'];
 const TIME_KEYS = ['morning', 'noon', 'afternoon'];
 
-// ==============================================
-// INITIALIZATION
-// ==============================================
 $(document).ready(function () {
     initializeCalendar();
     setupEventHandlers();
@@ -767,7 +758,7 @@ $(document).ready(function () {
 
 function initializeCalendar() {
     renderMiniCalendar(currentMonth, currentYear);
-    renderWeekCalendar(viewDate); // Dùng viewDate thay vì selectedDate
+    renderWeekCalendar(viewDate);
     $('.button-schedule').first().addClass('active');
 }
 
@@ -777,41 +768,29 @@ function setupEventHandlers() {
     setupMonthNavigation();
     setupTodayButton();
     setupPrintButton();
-    setupMiniCalendarClick(); // Thêm handler cho mini calendar
+    setupMiniCalendarClick();
 }
 
-// ==============================================
-// FILTER BUTTONS
-// ==============================================
 function setupFilterButtons() {
     $('.button-schedule').click(function () {
-        // Đánh dấu button được chọn
         $('.button-schedule').removeClass('active');
         $(this).addClass('active');
 
-        // Lấy text và chuẩn hóa (loại bỏ khoảng trắng thừa)
         const filterText = $(this).find('p').text().trim().replace(/\s+/g, ' ');
 
-        // Map text sang filter type
         const filterMap = {
-            'Tất cả': 'all', // Hiển thị cả lịch học và lịch thi
-            'Lịch học': 'study', // Chỉ hiển thị lịch học (category: 'study')
-            'Lịch thi': 'exam', // Chỉ hiển thị lịch thi (category: 'exam')
+            'Tất cả': 'all',
+            'Lịch học': 'study',
+            'Lịch thi': 'exam',
         };
 
         activeFilter = filterMap[filterText] || 'all';
 
-        // Render lại tuần hiện tại với filter mới
-        // viewDate giữ nguyên => không đổi tuần đang xem
         renderWeekCalendar(viewDate);
     });
 }
 
-// ==============================================
-// NAVIGATION BUTTONS
-// ==============================================
 function setupNavigationButtons() {
-    // Previous week - Nút mũi tên trái (dùng class cụ thể)
     $('.btn-prev-week').click(function () {
         const newDate = new Date(viewDate);
         newDate.setDate(newDate.getDate() - 7);
@@ -823,12 +802,10 @@ function setupNavigationButtons() {
         renderMiniCalendar(currentMonth, currentYear);
         renderWeekCalendar(viewDate);
 
-        // XÓA selection vì user KHÔNG chọn ngày, chỉ đổi tuần
         selectedDate = null;
-        updateMiniCalendarSelection(); // Sẽ không tô đậm gì
+        updateMiniCalendarSelection();
     });
 
-    // Next week - Nút mũi tên phải (dùng class cụ thể)
     $('.btn-next-week').click(function () {
         const newDate = new Date(viewDate);
         newDate.setDate(newDate.getDate() + 7);
@@ -840,24 +817,22 @@ function setupNavigationButtons() {
         renderMiniCalendar(currentMonth, currentYear);
         renderWeekCalendar(viewDate);
 
-        // XÓA selection vì user KHÔNG chọn ngày, chỉ đổi tuần
         selectedDate = null;
-        updateMiniCalendarSelection(); // Sẽ không tô đậm gì
+        updateMiniCalendarSelection();
     });
 }
 
 function setupTodayButton() {
-    // Nút "Hôm nay" - Quay về tuần hiện tại và CHỌN ngày hôm nay
     $('.navbar-brand').click(function () {
-        selectedDate = new Date(TODAY); // CHỌN ngày hôm nay
-        viewDate = new Date(TODAY); // Xem tuần hiện tại
+        selectedDate = new Date(TODAY);
+        viewDate = new Date(TODAY);
 
         currentMonth = TODAY.getMonth();
         currentYear = TODAY.getFullYear();
 
         renderMiniCalendar(currentMonth, currentYear);
         renderWeekCalendar(viewDate);
-        updateMiniCalendarSelection(); // Sẽ tô đậm ngày hôm nay
+        updateMiniCalendarSelection();
     });
 }
 
@@ -889,9 +864,6 @@ function setupPrintButton() {
     });
 }
 
-// ==============================================
-// RENDER MINI CALENDAR
-// ==============================================
 function renderMiniCalendar(month, year) {
     $('.month-text').text(`${MONTH_NAMES[month]}, ${year}`);
 
@@ -903,23 +875,18 @@ function renderMiniCalendar(month, year) {
     let dayCount = 1;
     let nextMonthDay = 1;
 
-    // Generate calendar grid
     for (let i = 0; i < 6; i++) {
         html += '<tr>';
         for (let j = 0; j < 7; j++) {
             if (i === 0 && j < firstDay) {
-                // Previous month days
                 const prevDay = daysInPrevMonth - firstDay + j + 1;
                 html += `<td class="other-month" data-date="${year}-${month}-${prevDay}">${prevDay}</td>`;
             } else if (dayCount > daysInMonth) {
-                // Next month days
                 html += `<td class="other-month" data-date="${year}-${month + 2}-${nextMonthDay}">${nextMonthDay}</td>`;
                 nextMonthDay++;
             } else {
-                // Current month days
                 const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(dayCount).padStart(2, '0')}`;
 
-                // Kiểm tra xem có phải ngày hôm nay không (dùng TODAY thay vì currentDate)
                 const isToday =
                     dayCount === TODAY.getDate() &&
                     month === TODAY.getMonth() &&
@@ -936,18 +903,13 @@ function renderMiniCalendar(month, year) {
     $('.mini-calendar tbody').html(html);
 }
 
-// ==============================================
-// MINI CALENDAR CLICK HANDLER
-// ==============================================
 function setupMiniCalendarClick() {
-    // Sử dụng event delegation để tránh bind nhiều lần
     $('.mini-calendar tbody')
         .off('click', 'td:not(.other-month)')
         .on('click', 'td:not(.other-month)', function () {
             const dateStr = $(this).data('date');
             const dateParts = dateStr.split('-');
 
-            // User CHỌN ngày → set cả 2 biến
             selectedDate = new Date(
                 dateParts[0],
                 dateParts[1] - 1,
@@ -955,32 +917,23 @@ function setupMiniCalendarClick() {
             );
             viewDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
 
-            // Tô đậm ngày được chọn
             $('.mini-calendar td').removeClass('selected');
             $(this).addClass('selected');
 
-            // Render tuần chứa ngày được chọn
             renderWeekCalendar(viewDate);
         });
 }
 
-// ==============================================
-// UTILITY FUNCTIONS
-// ==============================================
 function updateMiniCalendarSelection() {
-    // Xóa tất cả selection trước
     $('.mini-calendar td').removeClass('selected');
 
-    // Nếu KHÔNG có ngày được chọn → không tô đậm gì
     if (!selectedDate) return;
 
-    // Có ngày được chọn → tô đậm ngày đó
     const dateStr = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
     $(`.mini-calendar td[data-date="${dateStr}"]`).addClass('selected');
 }
 
 function getMonday(date) {
-    // Tạo bản sao hoàn toàn mới để không mutate date gốc
     const d = new Date(date.getTime());
     const day = d.getDay();
     const diff = d.getDate() - day + (day === 0 ? -6 : 1);
@@ -992,9 +945,6 @@ function formatDate(date) {
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
 
-// ==============================================
-// RENDER WEEK CALENDAR
-// ==============================================
 function renderWeekCalendar(date) {
     const monday = getMonday(date);
 
@@ -1012,7 +962,6 @@ function renderWeekHeader(monday) {
         currentDay.setDate(monday.getDate() + i);
         const dayNum = currentDay.getDate();
 
-        // So sánh với TODAY (ngày hôm nay) chứ không phải currentDate
         const isToday = currentDay.toDateString() === TODAY.toDateString();
         const todayClass = isToday ? ' today-column' : '';
 
@@ -1030,30 +979,23 @@ function renderWeekHeader(monday) {
 function renderWeekBody(monday) {
     let bodyHtml = '';
 
-    // Duyệt qua 3 ca: Sáng, Trưa, Chiều
     for (let t = 0; t < TIME_PERIODS.length; t++) {
         bodyHtml += '<div class="time-row">';
         bodyHtml += `<div class="time-slot">${TIME_PERIODS[t]}</div>`;
 
-        // Duyệt qua 7 ngày trong tuần (Thứ 2 -> Chủ nhật)
         for (let i = 0; i < 7; i++) {
             const currentDay = new Date(monday);
             currentDay.setDate(monday.getDate() + i);
             const dateStr = formatDate(currentDay);
 
-            // So sánh với TODAY (ngày hôm nay) chứ không phải currentDate
             const isToday = currentDay.toDateString() === TODAY.toDateString();
             const todayClass = isToday ? ' today-column' : '';
 
-            // Lấy tất cả lịch của ngày này
             const daySchedule = scheduleData[dateStr] || [];
 
-            // Lọc theo ca và theo filter (Tất cả/Lịch học/Lịch thi)
             const timeEvents = daySchedule.filter((e) => {
-                // Chỉ lấy events của ca hiện tại (morning/noon/afternoon)
                 if (e.time !== TIME_KEYS[t]) return false;
 
-                // Áp dụng filter: 'all' = tất cả, 'study' = lịch học, 'exam' = lịch thi
                 if (activeFilter === 'all') return true;
                 return e.category === activeFilter;
             });
@@ -1075,9 +1017,6 @@ function attachEventHandlers() {
     });
 }
 
-// ==============================================
-// RENDER EVENTS
-// ==============================================
 function renderEvents(events) {
     if (events.length === 0) return '';
 
