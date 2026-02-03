@@ -1,6 +1,3 @@
-/* Đăng ký mượn phòng JavaScript */
-
-// Data for dropdowns
 const dropdownData = {
     semesters: [
         'HK2 (2025-2026)',
@@ -50,7 +47,6 @@ const dropdownData = {
     ],
 };
 
-// Sample data for demonstration
 const reservationData = [
     {
         id: 1,
@@ -194,7 +190,6 @@ const reservationData = [
     },
 ];
 
-// Initialize table with data
 function initializeTable() {
     const tbody = document.getElementById('reservationBody');
     tbody.innerHTML = '';
@@ -227,7 +222,6 @@ function initializeTable() {
         };
         tbody.appendChild(dataRow);
 
-        // Detail row
         const detailRow = document.createElement('tr');
         detailRow.className = 'detail-row';
         detailRow.innerHTML = `
@@ -291,7 +285,6 @@ function initializeTable() {
         tbody.appendChild(detailRow);
     });
 
-    // Update button state and select all checkbox after table refresh
     if (typeof updateDeleteButtonState === 'function') {
         updateDeleteButtonState();
     }
@@ -300,7 +293,6 @@ function initializeTable() {
     }
 }
 
-// Toggle detail row visibility
 function toggleDetail(row) {
     const nextRow = row.nextElementSibling;
     if (nextRow && nextRow.classList.contains('detail-row')) {
@@ -308,16 +300,13 @@ function toggleDetail(row) {
     }
 }
 
-// Edit record from table
 function editRecord(element) {
     const row = element.closest('tr');
     const stt = row.querySelector('td:nth-child(2)').textContent;
     console.log('Edit record clicked for STT:', stt);
 
-    // Get data from row
     const data = reservationData.find((item) => item.stt == stt);
     if (data) {
-        // Fill modal with data
         document.getElementById('modalDot').value = 'HK2 (2025-2026)';
         document.getElementById('modalTuTiet').value =
             data.tiet.split(' - ')[0];
@@ -334,10 +323,8 @@ function editRecord(element) {
         document.getElementById('modalThuocDonVi').value = data.donVi;
         document.getElementById('modalLyDoMuonPhong').value = data.lyDo;
 
-        // Store editing ID
         document.getElementById('btnSaveReservation').dataset.editId = stt;
 
-        // Open modal
         const modal = new bootstrap.Modal(
             document.getElementById('addReservationModal'),
         );
@@ -345,7 +332,6 @@ function editRecord(element) {
     }
 }
 
-// Delete record from table
 function deleteRecord(element) {
     const row = element.closest('tr');
     const stt = row.querySelector('td:nth-child(2)').textContent;
@@ -356,7 +342,6 @@ function deleteRecord(element) {
             detailRow.remove();
         }
 
-        // Remove from data array
         const index = reservationData.findIndex((item) => item.stt == stt);
         if (index > -1) {
             reservationData.splice(index, 1);
@@ -364,7 +349,6 @@ function deleteRecord(element) {
 
         console.log('Phiếu số ' + stt + ' đã được xóa!');
 
-        // Update button state and select all checkbox after row deletion
         if (typeof updateDeleteButtonState === 'function') {
             updateDeleteButtonState();
         }
@@ -374,16 +358,14 @@ function deleteRecord(element) {
     }
 }
 
-// Edit from detail section
 function editDetailRecord(element) {
     const detailRow = element.closest('.detail-row');
     const dataRow = detailRow.previousElementSibling;
     const stt = dataRow.querySelector('td:nth-child(2)').textContent;
-    console.log('Edit detail record clicked for STT:', stt);
+
     editRecord(dataRow.querySelector('.action-text'));
 }
 
-// Delete from detail section
 function deleteDetailRecord(element) {
     const detailRow = element.closest('.detail-row');
     const dataRow = detailRow.previousElementSibling;
@@ -392,19 +374,14 @@ function deleteDetailRecord(element) {
         dataRow.remove();
         detailRow.remove();
 
-        // Remove from data array
         const index = reservationData.findIndex((item) => item.stt == stt);
         if (index > -1) {
             reservationData.splice(index, 1);
         }
-
-        console.log('Phiếu số ' + stt + ' đã được xóa!');
     }
 }
 
-// Function to populate dropdowns with dynamic data
 function populateDropdowns() {
-    // Populate search form dropdowns
     populateSelect('semester', dropdownData.semesters, '-- Chọn đợt --');
     populateSelect(
         'fromPeriod',
@@ -421,7 +398,6 @@ function populateDropdowns() {
     populateSelect('room', dropdownData.rooms, '-- Chọn phòng --');
     populateSelect('status', dropdownData.statuses, '-- Chọn trạng thái --');
 
-    // Populate modal dropdowns
     populateSelect('modalDot', dropdownData.semesters, '-- Chọn đợt --');
     populateSelect(
         'modalTuTiet',
@@ -443,15 +419,12 @@ function populateDropdowns() {
     );
 }
 
-// Helper function to populate a select element
 function populateSelect(elementId, dataArray, defaultOption = null) {
     const selectElement = document.getElementById(elementId);
     if (!selectElement) return;
 
-    // Clear existing options except the first one (if it's a placeholder)
     selectElement.innerHTML = '';
 
-    // Add default option
     if (defaultOption) {
         const option = document.createElement('option');
         option.value = '';
@@ -459,7 +432,6 @@ function populateSelect(elementId, dataArray, defaultOption = null) {
         selectElement.appendChild(option);
     }
 
-    // Add data options
     dataArray.forEach((item) => {
         const option = document.createElement('option');
         option.value = item;
@@ -468,9 +440,7 @@ function populateSelect(elementId, dataArray, defaultOption = null) {
     });
 }
 
-// Function to filter reservations based on search criteria
 function filterReservations() {
-    // Get filter values
     const filters = {
         semester: document.getElementById('semester').value,
         fromPeriod: document.getElementById('fromPeriod').value,
@@ -483,11 +453,7 @@ function filterReservations() {
         status: document.getElementById('status').value,
     };
 
-    console.log('Filters:', filters);
-
-    // Filter data
     const filteredData = reservationData.filter((item) => {
-        // Filter by period range
         if (filters.fromPeriod && filters.toPeriod) {
             const itemPeriods = item.tiet
                 .split(' - ')
@@ -495,13 +461,11 @@ function filterReservations() {
             const filterFrom = parseInt(filters.fromPeriod);
             const filterTo = parseInt(filters.toPeriod);
 
-            // Check if item's period range overlaps with filter range
             if (itemPeriods[1] < filterFrom || itemPeriods[0] > filterTo) {
                 return false;
             }
         }
 
-        // Filter by start date
         if (filters.startDate) {
             const filterDate = new Date(filters.startDate);
             const itemDate = parseVietnameseDate(item.ngayBatDau);
@@ -510,7 +474,6 @@ function filterReservations() {
             }
         }
 
-        // Filter by end date
         if (filters.endDate) {
             const filterDate = new Date(filters.endDate);
             const itemDate = parseVietnameseDate(item.ngayKetThuc);
@@ -519,17 +482,14 @@ function filterReservations() {
             }
         }
 
-        // Filter by department (faculty) - EXACT MATCH
         if (filters.faculty && item.donVi !== filters.faculty) {
             return false;
         }
 
-        // Filter by room - EXACT MATCH
         if (filters.room && item.phongNhan !== filters.room) {
             return false;
         }
 
-        // Filter by status - EXACT MATCH
         if (filters.status && item.trangThai !== filters.status) {
             return false;
         }
@@ -537,19 +497,14 @@ function filterReservations() {
         return true;
     });
 
-    console.log('Filtered results:', filteredData.length, 'items');
-
-    // Update table with filtered data
     displayFilteredData(filteredData);
 }
 
-// Helper function to parse Vietnamese date format (dd/mm/yyyy)
 function parseVietnameseDate(dateStr) {
     const parts = dateStr.split('/');
     return new Date(parts[2], parts[1] - 1, parts[0]);
 }
 
-// Function to display filtered data
 function displayFilteredData(data) {
     const tbody = document.getElementById('reservationBody');
     tbody.innerHTML = '';
@@ -563,7 +518,6 @@ function displayFilteredData(data) {
     }
 
     data.forEach((item) => {
-        // Data row
         const dataRow = document.createElement('tr');
         dataRow.className = 'data-row';
         dataRow.innerHTML = `
@@ -590,7 +544,6 @@ function displayFilteredData(data) {
         };
         tbody.appendChild(dataRow);
 
-        // Detail row
         const detailRow = document.createElement('tr');
         detailRow.className = 'detail-row';
         detailRow.innerHTML = `
@@ -653,7 +606,6 @@ function displayFilteredData(data) {
         tbody.appendChild(detailRow);
     });
 
-    // Update button state and select all checkbox after table refresh
     if (typeof updateDeleteButtonState === 'function') {
         updateDeleteButtonState();
     }
@@ -663,19 +615,15 @@ function displayFilteredData(data) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Populate dropdowns with dynamic data
     populateDropdowns();
 
-    // Initialize table
     initializeTable();
 
-    // Handle save button in modal
     const btnSaveReservation = document.getElementById('btnSaveReservation');
     if (btnSaveReservation) {
         btnSaveReservation.addEventListener('click', function () {
             const editId = this.dataset.editId;
 
-            // Collect form data
             const newReservation = {
                 dot: document.getElementById('modalDot').value,
                 tuTiet: document.getElementById('modalTuTiet').value,
@@ -693,10 +641,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('modalLyDoMuonPhong').value,
             };
 
-            console.log('Form data:', newReservation);
-
             if (editId) {
-                // Update existing record
                 const item = reservationData.find((item) => item.stt == editId);
                 if (item) {
                     item.thu = 6; // Example
@@ -717,7 +662,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 delete this.dataset.editId;
             } else {
-                // Add new record
                 const newItem = {
                     id: reservationData.length + 1,
                     stt: reservationData.length + 1,
@@ -754,19 +698,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
 
                 reservationData.push(newItem);
-                console.log('Thêm phiếu mới thành công!');
             }
 
-            // Refresh table
             initializeTable();
 
-            // Close modal
             const modal = bootstrap.Modal.getInstance(
                 document.getElementById('addReservationModal'),
             );
             modal.hide();
 
-            // Reset form
             resetModalForm();
         });
     }
@@ -786,7 +726,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('modalLyDoMuonPhong').value = '';
     }
 
-    // Reset form when modal is closed
     document
         .getElementById('addReservationModal')
         .addEventListener('hidden.bs.modal', function () {
@@ -798,7 +737,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-    // Handle search button
     document
         .querySelector('.btn-search')
         .addEventListener('click', function () {
@@ -806,7 +744,6 @@ document.addEventListener('DOMContentLoaded', function () {
             filterReservations();
         });
 
-    // Auto-search when any filter input changes - Tự động tìm kiếm khi thay đổi bất kỳ bộ lọc nào
     const searchFilters = [
         'semester',
         'fromPeriod',
@@ -869,7 +806,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Handle individual checkbox change
     document.addEventListener('change', function (e) {
         if (
             e.target.classList.contains('checkbox-custom') &&
@@ -880,10 +816,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Handle delete selected button
     const btnDeleteSelected = document.querySelector('.btn-delete-selected');
     if (btnDeleteSelected) {
-        // Initial state
         updateDeleteButtonState();
 
         btnDeleteSelected.addEventListener('click', function () {
@@ -892,7 +826,6 @@ document.addEventListener('DOMContentLoaded', function () {
             );
 
             if (selectedCheckboxes.length === 0) {
-                console.log('Không có dòng nào được chọn');
                 return;
             }
 
@@ -910,7 +843,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     sttToDelete.push(parseInt(stt));
                 });
 
-                // Remove from data array
                 sttToDelete.forEach((stt) => {
                     const index = reservationData.findIndex(
                         (item) => item.stt == stt,
@@ -920,12 +852,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
 
-                console.log(`Đã xóa ${sttToDelete.length} phiếu:`, sttToDelete);
-
-                // Refresh table
                 initializeTable();
 
-                // Uncheck select all
                 if (selectAllCheckbox) {
                     selectAllCheckbox.checked = false;
                 }
@@ -936,7 +864,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Function to update select all checkbox state
 function updateSelectAllCheckbox() {
     const selectAllCheckbox = document.getElementById('selectAllCheckbox');
     if (!selectAllCheckbox) return;
@@ -963,7 +890,6 @@ function updateSelectAllCheckbox() {
     }
 }
 
-// Function to update delete button state
 function updateDeleteButtonState() {
     const btnDeleteSelected = document.querySelector('.btn-delete-selected');
     if (!btnDeleteSelected) return;

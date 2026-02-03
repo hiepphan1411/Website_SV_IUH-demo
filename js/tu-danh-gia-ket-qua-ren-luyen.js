@@ -3,8 +3,6 @@ const $ = window.jQuery;
 let currentSemester = 'HK1 (2025-2026)';
 
 $(document).ready(function () {
-    console.log('[v0] Self-assessment training page initialized');
-
     renderTrainingDetailTable();
     updateTotalScore();
     loadSavedAssessment();
@@ -14,7 +12,6 @@ $(document).ready(function () {
         renderTrainingDetailTable();
         updateTotalScore();
         loadSavedAssessment();
-        console.log('[v0] Switched to semester:', currentSemester);
     });
 
     $('.btn-print').on('click', function () {
@@ -30,8 +27,6 @@ $(document).ready(function () {
     });
 
     initializeTableInteractions();
-
-    console.log('[v0] All components initialized');
 });
 
 function loadSemesterData() {
@@ -39,7 +34,6 @@ function loadSemesterData() {
 
     if (semesterData) {
         const data = JSON.parse(semesterData);
-        console.log('[v0] Loaded semester data:', data);
 
         $('#semesterTitle').text(
             `Chi tiết đánh giá rèn luyện ${data.semester}`,
@@ -95,8 +89,6 @@ function initializeTableInteractions() {
 }
 
 function printAssessment() {
-    console.log('[v0] Printing assessment for semester:', currentSemester);
-
     const elementsToHide = document.querySelectorAll(
         '.btn-print, .btn-confirm, .semesterSelect',
     );
@@ -110,8 +102,6 @@ function printAssessment() {
 }
 
 function printDetailPage() {
-    console.log('[v0] Printing page');
-
     window.print();
 }
 
@@ -119,7 +109,6 @@ function editTrainingRecord() {
     const semesterData = sessionStorage.getItem('selectedSemester');
     if (semesterData) {
         const data = JSON.parse(semesterData);
-        console.log('[v0] Edit training record for:', data.semester);
 
         alert(
             `Chỉnh sửa đánh giá rèn luyện ${data.semester}\n\nForm chỉnh sửa sẽ được mở trong trang tiếp theo.`,
@@ -144,12 +133,6 @@ function generateSummaryStats() {
     });
 
     const averageScore = rowCount > 0 ? (totalScore / rowCount).toFixed(2) : 0;
-    console.log(
-        '[v0] Summary stats - Total:',
-        totalScore,
-        'Average:',
-        averageScore,
-    );
 
     return {
         total: totalScore,
@@ -165,19 +148,15 @@ function highlightRows(criteria) {
             $(this).css('background-color', '#fffacd');
         }
     });
-
-    console.log('[v0] Highlighted rows matching:', criteria);
 }
 
 function expandAllRows() {
     $('.detail-table tbody tr').show();
-    console.log('[v0] All rows expanded');
 }
 
 function collapseAllRows() {
     $('.detail-table tbody tr').hide();
     $('.detail-table tbody tr:first-child').show();
-    console.log('[v0] Rows collapsed');
 }
 
 function toggleCategory(element) {
@@ -634,8 +613,6 @@ function fileUploads() {
             }
         }
     });
-
-    console.log('[v0] File upload handlers initialized');
 }
 
 function initializeCategoryToggle() {
@@ -664,7 +641,6 @@ function initializeCategoryToggle() {
     });
 }
 
-// Update total score based on student self-assessment
 function updateTotalScore() {
     let totalSelfScore = 0;
 
@@ -680,14 +656,9 @@ function updateTotalScore() {
             scoreCells[5].textContent = totalSelfScore.toFixed(2);
         }
     }
-
-    console.log('[v0] Total self-assessment score:', totalSelfScore);
 }
 
 function printAssessment() {
-    console.log('[v0] Printing assessment for semester:', currentSemester);
-
-    // Hide buttons before printing
     const buttons = document.querySelectorAll('.btn-print, .btn-confirm');
     buttons.forEach((btn) => (btn.style.display = 'none'));
 
@@ -700,8 +671,6 @@ function printAssessment() {
 }
 
 function confirmAndSave() {
-    console.log('[v0] Confirming assessment for semester:', currentSemester);
-
     const allInputs = document.querySelectorAll('.self-score-input');
     let isValid = true;
     let emptyCount = 0;
@@ -756,12 +725,6 @@ function confirmAndSave() {
     savedAssessments[currentSemester] = assessmentData;
     localStorage.setItem('selfAssessments', JSON.stringify(savedAssessments));
 
-    console.log('[v0] Assessment saved:', assessmentData);
-
-    alert(
-        `✅ Đã lưu đánh giá rèn luyện cho ${currentSemester}\n\nTổng điểm tự đánh giá: ${assessmentData.totalScore.toFixed(2)}\nThời gian lưu: ${new Date().toLocaleString('vi-VN')}`,
-    );
-
     allInputs.forEach((input) => {
         input.setAttribute('readonly', 'true');
         input.style.backgroundColor = '#f8f9fa';
@@ -777,8 +740,6 @@ function loadSavedAssessment() {
     const savedData = savedAssessments[currentSemester];
 
     if (savedData) {
-        console.log('[v0] Loading saved assessment:', savedData);
-
         const rows = document.querySelectorAll('.child-row[data-level="3"]');
         savedData.categories.forEach((cat, index) => {
             if (rows[index]) {

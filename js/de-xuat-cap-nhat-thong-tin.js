@@ -1,4 +1,3 @@
-// Import jQuery and Bootstrap
 const $ = window.jQuery;
 const bootstrap = window.bootstrap;
 
@@ -17,9 +16,6 @@ let clearCertificateForm = function () {
     $('#certProvince').val('Chọn nơi sinh');
 };
 
-// ========== GLOBAL FUNCTIONS (Accessible from HTML onclick) ==========
-
-// Remove Certificate
 function removeCertificate(button) {
     if (confirm('Bạn có chắc chắn muốn xóa bằng cấp này không?')) {
         $(button)
@@ -31,7 +27,6 @@ function removeCertificate(button) {
     }
 }
 
-// Add Certificate Item
 function addCertificateItem() {
     const certificateHTML = `
         <div class="col-md-6 mb-3" style="display: none;">
@@ -77,7 +72,6 @@ function addCertificateItem() {
     showNotification('Đã thêm bằng cấp mới', 'success');
 }
 
-// Remove Family Member
 function removeFamily(button) {
     if (confirm('Bạn có chắc chắn muốn xóa thông tin gia đình này không?')) {
         $(button)
@@ -89,7 +83,6 @@ function removeFamily(button) {
     }
 }
 
-// Add Family Item
 function addFamilyItem() {
     const familyHTML = `
         <div class="col-md-6 mb-3" style="display: none;">
@@ -155,7 +148,6 @@ function addFamilyItem() {
     showNotification('Đã thêm quan hệ gia đình mới', 'success');
 }
 
-// Show Notification
 function showNotification(message, type = 'info') {
     const alertClass =
         type === 'success'
@@ -173,7 +165,6 @@ function showNotification(message, type = 'info') {
 
     $('body').append(alertHTML);
 
-    // Auto dismiss after 4 seconds
     setTimeout(() => {
         $('.alert:last').fadeOut(300, function () {
             $(this).remove();
@@ -181,7 +172,6 @@ function showNotification(message, type = 'info') {
     }, 4000);
 }
 
-// Escape HTML to prevent XSS
 function escapeHtml(text) {
     const map = {
         '&': '&amp;',
@@ -193,9 +183,6 @@ function escapeHtml(text) {
     return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
-// ========== END GLOBAL FUNCTIONS ==========
-
-// Initialize all components on document ready
 $(function () {
     initializeDatepickers();
 
@@ -478,7 +465,6 @@ function showNotification(message, type = 'info') {
 
     $('body').append(alertHTML);
 
-    // Auto dismiss after 4 seconds
     setTimeout(() => {
         $('.alert:last').fadeOut(300, function () {
             $(this).remove();
