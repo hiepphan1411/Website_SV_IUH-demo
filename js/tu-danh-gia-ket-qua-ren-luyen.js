@@ -1,15 +1,32 @@
 const $ = window.jQuery;
 
+let currentSemester = 'HK1 (2025-2026)';
+
 $(document).ready(function () {
-    console.log('[v0] Detail training page initialized');
+    renderTrainingDetailTable();
+    updateTotalScore();
+    loadSavedAssessment();
 
-    loadSemesterData();
+    $('#semesterSelect').on('change', function () {
+        currentSemester = $(this).val();
+        renderTrainingDetailTable();
+        updateTotalScore();
+        loadSavedAssessment();
+    });
 
-    animateStatCards();
+    $('.btn-print').on('click', function () {
+        printAssessment();
+    });
+
+    $('.btn-confirm').on('click', function () {
+        confirmAndSave();
+    });
+
+    $(document).on('input', '.self-score-input', function () {
+        updateTotalScore();
+    });
 
     initializeTableInteractions();
-
-    console.log('[v0] All components initialized');
 });
 
 function loadSemesterData() {
@@ -17,7 +34,6 @@ function loadSemesterData() {
 
     if (semesterData) {
         const data = JSON.parse(semesterData);
-        console.log('[v0] Loaded semester data:', data);
 
         $('#semesterTitle').text(
             `Chi tiết đánh giá rèn luyện ${data.semester}`,
@@ -67,63 +83,25 @@ function animateStatCards() {
 }
 
 function initializeTableInteractions() {
-    $('.detail-table tbody tr').on('click', function () {
-        $(this).toggleClass('active');
-        console.log('[v0] Row clicked:', $(this).find('td').first().text());
-    });
-
-    $('.detail-table tbody tr').on('mouseenter', function () {
+    $('.detail-table tbody').on('mouseenter', 'tr', function () {
         $(this).css('cursor', 'pointer');
     });
 }
 
-function exportTableToCSV(filename = 'chi-tiet-ren-luyen.csv') {
-    console.log('[v0] Exporting table to CSV');
+function printAssessment() {
+    const elementsToHide = document.querySelectorAll(
+        '.btn-print, .btn-confirm, .semesterSelect',
+    );
+    elementsToHide.forEach((elem) => (elem.style.display = 'none'));
 
-    const csv = [];
-    const rows = document.querySelectorAll('.detail-table tr');
+    window.print();
 
-    const semesterData = sessionStorage.getItem('selectedSemester');
-    if (semesterData) {
-        const data = JSON.parse(semesterData);
-        csv.push(`Chi tiết đánh giá rèn luyện ${data.semester}`);
-        csv.push(`Điểm: ${data.score}, Xếp loại: ${data.status}`);
-        csv.push('');
-    }
-
-    for (let i = 0; i < rows.length; i++) {
-        const row = [];
-        const cols = rows[i].querySelectorAll('td, th');
-
-        for (let j = 0; j < cols.length; j++) {
-            row.push('"' + cols[j].innerText.replace(/"/g, '""') + '"');
-        }
-
-        csv.push(row.join(','));
-    }
-
-    downloadCSV(csv.join('\n'), filename);
-}
-
-function downloadCSV(csv, filename) {
-    const csvFile = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(csvFile);
-
-    link.setAttribute('href', url);
-    link.setAttribute('download', filename);
-    link.style.visibility = 'hidden';
-
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    console.log('[v0] CSV file downloaded:', filename);
+    setTimeout(() => {
+        elementsToHide.forEach((elem) => (elem.style.display = ''));
+    }, 100);
 }
 
 function printDetailPage() {
-    console.log('[v0] Printing page');
-
     window.print();
 }
 
@@ -131,22 +109,11 @@ function editTrainingRecord() {
     const semesterData = sessionStorage.getItem('selectedSemester');
     if (semesterData) {
         const data = JSON.parse(semesterData);
-        console.log('[v0] Edit training record for:', data.semester);
 
         alert(
             `Chỉnh sửa đánh giá rèn luyện ${data.semester}\n\nForm chỉnh sửa sẽ được mở trong trang tiếp theo.`,
         );
     }
-}
-
-function formatNumber(num, type = 'decimal') {
-    if (type === 'currency') {
-        return num.toLocaleString('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-        });
-    }
-    return num.toLocaleString('vi-VN');
 }
 
 function generateSummaryStats() {
@@ -166,12 +133,6 @@ function generateSummaryStats() {
     });
 
     const averageScore = rowCount > 0 ? (totalScore / rowCount).toFixed(2) : 0;
-    console.log(
-        '[v0] Summary stats - Total:',
-        totalScore,
-        'Average:',
-        averageScore,
-    );
 
     return {
         total: totalScore,
@@ -187,29 +148,16 @@ function highlightRows(criteria) {
             $(this).css('background-color', '#fffacd');
         }
     });
-
-    console.log('[v0] Highlighted rows matching:', criteria);
 }
 
 function expandAllRows() {
     $('.detail-table tbody tr').show();
-    console.log('[v0] All rows expanded');
 }
 
 function collapseAllRows() {
     $('.detail-table tbody tr').hide();
     $('.detail-table tbody tr:first-child').show();
-    console.log('[v0] Rows collapsed');
 }
-
-$(function () {
-    $(document).tooltip({
-        position: { my: 'center bottom', at: 'center top-10' },
-        effect: 'fade',
-        effectLength: 200,
-        hide: { effect: 'fade', duration: 200 },
-    });
-});
 
 function toggleCategory(element) {
     const category = element.getAttribute('data-category');
@@ -243,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const category = row.getAttribute('data-category');
         if (index === 0) {
             row.classList.add('expanded');
-            // Show child rows for first category
+
             const childRows = document.querySelectorAll(
                 `tr[data-parent="${category}"]`,
             );
@@ -262,8 +210,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-console.log('[v0] Chi tiết rèn luyện script loaded successfully');
 
 const trainingDetailData = {
     categories: [
@@ -536,8 +482,6 @@ function renderTrainingDetailTable() {
             });
         }
     });
-
-    console.log('[v0] Training detail table rendered');
 }
 
 function createCategoryRow(category, isExpanded) {
@@ -547,16 +491,16 @@ function createCategoryRow(category, isExpanded) {
     tr.setAttribute('onclick', 'toggleCategory(this)');
 
     tr.innerHTML = `
-        <td>${category.id}</td>
+        <td><strong>${category.id}</strong></td>
         <td class="text-start"><strong>${category.title}</strong></td>
-        <td>${category.minScore}</td>
-        <td>${category.maxScore}</td>
-        <td>-</td>
-        <td>${formatScore(category.selfScore)}</td>
-        <td>-</td>
-        <td>${formatScore(category.cvhtScore)}</td>
-        <td>${formatScore(category.khoaScore)}</td>
-        <td>${formatScore(category.pctsScore)}</td>
+        <td><strong>${category.minScore}</strong></td>
+        <td><strong>${category.maxScore}</strong></td>
+        <td><strong>-</strong></td>
+        <td><strong>${formatScore(category.selfScore)}</strong></td>
+        <td><strong>-</strong></td>
+        <td><strong>${formatScore(category.cvhtScore)}</strong></td>
+        <td><strong>${formatScore(category.khoaScore)}</strong></td>
+        <td><strong>${formatScore(category.pctsScore)}</strong></td>
     `;
 
     return tr;
@@ -584,9 +528,18 @@ function renderChildRow(tbody, item, parentId, isVisible) {
             <td class="text-start">${item.title}</td>
             <td>${item.minScore}</td>
             <td>${item.maxScore}</td>
-            <td>-</td>
-            <td>${formatScore(item.selfScore)}</td>
-            <td>-</td>
+            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control" /></td>
+            <td>
+                <div class="custom-file-upload">
+                    <input type="file" id="file-${parentId}-${item.id}" class="file-input" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+                    <label for="file-${parentId}-${item.id}" class="file-upload-btn">
+                        <i class="fas fa-upload"></i>
+                       
+                    </label>
+                    <span class="file-name"></span>
+                </div>
+            </td>
             <td>
                 <div class="note-item">
                     <div>${item.cvhtNote}</div>
@@ -639,7 +592,28 @@ document.addEventListener('DOMContentLoaded', function () {
     renderTrainingDetailTable();
 
     initializeCategoryToggle();
+
+    fileUploads();
 });
+
+function fileUploads() {
+    document.addEventListener('change', function (e) {
+        if (e.target.classList.contains('file-input')) {
+            const fileInput = e.target;
+            const fileNameDisplay = fileInput
+                .closest('.custom-file-upload')
+                .querySelector('.file-name');
+
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                fileNameDisplay.textContent = fileName;
+                fileNameDisplay.style.color = '#56a2e8';
+            } else {
+                fileNameDisplay.textContent = '';
+            }
+        }
+    });
+}
 
 function initializeCategoryToggle() {
     const categoryRows = document.querySelectorAll('.category-row');
@@ -665,4 +639,132 @@ function initializeCategoryToggle() {
             });
         }
     });
+}
+
+function updateTotalScore() {
+    let totalSelfScore = 0;
+
+    document.querySelectorAll('.self-score-input').forEach((input) => {
+        const value = parseFloat(input.value) || 0;
+        totalSelfScore += value;
+    });
+
+    const totalRow = document.querySelector('.total-row');
+    if (totalRow) {
+        const scoreCells = totalRow.querySelectorAll('td');
+        if (scoreCells[5]) {
+            scoreCells[5].textContent = totalSelfScore.toFixed(2);
+        }
+    }
+}
+
+function printAssessment() {
+    const buttons = document.querySelectorAll('.btn-print, .btn-confirm');
+    buttons.forEach((btn) => (btn.style.display = 'none'));
+
+    // Print
+    window.print();
+
+    setTimeout(() => {
+        buttons.forEach((btn) => (btn.style.display = ''));
+    }, 100);
+}
+
+function confirmAndSave() {
+    const allInputs = document.querySelectorAll('.self-score-input');
+    let isValid = true;
+    let emptyCount = 0;
+
+    allInputs.forEach((input) => {
+        if (!input.value || input.value.trim() === '') {
+            isValid = false;
+            emptyCount++;
+            input.classList.add('is-invalid');
+        } else {
+            input.classList.remove('is-invalid');
+        }
+    });
+
+    if (!isValid) {
+        alert(
+            `Vui lòng điền đầy đủ điểm tự đánh giá cho tất cả các tiêu chí!\nCòn ${emptyCount} tiêu chí chưa điền.`,
+        );
+        return;
+    }
+    const assessmentData = {
+        semester: currentSemester,
+        timestamp: new Date().toISOString(),
+        categories: [],
+    };
+
+    document.querySelectorAll('.child-row[data-level="3"]').forEach((row) => {
+        const cells = row.querySelectorAll('td');
+        const commentInput = cells[4]?.querySelector('input[type="text"]');
+        const scoreInput = cells[5]?.querySelector('.self-score-input');
+        const fileInput = cells[6]?.querySelector('.file-input');
+
+        if (scoreInput) {
+            assessmentData.categories.push({
+                id: cells[0]?.textContent,
+                title: cells[1]?.textContent,
+                comment: commentInput?.value || '',
+                selfScore: parseFloat(scoreInput.value) || 0,
+                fileName: fileInput?.files[0]?.name || '',
+            });
+        }
+    });
+
+    assessmentData.totalScore = assessmentData.categories.reduce(
+        (sum, cat) => sum + cat.selfScore,
+        0,
+    );
+
+    const savedAssessments = JSON.parse(
+        localStorage.getItem('selfAssessments') || '{}',
+    );
+    savedAssessments[currentSemester] = assessmentData;
+    localStorage.setItem('selfAssessments', JSON.stringify(savedAssessments));
+
+    allInputs.forEach((input) => {
+        input.setAttribute('readonly', 'true');
+        input.style.backgroundColor = '#f8f9fa';
+    });
+
+    $('.btn-confirm').text('Đã lưu').prop('disabled', true);
+}
+
+function loadSavedAssessment() {
+    const savedAssessments = JSON.parse(
+        localStorage.getItem('selfAssessments') || '{}',
+    );
+    const savedData = savedAssessments[currentSemester];
+
+    if (savedData) {
+        const rows = document.querySelectorAll('.child-row[data-level="3"]');
+        savedData.categories.forEach((cat, index) => {
+            if (rows[index]) {
+                const cells = rows[index].querySelectorAll('td');
+                const commentInput =
+                    cells[4]?.querySelector('input[type="text"]');
+                const scoreInput = cells[5]?.querySelector('.self-score-input');
+
+                if (commentInput) commentInput.value = cat.comment;
+                if (scoreInput) {
+                    scoreInput.value = cat.selfScore;
+                    scoreInput.setAttribute('readonly', 'true');
+                    scoreInput.style.backgroundColor = '#f8f9fa';
+                }
+            }
+        });
+
+        updateTotalScore();
+
+        $('.btn-confirm').text('Đã lưu ✓').prop('disabled', true);
+    } else {
+        document.querySelectorAll('.self-score-input').forEach((input) => {
+            input.removeAttribute('readonly');
+            input.style.backgroundColor = '';
+        });
+        $('.btn-confirm').text('Xác nhận').prop('disabled', false);
+    }
 }

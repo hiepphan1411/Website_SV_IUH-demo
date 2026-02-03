@@ -1,8 +1,3 @@
-// ================================================
-// GHI CHÚ NHẮC NHỞ - JAVASCRIPT
-// ================================================
-
-// Data mẫu cho ghi chú nhắc nhở
 const notesData = [
     {
         id: 1,
@@ -58,24 +53,13 @@ const notesData = [
     },
 ];
 
-// Biến lưu filter hiện tại
 let currentFilter = 'all';
 
-// ================================================
-// UTILITY FUNCTIONS
-// ================================================
-
-/**
- * Chuyển đổi string date DD/MM/YYYY thành Date object
- */
 function parseDate(dateString) {
     const [day, month, year] = dateString.split('/').map(Number);
     return new Date(year, month - 1, day);
 }
 
-/**
- * Kiểm tra xem note có hết hạn không
- */
 function isExpired(endDate) {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Reset time để so sánh chỉ ngày
@@ -86,9 +70,6 @@ function isExpired(endDate) {
     return noteEndDate < today;
 }
 
-/**
- * Update status của các notes dựa vào endDate
- */
 function updateNotesStatus() {
     notesData.forEach((note) => {
         // Nếu đã hết hạn, set status = 'expired'
@@ -98,21 +79,12 @@ function updateNotesStatus() {
     });
 }
 
-// ================================================
-// RENDER FUNCTIONS
-// ================================================
-
-/**
- * Render accordion items từ data
- */
 function renderNotesAccordion(filter = 'all') {
     const accordion = document.getElementById('notesAccordion');
     if (!accordion) return;
 
-    // Update status trước khi filter
     updateNotesStatus();
 
-    // Filter data theo loại
     let filteredData = notesData;
     if (filter === 'new') {
         filteredData = notesData.filter((note) => note.status === 'new');
@@ -120,10 +92,8 @@ function renderNotesAccordion(filter = 'all') {
         filteredData = notesData.filter((note) => note.status === 'expired');
     }
 
-    // Update count (tất cả notes)
     updateCount(notesData.length);
 
-    // Render HTML bằng template literals
     let html = '';
 
     filteredData.forEach((note, index) => {
@@ -174,7 +144,6 @@ function renderNotesAccordion(filter = 'all') {
 
     accordion.innerHTML = html;
 
-    // Add event listeners cho accordion buttons sau khi render
     addAccordionEventListeners();
 }
 
@@ -188,70 +157,47 @@ function updateCount(count) {
     }
 }
 
-// ================================================
-// EVENT HANDLERS
-// ================================================
-
-/**
- * Handle filter button clicks
- */
 function handleFilterClick(e) {
     const button = e.target.closest('.filter-btns button');
     if (!button) return;
 
-    // Remove active từ tất cả buttons
     document.querySelectorAll('.filter-btns button').forEach((btn) => {
         btn.classList.remove('active', 'btn-primary');
         btn.classList.add('btn-outline-secondary');
     });
 
-    // Add active cho button được click
     button.classList.add('active', 'btn-primary');
     button.classList.remove('btn-outline-secondary');
 
-    // Get filter value
     const filter = button.getAttribute('data-filter');
     currentFilter = filter;
 
-    // Re-render accordion
     renderNotesAccordion(filter);
 }
 
-/**
- * Handle accordion button clicks - đánh dấu đã đọc
- */
 function addAccordionEventListeners() {
     const accordionButtons = document.querySelectorAll('.accordion-button');
 
     accordionButtons.forEach((button) => {
         button.addEventListener('click', function (e) {
-            // Kiểm tra xem accordion đang collapsed hay không
             const isCollapsed = this.classList.contains('collapsed');
 
-            // Chỉ xử lý khi đang ĐÓNG và click để MỞ
             if (!isCollapsed) {
-                return; // Nếu đang mở rồi (click để đóng) thì không làm gì
+                return;
             }
 
-            // Lấy note ID từ data attribute
             const noteId = parseInt(this.getAttribute('data-note-id'));
 
-            // Tìm note trong data
             const note = notesData.find((n) => n.id === noteId);
 
             if (note && note.status === 'new') {
-                // Đổi status từ 'new' sang 'active' khi click để mở (đã đọc)
                 note.status = 'active';
 
-                // Đợi một chút để animation expand hoàn thành rồi mới re-render
                 setTimeout(() => {
-                    // Lấy ID của accordion đang mở
                     const collapseId = `collapse${note.id}`;
 
-                    // Re-render lại với filter hiện tại
                     renderNotesAccordion(currentFilter);
 
-                    // Sau khi re-render, mở lại accordion đó
                     setTimeout(() => {
                         const collapseElement =
                             document.getElementById(collapseId);
@@ -270,26 +216,15 @@ function addAccordionEventListeners() {
     });
 }
 
-// ================================================
-// INITIALIZATION
-// ================================================
-
-/**
- * Initialize trang ghi chú nhắc nhở
- */
 function initNotesReminder() {
-    // Render accordion lần đầu
     renderNotesAccordion('all');
 
-    // Add event listener cho filter buttons
     const filterBtns = document.querySelector('.filter-btns');
     if (filterBtns) {
         filterBtns.addEventListener('click', handleFilterClick);
     }
 }
 
-// Run khi DOM ready
 document.addEventListener('DOMContentLoaded', function () {
-    // Đợi một chút để đảm bảo Bootstrap đã load
     setTimeout(initNotesReminder, 100);
 });
