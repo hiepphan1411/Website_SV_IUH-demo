@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xem điểm tích lũy chuyên ngành 2</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/curriculum-framework.css" />
+    <link rel="stylesheet" href="../css/xem-diem-tich-luy-chuyen-nganh-2.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.common.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/styles/kendo.default.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Main Content  -->
+    <main class="main-content">
+      <!-- Sidebar -->
+      <div id="sidebar-container"></div>
+
+      <!-- Content Area -->
+      <div class="container" style="margin-top: 20px">
+        <!-- Page Header -->
+        <div class="header-section">
+          <span class="header-title">Xem điểm tích lũy chuyên ngành 2</span>
+          <span class="header-subtitle">
+            Xem điểm số tích lũy chuyên ngành 2 của bạn
+          </span>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+          <div class="summary-card primary" style="max-width: 300px">
+            <div class="card-label">GPA Tích lũy</div>
+            <div class="card-value">
+              <span class="primary">3.62</span>
+              <span class="card-scale">/4.0</span>
+            </div>
+            <div class="card-badge">
+              <i class="fas fa-star"></i>
+              <span>Xếp loại: Giỏi</span>
+            </div>
+          </div>
+          <div class="d-flex flex-column gap-3">
+            <div class="summary-card">
+              <div class="card-label">Tổng tín chỉ hoàn thành</div>
+              <div class="card-value">
+                142<span class="card-scale">/162</span>
+              </div>
+            </div>
+            <div class="summary-card">
+              <div class="card-label">Điểm rèn luyện</div>
+              <div class="d-flex flex-row align-items-end gap-3">
+                <div class="card-value">
+                  <span>85</span>
+                  <span class="card-scale">/100</span>
+                </div>
+                <div class="card-sub-label mb-2">Khá</div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column gap-3">
+            <div class="summary-card">
+              <div class="card-label">Điểm trung bình (Hệ 10)</div>
+              <div class="card-value">8.40</div>
+            </div>
+            <div class="summary-card">
+              <div class="card-label">Xếp loại tích lũy (Hệ 10)</div>
+              <div class="d-flex flex-row align-items-end gap-3">
+                <div class="card-value">Giỏi</div>
+                <div class="card-sub-label mb-2">Xuất sắc</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-frame bg-white rounded-3 d-flex flex-column gap-2">
+          <span class="table-title">Kết quả học tập tích lũy ngành 2</span>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="text-center" rowspan="2">STT</th>
+                  <th class="text-center" rowspan="2">MÃ LỚP HỌC PHẦN</th>
+                  <th class="ps-4" rowspan="2">TÊN MÔN HỌC</th>
+                  <th class="text-center" rowspan="2">TÍN CHỈ</th>
+                  <th class="text-center" rowspan="2">TÍCH CỰC</th>
+                  <th class="text-center" colspan="2">THƯỜNG KỲ</th>
+                  <th class="text-center" colspan="2">
+                    TIỂU LUẬN/ BÀI TẬP LỚN
+                  </th>
+                  <th class="text-center" rowspan="2">THANG ĐIỂM 4</th>
+                  <th class="text-center" rowspan="2">ĐIỂM CHỮ</th>
+                  <th class="text-center" rowspan="2">XẾP LOẠI</th>
+                </tr>
+                <tr>
+                  <th class="text-center">1</th>
+                  <th class="text-center">2</th>
+                  <th class="text-center">Tiểu luận</th>
+                  <th class="text-center">Tiểu luận</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                <!-- JavaScript Render -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="footer-section">© 2025.</div>
+      </div>
+    </main>
+    <script src="../js/common.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/js/kendo.all.min.js"></script>
+    <script src="../js/xem-diem-tich-luy-chuyen-nganh-2.js"></script>
+  </body>
+</html>

@@ -152,9 +152,167 @@ function search() {
   renderTable(filtered);
 }
 
+function createTooltip() {
+  const existingTooltip = document.getElementById("statCardTooltip");
+  if (existingTooltip) {
+    existingTooltip.remove();
+  }
+
+  const tooltip = document.createElement("div");
+  tooltip.id = "statCardTooltip";
+  tooltip.className = "stat-card-tooltip";
+  document.body.appendChild(tooltip);
+  return tooltip;
+}
+
+function showTooltip(filterType, event) {
+  const periodSelect = document.getElementById("periodSelect").value;
+  let filtered = rewardData;
+
+  if (periodSelect === "dot1-hk1") {
+    filtered = filtered.filter((item) => item.period.includes("Đợt 1 - HK1"));
+  } else if (periodSelect === "dot2-hk1") {
+    filtered = filtered.filter((item) => item.period.includes("Đợt 2 - HK1"));
+  } else if (periodSelect === "dot1-hk2") {
+    filtered = filtered.filter((item) => item.period.includes("Đợt 1 - HK2"));
+  }
+
+  switch (filterType) {
+    case "total":
+    case "applied":
+    case "improved":
+      filtered = filtered.filter((item) => item.status === 1);
+      break;
+    case "progress":
+      filtered = filtered.filter((item) => item.status === 0);
+      break;
+  }
+
+  const tooltip = createTooltip();
+  const cardTitles = {
+    total: "Các môn có điểm thưởng",
+    applied: "Các môn đã áp dụng",
+    improved: "Các môn cải thiện GPA",
+    progress: "Các môn đang xử lý",
+  };
+
+  let content = `
+    <div class="tooltip-header">
+      <h4>${cardTitles[filterType]}</h4>
+      <button class="tooltip-close" onclick="closeTooltip()">&times;</button>
+    </div>
+    <div class="tooltip-body">
+  `;
+
+  if (filtered.length === 0) {
+    content += `<p class="no-data">Không có dữ liệu</p>`;
+  } else {
+    filtered.forEach((item, index) => {
+      const statusText =
+        item.status === 1
+          ? "Đã duyệt"
+          : item.status === 0
+            ? "Chưa duyệt"
+            : "Từ chối";
+      const statusClass =
+        item.status === 1
+          ? "badge-completed"
+          : item.status === 0
+            ? "badge-progress"
+            : "badge-denied";
+
+      content += `
+        <div class="tooltip-item">
+          <div class="tooltip-item-header">
+            <span class="item-number">${index + 1}</span>
+            <span class="badge ${statusClass}">${statusText}</span>
+          </div>
+          <div class="tooltip-item-content">
+            <div class="item-row">
+              <strong>${item.courseCode}</strong>${item.courseName}
+            </div>
+            <div class="item-row">
+              <span class="text-muted">${item.rewardInfo}</span>
+            </div>
+            <div class="item-row">
+              <span>Điểm thưởng: <strong class="text-primary">+${item.rewardPoint}</strong></span>
+              <span>Điểm: ${item.finalScore} → <strong class="text-success">${item.afterBonusScore}</strong></span>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  content += `</div>`;
+  tooltip.innerHTML = content;
+  tooltip.style.display = "block";
+
+  // Position tooltip
+  const card = event.currentTarget;
+  const cardRect = card.getBoundingClientRect();
+
+  // Let tooltip calculate its natural width first
+  tooltip.style.visibility = "hidden";
+  tooltip.style.display = "block";
+
+  const tooltipWidth = tooltip.offsetWidth;
+  const tooltipHeight = tooltip.offsetHeight;
+
+  let left = cardRect.left + cardRect.width / 2 - tooltipWidth / 2;
+  let top = cardRect.bottom + 10;
+
+  if (left + tooltipWidth > window.innerWidth - 20) {
+    left = window.innerWidth - tooltipWidth - 20;
+  }
+  if (left < 20) {
+    left = 20;
+  }
+
+  if (top + tooltipHeight > window.innerHeight - 20) {
+    top = cardRect.top - tooltipHeight - 10;
+  }
+
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+  tooltip.style.visibility = "visible";
+}
+
+function closeTooltip() {
+  const tooltip = document.getElementById("statCardTooltip");
+  if (tooltip) {
+    tooltip.style.display = "none";
+    tooltip.remove();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderTable();
 
   document.getElementById("periodSelect").addEventListener("change", search);
   document.getElementById("keywordInput").addEventListener("input", search);
+
+  const statCards = document.querySelectorAll(".stat-card");
+  statCards.forEach((card, index) => {
+    const filterTypes = ["total", "applied", "improved", "progress"];
+    card.setAttribute("data-filter", filterTypes[index]);
+    card.style.cursor = "pointer";
+    card.style.transition = "all 0.3s ease";
+
+    card.addEventListener("click", (event) => {
+      showTooltip(filterTypes[index], event);
+    });
+  });
+
+  // Close tooltip when clicking outside
+  document.addEventListener("click", (event) => {
+    const tooltip = document.getElementById("statCardTooltip");
+    if (
+      tooltip &&
+      !tooltip.contains(event.target) &&
+      !event.target.closest(".stat-card")
+    ) {
+      closeTooltip();
+    }
+  });
 });
