@@ -633,7 +633,7 @@ body {
 .gpa-display-card {
   flex: 0 0 auto;
   min-width: 200px;
-  background: linear-gradient(135deg, #4285f4 0%, #5fa5ff 100%);
+  background: #56a2e8;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -652,13 +652,16 @@ body {
   font-weight: 700;
   color: #4285f4;
 }
+.gpa-number {
+  font-size: 40px;
+}
 .gpa-label {
   font-size: 14px;
   opacity: 0.9;
 }
 .gpa-badge {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 6px 16px;
+  padding: 4px 12px;
   font-size: 13px;
   font-weight: 500;
   border-radius: 12px;
@@ -680,7 +683,7 @@ body {
 }
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #71d674 0%, #4caf50 100%);
+  background: #71d674;
   border-radius: 5px;
   transition: width 0.3s ease;
 }
@@ -1716,17 +1719,54 @@ canvas#gpaChart {
   border-radius: 12px;
   background-color: var(--white);
 }
+
+/* Compact View Grid Layout */
+#quickAccessCompact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+#quickAccessCompact > div {
+  /* Override bootstrap col-2 */
+  flex: none;
+  width: auto;
+  max-width: none;
+  padding: 0;
+}
+
 .card-access-quick {
-  height: fit-content;
+  height: 100%;
+  min-height: 110px;
   border-radius: 12px;
-  background-color: #f4fbff;
-  padding: 5px 0;
+  background-color: white;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.card-access-quick:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-color: var(--primary-blue);
+}
+
+.card-access-quick .card-body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem !important;
+  gap: 0.75rem;
 }
 
 .quick-access-icon {
   width: 48px;
   height: 48px;
+  flex-shrink: 0;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Expanded View Grid */
@@ -1776,6 +1816,10 @@ canvas#gpaChart {
   .quick-access-grid {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
+
+  #quickAccessCompact {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 
 @media (max-width: 992px) {
@@ -1783,6 +1827,11 @@ canvas#gpaChart {
     grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
     gap: 0.625rem;
   }
+
+  #quickAccessCompact {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
   .quick-access-icon-simple {
     width: 44px;
     height: 44px;
@@ -1795,6 +1844,15 @@ canvas#gpaChart {
     grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
     gap: 0.5rem;
   }
+
+  #quickAccessCompact {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .card-access-quick .card-body {
+    padding: 0.75rem !important;
+  }
+
   .quick-access-icon-simple {
     width: 40px;
     height: 40px;
@@ -1811,6 +1869,15 @@ canvas#gpaChart {
 @media (max-width: 576px) {
   .quick-access-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  #quickAccessCompact {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .card-access-quick {
+    min-height: 90px;
   }
 }
 

@@ -151,7 +151,6 @@ function isPrerequisiteCompleted(prerequisiteStr) {
     ...curriculumData.professionalEducation.elective.block2,
   ];
 
-  // Check ALL are completed
   return matches.every((prereqCode) => {
     const prereqCourse = allCourses.find((c) => c.courseCode === prereqCode);
     return prereqCourse ? prereqCourse.completed : true;

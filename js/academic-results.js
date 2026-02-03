@@ -18,6 +18,7 @@ const academicResultsData = [
           diemHe4: 3.5,
           diemChu: "B+",
         },
+        diemTBLop: 7.8,
         xepLoai: "Khá",
         trangThai: "Đạt",
       },
@@ -36,6 +37,7 @@ const academicResultsData = [
           diemHe4: 3.0,
           diemChu: "B",
         },
+        diemTBLop: 7.5,
         xepLoai: "Khá",
         trangThai: "Đạt",
       },
@@ -69,6 +71,7 @@ const academicResultsData = [
           diemHe4: 3.5,
           diemChu: "B+",
         },
+        diemTBLop: 8.0,
         xepLoai: "Khá",
         trangThai: "Đạt",
       },
@@ -87,6 +90,7 @@ const academicResultsData = [
           diemHe4: 4.0,
           diemChu: "A",
         },
+        diemTBLop: 8.5,
         xepLoai: "Xuất sắc",
         trangThai: "Đạt",
       },
@@ -120,6 +124,7 @@ const academicResultsData = [
           diemHe4: 4.0,
           diemChu: "A+",
         },
+        diemTBLop: 8.2,
         xepLoai: "Xuất sắc",
         trangThai: "Đạt",
       },
@@ -138,6 +143,7 @@ const academicResultsData = [
           diemHe4: 4.0,
           diemChu: "A",
         },
+        diemTBLop: 8.3,
         xepLoai: "Xuất sắc",
         trangThai: "Đạt",
       },
@@ -156,6 +162,7 @@ const academicResultsData = [
           diemHe4: 3.5,
           diemChu: "B+",
         },
+        diemTBLop: 7.9,
         xepLoai: "Khá",
         trangThai: "Đạt",
       },
@@ -189,6 +196,7 @@ const academicResultsData = [
           diemHe4: 3.5,
           diemChu: "B+",
         },
+        diemTBLop: 8.1,
         xepLoai: "Khá",
         trangThai: "Đạt",
       },
@@ -207,6 +215,7 @@ const academicResultsData = [
           diemHe4: 3.5,
           diemChu: "B+",
         },
+        diemTBLop: 7.8,
         xepLoai: "Khá",
         trangThai: "Đạt",
       },
@@ -225,6 +234,7 @@ const academicResultsData = [
           diemHe4: 4.0,
           diemChu: "A",
         },
+        diemTBLop: 8.4,
         xepLoai: "Xuất sắc",
         trangThai: "Đạt",
       },
@@ -258,6 +268,7 @@ const academicResultsData = [
           diemHe4: 4.0,
           diemChu: "A+",
         },
+        diemTBLop: 8.5,
         xepLoai: "Xuất sắc",
         trangThai: "Đạt",
       },
@@ -276,6 +287,7 @@ const academicResultsData = [
           diemHe4: 4.0,
           diemChu: "A",
         },
+        diemTBLop: 8.3,
         xepLoai: "Xuất sắc",
         trangThai: "Đạt",
       },
@@ -294,6 +306,7 @@ const academicResultsData = [
           diemHe4: 3.5,
           diemChu: "B+",
         },
+        diemTBLop: 8.0,
         xepLoai: "Khá",
         trangThai: "Đạt",
       },
@@ -327,6 +340,7 @@ const academicResultsData = [
           diemHe4: 4.0,
           diemChu: "A+",
         },
+        diemTBLop: 7.9,
         xepLoai: "Xuất sắc",
         trangThai: "Đạt",
       },
@@ -345,6 +359,7 @@ const academicResultsData = [
           diemHe4: 3.0,
           diemChu: "B",
         },
+        diemTBLop: 7.5,
         xepLoai: "Khá",
         trangThai: "Đạt",
       },
@@ -363,6 +378,7 @@ const academicResultsData = [
           diemHe4: 4.0,
           diemChu: "A+",
         },
+        diemTBLop: 8.2,
         xepLoai: "Xuất sắc",
         trangThai: "Đạt",
       },
@@ -381,6 +397,7 @@ const academicResultsData = [
           diemHe4: 4.0,
           diemChu: "A+",
         },
+        diemTBLop: 8.6,
         xepLoai: "Xuất sắc",
         trangThai: "Đạt",
       },
@@ -415,11 +432,13 @@ let gpaTrendChart = null;
 let currentView = "current";
 let isInitialLoad = true;
 let currentFilter = "all";
+let currentSelectedSemesterIndex = null;
 
 document.addEventListener("DOMContentLoaded", function () {
   renderOverallSummary();
   renderSemesterTabs();
   renderCurrentSemester();
+  populateSemesterSelect();
   initCharts();
   isInitialLoad = false;
 });
@@ -495,10 +514,16 @@ function renderSemesterTabs() {
 
       if (this.dataset.view === "all") {
         currentView = "all";
+        currentSelectedSemesterIndex = null;
         renderAllSemesters();
+        // Update chart to show latest semester when viewing all
+        const latestIndex = academicResultsData.length - 1;
+        createGradeComparisonChart(latestIndex);
       } else {
         currentView = parseInt(this.dataset.semester);
         renderSemester(currentView);
+        // Update chart to match selected semester
+        createGradeComparisonChart(currentView);
       }
     });
   });
@@ -535,6 +560,7 @@ function renderCurrentSemester() {
 // Render một học kỳ
 function renderSemester(index) {
   const semester = academicResultsData[index];
+  currentSelectedSemesterIndex = index;
   if (document.querySelectorAll(".semester-table-wrapper").length > 0) {
     resetTableStructure();
   }
@@ -642,11 +668,9 @@ function renderAllSemesters() {
 
   tableSection.innerHTML = html;
 
-  // Scroll to table section
   scrollToTable();
 }
 
-// Tính số cột thường xuyên và thực hành tối đa
 function getMaxColumns(data) {
   let maxThuongXuyen = 0;
   let maxThucHanh = 0;
@@ -663,7 +687,6 @@ function getMaxColumns(data) {
   return { maxThuongXuyen, maxThucHanh };
 }
 
-// Render table header động
 function renderTableHeader(maxThuongXuyen, maxThucHanh) {
   let thuongXuyenCols = "";
   for (let i = 1; i <= maxThuongXuyen; i++) {
@@ -867,7 +890,6 @@ function renderSummaryRow(semester, totalCols = 17) {
   `;
 }
 
-// Scroll to table section
 function scrollToTable() {
   if (isInitialLoad) return;
 
@@ -880,92 +902,193 @@ function scrollToTable() {
 }
 
 function initCharts() {
-  createGradeDistChartAll();
+  createGradeComparisonChart();
   createGpaTrendChart();
 }
 
-// Tạo biểu đồ phân bố điểm cho tất cả học kỳ
-function createGradeDistChartAll() {
-  const gradeCtx = document.getElementById("gradeDistChart");
-  if (!gradeCtx) return;
+function populateSemesterSelect() {
+  const select = document.getElementById("semesterChartSelect");
+  if (!select) return;
 
-  const gradeCount = {
-    "A+": 0,
-    A: 0,
-    "B+": 0,
-    B: 0,
-    "C+": 0,
-    C: 0,
-    D: 0,
-    F: 0,
-  };
-
-  academicResultsData.forEach((semester) => {
-    semester.monHoc.forEach((mon) => {
-      gradeCount[mon.diem.diemChu]++;
-    });
+  let html = "";
+  academicResultsData.forEach((semester, index) => {
+    const isLatest = index === academicResultsData.length - 1;
+    html += `<option value="${index}" ${isLatest ? "selected" : ""}>
+      ${semester.hocKy} (${semester.namHoc})
+    </option>`;
   });
 
-  const labels = Object.keys(gradeCount).filter((key) => gradeCount[key] > 0);
-  const data = labels.map((label) => gradeCount[label]);
-  const colors = labels.map(getGradeColor);
+  select.innerHTML = html;
+
+  select.addEventListener("change", function () {
+    const selectedIndex = parseInt(this.value);
+    createGradeComparisonChart(selectedIndex);
+  });
+}
+
+function createGradeComparisonChart(semesterIndex = null) {
+  const canvas = document.getElementById("gradeDistChart");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
 
   if (gradeDistChart) {
     gradeDistChart.destroy();
   }
 
-  gradeDistChart = new Chart(gradeCtx, {
+  if (semesterIndex === null) {
+    semesterIndex =
+      currentSelectedSemesterIndex !== null
+        ? currentSelectedSemesterIndex
+        : academicResultsData.length - 1;
+  }
+
+  const semester = academicResultsData[semesterIndex];
+
+  const select = document.getElementById("semesterChartSelect");
+  if (select) {
+    select.value = semesterIndex;
+  }
+
+  const labels = semester.monHoc.map((mon) => {
+    const maxLength = 20;
+    if (mon.tenMonHoc.length > maxLength) {
+      return mon.tenMonHoc.substring(0, maxLength) + "...";
+    }
+    return mon.tenMonHoc;
+  });
+
+  const studentGrades = semester.monHoc.map((mon) => mon.diem.diemTK);
+  const classAverages = semester.monHoc.map((mon) => mon.diemTBLop);
+
+  gradeDistChart = new Chart(ctx, {
     type: "bar",
     data: {
       labels: labels,
       datasets: [
         {
-          label: "Số môn",
-          data: data,
-          backgroundColor: colors,
-          borderRadius: 8,
+          type: "line",
+          label: "Điểm TB lớp",
+          data: classAverages,
+          borderColor: "#FF9800",
+          backgroundColor: "rgba(255, 152, 0, 0.1)",
+          borderWidth: 3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          pointBackgroundColor: "rgba(255, 152, 0, 1)",
+          pointBorderColor: "#fff",
+          pointBorderWidth: 2,
+          tension: 0.3,
+          fill: false,
+        },
+        {
+          type: "bar",
+          label: "Điểm của bạn",
+          data: studentGrades,
+          backgroundColor: "#56A2E8",
+          borderColor: "#56A2E8",
+          borderWidth: 2,
+          borderRadius: 6,
+          maxBarThickness: 60,
         },
       ],
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      interaction: {
+        mode: "index",
+        intersect: false,
+      },
       plugins: {
         legend: {
-          display: false,
+          display: true,
+          position: "top",
+          labels: {
+            usePointStyle: true,
+            padding: 15,
+            font: {
+              size: window.innerWidth < 768 ? 10 : 12,
+              family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto",
+            },
+          },
         },
         tooltip: {
+          enabled: true,
           backgroundColor: "rgba(0, 0, 0, 0.8)",
-          padding: 12,
           titleFont: {
-            size: 14,
+            size: window.innerWidth < 768 ? 11 : 13,
             weight: "bold",
           },
           bodyFont: {
-            size: 13,
+            size: window.innerWidth < 768 ? 10 : 12,
+          },
+          padding: 12,
+          cornerRadius: 8,
+          callbacks: {
+            title: function (context) {
+              const index = context[0].dataIndex;
+              return semester.monHoc[index].tenMonHoc;
+            },
+            label: function (context) {
+              const label = context.dataset.label || "";
+              const value = context.parsed.y;
+              return label + ": " + value.toFixed(2);
+            },
+            afterLabel: function (context) {
+              if (context.datasetIndex === 0) {
+                const index = context.dataIndex;
+                const diff = (
+                  studentGrades[index] - classAverages[index]
+                ).toFixed(2);
+                const sign = diff >= 0 ? "+" : "";
+                return `Chênh lệch: ${sign}${diff}`;
+              }
+              return "";
+            },
           },
         },
       },
       scales: {
         y: {
           beginAtZero: true,
+          max: 10,
           ticks: {
             stepSize: 1,
             font: {
-              size: window.innerWidth < 768 ? 10 : 12,
+              size: window.innerWidth < 768 ? 9 : 11,
             },
           },
           grid: {
             color: "rgba(0, 0, 0, 0.05)",
           },
+          title: {
+            display: true,
+            text: "Điểm",
+            font: {
+              size: window.innerWidth < 768 ? 10 : 12,
+              weight: "bold",
+            },
+          },
         },
         x: {
+          ticks: {
+            font: {
+              size: window.innerWidth < 768 ? 8 : 10,
+            },
+            maxRotation: window.innerWidth < 768 ? 90 : 45,
+            minRotation: window.innerWidth < 768 ? 90 : 45,
+            autoSkip: false,
+          },
           grid: {
             display: false,
           },
-          ticks: {
+          title: {
+            display: true,
+            text: "Môn học",
             font: {
               size: window.innerWidth < 768 ? 10 : 12,
+              weight: "bold",
             },
           },
         },
@@ -1035,13 +1158,13 @@ function createGpaTrendChart() {
         {
           label: "GPA Học kỳ",
           data: gpaHocKy,
-          borderColor: "#153898",
+          borderColor: "#56A2E8",
           backgroundColor: "rgba(21, 56, 152, 0.1)",
           tension: 0.4,
           fill: true,
           pointRadius: window.innerWidth < 768 ? 4 : 6,
           pointHoverRadius: window.innerWidth < 768 ? 6 : 8,
-          pointBackgroundColor: "#153898",
+          pointBackgroundColor: "#56A2E8",
           pointBorderColor: "#fff",
           pointBorderWidth: 2,
         },
@@ -1173,7 +1296,7 @@ window.addEventListener("resize", function () {
   resizeTimer = setTimeout(function () {
     if (gradeDistChart) {
       gradeDistChart.destroy();
-      createGradeDistChartAll();
+      createGradeComparisonChart(currentSelectedSemesterIndex);
     }
     if (gpaTrendChart) {
       gpaTrendChart.destroy();
