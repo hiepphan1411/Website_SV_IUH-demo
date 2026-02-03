@@ -849,7 +849,7 @@ body {
   text-align: center;
 }
 
-.table thead tr th:last-child {
+.table thead tr th:first-child {
   border-top-left-radius: 8px;
 }
 
