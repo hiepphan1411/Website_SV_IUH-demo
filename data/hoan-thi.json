@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "maHocPhan": "HP0001",
+    "tenMonHoc": "Tâm lý học tội phạm",
+    "soTC": 3,
+    "dotThi": "-",
+    "ngayThi": "-",
+    "lyDo": "-",
+    "minhChung": "-",
+    "ngayDangKy": "-",
+    "trangThai": "-",
+    "lyDoKhongDuyet": "-",
+    "ngayDuyet": "-"
+  },
+  {
+    "id": 2,
+    "maHocPhan": "HP0002",
+    "tenMonHoc": "Tâm lý học tội phạm",
+    "soTC": 3,
+    "dotThi": "-",
+    "ngayThi": "08/01/2026",
+    "lyDo": "Ốm",
+    "minhChung": "Xem file",
+    "ngayDangKy": "05/01/2026",
+    "trangThai": "Chờ duyệt",
+    "lyDoKhongDuyet": "-",
+    "ngayDuyet": "-"
+  },
+  {
+    "id": 3,
+    "maHocPhan": "HP0001",
+    "tenMonHoc": "Tâm lý học tội phạm",
+    "soTC": 3,
+    "dotThi": "-",
+    "ngayThi": "-",
+    "lyDo": "-",
+    "minhChung": "-",
+    "ngayDangKy": "-",
+    "trangThai": "-",
+    "lyDoKhongDuyet": "-",
+    "ngayDuyet": "-"
+  },
+  {
+    "id": 4,
+    "maHocPhan": "HP0001",
+    "tenMonHoc": "Tâm lý học tội phạm",
+    "soTC": 3,
+    "dotThi": "-",
+    "ngayThi": "-",
+    "lyDo": "-",
+    "minhChung": "-",
+    "ngayDangKy": "-",
+    "trangThai": "-",
+    "lyDoKhongDuyet": "-",
+    "ngayDuyet": "-"
+  },
+  {
+    "id": 5,
+    "maHocPhan": "HP0001",
+    "tenMonHoc": "Tâm lý học tội phạm",
+    "soTC": 3,
+    "dotThi": "-",
+    "ngayThi": "10/02/2026",
+    "lyDo": "Bị tai nạn",
+    "minhChung": "Xem file",
+    "ngayDangKy": "07/02/2026",
+    "trangThai": "Đã duyệt",
+    "lyDoKhongDuyet": "-",
+    "ngayDuyet": "09/02/2026"
+  }
+]

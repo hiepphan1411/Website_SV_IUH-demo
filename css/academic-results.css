@@ -494,6 +494,11 @@ body {
 
 .chart-body {
   height: 300px;
+  position: relative;
+}
+
+.chart-body canvas {
+  max-width: 100%;
 }
 
 /* Responsive */
@@ -521,6 +526,10 @@ body {
 
   .chart-body {
     height: 280px;
+  }
+
+  .chart-header .form-select {
+    font-size: 12px;
   }
 
   .summary-stats {
@@ -574,6 +583,7 @@ body {
 
   .chart-header .form-select {
     width: 100% !important;
+    font-size: 12px;
   }
 
   .chart-body {
@@ -714,6 +724,14 @@ body {
 
   .chart-body {
     height: 250px;
+  }
+
+  .chart-header h3 {
+    font-size: 13px;
+  }
+
+  .chart-header .form-select {
+    font-size: 11px;
   }
 }
 

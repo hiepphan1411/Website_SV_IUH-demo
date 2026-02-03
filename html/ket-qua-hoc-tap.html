@@ -388,10 +388,12 @@
         <div class="charts-section">
           <div class="chart-card">
             <div class="chart-header">
-              <h3>Phân bố điểm theo học kỳ</h3>
-              <select class="form-select form-select-sm" style="width: auto">
-                <option>HK2 (2024-2025)</option>
-              </select>
+              <h3>So sánh điểm theo học kỳ</h3>
+              <select
+                class="form-select form-select-sm"
+                id="semesterChartSelect"
+                style="width: auto"
+              ></select>
             </div>
             <div class="chart-body">
               <canvas id="gradeDistChart"></canvas>
@@ -411,8 +413,7 @@
     </main>
     <script src="../js/common.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
-    <script src="https://cdn.jsdelivr.net/npm/kendo-ui@2016.3.1118/js/kendo.all.min.js"></script>
+    <script src="../lib/chart@3.9.1.js"></script>
     <script src="../js/academic-results.js"></script>
   </body>
 </html>

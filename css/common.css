@@ -168,76 +168,6 @@
   transition: transform 0.3s ease;
 }
 
-/* Sidebar Overlay for mobile */
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 899;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.sidebar-overlay.active {
-  display: block;
-  opacity: 1;
-}
-
-/* Hamburger menu for mobile */
-.hamburger-menu {
-  display: none;
-}
-
-/* Responsive for sidebar dropdown */
-@media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%);
-    z-index: 1100;
-    top: 0;
-    height: 100vh;
-  }
-
-  .sidebar.active {
-    transform: translateX(0);
-  }
-
-  .main-content {
-    margin-top: 60px;
-  }
-
-  .main-content.sidebar-open,
-  .main-content.sidebar-collapsed {
-    padding-left: 0;
-  }
-
-  .sidebar-toggle {
-    display: none;
-  }
-
-  .hamburger-menu {
-    display: block;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px 12px;
-    font-size: 20px;
-    color: #333;
-  }
-
-  .nav-parent {
-    padding: 0.75rem 1rem;
-  }
-
-  .nav-subitem {
-    padding: 0.65rem 1rem 0.65rem 2.5rem;
-    font-size: 0.85rem;
-  }
-}
-
 /* Header Container */
 .header-container {
   display: flex;
@@ -329,7 +259,6 @@
   border-radius: 50%;
 }
 
-/* For layout */
 .section-content {
   flex: 1;
   padding: 20px;
@@ -350,5 +279,5 @@
   gap: 12px;
   font-size: 24px;
   font-weight: 700;
-  color: #2c3e50;
+  color: #505050;
 }

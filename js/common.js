@@ -127,7 +127,7 @@ const SidebarManager = (function () {
         if (sidebar.classList.contains("collapsed")) {
           mainContent.classList.remove("sidebar-open");
           mainContent.classList.add("sidebar-collapsed");
-          if (icon) icon.className = "fas fa-chevron-right";
+          if (icon) icon.className = "fa-solid fa-bars";
         } else {
           mainContent.classList.add("sidebar-open");
           mainContent.classList.remove("sidebar-collapsed");

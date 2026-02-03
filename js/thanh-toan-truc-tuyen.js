@@ -5,11 +5,11 @@ function toggleSelect(button) {
   if (isSelected) {
     row.classList.remove("selected");
     button.classList.remove("selected");
-    button.innerHTML = 'Chọn <i class="fas fa-arrow-right"></i>';
+    button.innerHTML = '<i class="fas fa-arrow-right"></i>';
   } else {
     row.classList.add("selected");
     button.classList.add("selected");
-    button.innerHTML = 'Đã chọn <i class="fas fa-check"></i>';
+    button.innerHTML = '<i class="fas fa-check"></i>';
   }
 
   updateSelectedItems();
@@ -103,13 +103,13 @@ function selectAllItems() {
       if (isSelected) {
         row.classList.remove("selected");
         button.classList.remove("selected");
-        button.innerHTML = 'Chọn <i class="fas fa-arrow-right"></i>';
+        button.innerHTML = '<i class="fas fa-arrow-right"></i>';
       }
     } else {
       if (!isSelected) {
         row.classList.add("selected");
         button.classList.add("selected");
-        button.innerHTML = 'Đã chọn <i class="fas fa-check"></i>';
+        button.innerHTML = '<i class="fas fa-check"></i>';
       }
     }
   });
