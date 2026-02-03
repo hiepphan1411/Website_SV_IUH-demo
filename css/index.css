@@ -633,7 +633,7 @@ body {
 .gpa-display-card {
   flex: 0 0 auto;
   min-width: 200px;
-  background: linear-gradient(135deg, #4285f4 0%, #5fa5ff 100%);
+  background: #56a2e8;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -652,13 +652,16 @@ body {
   font-weight: 700;
   color: #4285f4;
 }
+.gpa-number {
+  font-size: 40px;
+}
 .gpa-label {
   font-size: 14px;
   opacity: 0.9;
 }
 .gpa-badge {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 6px 16px;
+  padding: 4px 12px;
   font-size: 13px;
   font-weight: 500;
   border-radius: 12px;
@@ -680,7 +683,7 @@ body {
 }
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #71d674 0%, #4caf50 100%);
+  background: #71d674;
   border-radius: 5px;
   transition: width 0.3s ease;
 }
