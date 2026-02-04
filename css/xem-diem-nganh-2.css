@@ -302,7 +302,6 @@ body {
   background: #555;
 }
 
-/* UPDATED TABLE STYLING - Modern, Clean Look */
 .results-table {
   width: 100%;
   min-width: 2000px;
@@ -310,7 +309,6 @@ body {
   table-layout: auto;
 }
 
-/* Sticky columns với style mới */
 .results-table thead th:nth-child(1),
 .results-table tbody td:nth-child(1) {
   position: sticky;
@@ -371,13 +369,12 @@ body {
   z-index: 4;
 }
 
-/* Table cells styling - UPDATED */
 .results-table th,
 .results-table td {
   white-space: nowrap;
   padding: 12px 10px;
   min-width: 80px;
-  text-align: center;
+  /* text-align: center; */
   border-bottom: 1px solid #f1f3f5;
 }
 
@@ -400,7 +397,6 @@ body {
   color: #212529;
 }
 
-/* Table header styling - UPDATED */
 .results-table thead {
   background: #f8f9fa;
 }
@@ -419,9 +415,10 @@ body {
   font-weight: 600;
   color: #495057;
   border-bottom: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
 }
 
-/* Table body styling - UPDATED */
 .results-table tbody tr {
   transition: background-color 0.2s;
 }
@@ -434,6 +431,8 @@ body {
   font-size: 13px;
   color: #495057;
   border-bottom: 1px solid #f1f3f5;
+  border-left: 1px solid #f1f3f5;
+  border-right: 1px solid #f1f3f5;
 }
 
 .results-table .summary-row td {
@@ -452,7 +451,6 @@ body {
   color: #1a1a1a;
 }
 
-/* Grade badges - UPDATED */
 .grade-badge {
   display: inline-block;
   padding: 4px 10px;

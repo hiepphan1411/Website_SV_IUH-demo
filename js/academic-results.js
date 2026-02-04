@@ -516,20 +516,17 @@ function renderSemesterTabs() {
         currentView = "all";
         currentSelectedSemesterIndex = null;
         renderAllSemesters();
-        // Update chart to show latest semester when viewing all
         const latestIndex = academicResultsData.length - 1;
         createGradeComparisonChart(latestIndex);
       } else {
         currentView = parseInt(this.dataset.semester);
         renderSemester(currentView);
-        // Update chart to match selected semester
         createGradeComparisonChart(currentView);
       }
     });
   });
 }
 
-// Reset cấu trúc bảng về ban đầu
 function resetTableStructure() {
   const tableSection = document.querySelector(".table-section");
   tableSection.innerHTML = `
@@ -597,7 +594,6 @@ function renderAllSemesters() {
   statsCards[3].querySelector(".stat-number").textContent =
     overallInfo.diemTrungBinhHe10;
 
-  // Replace table section with multiple tables
   const tableSection = document.querySelector(".table-section");
   let html = `
     <div class="table-header" style="margin-bottom: 24px;">
@@ -618,7 +614,6 @@ function renderAllSemesters() {
   academicResultsData.forEach((semester, semesterIndex) => {
     const { maxThuongXuyen, maxThucHanh } = getMaxColumns(semester);
 
-    // Kiểm tra xem có môn nào hiển thị trong học kỳ này không
     let hasVisibleSubjects = false;
     if (currentFilter === "all") {
       hasVisibleSubjects = true;
@@ -626,7 +621,6 @@ function renderAllSemesters() {
       hasVisibleSubjects = semester.monHoc.some((mon) => mon.diem.diemTK < 7);
     }
 
-    // Chỉ render nếu có môn hiển thị
     if (hasVisibleSubjects) {
       html += `
         <div class="semester-table-wrapper" style="margin-bottom: 32px;">
@@ -750,7 +744,6 @@ function renderTable(semester) {
     }
   });
 
-  // Hiển thị thông báo nếu không có môn nào
   if (visibleCount === 0) {
     html += `
       <tr>

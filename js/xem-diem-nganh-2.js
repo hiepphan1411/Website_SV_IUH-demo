@@ -29,7 +29,6 @@ function initGraduationModal() {
 }
 
 function populateGraduationModal() {
-  // Sample data - replace with actual data from your system
   const graduationData = {
     stcCtk: 144,
     stcPhaiTichLuy: 144,
@@ -45,7 +44,6 @@ function populateGraduationModal() {
     ketQua: "Không đạt",
   };
 
-  // Update modal content
   document.getElementById("xetTnStcCtk").textContent =
     `${graduationData.stcCtk} / ${graduationData.stcPhaiTichLuy}`;
   document.getElementById("xetTnStcHoc").textContent =
@@ -796,20 +794,20 @@ function createGpaTrendChart() {
           callbacks: {
             title: function (context) {
               const index = context[0].dataIndex;
-              const semester = academicResultsData[index];
+              const semester = academicData[index];
               return `${semester.hocKy} (${semester.namHoc})`;
             },
             label: function (context) {
               return context.dataset.label + ": " + context.parsed.y.toFixed(2);
             },
-            afterLabel: function (context) {
-              const value = context.parsed.y;
-              if (value >= 3.6) return "Xuất sắc";
-              if (value >= 3.2) return "Giỏi";
-              if (value >= 2.5) return "Khá";
-              if (value >= 2.0) return "Trung bình";
-              return "Yếu";
-            },
+            // afterLabel: function (context) {
+            //   const value = context.parsed.y;
+            //   if (value >= 3.6) return "Xuất sắc";
+            //   if (value >= 3.2) return "Giỏi";
+            //   if (value >= 2.5) return "Khá";
+            //   if (value >= 2.0) return "Trung bình";
+            //   return "Yếu";
+            // },
           },
         },
       },
