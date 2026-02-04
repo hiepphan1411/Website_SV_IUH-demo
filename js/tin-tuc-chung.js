@@ -266,6 +266,9 @@ function renderNewsList(listData = newsData.list) {
 
     const newsItem = document.createElement("div");
     newsItem.className = "news-list-item-general";
+    newsItem.addEventListener("click", () => {
+      window.location.href = `chi-tiet-tin-tuc.html`;
+    });
 
     const unreadTitle = item.unread ? "unread" : "";
     const unreadClass = item.unread ? "unseen" : "";
@@ -287,10 +290,6 @@ function renderNewsList(listData = newsData.list) {
       </div>
     `;
 
-    newsItem.addEventListener("click", () => {
-      handleNewsClick(item.id);
-    });
-
     container.appendChild(newsItem);
   });
 }
@@ -299,36 +298,6 @@ function handleNewsClick(newsId) {
   console.log("Clicked news item:", newsId);
 }
 
-function setNewsData(allNewsData) {
-  if (allNewsData.featured) {
-    newsData.featured = allNewsData.featured;
-  }
-  if (allNewsData.list) {
-    newsData.list = allNewsData.list;
-  }
-  if (allNewsData.grid) {
-    newsData.grid = allNewsData.grid;
-  }
-
-  renderNewsList();
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   renderNewsList();
-
-  const viewAllBtn = document.getElementById("viewAllBtn");
-  if (viewAllBtn) {
-    viewAllBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      console.log("View All News clicked");
-    });
-  }
-
-  const featuredNewsBtn = document.getElementById("featuredNewsBtn");
-  if (featuredNewsBtn) {
-    featuredNewsBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      handleNewsClick(newsData.featured.id);
-    });
-  }
 });
