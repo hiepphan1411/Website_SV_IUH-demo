@@ -237,6 +237,7 @@ body {
 
 .total-row td:last-child {
     border-top-right-radius: 8px;
+    text-align: center;
 }
 
 .total-row td {
