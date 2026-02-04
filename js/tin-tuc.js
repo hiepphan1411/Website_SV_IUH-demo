@@ -140,7 +140,8 @@ function renderNewsList(listData = newsData.list) {
     `;
 
     newsItem.addEventListener("click", () => {
-      handleNewsClick(item.id);
+      "";
+      window.location.href = `chi-tiet-tin-tuc.html`;
     });
 
     container.appendChild(newsItem);
@@ -172,7 +173,7 @@ function renderNewsGrid(gridData = newsData.grid) {
     `;
 
     newsCard.addEventListener("click", () => {
-      handleNewsClick(item.id);
+      window.location.href = `chi-tiet-tin-tuc.html`;
     });
 
     container.appendChild(newsCard);

@@ -9,7 +9,35 @@ fetch("../html/component/header.html")
   .then((res) => res.text())
   .then((html) => {
     document.getElementById("header-container").innerHTML = html;
+    initHeaderDropdown();
   });
+
+// Header Dropdown
+function initHeaderDropdown() {
+  const loginInfor = document.querySelector(".login-infor");
+
+  if (loginInfor) {
+    loginInfor.addEventListener("click", function (e) {
+      e.stopPropagation();
+      this.classList.toggle("active");
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (e) {
+      if (!loginInfor.contains(e.target)) {
+        loginInfor.classList.remove("active");
+      }
+    });
+
+    // Prevent dropdown from closing when clicking inside
+    const dropdown = loginInfor.querySelector(".user-dropdown");
+    if (dropdown) {
+      dropdown.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+    }
+  }
+}
 
 const SidebarManager = (function () {
   let initialized = false;
