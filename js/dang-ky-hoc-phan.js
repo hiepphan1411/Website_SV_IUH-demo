@@ -1948,79 +1948,99 @@ function viewRegistered(index) {
             ? reg.class.practiceClasses[reg.practiceChoice]
             : null;
 
+    // Thông tin chung - layout ngang theo ảnh
     let modalHtml = `
-                <div style="margin-bottom: 20px;">
-                    <h4 style="font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">Thông tin chung</h4>
-                    <div style="margin-bottom: 10px;">
-                        <label style="color: #666; font-weight: 500;">Mã môn học:</label>
-                        <div style="color: #333;">${reg.course.code}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <label style="color: #666; font-weight: 500;">Tên môn học:</label>
-                        <div style="color: #333;">${reg.course.name}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <label style="color: #666; font-weight: 500;">Lớp học phần:</label>
-                        <div style="color: #333;">${reg.class.id}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <label style="color: #666; font-weight: 500;">Tín chỉ:</label>
-                        <div style="color: #333;">${reg.course.credits}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <label style="color: #666; font-weight: 500;">Ngày đăng ký:</label>
-                        <div style="color: #333;">${reg.registeredDate}</div>
-                    </div>
-                </div>
-            `;
+        <div class="course-info-header">
+            <div class="info-item">
+                <label>TÊN MÔN HỌC</label>
+                <div class="value">${reg.course.name}</div>
+            </div>
+            <div class="info-item">
+                <label>MÃ MÔN HỌC</label>
+                <div class="value">${reg.course.code}</div>
+            </div>
+            <div class="info-item">
+                <label>LỚP HỌC PHẦN</label>
+                <div class="value">${reg.class.id}</div>
+            </div>
+            <div class="info-item">
+                <label>SỐ TÍN CHỈ</label>
+                <div class="value">${reg.course.credits}</div>
+            </div>
+            <div class="info-item">
+                <label>NGÀY ĐĂNG KÝ</label>
+                <div class="value">${reg.registeredDate}</div>
+            </div>
+        </div>
+    `;
 
-    if (theorySchedule) {
-        modalHtml += `
-                    <div style="margin-bottom: 20px;">
-                        <h4 style="font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">Lịch học lý thuyết</h4>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Ngày - Giờ học:</label>
-                            <div style="color: #333;">${theorySchedule.day} - ${theorySchedule.time}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Cơ sở:</label>
-                            <div style="color: #333;">${theorySchedule.room}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Phòng:</label>
-                            <div style="color: #333;">${theorySchedule.building}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Giảng viên:</label>
-                            <div style="color: #333;">${theorySchedule.instructor}</div>
-                        </div>
-                    </div>
-                `;
-    }
+    // Bảng lịch học và chi tiết
+    modalHtml += `
+        <div class="schedule-section-new">
+            <h3 class="section-title-new">LỊCH HỌC & CHI TIẾT</h3>
+            <table class="schedule-table-new">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>LỊCH HỌC</th>
+                        <th>NHÓM</th>
+                        <th>PHÒNG</th>
+                        <th>DÃY NHÀ</th>
+                        <th>CƠ SỞ</th>
+                        <th>GIẢNG VIÊN</th>
+                        <th>THỜI GIAN</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
 
-    if (practiceSchedule) {
-        modalHtml += `
-                    <div style="margin-bottom: 20px;">
-                        <h4 style="font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">Lịch học thực hành - Nhóm ${practiceSchedule.group}</h4>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Ngày - Giờ học:</label>
-                            <div style="color: #333;">${practiceSchedule.day}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Cơ sở:</label>
-                            <div style="color: #333;">${practiceSchedule.room}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Phòng:</label>
-                            <div style="color: #333;">${practiceSchedule.building}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Giảng viên:</label>
-                            <div style="color: #333;">${practiceSchedule.instructor}</div>
-                        </div>
-                    </div>
-                `;
-    }
+    modalHtml += `
+        <tr class="registered-practice-row">
+            <td>1</td>
+            <td>TH - Thứ 3 (Tiết 1 → 4)</td>
+            <td>1</td>
+            <td>A.01</td>
+            <td>Nhà A</td>
+            <td>Cơ sở 1</td>
+            <td>TS Nguyễn Văn A</td>
+            <td>02/02/2026 - 15/05/2026</td>
+        </tr>
+    `;
+
+    modalHtml += `
+        <tr class="registered-practice-row">
+            <td>2</td>
+            <td>TH - Thứ 5 (Tiết 1 → 4)</td>
+            <td>2</td>
+            <td>A.01</td>
+            <td>Nhà A</td>
+            <td>Cơ sở 1</td>
+            <td>TS Nguyễn Văn A</td>
+            <td>02/02/2026 - 15/05/2026</td>
+        </tr>
+    `;
+
+    const hasRegisteredPractice = reg.practiceChoice !== null;
+    const row3Class = hasRegisteredPractice ? '' : 'unregistered-row';
+
+    modalHtml += `
+        <tr class="${row3Class}">
+            <td>3</td>
+            <td>LT - Thứ 2 (Tiết 1 → 4)</td>
+            <td></td>
+            <td>A.01</td>
+            <td>Nhà A</td>
+            <td>Cơ sở 1</td>
+            <td>TS Nguyễn Văn A</td>
+            <td>02/02/2026 - 15/05/2026</td>
+        </tr>
+    `;
+
+    modalHtml += `
+                </tbody>
+            </table>
+        </div>
+    `;
 
     openDetailModal('Chi tiết lớp học phần', modalHtml);
 }
@@ -2028,31 +2048,253 @@ function viewRegistered(index) {
 // Mở modal
 function openDetailModal(title, content) {
     const html = `
-                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center;" class="modal-overlay" onclick="closeDetailModal(event)">
-                    <div style="background: white; border-radius: 8px; padding: 30px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" class="modal-dialog" onclick="event.stopPropagation();">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
-                            <h3 style="margin: 0; font-size: 20px; font-weight: 600; color: #333;" class="modal-title">${title}</h3>
-                            <button onclick="closeDetailModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #999; padding: 0; width: 30px; height: 30px;">×</button>
-                        </div>
-                        <div style="font-size: 14px; line-height: 1.6;" class="modal-body">
-                            ${content}
-                        </div>
-                    </div>
+        <div class="modal-overlay" onclick="closeDetailModal(event)">
+            <div class="modal-dialog" onclick="event.stopPropagation();">
+                <div class="modal-header">
+                    <h3 class="modal-title">${title}</h3>
+                    <button onclick="closeDetailModal()" class="modal-close-btn">×</button>
                 </div>
-            `;
+                <div class="modal-body">
+                    ${content}
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .modal-dialog {
+                background: white;
+                border-radius: 8px;
+                width: 95%;
+                max-width: 1000px;
+                max-height: 90vh;
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            }
+            
+            .modal-header {
+                padding: 20px 25px;
+                border-bottom: 1px solid #eee;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .modal-title {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 600;
+                color: #333;
+            }
+            
+            .modal-close-btn {
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: #999;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .modal-close-btn:hover {
+                color: #333;
+            }
+            
+            .modal-body {
+                padding: 25px;
+                overflow-y: auto;
+                flex: 1;
+            }
+
+            /* Course info header - layout ngang */
+            .course-info-header {
+                display: flex;
+                margin-bottom: 30px;
+                background: #f8f9fa;
+                padding: 0;
+                border: 1px solid #dee2e6;
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            
+            .course-info-header .info-item {
+                flex: 1;
+                padding: 15px;
+                text-align: left;
+                border-right: 1px solid #dee2e6;
+                min-width: 0;
+            }
+            
+            .course-info-header .info-item:last-child {
+                border-right: none;
+            }
+            
+            .course-info-header .info-item label {
+                display: block;
+                font-size: 12px;
+                font-weight: 600;
+                color: #666;
+                text-transform: uppercase;
+                margin-bottom: 8px;
+                letter-spacing: 0.5px;
+            }
+            
+            .course-info-header .info-item .value {
+                font-size: 14px;
+                font-weight: 600;
+                color: #333;
+                word-break: break-word;
+                line-height: 1.3;
+            }
+
+            /* Schedule section */
+            .schedule-section-new {
+                margin-top: 20px;
+            }
+            
+            .section-title-new {
+                font-size: 14px;
+                font-weight: 600;
+                color: #333;
+                margin: 0 0 15px 0;
+                padding-bottom: 5px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            
+            /* Table styling theo ảnh */
+            .schedule-table-new {
+                width: 100%;
+                border-collapse: collapse;
+                background: white;
+                border: 1px solid #dee2e6;
+                border-radius: 4px;
+                overflow: hidden;
+                font-size: 13px;
+            }
+            
+            .schedule-table-new th {
+                background: #f1f3f4;
+                padding: 12px 8px;
+                text-align: center;
+                font-size: 12px;
+                font-weight: 600;
+                color: #333;
+                text-transform: uppercase;
+                border-bottom: 1px solid #dee2e6;
+                border-right: 1px solid #dee2e6;
+                letter-spacing: 0.3px;
+            }
+            
+            .schedule-table-new th:last-child {
+                border-right: none;
+            }
+            
+            .schedule-table-new td {
+                padding: 12px 8px;
+                text-align: center;
+                font-size: 13px;
+                color: #333;
+                border-bottom: 1px solid #f1f3f4;
+                border-right: 1px solid #f1f3f4;
+                vertical-align: middle;
+            }
+            
+            .schedule-table-new td:last-child {
+                border-right: none;
+            }
+            
+            .schedule-table-new tbody tr:last-child td {
+                border-bottom: none;
+            }
+
+            /* Highlight dòng thực hành đã đăng ký - màu xanh nhạt như ảnh */
+            .schedule-table-new .registered-practice-row {
+                background-color: #e3f2fd !important;
+            }
+            
+            .schedule-table-new .registered-practice-row td {
+                background-color: #e3f2fd !important;
+            }
+            
+            .schedule-table-new tbody tr:hover {
+                background: #f8f9fa;
+            }
+            
+            .schedule-table-new .registered-practice-row:hover td {
+                background-color: #bbdefb !important;
+            }
+            
+            /* Responsive */
+            @media (max-width: 768px) {
+                .modal-dialog {
+                    width: 95%;
+                    margin: 10px;
+                }
+                
+                .course-info-header {
+                    flex-direction: column;
+                }
+                
+                .course-info-header .info-item {
+                    border-right: none;
+                    border-bottom: 1px solid #dee2e6;
+                }
+                
+                .course-info-header .info-item:last-child {
+                    border-bottom: none;
+                }
+                
+                .schedule-table-new {
+                    font-size: 11px;
+                }
+                
+                .schedule-table-new th,
+                .schedule-table-new td {
+                    padding: 8px 4px;
+                }
+            }
+        </style>
+    `;
 
     $('.modal-overlay').remove();
-
     $('body').append(html);
 }
 
 function closeDetailModal(event) {
     if (event && event.target.classList.contains('modal-overlay')) {
-        $('.modal-overlay').remove();
+        $('.modal-overlay').fadeOut(200, function () {
+            $(this).remove();
+        });
     } else if (!event) {
-        $('.modal-overlay').remove();
+        $('.modal-overlay').fadeOut(200, function () {
+            $(this).remove();
+        });
     }
 }
+
+$(document).keyup(function (e) {
+    if (e.key === 'Escape') {
+        closeDetailModal();
+    }
+});
 
 // lịch biểu
 function initScheduleGrid() {
