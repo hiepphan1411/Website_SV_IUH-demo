@@ -192,12 +192,12 @@
   max-width: 45%;
 }
 
-.logo-div {
+/* .logo-div {
   min-width: 35px;
   height: 35px;
   background: #dce1ea;
   border-radius: 8px;
-}
+} */
 
 .search-bar {
   display: flex;
@@ -240,6 +240,43 @@
   padding: 4px 12px;
   font-weight: 500;
   transition: ease-in-out 0.2s;
+}
+
+.right-header-container > a:hover {
+  background: var(--light-bg);
+  color: #153898;
+}
+
+/* Notification Bell */
+.notification-btn {
+  padding: 6px 10px !important;
+}
+
+.notification-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 1.05rem;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: 1px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .right-header-container > div:hover {
@@ -310,7 +347,7 @@
   padding: 6px 14px;
   color: #505050;
   text-decoration: none;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .dropdown-item:hover {

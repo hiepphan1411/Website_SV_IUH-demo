@@ -274,14 +274,21 @@ function renderApplicationCard(app) {
 function renderScholarshipCard(scholarship) {
   const requirements = scholarship.requirements
     .map((req) => {
-      const metClass = req.met ? "met" : "not-met";
-      const icon = req.met ? "fa-check" : "fa-circle";
-      return `
-      <div class="requirement-item ${metClass}">
-        <i class="fas ${icon}"></i>
+      if (req.met) {
+        return `
+      <div class="requirement-item">
+        <div class="req-icon req-icon-met"><i class="fas fa-check"></i></div>
         <span>${req.text}</span>
       </div>
     `;
+      } else {
+        return `
+      <div class="requirement-item">
+        <div class="req-icon req-icon-unmet"></div>
+        <span class="req-text-unmet">${req.text}</span>
+      </div>
+    `;
+      }
     })
     .join("");
 
@@ -323,20 +330,27 @@ function renderScholarshipCard(scholarship) {
 function renderScholarshipTable(scholarship) {
   const requirementsCompact = scholarship.requirements
     .map((req) => {
-      const metClass = req.met ? "met" : "not-met";
-      const icon = req.met ? "fa-check" : "fa-circle";
-      return `
-      <div class="requirement-compact ${metClass}">
-        <i class="fas ${icon}"></i>
+      if (req.met) {
+        return `
+      <div class="requirement-compact">
+        <div class="req-icon req-icon-met"><i class="fas fa-check"></i></div>
         <span>${req.text}</span>
       </div>
     `;
+      } else {
+        return `
+      <div class="requirement-compact">
+        <div class="req-icon req-icon-unmet"></div>
+        <span class="req-text-unmet">${req.text}</span>
+      </div>
+    `;
+      }
     })
     .join("");
 
   const applyButton = scholarship.isAutomatic
     ? `<button class="btn-table disabled" disabled>Tự động xét</button>`
-    : `<button class="btn-table btn-primary" data-bs-toggle="modal" data-bs-target="#applyModal" data-scholarship-id="${scholarship.id}">Đăng ký</button>`;
+    : `<button class="btn-register" data-bs-toggle="modal" data-bs-target="#applyModal" data-scholarship-id="${scholarship.id}">Đăng ký</button>`;
 
   return `
     <tr data-scholarship-id="${scholarship.id}">
@@ -537,7 +551,11 @@ function openDetailModal(scholarship) {
   reqList.innerHTML = "";
   scholarship.requirements.forEach((req) => {
     const li = document.createElement("li");
-    li.innerHTML = `<i class="fas fa-check"></i> ${req.text}`;
+    if (req.met) {
+      li.innerHTML = `<div class="req-icon req-icon-met"><i class="fas fa-check"></i></div><span>${req.text}</span>`;
+    } else {
+      li.innerHTML = `<div class="req-icon req-icon-unmet"></div><span class="req-text-unmet">${req.text}</span>`;
+    }
     reqList.appendChild(li);
   });
 
