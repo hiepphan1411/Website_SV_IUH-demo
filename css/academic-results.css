@@ -2,10 +2,11 @@
   --primary-color: #4a90e2;
   --success-color: #28a745;
   --warning-color: #ffc107;
-  --danger-color: #dc3545;
+  --danger-color: #f15464;
   --light-bg: #f8f9fa;
   --border-color: #dee2e6;
   --text-muted: #6c757d;
+  --text-primary: #505050;
 }
 
 body {
@@ -13,7 +14,7 @@ body {
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, sans-serif;
   background-color: #f5f7fa;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .container-lg {
@@ -32,7 +33,7 @@ body {
 .page-title {
   font-size: 28px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--text-primary);
   margin-bottom: 8px;
 }
 
@@ -63,7 +64,7 @@ body {
 
 .summary-card.primary {
   background: #e8f4fd;
-  color: #57a3e8;
+  color: var(--primary-color);
 }
 
 .card-label {
@@ -78,7 +79,7 @@ body {
   font-size: 64px;
   font-weight: 700;
   margin-bottom: 2px;
-  color: #57a3e8;
+  color: var(--primary-color);
 }
 .card-value-content {
   font-size: 30px !important;
@@ -86,14 +87,14 @@ body {
 
 .card-scale {
   font-size: 18px;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .card-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #57a3e8;
+  background: var(--primary-color);
   color: #ffffff;
   padding: 8px 14px;
   border-radius: 8px;
@@ -119,8 +120,13 @@ body {
 .semester-tabs {
   display: flex;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   flex-wrap: wrap;
+}
+
+.semester-tabs .semester-tab.active .tab-title,
+.semester-tabs .semester-tab.active .tab-subtitle {
+  color: white;
 }
 
 .semester-tab {
@@ -131,6 +137,11 @@ body {
   cursor: pointer;
   transition: all 0.2s;
   min-width: 150px;
+}
+
+.semester-tab .tab-title,
+.tab-subtitle {
+  color: var(--text-primary);
 }
 
 .semester-tab:hover {
@@ -152,7 +163,7 @@ body {
 
 .tab-subtitle {
   font-size: 12px;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .btn-view-all {
@@ -172,25 +183,36 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 6px;
   background-color: #f4fbff;
+  border-radius: 8px;
 }
 
 .stat-card {
   padding: 20px;
   display: flex;
-  align-items: center;
-  gap: 16px;
+  justify-content: center;
+  align-items: stretch;
+  gap: 8px;
 }
 
 .stat-icon {
-  width: 48px;
-  height: 48px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 20px;
+}
+
+.stat-icon i {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 120%;
 }
 
 .stat-icon.blue {
@@ -205,15 +227,25 @@ body {
   color: #388e3c;
 }
 
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
 .stat-content .stat-number {
   font-size: 24px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-primary);
+  height: fit-content;
+  line-height: 1;
 }
 
 .stat-content .stat-text {
   font-size: 12px;
   color: var(--text-muted);
+  line-height: 1;
 }
 
 /* Table Section */
@@ -245,6 +277,16 @@ body {
 .table-actions {
   display: flex;
   gap: 12px;
+}
+
+.table-actions button {
+  color: var(--text-primary);
+}
+
+.semester-sections-table {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .semester-selection {
@@ -313,7 +355,7 @@ body {
 
 .results-table .subject-name {
   min-width: 150px;
-  max-width: 250px;
+  max-width: 200px;
   white-space: normal;
   word-wrap: break-word;
   word-break: break-word;
@@ -322,7 +364,7 @@ body {
 
 .results-table thead {
   background: #f4fbff;
-  color: black;
+  color: var(--text-primary);
   border-bottom: 2px solid var(--border-color);
 }
 
@@ -335,7 +377,7 @@ body {
 }
 
 .results-table td {
-  padding: 8px 6px;
+  padding: 20px 24px;
   border-bottom: 1px solid var(--border-color);
   font-size: 12px;
 }
@@ -350,7 +392,7 @@ body {
 
 .subject-name {
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 .grade-badge {
@@ -359,16 +401,52 @@ body {
   border-radius: 4px;
   font-weight: 600;
   font-size: 11px;
+  color: white;
 }
 
 .grade-badge.excellent {
-  background: #d4edda;
-  color: #155724;
+  background: #39a953;
 }
 
 .grade-badge.good {
-  background: #d1ecf1;
-  color: #0c5460;
+  background: #5c9ff8;
+}
+
+.grade-badge.average {
+  background: #ffc107;
+}
+
+.grade-badge.below-average {
+  background: #ff9800;
+}
+
+.grade-badge.poor {
+  background: #f15464;
+}
+
+.ranking-badge {
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.ranking-badge.excellent {
+  color: #39a953;
+}
+
+.ranking-badge.good {
+  color: #5c9ff8;
+}
+
+.ranking-badge.average {
+  color: #ffc107;
+}
+
+.ranking-badge.below-average {
+  color: #ff9800;
+}
+
+.ranking-badge.poor {
+  color: #dc3545;
 }
 
 .status-badge {
@@ -376,6 +454,7 @@ body {
   padding: 3px 6px;
   border-radius: 4px;
   font-size: 11px;
+  font-weight: 600;
 }
 
 .status-badge.passed {
@@ -383,27 +462,33 @@ body {
   color: #155724;
 }
 
+.status-badge.failed {
+  background: #ffefef;
+  color: #dc264c;
+}
+
 /* Summary Row */
 .summary-row {
-  background: #f8f9fa !important;
+  background: #f0f4ff !important;
 }
 
 .semester-summary {
-  padding: 24px;
   width: 100%;
 }
 
 .semester-summary-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 20px;
+  color: var(--text-primary);
+  margin-bottom: 10px;
 }
 
 .summary-stats {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .summary-stat {
@@ -428,7 +513,7 @@ body {
 }
 
 .summary-stat-icon.blue {
-  color: #56a2e8;
+  color: var(--primary-color);
   background-color: #15389813;
 }
 
@@ -447,7 +532,7 @@ body {
 
 .summary-stat-label {
   font-size: 10px;
-  color: #56a2e8;
+  color: var(--primary-color);
   margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -457,8 +542,98 @@ body {
 .summary-stat-value {
   font-size: 24px;
   font-weight: 700;
-  color: #56a2e8;
+  color: var(--primary-color);
   line-height: 1;
+}
+
+/* Ranking Highlight Stat */
+.summary-stat.ranking-highlight {
+  background: linear-gradient(135deg, #f5a623 0%, #f8b84e 100%);
+  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 
+.summary-stat.ranking-highlight .summary-stat-label {
+  text-align: center;
+} */
+
+/* Xếp loại Xuất sắc và Giỏi - Xanh lá/lam */
+.summary-stat.ranking-highlight.excellent,
+.summary-stat.ranking-highlight.good {
+  background: linear-gradient(135deg, #28a745 0%, #4caf50 100%);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+/* Xếp loại Khá - Xanh dương */
+.summary-stat.ranking-highlight.fair {
+  background: linear-gradient(135deg, #4a90e2 0%, #5c9ff8 100%);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+/* Xếp loại Trung bình - Vàng */
+.summary-stat.ranking-highlight.average {
+  background: linear-gradient(135deg, #ffc107 0%, #ffd54f 100%);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+/* Xếp loại Trung bình yếu - Cam */
+.summary-stat.ranking-highlight.below-average {
+  background: linear-gradient(135deg, #ff9800 0%, #ffa726 100%);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+/* Xếp loại Kém - Đỏ */
+.summary-stat.ranking-highlight.poor {
+  background: linear-gradient(135deg, #dc3545 0%, #f15464 100%);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.summary-stat.ranking-highlight::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.summary-stat.ranking-highlight .summary-stat-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.summary-stat.ranking-highlight .summary-stat-label {
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.summary-stat.ranking-highlight .summary-stat-value {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 /* Charts Section */
@@ -494,6 +669,14 @@ body {
 
 .chart-body {
   height: 300px;
+}
+
+.improvement-row td {
+  background-color: #fffbfb !important;
+}
+
+.semester-table-wrapper {
+  overflow: hidden;
 }
 
 /* Responsive */
@@ -618,6 +801,19 @@ body {
 
   .summary-stat-value {
     font-size: 20px;
+  }
+
+  .summary-stat.ranking-highlight .summary-stat-value {
+    font-size: 24px;
+    padding: 6px 12px;
+  }
+
+  .summary-stat.ranking-highlight .summary-stat-label {
+    font-size: 10px;
+  }
+
+  .summary-stat.ranking-highlight .summary-stat-content {
+    overflow: hidden;
   }
 
   .summary-stat-icon {
@@ -809,6 +1005,31 @@ body {
 
   .summary-stat-value {
     font-size: 18px;
+  }
+
+  .summary-stat.ranking-highlight .summary-stat-value {
+    font-size: 20px;
+    padding: 5px 10px;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.2;
+    max-width: 100%;
+  }
+
+  .summary-stat.ranking-highlight .summary-stat-label {
+    font-size: 9px;
+  }
+
+  .summary-stat.ranking-highlight .summary-stat-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 20px;
+  }
+
+  .summary-stat.ranking-highlight .summary-stat-content {
+    overflow: hidden;
+    min-width: 0;
   }
 
   .summary-stat-label {
