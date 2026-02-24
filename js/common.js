@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const sidebar = document.getElementById("sidebar");
     const sidebarToggle = document.getElementById("sidebarToggle");
 
-    if (sidebar || sidebarToggle) {
+    if (sidebar && sidebarToggle) {
       clearInterval(checkSidebar);
       setTimeout(() => {
         SidebarManager.initialize();
