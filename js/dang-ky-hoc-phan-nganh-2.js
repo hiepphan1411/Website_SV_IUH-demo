@@ -1485,12 +1485,23 @@ function renderCourseTable() {
             conditionDisplay = '-';
         }
 
-        const conditionCell = conditionTooltip
-            ? `<div class="condition-cell" data-tooltip-content='${conditionTooltip.replace(/'/g, '&apos;')}'>${conditionDisplay}</div>`
-            : conditionDisplay;
+        const conditionCell =
+            conditionTooltip && course.condition !== 'A'
+                ? `<div class="condition-cell" data-tooltip-content='${conditionTooltip.replace(/'/g, '&apos;')}'>${conditionDisplay}</div>`
+                : conditionDisplay;
+
+        // Tooltip cho dòng khi chưa đủ điều kiện
+        let rowTooltipContent = '';
+        let rowClass = '';
+        if (course.condition === 'A' && prerequisite) {
+            rowClass = 'not-eligible';
+            rowTooltipContent = conditionTooltip; // Sử dụng lại tooltip đã tạo
+        }
 
         const row = $(`
-                    <tr data-course-id="${course.id}">
+                    <tr data-course-id="${course.id}" 
+                        class="${rowClass}" 
+                        ${rowTooltipContent ? `data-row-tooltip='${rowTooltipContent.replace(/'/g, '&apos;')}'` : ''}>
                         <td>${index + 1}</td>
                         <td>${course.code}</td>
                         <td>${course.name}</td>
@@ -1500,9 +1511,15 @@ function renderCourseTable() {
                     </tr>
                 `);
 
-        row.on('click', function () {
-            selectCourse(course);
-        });
+        // Chỉ cho phép click nếu không phải dòng không đủ điều kiện
+        if (course.condition !== 'A') {
+            row.on('click', function () {
+                selectCourse(course);
+            });
+        } else {
+            row.css('pointer-events', 'auto'); // Cho phép hover để xem tooltip
+            row.css('cursor', 'not-allowed');
+        }
 
         tbody.append(row);
     });
@@ -1542,6 +1559,65 @@ function renderCourseTable() {
         .on('mouseleave', function () {
             $('.tooltip').removeClass('show');
             setTimeout(() => $('.tooltip').remove(), 200);
+        });
+
+    // Xử lý tooltip cho dòng chưa đủ điều kiện
+    $('.table-courses tbody tr.not-eligible')
+        .off('mouseenter mouseleave')
+        .on('mouseenter', function (e) {
+            const $row = $(this);
+            const tooltipContent = $row.attr('data-row-tooltip');
+
+            if (!tooltipContent) return;
+
+            // Tạo tooltip giống như tooltip cột điều kiện
+            const $tooltip = $('<div class="tooltip row-tooltip"></div>').html(
+                tooltipContent,
+            );
+            $('body').append($tooltip);
+
+            // Tính vị trí - hiển thị giữa dòng (phía trên hoặc dưới)
+            const rowRect = this.getBoundingClientRect();
+            const tooltipWidth = 260;
+            const tooltipHeight = $tooltip.outerHeight();
+
+            // Căn giữa theo chiều ngang của dòng
+            const tooltipLeft =
+                rowRect.left + rowRect.width / 2 - tooltipWidth / 2;
+
+            // Kiểm tra vị trí hiển thị (trên hoặc dưới)
+            const spaceAbove = rowRect.top;
+            const spaceBelow = $(window).height() - rowRect.bottom;
+
+            let tooltipTop;
+            if (spaceAbove > tooltipHeight + 10 || spaceAbove > spaceBelow) {
+                // Hiển thị phía trên nếu có đủ chỗ hoặc chỗ trên nhiều hơn
+                tooltipTop = rowRect.top - tooltipHeight - 10;
+            } else {
+                // Hiển thị phía dưới
+                tooltipTop = rowRect.bottom + 10;
+            }
+
+            $tooltip.css({
+                position: 'fixed',
+                left:
+                    Math.max(
+                        10,
+                        Math.min(
+                            tooltipLeft,
+                            $(window).width() - tooltipWidth - 10,
+                        ),
+                    ) + 'px',
+                top: Math.max(10, tooltipTop) + 'px',
+                width: tooltipWidth + 'px',
+            });
+
+            // Hiển thị tooltip
+            setTimeout(() => $tooltip.addClass('show'), 10);
+        })
+        .on('mouseleave', function () {
+            $('.tooltip.row-tooltip').removeClass('show');
+            setTimeout(() => $('.tooltip.row-tooltip').remove(), 200);
         });
 }
 
@@ -1948,79 +2024,99 @@ function viewRegistered(index) {
             ? reg.class.practiceClasses[reg.practiceChoice]
             : null;
 
+    // Thông tin chung - layout ngang theo ảnh
     let modalHtml = `
-                <div style="margin-bottom: 20px;">
-                    <h4 style="font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">Thông tin chung</h4>
-                    <div style="margin-bottom: 10px;">
-                        <label style="color: #666; font-weight: 500;">Mã môn học:</label>
-                        <div style="color: #333;">${reg.course.code}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <label style="color: #666; font-weight: 500;">Tên môn học:</label>
-                        <div style="color: #333;">${reg.course.name}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <label style="color: #666; font-weight: 500;">Lớp học phần:</label>
-                        <div style="color: #333;">${reg.class.id}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <label style="color: #666; font-weight: 500;">Tín chỉ:</label>
-                        <div style="color: #333;">${reg.course.credits}</div>
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <label style="color: #666; font-weight: 500;">Ngày đăng ký:</label>
-                        <div style="color: #333;">${reg.registeredDate}</div>
-                    </div>
-                </div>
-            `;
+        <div class="course-info-header">
+            <div class="info-item">
+                <label>TÊN MÔN HỌC</label>
+                <div class="value">${reg.course.name}</div>
+            </div>
+            <div class="info-item">
+                <label>MÃ MÔN HỌC</label>
+                <div class="value">${reg.course.code}</div>
+            </div>
+            <div class="info-item">
+                <label>LỚP HỌC PHẦN</label>
+                <div class="value">${reg.class.id}</div>
+            </div>
+            <div class="info-item">
+                <label>SỐ TÍN CHỈ</label>
+                <div class="value">${reg.course.credits}</div>
+            </div>
+            <div class="info-item">
+                <label>NGÀY ĐĂNG KÝ</label>
+                <div class="value">${reg.registeredDate}</div>
+            </div>
+        </div>
+    `;
 
-    if (theorySchedule) {
-        modalHtml += `
-                    <div style="margin-bottom: 20px;">
-                        <h4 style="font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">Lịch học lý thuyết</h4>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Ngày - Giờ học:</label>
-                            <div style="color: #333;">${theorySchedule.day} - ${theorySchedule.time}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Cơ sở:</label>
-                            <div style="color: #333;">${theorySchedule.room}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Phòng:</label>
-                            <div style="color: #333;">${theorySchedule.building}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Giảng viên:</label>
-                            <div style="color: #333;">${theorySchedule.instructor}</div>
-                        </div>
-                    </div>
-                `;
-    }
+    // Bảng lịch học và chi tiết
+    modalHtml += `
+        <div class="schedule-section-new">
+            <h3 class="section-title-new">LỊCH HỌC & CHI TIẾT</h3>
+            <table class="schedule-table-new">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>LỊCH HỌC</th>
+                        <th>NHÓM</th>
+                        <th>PHÒNG</th>
+                        <th>DÃY NHÀ</th>
+                        <th>CƠ SỞ</th>
+                        <th>GIẢNG VIÊN</th>
+                        <th>THỜI GIAN</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
 
-    if (practiceSchedule) {
-        modalHtml += `
-                    <div style="margin-bottom: 20px;">
-                        <h4 style="font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">Lịch học thực hành - Nhóm ${practiceSchedule.group}</h4>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Ngày - Giờ học:</label>
-                            <div style="color: #333;">${practiceSchedule.day}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Cơ sở:</label>
-                            <div style="color: #333;">${practiceSchedule.room}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Phòng:</label>
-                            <div style="color: #333;">${practiceSchedule.building}</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <label style="color: #666; font-weight: 500;">Giảng viên:</label>
-                            <div style="color: #333;">${practiceSchedule.instructor}</div>
-                        </div>
-                    </div>
-                `;
-    }
+    modalHtml += `
+        <tr class="registered-practice-row">
+            <td>1</td>
+            <td>TH - Thứ 3 (Tiết 1 → 4)</td>
+            <td>1</td>
+            <td>A.01</td>
+            <td>Nhà A</td>
+            <td>Cơ sở 1</td>
+            <td>TS Nguyễn Văn A</td>
+            <td>02/02/2026 - 15/05/2026</td>
+        </tr>
+    `;
+
+    modalHtml += `
+        <tr class="registered-practice-row">
+            <td>2</td>
+            <td>TH - Thứ 5 (Tiết 1 → 4)</td>
+            <td>2</td>
+            <td>A.01</td>
+            <td>Nhà A</td>
+            <td>Cơ sở 1</td>
+            <td>TS Nguyễn Văn A</td>
+            <td>02/02/2026 - 15/05/2026</td>
+        </tr>
+    `;
+
+    const hasRegisteredPractice = reg.practiceChoice !== null;
+    const row3Class = hasRegisteredPractice ? '' : 'unregistered-row';
+
+    modalHtml += `
+        <tr class="${row3Class}">
+            <td>3</td>
+            <td>LT - Thứ 2 (Tiết 1 → 4)</td>
+            <td></td>
+            <td>A.01</td>
+            <td>Nhà A</td>
+            <td>Cơ sở 1</td>
+            <td>TS Nguyễn Văn A</td>
+            <td>02/02/2026 - 15/05/2026</td>
+        </tr>
+    `;
+
+    modalHtml += `
+                </tbody>
+            </table>
+        </div>
+    `;
 
     openDetailModal('Chi tiết lớp học phần', modalHtml);
 }
@@ -2028,31 +2124,40 @@ function viewRegistered(index) {
 // Mở modal
 function openDetailModal(title, content) {
     const html = `
-                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center;" class="modal-overlay" onclick="closeDetailModal(event)">
-                    <div style="background: white; border-radius: 8px; padding: 30px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" class="modal-dialog" onclick="event.stopPropagation();">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
-                            <h3 style="margin: 0; font-size: 20px; font-weight: 600; color: #333;" class="modal-title">${title}</h3>
-                            <button onclick="closeDetailModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #999; padding: 0; width: 30px; height: 30px;">×</button>
-                        </div>
-                        <div style="font-size: 14px; line-height: 1.6;" class="modal-body">
-                            ${content}
-                        </div>
-                    </div>
+        <div class="modal-overlay" onclick="closeDetailModal(event)">
+            <div class="modal-dialog" onclick="event.stopPropagation();">
+                <div class="modal-header">
+                    <h3 class="modal-title">${title}</h3>
+                    <button onclick="closeDetailModal()" class="modal-close-btn">×</button>
                 </div>
-            `;
+                <div class="modal-body">
+                    ${content}
+                </div>
+            </div>
+        </div>
+    `;
 
     $('.modal-overlay').remove();
-
     $('body').append(html);
 }
 
 function closeDetailModal(event) {
     if (event && event.target.classList.contains('modal-overlay')) {
-        $('.modal-overlay').remove();
+        $('.modal-overlay').fadeOut(200, function () {
+            $(this).remove();
+        });
     } else if (!event) {
-        $('.modal-overlay').remove();
+        $('.modal-overlay').fadeOut(200, function () {
+            $(this).remove();
+        });
     }
 }
+
+$(document).keyup(function (e) {
+    if (e.key === 'Escape') {
+        closeDetailModal();
+    }
+});
 
 // lịch biểu
 function initScheduleGrid() {

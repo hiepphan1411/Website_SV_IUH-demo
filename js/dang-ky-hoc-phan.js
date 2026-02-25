@@ -1485,12 +1485,23 @@ function renderCourseTable() {
             conditionDisplay = '-';
         }
 
-        const conditionCell = conditionTooltip
-            ? `<div class="condition-cell" data-tooltip-content='${conditionTooltip.replace(/'/g, '&apos;')}'>${conditionDisplay}</div>`
-            : conditionDisplay;
+        const conditionCell =
+            conditionTooltip && course.condition !== 'A'
+                ? `<div class="condition-cell" data-tooltip-content='${conditionTooltip.replace(/'/g, '&apos;')}'>${conditionDisplay}</div>`
+                : conditionDisplay;
+
+        // Tooltip cho dòng khi chưa đủ điều kiện
+        let rowTooltipContent = '';
+        let rowClass = '';
+        if (course.condition === 'A' && prerequisite) {
+            rowClass = 'not-eligible';
+            rowTooltipContent = conditionTooltip; // Sử dụng lại tooltip đã tạo
+        }
 
         const row = $(`
-                    <tr data-course-id="${course.id}">
+                    <tr data-course-id="${course.id}" 
+                        class="${rowClass}" 
+                        ${rowTooltipContent ? `data-row-tooltip='${rowTooltipContent.replace(/'/g, '&apos;')}'` : ''}>
                         <td>${index + 1}</td>
                         <td>${course.code}</td>
                         <td>${course.name}</td>
@@ -1500,9 +1511,15 @@ function renderCourseTable() {
                     </tr>
                 `);
 
-        row.on('click', function () {
-            selectCourse(course);
-        });
+        // Chỉ cho phép click nếu không phải dòng không đủ điều kiện
+        if (course.condition !== 'A') {
+            row.on('click', function () {
+                selectCourse(course);
+            });
+        } else {
+            row.css('pointer-events', 'auto'); // Cho phép hover để xem tooltip
+            row.css('cursor', 'not-allowed');
+        }
 
         tbody.append(row);
     });
@@ -1542,6 +1559,65 @@ function renderCourseTable() {
         .on('mouseleave', function () {
             $('.tooltip').removeClass('show');
             setTimeout(() => $('.tooltip').remove(), 200);
+        });
+
+    // Xử lý tooltip cho dòng chưa đủ điều kiện
+    $('.table-courses tbody tr.not-eligible')
+        .off('mouseenter mouseleave')
+        .on('mouseenter', function (e) {
+            const $row = $(this);
+            const tooltipContent = $row.attr('data-row-tooltip');
+
+            if (!tooltipContent) return;
+
+            // Tạo tooltip giống như tooltip cột điều kiện
+            const $tooltip = $('<div class="tooltip row-tooltip"></div>').html(
+                tooltipContent,
+            );
+            $('body').append($tooltip);
+
+            // Tính vị trí - hiển thị giữa dòng (phía trên hoặc dưới)
+            const rowRect = this.getBoundingClientRect();
+            const tooltipWidth = 260;
+            const tooltipHeight = $tooltip.outerHeight();
+
+            // Căn giữa theo chiều ngang của dòng
+            const tooltipLeft =
+                rowRect.left + rowRect.width / 2 - tooltipWidth / 2;
+
+            // Kiểm tra vị trí hiển thị (trên hoặc dưới)
+            const spaceAbove = rowRect.top;
+            const spaceBelow = $(window).height() - rowRect.bottom;
+
+            let tooltipTop;
+            if (spaceAbove > tooltipHeight + 10 || spaceAbove > spaceBelow) {
+                // Hiển thị phía trên nếu có đủ chỗ hoặc chỗ trên nhiều hơn
+                tooltipTop = rowRect.top - tooltipHeight - 10;
+            } else {
+                // Hiển thị phía dưới
+                tooltipTop = rowRect.bottom + 10;
+            }
+
+            $tooltip.css({
+                position: 'fixed',
+                left:
+                    Math.max(
+                        10,
+                        Math.min(
+                            tooltipLeft,
+                            $(window).width() - tooltipWidth - 10,
+                        ),
+                    ) + 'px',
+                top: Math.max(10, tooltipTop) + 'px',
+                width: tooltipWidth + 'px',
+            });
+
+            // Hiển thị tooltip
+            setTimeout(() => $tooltip.addClass('show'), 10);
+        })
+        .on('mouseleave', function () {
+            $('.tooltip.row-tooltip').removeClass('show');
+            setTimeout(() => $('.tooltip.row-tooltip').remove(), 200);
         });
 }
 
@@ -2059,219 +2135,7 @@ function openDetailModal(title, content) {
                 </div>
             </div>
         </div>
-        
-        <style>
-            .modal-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 1000;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .modal-dialog {
-                background: white;
-                border-radius: 8px;
-                width: 95%;
-                max-width: 1000px;
-                max-height: 90vh;
-                display: flex;
-                flex-direction: column;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            }
-            
-            .modal-header {
-                padding: 20px 25px;
-                border-bottom: 1px solid #eee;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            .modal-title {
-                margin: 0;
-                font-size: 18px;
-                font-weight: 600;
-                color: #333;
-            }
-            
-            .modal-close-btn {
-                background: none;
-                border: none;
-                font-size: 24px;
-                cursor: pointer;
-                color: #999;
-                width: 30px;
-                height: 30px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .modal-close-btn:hover {
-                color: #333;
-            }
-            
-            .modal-body {
-                padding: 25px;
-                overflow-y: auto;
-                flex: 1;
-            }
 
-            /* Course info header - layout ngang */
-            .course-info-header {
-                display: flex;
-                margin-bottom: 30px;
-                background: #f8f9fa;
-                padding: 0;
-                border: 1px solid #dee2e6;
-                border-radius: 4px;
-                overflow: hidden;
-            }
-            
-            .course-info-header .info-item {
-                flex: 1;
-                padding: 15px;
-                text-align: left;
-                border-right: 1px solid #dee2e6;
-                min-width: 0;
-            }
-            
-            .course-info-header .info-item:last-child {
-                border-right: none;
-            }
-            
-            .course-info-header .info-item label {
-                display: block;
-                font-size: 12px;
-                font-weight: 600;
-                color: #666;
-                text-transform: uppercase;
-                margin-bottom: 8px;
-                letter-spacing: 0.5px;
-            }
-            
-            .course-info-header .info-item .value {
-                font-size: 14px;
-                font-weight: 600;
-                color: #333;
-                word-break: break-word;
-                line-height: 1.3;
-            }
-
-            /* Schedule section */
-            .schedule-section-new {
-                margin-top: 20px;
-            }
-            
-            .section-title-new {
-                font-size: 14px;
-                font-weight: 600;
-                color: #333;
-                margin: 0 0 15px 0;
-                padding-bottom: 5px;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-            
-            /* Table styling theo ảnh */
-            .schedule-table-new {
-                width: 100%;
-                border-collapse: collapse;
-                background: white;
-                border: 1px solid #dee2e6;
-                border-radius: 4px;
-                overflow: hidden;
-                font-size: 13px;
-            }
-            
-            .schedule-table-new th {
-                background: #f1f3f4;
-                padding: 12px 8px;
-                text-align: center;
-                font-size: 12px;
-                font-weight: 600;
-                color: #333;
-                text-transform: uppercase;
-                border-bottom: 1px solid #dee2e6;
-                border-right: 1px solid #dee2e6;
-                letter-spacing: 0.3px;
-            }
-            
-            .schedule-table-new th:last-child {
-                border-right: none;
-            }
-            
-            .schedule-table-new td {
-                padding: 12px 8px;
-                text-align: center;
-                font-size: 13px;
-                color: #333;
-                border-bottom: 1px solid #f1f3f4;
-                border-right: 1px solid #f1f3f4;
-                vertical-align: middle;
-            }
-            
-            .schedule-table-new td:last-child {
-                border-right: none;
-            }
-            
-            .schedule-table-new tbody tr:last-child td {
-                border-bottom: none;
-            }
-
-            /* Highlight dòng thực hành đã đăng ký - màu xanh nhạt như ảnh */
-            .schedule-table-new .registered-practice-row {
-                background-color: #e3f2fd !important;
-            }
-            
-            .schedule-table-new .registered-practice-row td {
-                background-color: #e3f2fd !important;
-            }
-            
-            .schedule-table-new tbody tr:hover {
-                background: #f8f9fa;
-            }
-            
-            .schedule-table-new .registered-practice-row:hover td {
-                background-color: #bbdefb !important;
-            }
-            
-            /* Responsive */
-            @media (max-width: 768px) {
-                .modal-dialog {
-                    width: 95%;
-                    margin: 10px;
-                }
-                
-                .course-info-header {
-                    flex-direction: column;
-                }
-                
-                .course-info-header .info-item {
-                    border-right: none;
-                    border-bottom: 1px solid #dee2e6;
-                }
-                
-                .course-info-header .info-item:last-child {
-                    border-bottom: none;
-                }
-                
-                .schedule-table-new {
-                    font-size: 11px;
-                }
-                
-                .schedule-table-new th,
-                .schedule-table-new td {
-                    padding: 8px 4px;
-                }
-            }
-        </style>
     `;
 
     $('.modal-overlay').remove();
