@@ -1383,8 +1383,6 @@ let selectedClass = null;
 let registeredClasses = [];
 
 function init() {
-    console.log('Initializing page...');
-    console.log('Courses:', courses);
     renderCourseTable();
     initScheduleGrid();
     updateMobileSchedule(2);
@@ -1395,8 +1393,6 @@ function init() {
 function renderCourseTable() {
     const searchText = $('#searchCourse').val().toLowerCase();
     const activeTab = $('.tab-item.active').data('tab');
-
-    console.log('Rendering courses, activeTab:', activeTab);
 
     const filtered = courses.filter((course) => {
         const matchSearch =
@@ -1412,8 +1408,6 @@ function renderCourseTable() {
         // hiển thị các môn chưa đăng ký
         return matchSearch && matchTab && !isRegistered;
     });
-
-    console.log('Filtered courses:', filtered.length);
 
     const tbody = $('#courseTable tbody');
     tbody.empty();
@@ -1640,6 +1634,19 @@ function selectCourse(course) {
                     <p>Chọn một lớp học phần để xem chi tiết</p>
                 </div>
             `);
+
+    // Scroll xuống phần lớp học phần
+    setTimeout(() => {
+        const waitingSection = $('.two-column');
+        if (waitingSection.length) {
+            $('html, body').animate(
+                {
+                    scrollTop: waitingSection.offset().top - 100,
+                },
+                500,
+            );
+        }
+    }, 100);
 }
 
 // lớp học phần chờ đăng ký
@@ -2497,10 +2504,6 @@ function attachEventHandlers() {
 }
 
 function updateMobileSchedule(selectedDay = null) {
-    console.log('=== UPDATE MOBILE SCHEDULE ===');
-    console.log('Selected Day:', selectedDay);
-    console.log('Registered Classes:', registeredClasses);
-
     const dayNames = {
         2: 'Th 2',
         3: 'Th 3',
@@ -2515,7 +2518,6 @@ function updateMobileSchedule(selectedDay = null) {
     const scheduleByDay = {};
 
     if (registeredClasses.length === 0) {
-        console.log('NO REGISTERED CLASSES!');
         $('#mobileScheduleContent').html(
             '<div style="text-align: center; padding: 30px; color: #999;">Chưa đăng ký lớp học phần nào</div>',
         );
@@ -2523,7 +2525,6 @@ function updateMobileSchedule(selectedDay = null) {
     }
 
     registeredClasses.forEach((item, index) => {
-        console.log(`Processing item ${index}:`, item);
         const course = item.course;
         const cls = item.class;
 
@@ -2597,9 +2598,6 @@ function updateMobileSchedule(selectedDay = null) {
         }
     });
 
-    console.log('Full schedule by day:', fullScheduleByDay);
-    console.log('Filtered schedule by day:', scheduleByDay);
-
     let html = '';
     const sortedDays = Object.keys(scheduleByDay).sort(
         (a, b) => parseInt(a) - parseInt(b),
@@ -2643,13 +2641,10 @@ function updateMobileSchedule(selectedDay = null) {
         });
     }
 
-    console.log('Rendering HTML, length:', html.length);
     $('#mobileScheduleContent').html(html);
     $('#mobileScheduleList').css('display', 'block');
 
     highlightTabsWithSchedule(fullScheduleByDay);
-
-    console.log('=== END UPDATE ===');
 }
 
 function highlightTabsWithSchedule(scheduleByDay) {
