@@ -1,3 +1,30 @@
+:root {
+  --sidebar-width: 260px;
+  --header-height: 60px;
+  --primary-color: #e7ecf0;
+  --secondary-color: #f9b200;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --danger-color: #f44336;
+  --info-color: #2196f3;
+  --light-bg: #f4fbff;
+  --white: #ffffff;
+  --text-dark: #333333;
+  --text-light: #666666;
+  --border-color: #e0e0e0;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --text-blue: #56a2e8;
+  --primary-blue: #56a2e8;
+  --warning-orange: #ffa500;
+  --light-gray: #f5f7fa;
+  --border-gray: #e8edf3;
+  --text-dark: #333333;
+  --text-muted: #999999;
+  --blue-bg-light: #e8f4fd;
+  --orange-bg-light: #fff4e6;
+}
+
 /* Page Layout */
 .scholarship-content {
   padding: 1.25rem;

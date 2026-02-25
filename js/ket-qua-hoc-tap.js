@@ -549,11 +549,11 @@ function resetTableStructure() {
     <div class="table-header">
       <h3>Bảng điểm chi tiết</h3>
       <div class="table-actions">
-        <button class="action-btn active">
+        <button class="action-btn active" hidden>
           <i class="fas fa-check-circle"></i>
           Tất cả
         </button>
-        <button class="action-btn">
+        <button class="action-btn" hidden>
           <i class="fa-solid fa-triangle-exclamation"></i>
           Cần cải thiện
         </button>
@@ -593,7 +593,7 @@ function renderSemester(index) {
 
   renderTable(semester);
 
-  scrollToTable();
+  // scrollToTable();
 }
 
 function renderAllSemesters() {
@@ -615,11 +615,11 @@ function renderAllSemesters() {
     <div class="table-header" style="margin-bottom: 24px;">
       <h3>Bảng điểm chi tiết - Tất cả học kỳ</h3>
       <div class="table-actions">
-        <button class="action-btn active">
+        <button class="action-btn active" hidden>
           <i class="fas fa-check-circle"></i>
           Tất cả
         </button>
-        <button class="action-btn">
+        <button class="action-btn" hidden>
           <i class="fa-solid fa-triangle-exclamation"></i>
           Cần cải thiện
         </button>
@@ -682,7 +682,7 @@ function renderAllSemesters() {
 
   tableSection.innerHTML = html;
 
-  scrollToTable();
+  // scrollToTable();
 }
 
 function getMaxColumns(data) {
