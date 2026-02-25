@@ -1,8 +1,8 @@
 /* News Detail Page Styles - Avoiding class name conflicts */
 
 :root {
-  --detail-primary-color: #56a2e8;
-  --detail-text-color: #333;
+  --detail-primary-color: #3a74f0;
+  --detail-text-color: #505050;
   --detail-secondary-text: #666;
   --detail-light-bg: #f8fafc;
   --detail-border-color: #f1f5f9;

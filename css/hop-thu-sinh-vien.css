@@ -1,3 +1,17 @@
+:root {
+  --primary-color: #3a74f0;
+  --secondary-color: #2e5266;
+  --success-color: #2e7d32;
+  --warning-color: #ff9800;
+  --danger-color: #d32f2f;
+  --light-bg: #f5f7fa;
+  --dark-bg: #1a1a1a;
+  --text-dark: #505050;
+  --text-light: #666;
+  --border-color: #e0e0e0;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -22,11 +36,11 @@ body {
 .page-title {
   font-size: 24px;
   font-weight: 600;
-  color: #212529;
+  color: var(--text-dark);
 }
 
 .btn-create {
-  background-color: #4dabf7;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   padding: 10px 24px;
@@ -74,19 +88,19 @@ body {
 .message-title {
   font-size: 15px;
   font-weight: 600;
-  color: #495057;
+  color: var(--text-dark);
   margin-bottom: 4px;
 }
 
 .message-sender-info {
   text-align: right;
   font-size: 13px;
-  color: #868e96;
+  color: var(--text-light);
 }
 
 .message-sender-name {
   font-weight: 500;
-  color: #495057;
+  color: var(--text-dark);
   margin-bottom: 2px;
 }
 
@@ -103,14 +117,14 @@ body {
 
 .message-text {
   font-size: 14px;
-  color: #495057;
+  color: var(--text-dark);
   line-height: 1.6;
   margin-bottom: 15px;
 }
 
 .message-status {
   font-size: 12px;
-  color: #868e96;
+  color: var(--text-light);
   margin-bottom: 15px;
 }
 
@@ -125,9 +139,9 @@ body {
 
 .no-reply-text {
   font-size: 13px;
-  color: #868e96;
+  color: var(--text-light);
   padding: 12px;
-  border: 1px solid #e9ecef;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   background-color: #f8f9fa;
   margin-bottom: 15px;
@@ -150,7 +164,7 @@ body {
 
 .reply-input:focus {
   outline: none;
-  border-color: #4dabf7;
+  border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
 }
 
@@ -166,7 +180,7 @@ body {
 .attach-btn {
   background: none;
   border: none;
-  color: #495057;
+  color: var(--text-dark);
   cursor: pointer;
   padding: 4px 8px;
   font-size: 14px;
@@ -176,11 +190,11 @@ body {
 }
 
 .attach-btn:hover {
-  color: #4dabf7;
+  color: var(--primary-color);
 }
 
 .send-btn {
-  background-color: #4dabf7;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   padding: 6px 20px;
@@ -236,7 +250,7 @@ body {
 .form-label {
   font-size: 14px;
   font-weight: 500;
-  color: #495057;
+  color: var(--text-dark);
   margin-bottom: 8px;
   display: block;
 }
@@ -260,7 +274,7 @@ body {
 
 .form-control:focus {
   outline: none;
-  border-color: #4dabf7;
+  border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
   background-color: white;
 }
@@ -287,7 +301,7 @@ body {
 
 .form-select:focus {
   outline: none;
-  border-color: #4dabf7;
+  border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
   background-color: white;
 }
@@ -302,7 +316,7 @@ textarea.form-control {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #495057;
+  color: var(--text-dark);
   font-size: 14px;
   padding: 12px 0;
   cursor: pointer;
@@ -313,7 +327,7 @@ textarea.form-control {
 }
 
 .file-attach:hover {
-  color: #4dabf7;
+  color: var(--primary-color);
 }
 
 .modal-footer {
@@ -326,7 +340,7 @@ textarea.form-control {
 
 .btn-modal-cancel {
   background-color: #e9ecef;
-  color: #495057;
+  color: var(--text-dark);
   border: none;
   padding: 12px 28px;
   border-radius: 8px;
@@ -341,7 +355,7 @@ textarea.form-control {
 }
 
 .btn-modal-submit {
-  background-color: #4dabf7;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   padding: 12px 28px;

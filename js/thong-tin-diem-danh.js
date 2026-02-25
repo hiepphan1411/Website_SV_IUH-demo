@@ -229,7 +229,7 @@ function renderAttendanceTable() {
                 </div>
               </div>
             </div>
-            <div class="section-content ${idx === 0 ? "active" : ""}">
+            <div class="section-contents ${idx === 0 ? "active" : ""}">
               <div class="table-frame">
                 <table class="table" id="attendanceTable">
                   <thead>

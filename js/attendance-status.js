@@ -36,7 +36,7 @@ function renderBarChart(actual, allowed, isValid) {
     barColor = "#F59E0B";
     bottomText = actual + "/" + allowed + " số tiết đã nghỉ";
   } else if (status === "success") {
-    barColor = "#56a2e8";
+    barColor = "#3a74f0";
     bottomText = actual + "/" + allowed + " số tiết đã nghỉ";
   } else {
     barColor = "#F1F5F9";
