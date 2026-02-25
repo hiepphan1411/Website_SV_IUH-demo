@@ -32,13 +32,13 @@ body {
 }
 
 .section-title {
-  color: #4dabf7;
+  color: #3a74f0;
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 10px;
   padding-left: 10px;
-  border-left: 4px solid #4dabf7;
+  border-left: 4px solid #3a74f0;
 }
 
 .alert-warning {
@@ -61,7 +61,7 @@ body {
 }
 
 .btn-propose {
-  background-color: #56a2e8;
+  background-color: #3a74f0;
   color: white;
   border: none;
   padding: 8px 20px;
