@@ -1,7 +1,7 @@
 const $ = window.jQuery;
 
 $(document).ready(function () {
-    console.log('[v0] Detail training page initialized');
+   
 
     loadSemesterData();
 
@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     initializeTableInteractions();
 
-    console.log('[v0] All components initialized');
+   
 });
 
 function loadSemesterData() {
@@ -17,7 +17,7 @@ function loadSemesterData() {
 
     if (semesterData) {
         const data = JSON.parse(semesterData);
-        console.log('[v0] Loaded semester data:', data);
+        
 
         $('#semesterTitle').text(
             `Chi tiết đánh giá rèn luyện ${data.semester}`,
