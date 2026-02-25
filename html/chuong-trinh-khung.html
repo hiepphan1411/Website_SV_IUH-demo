@@ -12,12 +12,11 @@
       rel="stylesheet"
     />
     <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <script
+      src="https://kit.fontawesome.com/6f955e325d.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="../css/curriculum-framework.css" />
-    <link rel="stylesheet" href="../css/index.css" />
     <link rel="stylesheet" href="../css/common.css" />
     <link href="../lib/kendo-ui@2016.3.1118.common.min.css" rel="stylesheet" />
 
@@ -345,7 +344,7 @@
           <!-- JavaScript Render -->
         </div>
 
-        <div class="footer-section">© 2025</div>
+        <div class="footer-section">© 2026</div>
       </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -373,7 +372,7 @@
           stack: true,
         },
         series: [
-          { data: [60], color: "#56a2e8" }, // xanh
+          { data: [60], color: "#2865EB" }, // xanh
           { data: [15], color: "#ffb800" }, // vàng
           { data: [25], color: "#e0e0e0" }, // xám
         ],
@@ -408,37 +407,6 @@
           });
         },
       });
-
-      // function adjustTooltipPosition(element) {
-      //   const tooltip = element.querySelector(".semester-tooltip");
-      //   if (!tooltip) return;
-
-      //   const rect = element.getBoundingClientRect();
-      //   const tooltipRect = tooltip.getBoundingClientRect();
-      //   const viewportHeight = window.innerHeight;
-
-      //   // Check if there's enough space above
-      //   const spaceAbove = rect.top;
-      //   const spaceBelow = viewportHeight - rect.bottom;
-      //   const tooltipHeight = tooltipRect.height || 200;
-
-      //   if (spaceAbove < tooltipHeight + 20 && spaceBelow > spaceAbove) {
-      //     tooltip.classList.add("tooltip-bottom");
-      //   } else {
-      //     tooltip.classList.remove("tooltip-bottom");
-      //   }
-      // }
-
-      // Add hover listeners to adjust tooltip position
-      // function addTooltipListeners() {
-      //   document
-      //     .querySelectorAll(".timeline-item, .timeline-semester-card")
-      //     .forEach((item) => {
-      //       item.addEventListener("mouseenter", () =>
-      //         adjustTooltipPosition(item),
-      //       );
-      //     });
-      // }
 
       // Handle responsive timeline rendering
       function handleResize() {
@@ -840,23 +808,6 @@
           this.classList.add("active");
         });
       });
-
-      function toggleSection(header) {
-        const icon = header.querySelector(".section-icon");
-        const content = header.nextElementSibling;
-
-        document.querySelectorAll(".section-header").forEach((h) => {
-          if (h !== header) {
-            h.classList.remove("expanded");
-            h.querySelector(".section-icon").classList.remove("rotated");
-            h.nextElementSibling.classList.remove("active");
-          }
-        });
-
-        header.classList.toggle("expanded");
-        icon.classList.toggle("rotated");
-        content.classList.toggle("active");
-      }
 
       $(function () {
         var tooltipTriggerList = [].slice.call(

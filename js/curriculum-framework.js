@@ -44,6 +44,20 @@ const curriculumData = {
         practiceHours: 0,
         completed: false,
       },
+      {
+        stt: 4,
+        semester: 1,
+        knowledgeBlock: "GDCN",
+        courseName: "Luật Hiến pháp Việt Nam",
+        courseCode: "000110",
+        prerequisite: "-",
+        equivalent: "-",
+        replacement: "-",
+        credits: 3,
+        theoryHours: 45,
+        practiceHours: 0,
+        completed: false,
+      },
     ],
     elective: {
       block1: [
@@ -89,6 +103,20 @@ const curriculumData = {
           practiceHours: 0,
           completed: false,
         },
+        {
+          stt: 4,
+          semester: 1,
+          knowledgeBlock: "GDCN",
+          courseName: "Pháp luật về quyền con người",
+          courseCode: "000121",
+          prerequisite: "000901 (b)",
+          equivalent: "-",
+          replacement: "-",
+          credits: 2,
+          theoryHours: 30,
+          practiceHours: 0,
+          completed: false,
+        },
       ],
       block2: [
         {
@@ -121,7 +149,7 @@ const curriculumData = {
         },
         {
           stt: 3,
-          semester: 4,
+          semester: 1,
           knowledgeBlock: "GDDC",
           courseName: "Pháp luật đại cương 2",
           courseCode: "000906",
@@ -278,7 +306,7 @@ function renderKnowledgeBlockView() {
           <i class="fas fa-chevron-up"></i>
         </div>
       </div>
-      <div class="section-content">
+      <div class="section-contents">
         <div class="subtitle-header">Học phần bắt buộc</div>
         <div class="table-frame">
           <table class="table mandatory-courses-table">
@@ -312,17 +340,17 @@ function renderKnowledgeBlockView() {
             <table class="table elective-table" id="elective-block1-table">
               <thead>
                 <tr>
-                  <th>STT</th>
-                  <th>HỌC KỲ</th>
+                  <th class="column-center">STT</th>
+                  <th class="column-center">HỌC KỲ</th>
                   <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                  <th>MÃ HP</th>
-                  <th>HỌC PHẦN</th>
-                  <th>HP TƯƠNG ĐƯƠNG</th>
-                  <th>HP THAY THẾ</th>
-                  <th>SỐ TC</th>
-                  <th>SỐ TIẾT LÝ</th>
-                  <th>SỐ TIẾT THI</th>
-                  <th>ĐẠT</th>
+                  <th class="column-center">MÃ HP</th>
+                  <th class="column-center">HỌC PHẦN</th>
+                  <th class="column-center">HP TƯƠNG ĐƯƠNG</th>
+                  <th class="column-center">HP THAY THẾ</th>
+                  <th class="column-center">SỐ TC</th>
+                  <th class="column-center">SỐ TIẾT LÝ</th>
+                  <th class="column-center">SỐ TIẾT THI</th>
+                  <th class="column-center">ĐẠT</th>
                 </tr>
               </thead>
               <tbody>
@@ -338,17 +366,17 @@ function renderKnowledgeBlockView() {
             <table class="table elective-table" id="elective-block2-table">
               <thead>
                 <tr>
-                  <th>STT</th>
-                  <th>HỌC KỲ</th>
+                  <th class="column-center">STT</th>
+                  <th class="column-center">HỌC KỲ</th>
                   <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                  <th>MÃ HP</th>
-                  <th>HỌC PHẦN</th>
-                  <th>HP TƯƠNG ĐƯƠNG</th>
-                  <th>HP THAY THẾ</th>
-                  <th>SỐ TC</th>
-                  <th>SỐ TIẾT LÝ</th>
-                  <th>SỐ TIẾT THI</th>
-                  <th>ĐẠT</th>
+                  <th class="column-center">MÃ HP</th>
+                  <th class="column-center">HỌC PHẦN</th>
+                  <th class="column-center">HP TƯƠNG ĐƯƠNG</th>
+                  <th class="column-center">HP THAY THẾ</th>
+                  <th class="column-center">SỐ TC</th>
+                  <th class="column-center">SỐ TIẾT LÝ</th>
+                  <th class="column-center">SỐ TIẾT THI</th>
+                  <th class="column-center">ĐẠT</th>
                 </tr>
               </thead>
               <tbody>
@@ -381,23 +409,23 @@ function renderKnowledgeBlockView() {
           <i class="fas fa-chevron-up"></i>
         </div>
       </div>
-      <div class="section-content active">
+      <div class="section-contents active">
         <div class="subtitle-header">Học phần bắt buộc</div>
         <div class="table-frame">
           <table class="table mandatory-courses-table">
             <thead>
               <tr>
-                <th>STT</th>
-                <th>HỌC KỲ</th>
+                <th class="column-center">STT</th>
+                <th class="column-center">HỌC KỲ</th>
                 <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                <th>MÃ HP</th>
-                <th>HỌC PHẦN</th>
-                <th>HP TƯƠNG ĐƯƠNG</th>
-                <th>HP THAY THẾ</th>
-                <th>SỐ TC</th>
-                <th>SỐ TIẾT LÝ</th>
-                <th>SỐ TIẾT THI</th>
-                <th>ĐẠT</th>
+                <th class="column-center">MÃ HP</th>
+                <th class="column-center">HỌC PHẦN</th>
+                <th class="column-center">HP TƯƠNG ĐƯƠNG</th>
+                <th class="column-center">HP THAY THẾ</th>
+                <th class="column-center">SỐ TC</th>
+                <th class="column-center">SỐ TIẾT LÝ</th>
+                <th class="column-center">SỐ TIẾT THI</th>
+                <th class="column-center">ĐẠT</th>
               </tr>
             </thead>
             <tbody>
@@ -415,17 +443,17 @@ function renderKnowledgeBlockView() {
             <table class="table elective-table" id="elective-block1-table">
               <thead>
                 <tr>
-                  <th>STT</th>
-                  <th>HỌC KỲ</th>
+                  <th class="column-center">STT</th>
+                  <th class="column-center">HỌC KỲ</th>
                   <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                  <th>MÃ HP</th>
-                  <th>HỌC PHẦN</th>
-                  <th>HP TƯƠNG ĐƯƠNG</th>
-                  <th>HP THAY THẾ</th>
-                  <th>SỐ TC</th>
-                  <th>SỐ TIẾT LÝ</th>
-                  <th>SỐ TIẾT THI</th>
-                  <th>ĐẠT</th>
+                  <th class="column-center">MÃ HP</th>
+                  <th class="column-center">HỌC PHẦN</th>
+                  <th class="column-center">HP TƯƠNG ĐƯƠNG</th>
+                  <th class="column-center">HP THAY THẾ</th>
+                  <th class="column-center">SỐ TC</th>
+                  <th class="column-center">SỐ TIẾT LÝ</th>
+                  <th class="column-center">SỐ TIẾT THI</th>
+                  <th class="column-center">ĐẠT</th>
                 </tr>
               </thead>
               <tbody>
@@ -441,17 +469,17 @@ function renderKnowledgeBlockView() {
             <table class="table elective-table" id="elective-block2-table">
               <thead>
                 <tr>
-                  <th>STT</th>
-                  <th>HỌC KỲ</th>
+                  <th class="column-center">STT</th>
+                  <th class="column-center">HỌC KỲ</th>
                   <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                  <th>MÃ HP</th>
-                  <th>HỌC PHẦN</th>
-                  <th>HP TƯƠNG ĐƯƠNG</th>
-                  <th>HP THAY THẾ</th>
-                  <th>SỐ TC</th>
-                  <th>SỐ TIẾT LÝ</th>
-                  <th>SỐ TIẾT THI</th>
-                  <th>ĐẠT</th>
+                  <th class="column-center">MÃ HP</th>
+                  <th class="column-center">HỌC PHẦN</th>
+                  <th class="column-center">HP TƯƠNG ĐƯƠNG</th>
+                  <th class="column-center">HP THAY THẾ</th>
+                  <th class="column-center">SỐ TC</th>
+                  <th class="column-center">SỐ TIẾT LÝ</th>
+                  <th class="column-center">SỐ TIẾT THI</th>
+                  <th class="column-center">ĐẠT</th>
                 </tr>
               </thead>
               <tbody>
@@ -484,23 +512,23 @@ function renderKnowledgeBlockView() {
           <i class="fas fa-chevron-up"></i>
         </div>
       </div>
-      <div class="section-content">
+      <div class="section-contents">
         <div class="subtitle-header">Học phần bắt buộc</div>
         <div class="table-frame">
           <table class="table mandatory-courses-table">
             <thead>
               <tr>
-                <th>STT</th>
-                <th>HỌC KỲ</th>
+                <th class="column-center">STT</th>
+                <th class="column-center">HỌC KỲ</th>
                 <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                <th>MÃ HP</th>
-                <th>HỌC PHẦN</th>
-                <th>HP TƯƠNG ĐƯƠNG</th>
-                <th>HP THAY THẾ</th>
-                <th>SỐ TC</th>
-                <th>SỐ TIẾT LÝ</th>
-                <th>SỐ TIẾT THI</th>
-                <th>ĐẠT</th>
+                <th class="column-center">MÃ HP</th>
+                <th class="column-center">HỌC PHẦN</th>
+                <th class="column-center">HP TƯƠNG ĐƯƠNG</th>
+                <th class="column-center">HP THAY THẾ</th>
+                <th class="column-center">SỐ TC</th>
+                <th class="column-center">SỐ TIẾT LÝ</th>
+                <th class="column-center">SỐ TIẾT THI</th>
+                <th class="column-center">ĐẠT</th>
               </tr>
             </thead>
             <tbody>
@@ -518,17 +546,17 @@ function renderKnowledgeBlockView() {
             <table class="table elective-table" id="elective-block1-table">
               <thead>
                 <tr>
-                  <th>STT</th>
-                  <th>HỌC KỲ</th>
+                  <th class="column-center">STT</th>
+                  <th class="column-center">HỌC KỲ</th>
                   <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                  <th>MÃ HP</th>
-                  <th>HỌC PHẦN</th>
-                  <th>HP TƯƠNG ĐƯƠNG</th>
-                  <th>HP THAY THẾ</th>
-                  <th>SỐ TC</th>
-                  <th>SỐ TIẾT LÝ</th>
-                  <th>SỐ TIẾT THI</th>
-                  <th>ĐẠT</th>
+                  <th class="column-center">MÃ HP</th>
+                  <th class="column-center">HỌC PHẦN</th>
+                  <th class="column-center">HP TƯƠNG ĐƯƠNG</th>
+                  <th class="column-center">HP THAY THẾ</th>
+                  <th class="column-center">SỐ TC</th>
+                  <th class="column-center">SỐ TIẾT LÝ</th>
+                  <th class="column-center">SỐ TIẾT THI</th>
+                  <th class="column-center">ĐẠT</th>
                 </tr>
               </thead>
               <tbody>
@@ -558,9 +586,18 @@ function renderSemesterView() {
   }
 
   const allCourses = [
-    ...curriculumData.professionalEducation.mandatory,
-    ...curriculumData.professionalEducation.elective.block1,
-    ...curriculumData.professionalEducation.elective.block2,
+    ...curriculumData.professionalEducation.mandatory.map((c) => ({
+      ...c,
+      type: "mandatory",
+    })),
+    ...curriculumData.professionalEducation.elective.block1.map((c) => ({
+      ...c,
+      type: "elective",
+    })),
+    ...curriculumData.professionalEducation.elective.block2.map((c) => ({
+      ...c,
+      type: "elective",
+    })),
   ];
 
   //Group theo học kỳ
@@ -576,6 +613,12 @@ function renderSemesterView() {
     .sort((a, b) => a - b)
     .map((semester, index) => {
       const courses = semesterGroups[semester];
+
+      console.log("Courses: ", courses);
+
+      const mandatoryCourses = courses.filter((c) => c.type === "mandatory");
+      const electiveCourses = courses.filter((c) => c.type === "elective");
+
       const totalCredits = courses.reduce((sum, c) => sum + c.credits, 0);
       const completedCredits = courses
         .filter((c) => c.completed)
@@ -602,7 +645,10 @@ function renderSemesterView() {
               <i class="fas fa-chevron-up"></i>
             </div>
           </div>
-          <div class="section-content ${index === 0 ? "active" : ""}">
+          <div class="section-contents ${index === 0 ? "active" : ""}">
+            ${
+              mandatoryCourses.length > 0
+                ? `
             <div class="subtitle-header">Học phần bắt buộc</div>
             <div class="table-frame">
               <table class="table">
@@ -622,11 +668,17 @@ function renderSemesterView() {
                   </tr>
                 </thead>
                 <tbody>
-                  ${courses.map((course, idx) => createTableRow({ ...course, stt: idx + 1 }, "semester")).join("")}
+                  ${mandatoryCourses.map((course, idx) => createTableRow({ ...course, stt: idx + 1 }, "semester")).join("")}
                 </tbody>
               </table>
             </div>
+            `
+                : ""
+            }
 
+            ${
+              electiveCourses.length > 0
+                ? `
             <div class="subtitle-header">Học phần tự chọn</div>
             <div class="table-frame">
               <table class="table">
@@ -646,10 +698,13 @@ function renderSemesterView() {
                   </tr>
                 </thead>
                 <tbody>
-                  ${courses.map((course, idx) => createTableRow({ ...course, stt: idx + 1 }, "semester")).join("")}
+                  ${electiveCourses.map((course, idx) => createTableRow({ ...course, stt: idx + 1 }, "semester")).join("")}
                 </tbody>
               </table>
             </div>
+            `
+                : ""
+            }
           </div>
         </div>
       `;
@@ -805,6 +860,23 @@ function attachTooltipListeners() {
 
     row.addEventListener("mouseleave", hideTooltip);
   });
+}
+
+function toggleSection(header) {
+  const icon = header.querySelector(".section-icon");
+  const content = header.nextElementSibling;
+
+  document.querySelectorAll(".section-header").forEach((h) => {
+    if (h !== header) {
+      h.classList.remove("expanded");
+      h.querySelector(".section-icon").classList.remove("rotated");
+      h.nextElementSibling.classList.remove("active");
+    }
+  });
+
+  header.classList.toggle("expanded");
+  icon.classList.toggle("rotated");
+  content.classList.toggle("active");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
