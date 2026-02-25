@@ -350,7 +350,7 @@ function renderScholarshipTable(scholarship) {
 
   const applyButton = scholarship.isAutomatic
     ? `<button class="btn-table disabled" disabled>Tự động xét</button>`
-    : `<button class="btn-register" data-bs-toggle="modal" data-bs-target="#applyModal" data-scholarship-id="${scholarship.id}">Đăng ký</button>`;
+    : `<button class="btn-apply" data-bs-toggle="modal" data-bs-target="#applyModal" data-scholarship-id="${scholarship.id}">Đăng ký</button>`;
 
   return `
     <tr data-scholarship-id="${scholarship.id}">
