@@ -460,8 +460,37 @@ body {
 }
 
 .access-tab.active {
-  background: var(--primary-color);
+  background: var(--info-color);
   color: var(--white);
+}
+
+.active {
+  background: var(--info-color);
+  color: var(--white);
+}
+
+.btn-toggle {
+  border: 1px solid #dee2e6;
+  background-color: var(--white);
+  color: #555;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+
+.btn-toggle:hover {
+  background-color: #f0f5ff;
+  color: var(--info-color);
+  border-color: var(--info-color);
+}
+
+.btn-toggle.active {
+  background-color: var(--info-color) !important;
+  color: var(--white) !important;
+  border-color: var(--info-color) !important;
+  font-weight: 600;
 }
 
 .access-content {
