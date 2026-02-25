@@ -369,7 +369,6 @@ function setupTodayButton() {
 }
 
 function setupMonthNavigation() {
-    // Previous month
     $('.month-selector button:first-child').click(function () {
         currentMonth--;
         if (currentMonth < 0) {
