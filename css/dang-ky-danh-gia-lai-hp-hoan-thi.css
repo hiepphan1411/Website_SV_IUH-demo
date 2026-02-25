@@ -1,3 +1,22 @@
+:root {
+  --modal-primary: #3a74f0;
+  --modal-border: #e4e4e4;
+  --modal-bg: #ffffff;
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  --modal-radius: 12px;
+  --modal-text-primary: #505050;
+  --modal-text-secondary: #8e8e8e;
+
+  --bg-light: #f0f0f0;
+  --color-green-primary: #4caf50;
+  --color-green-hover: #049209;
+  --color-red-primary: #ee2929;
+  --color-red-hover: #ab1717;
+  --color-orange-primary: #ff9f43;
+  --color-orange-hover: #ff6f00;
+}
+
 .icon {
   border: none;
   cursor: pointer;
@@ -6,15 +25,15 @@
 }
 
 .icon-add {
-  color: #4caf50;
+  color: var(--color-green-primary);
 }
 
 .icon-add:hover {
-  color: #049209;
+  color: var(--color-green-hover);
 }
 
 .icon-edit {
-  color: #505050;
+  color: var(--modal-text-primary);
 }
 
 .icon-edit:hover {
@@ -22,11 +41,11 @@
 }
 
 .icon-delete {
-  color: #ee2929;
+  color: var(--color-red-primary);
 }
 
 .icon-delete:hover {
-  color: #ab1717;
+  color: var(--color-red-primary);
 }
 
 .table {
@@ -35,8 +54,8 @@
 }
 
 .table thead th {
-  border-right: 1px solid #e4e4e4;
-  border-bottom: 1px solid #e4e4e4;
+  border-right: 1px solid var(--modal-border);
+  border-bottom: 1px solid var(--modal-border);
 }
 
 .badge {
@@ -47,17 +66,17 @@
 }
 
 .badge-completed {
-  color: #4caf50;
+  color: var(--color-green-primary);
   background-color: #e9fbea;
 }
 
 .badge-progress {
-  color: #ff9f43;
+  color: var(--color-orange-primary);
   background-color: #fff3d7;
 }
 
 .badge-denied {
-  color: #ea5455;
+  color: var(--color-red-primary);
   background-color: #fdeeee;
 }
 
@@ -67,7 +86,7 @@
 }
 
 .badge-improved {
-  color: #56a2e8;
+  color: var(--modal-primary);
   background-color: #f4fbff;
 }
 
@@ -76,17 +95,6 @@
   margin-bottom: 5px;
   font-size: 16px;
   font-weight: 600;
-}
-
-:root {
-  --modal-primary: #56a2e8;
-  --modal-border: #e4e4e4;
-  --modal-bg: #ffffff;
-  --modal-overlay: rgba(0, 0, 0, 0.5);
-  --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  --modal-radius: 12px;
-  --modal-text-primary: #505050;
-  --modal-text-secondary: #8e8e8e;
 }
 
 /* Modal Overlay */
@@ -183,7 +191,7 @@
 }
 
 .modal-close:hover {
-  background-color: #f0f0f0;
+  background-color: var(--bg-light);
   color: var(--modal-text-primary);
 }
 
@@ -307,7 +315,7 @@
 
 .modal-body .table tbody td {
   padding: 12px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--bg-light);
 }
 
 .modal-body .table tbody tr:hover {

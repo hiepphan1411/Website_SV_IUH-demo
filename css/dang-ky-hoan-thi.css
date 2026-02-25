@@ -1,3 +1,19 @@
+:root {
+  --primary-color: #3a74f0;
+  --secondary-color: #2e5266;
+  --success-color: #2e7d32;
+  --warning-color: #ff9800;
+  --danger-color: #d32f2f;
+  --light-bg: #f5f7fa;
+  --dark-bg: #1a1a1a;
+  --text-dark: #505050;
+  --text-light: #878787;
+  --border-color: #e0e0e0;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  --color-bg-blue-light: #f8f9fa;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +29,7 @@ body {
 }
 
 .filter-section {
-  background-color: #f8f9fa;
+  background-color: var(--color-bg-blue-light);
   padding: 15px 20px;
   border-radius: 4px;
   margin-bottom: 20px;
@@ -25,12 +41,12 @@ body {
 .filter-label {
   font-size: 13px;
   font-weight: 500;
-  color: #495057;
+  color: var(--text-dark);
 }
 
 .filter-select {
   padding: 8px 35px 8px 12px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   font-size: 14px;
   background-color: white;
@@ -44,7 +60,7 @@ body {
 
 .search-input {
   padding: 8px 35px 8px 12px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   font-size: 14px;
   background-color: white;
@@ -74,23 +90,23 @@ body {
 }
 
 .semester-header:hover {
-  background-color: #f8f9fa;
+  background-color: var(--color-bg-blue-light);
 }
 
 .semester-title {
   font-size: 16px;
   font-weight: 600;
-  color: #4dabf7;
+  color: var(--primary-color);
   margin-bottom: 4px;
 }
 
 .semester-info {
   font-size: 13px;
-  color: #6c757d;
+  color: var(--text-light);
 }
 
 .semester-toggle {
-  color: #868e96;
+  color: var(--text-light);
   transition: transform 0.3s;
 }
 
@@ -112,13 +128,13 @@ body {
 }
 
 .data-table thead th {
-  background-color: #f8f9fa;
-  color: #6c757d;
+  background-color: var(--color-bg-blue-light);
+  color: var(--text-light);
   font-weight: 600;
   font-size: 11px;
   text-transform: uppercase;
   padding: 14px 12px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border-color);
   text-align: center;
   white-space: nowrap;
 }
@@ -127,12 +143,12 @@ body {
   padding: 14px 12px;
   border-bottom: 1px solid #f1f3f5;
   font-size: 13px;
-  color: #495057;
+  color: var(--text-dark);
   text-align: center;
 }
 
 .data-table tbody tr:hover {
-  background-color: #f8f9fa;
+  background-color: var(--color-bg-blue-light);
 }
 
 .data-table tbody tr.expandable-row {
@@ -141,7 +157,7 @@ body {
 
 .detail-row {
   display: none;
-  background-color: #f8f9fa;
+  background-color: var(--color-bg-blue-light);
 }
 
 .detail-row.show {
@@ -162,7 +178,7 @@ body {
 .detail-section-title {
   font-size: 14px;
   font-weight: 600;
-  color: #4dabf7;
+  color: var(--primary-color);
   text-align: left;
 }
 
@@ -171,11 +187,11 @@ body {
 }
 
 .detail-table thead th {
-  background-color: #f8f9fa;
+  background-color: var(--color-bg-blue-light);
   font-weight: 600;
   font-size: 12px;
   padding: 10px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border-color);
   text-align: left;
 }
 
@@ -183,7 +199,7 @@ body {
   padding: 10px;
   border-bottom: 1px solid #f1f3f5;
   font-size: 13px;
-  color: #495057;
+  color: var(--text-dark);
 }
 
 .detail-table tbody tr:last-child td {
@@ -200,29 +216,29 @@ body {
 .pagination-btn {
   width: 32px;
   height: 32px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color);
   background-color: white;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #495057;
+  color: var(--text-dark);
 }
 
 .pagination-btn:hover {
-  background-color: #f8f9fa;
+  background-color: var(--color-bg-blue-light);
 }
 
 .pagination-btn.active {
   background-color: #e7f5ff;
-  color: #4dabf7;
-  border-color: #4dabf7;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .pagination-select {
   padding: 6px 30px 6px 10px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 13px;
   background-color: white;
@@ -235,13 +251,13 @@ body {
 
 .pagination-info {
   font-size: 13px;
-  color: #6c757d;
+  color: var(--text-light);
 }
 
 .no-data {
   text-align: center;
   padding: 30px;
-  color: #868e96;
+  color: var(--text-light);
   font-style: italic;
 }
 
@@ -259,11 +275,11 @@ body {
 }
 
 .action-btn.edit {
-  color: #495057;
+  color: var(--text-dark);
 }
 
 .action-btn.edit:hover {
-  color: #4dabf7;
+  color: var(--primary-color);
 }
 
 .action-btn.delete {
@@ -275,7 +291,7 @@ body {
 }
 
 .action-btn:disabled {
-  color: #dee2e6;
+  color: var(--border-color);
   cursor: not-allowed;
 }
 
@@ -322,8 +338,8 @@ body {
 }
 
 .modal-header {
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
+  background-color: var(--color-bg-blue-light);
+  border-bottom: 1px solid var(--border-color);
   padding: 20px 24px;
 }
 
@@ -344,7 +360,7 @@ body {
 .form-label {
   font-size: 14px;
   font-weight: 500;
-  color: #495057;
+  color: var(--text-dark);
   margin-bottom: 8px;
   display: block;
 }
@@ -357,7 +373,7 @@ body {
 .form-control {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 14px;
   transition: border-color 0.2s;
@@ -365,7 +381,7 @@ body {
 
 .form-control:focus {
   outline: none;
-  border-color: #4dabf7;
+  border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1);
 }
 
@@ -381,17 +397,17 @@ textarea.form-control {
 }
 
 .file-upload-area {
-  border: 2px dashed #dee2e6;
+  border: 2px dashed var(--border-color);
   border-radius: 8px;
   padding: 20px;
   text-align: center;
-  background-color: #f8f9fa;
+  background-color: var(--color-bg-blue-light);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .file-upload-area:hover {
-  border-color: #4dabf7;
+  border-color: var(--primary-color);
   background-color: #e7f5ff;
 }
 
@@ -403,17 +419,17 @@ textarea.form-control {
 
 .file-upload-text {
   font-size: 14px;
-  color: #495057;
+  color: var(--text-dark);
   margin-bottom: 4px;
 }
 
 .file-upload-note {
   font-size: 12px;
-  color: #868e96;
+  color: var(--text-light);
 }
 
 .modal-footer {
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid var(--border-color);
   padding: 16px 24px;
   display: flex;
   justify-content: flex-end;
@@ -422,7 +438,7 @@ textarea.form-control {
 
 .btn-cancel {
   background-color: #e9ecef;
-  color: #495057;
+  color: var(--text-dark);
   border: none;
   padding: 10px 24px;
   border-radius: 4px;
@@ -432,11 +448,11 @@ textarea.form-control {
 }
 
 .btn-cancel:hover {
-  background-color: #dee2e6;
+  background-color: var(--border-color);
 }
 
 .btn-submit {
-  background-color: #4dabf7;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   padding: 10px 24px;
@@ -453,11 +469,11 @@ textarea.form-control {
 .footer {
   text-align: center;
   padding: 20px;
-  color: #6c757d;
+  color: var(--text-light);
   font-size: 13px;
 }
 
 .section-title {
   padding-left: 10px;
-  border-left: 5px solid #56a2e8;
+  border-left: 5px solid var(--primary-color);
 }
