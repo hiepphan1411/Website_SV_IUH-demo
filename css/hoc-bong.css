@@ -1,28 +1,13 @@
 :root {
-  --sidebar-width: 260px;
-  --header-height: 60px;
-  --primary-color: #e7ecf0;
-  --secondary-color: #f9b200;
-  --success-color: #4caf50;
-  --warning-color: #ff9800;
-  --danger-color: #f44336;
-  --info-color: #2196f3;
-  --light-bg: #f4fbff;
-  --white: #ffffff;
-  --text-dark: #333333;
-  --text-light: #666666;
-  --border-color: #e0e0e0;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --text-blue: #56a2e8;
-  --primary-blue: #56a2e8;
-  --warning-orange: #ffa500;
-  --light-gray: #f5f7fa;
-  --border-gray: #e8edf3;
-  --text-dark: #333333;
-  --text-muted: #999999;
-  --blue-bg-light: #e8f4fd;
-  --orange-bg-light: #fff4e6;
+  --primary-blue: #3a74f0;
+  --primary-yellow: #febb13;
+  --success-green: #28a745;
+  --light-gray: #f5f5f5;
+  --border-color: #e4e4e4;
+  --gray-icon-color: #656565;
+  --table-border-color: #f7f7f7;
+  --table-header-bg: #f9fafb;
+  --color-text-primary: #505050;
 }
 
 /* Page Layout */
@@ -46,8 +31,8 @@
   font-size: 1.4rem;
 }
 
-.btn-register {
-  background: #56a2e8;
+.btn-primary {
+  background: var(--primary-blue);
   color: white;
   padding: 0.625rem 1.25rem;
   border: none;
@@ -61,9 +46,9 @@
   transition: all 0.2s;
 }
 
-/* .btn-register:hover {
+.btn-primary:hover {
   background: #0f2a6e;
-} */
+}
 
 /* Progress Timeline */
 .progress-timeline {
@@ -235,14 +220,14 @@
 }
 
 .filter-tab.active {
-  background: #56a2e8;
+  background: var(--primary-blue);
   color: white;
-  border-color: #56a2e8;
+  border-color: var(--primary-blue);
 }
 
 .filter-tab:hover:not(.active) {
-  border-color: #56a2e8;
-  color: #56a2e8;
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
 }
 
 /* Application Cards */
@@ -358,11 +343,11 @@
 
 .status-pending {
   background: #fffaf2;
-  color: #febb13;
+  color: var(--primary-yellow);
 }
 .status-pending-stats {
   background: #febb132b;
-  color: #febb13;
+  color: var(--primary-yellow);
 }
 
 .application-info-grid {
@@ -420,8 +405,8 @@
 }
 
 .btn-action:hover {
-  border-color: #56a2e8;
-  color: #56a2e8;
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
   background: #f9fafb;
 }
 
@@ -451,7 +436,7 @@
 }
 
 .view-toggle-btn.active {
-  background: #56a2e8;
+  background: var(--primary-blue);
   color: white;
 }
 
@@ -561,10 +546,8 @@
   font-size: 0.75rem;
 }
 
-.scholarship-table .req-icon {
-  width: 15px;
-  height: 15px;
-  font-size: 0.6rem;
+.scholarship-table .requirement-compact i {
+  font-size: 0.625rem;
 }
 
 .scholarship-table .table-actions {
@@ -585,14 +568,14 @@
 }
 
 .scholarship-table .btn-table:hover {
-  border-color: #56a2e8;
-  color: #56a2e8;
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
 }
 
 .scholarship-table .btn-table.btn-primary {
-  background: #56a2e8;
+  background: var(--primary-blue);
   color: white;
-  border-color: #56a2e8;
+  border-color: var(--primary-blue);
 }
 
 .scholarship-table .btn-table.btn-primary:hover {
@@ -705,30 +688,9 @@
   color: #374151;
 }
 
-.req-icon {
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 0.7rem;
-}
-
-.req-icon-met {
-  background: rgba(16, 185, 129, 0.2);
-  color: #10b981;
-}
-
-.req-icon-unmet {
-  border: 1.5px solid #d9d9d9;
-  background: white;
-  border-radius: 3px;
-}
-
-.req-text-unmet {
-  color: #9ca3af;
+.requirement-item i {
+  font-size: 0.75rem;
+  width: 14px;
 }
 
 .scholarship-meta {
@@ -761,7 +723,7 @@
 .btn-apply {
   flex: 2;
   padding: 0.5rem;
-  background: #56a2e8;
+  background: var(--primary-blue);
   color: white;
   border: none;
   border-radius: 6px;
@@ -776,7 +738,7 @@
 }
 
 .btn-apply:hover {
-  background: #56a2e8;
+  background: var(--primary-blue);
 }
 
 .btn-apply.disabled {
@@ -805,8 +767,8 @@
 }
 
 .btn-details:hover {
-  border-color: #56a2e8;
-  color: #56a2e8;
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
   background: #f9fafb;
 }
 
@@ -963,7 +925,7 @@
 .detail-list li .btn-link {
   background: none;
   border: none;
-  color: #56a2e8;
+  color: var(--primary-blue);
   font-weight: 600;
   cursor: pointer;
   display: flex;
@@ -977,7 +939,7 @@
 
 .detail-list li .btn-link:hover {
   background: #eff6ff;
-  color: #56a2e8;
+  color: var(--primary-blue);
 }
 
 .detail-description {
@@ -1053,7 +1015,7 @@
 .form-field select:focus,
 .form-field textarea:focus {
   outline: none;
-  border-color: #56a2e8;
+  border-color: var(--primary-blue);
   box-shadow: 0 0 0 3px rgba(86, 162, 232, 0.1);
 }
 
@@ -1077,7 +1039,7 @@
 }
 
 .file-upload:hover {
-  border-color: #56a2e8;
+  border-color: var(--primary-blue);
   background: #f9fafb;
 }
 
@@ -1129,7 +1091,7 @@
 }
 
 .uploaded-file-info i {
-  color: #56a2e8;
+  color: var(--primary-blue);
 }
 
 .remove-file {
@@ -1178,7 +1140,7 @@
 
 .btn-submit {
   padding: 0.625rem 1.25rem;
-  background: #56a2e8;
+  background: var(--primary-blue);
   color: white;
   border: none;
   border-radius: 6px;
@@ -1192,7 +1154,7 @@
 }
 
 .btn-submit:hover {
-  background: #56a2e8;
+  background: var(--primary-blue);
 }
 
 .btn-submit:disabled {
@@ -1201,12 +1163,7 @@
 }
 .amount-pending {
   font-size: 13px;
-  color: #febb13;
-}
-
-.met {
-  font-size: 13px;
-  color: #10b981;
+  color: var(--primary-yellow);
 }
 
 /* Responsive Modal */

@@ -117,7 +117,7 @@ function renderTable(data = certificateRequestData) {
           : `<span class="badge badge-denied">Từ chối</span>`;
 
     const editIcon = item.editable
-      ? `<i class="fa-solid fa-pen-to-square" style="color: #56a2e8; cursor: pointer;"></i>`
+      ? `<i class="fa-solid fa-pen-to-square" style="color: #3a74f0; cursor: pointer;"></i>`
       : "";
 
     const row = document.createElement("tr");

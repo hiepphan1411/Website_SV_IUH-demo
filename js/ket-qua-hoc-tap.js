@@ -642,7 +642,7 @@ function renderAllSemesters() {
     if (hasVisibleSubjects) {
       html += `
         <div class="semester-table-wrapper">
-          <div style="background-color: #4a90e2; padding: 16px 24px; width: 100%;">
+          <div style="background-color: var(--primary-color); padding: 16px 24px; width: 100%;">
             <h4 style="color: white; margin: 0; font-size: 18px; font-weight: 600;">
               ${semester.hocKy} (${semester.namHoc})
             </h4>
@@ -745,7 +745,7 @@ function renderTable(semester) {
   const { maxThuongXuyen, maxThucHanh } = getMaxColumns(semester);
 
   let html = `
-    <div style="background-color: #4a90e2; padding: 16px 24px;">
+    <div style="background-color: var(--primary-color); padding: 16px 24px;">
       <h4 style="color: white; margin: 0; font-size: 18px; font-weight: 600;">
         ${semester.hocKy} (${semester.namHoc})
       </h4>
@@ -770,7 +770,7 @@ function renderTable(semester) {
     <tbody>
       <tr>
         <td colspan="${12 + maxThuongXuyen + maxThucHanh}" style="text-align: center; padding: 40px; color: #666;">
-          <i class="fas fa-check-circle" style="font-size: 48px; color: #4caf50; margin-bottom: 16px;"></i>
+          <i class="fas fa-check-circle" style="font-size: 48px; color: var(--success-color); margin-bottom: 16px;"></i>
           <p style="font-size: 16px; margin: 0;">Không có môn nào cần cải thiện</p>
         </td>
       </tr>
@@ -1033,8 +1033,8 @@ function createGradeComparisonChart(semesterIndex = null) {
           type: "bar",
           label: "Điểm của bạn",
           data: studentGrades,
-          backgroundColor: "#4a90e2",
-          borderColor: "#4a90e2",
+          backgroundColor: "#3a74f0",
+          borderColor: "#3a74f0",
           borderWidth: 0,
           borderRadius: 6,
           maxBarThickness: 40,
@@ -1169,7 +1169,7 @@ function getGradeColor(grade) {
   const colorMap = {
     "A+": "#28a745",
     A: "#5cb85c",
-    "B+": "#4a90e2",
+    "B+": "#3a74f0",
     B: "#0275d8",
     "C+": "#f0ad4e",
     C: "#ff9800",
@@ -1207,13 +1207,13 @@ function createGpaTrendChart() {
         {
           label: "GPA Học kỳ",
           data: gpaHocKy,
-          borderColor: "#4a90e2",
+          borderColor: "#3a74f0",
           backgroundColor: "rgba(21, 56, 152, 0.1)",
           tension: 0.4,
           fill: true,
           pointRadius: window.innerWidth < 768 ? 4 : 6,
           pointHoverRadius: window.innerWidth < 768 ? 6 : 8,
-          pointBackgroundColor: "#4a90e2",
+          pointBackgroundColor: "#3a74f0",
           pointBorderColor: "#fff",
           pointBorderWidth: 2,
         },

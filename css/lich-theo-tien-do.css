@@ -1,5 +1,5 @@
 :root {
-  --primary-blue: #56a2e8;
+  --primary-blue: #3a74f0;
   --primary-yellow: #ffb800;
   --success-green: #28a745;
   --light-gray: #f5f5f5;
@@ -37,6 +37,8 @@ body {
   border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
   margin-top: 15px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .schedule-header {
@@ -337,11 +339,11 @@ body {
 }
 
 .status-ongoing {
-  color: #28a745;
+  color: var(--color-practice);
 }
 
 .status-ended {
-  color: #fd5353;
+  color: var(--color-offline);
 }
 
 .tooltip-footer i {
@@ -408,7 +410,7 @@ body {
 
 .exam {
   background-color: var(--color-exam);
-  color: #333;
+  color: var(--color-text-primary);
 }
 
 .offline {
@@ -421,7 +423,7 @@ body {
 
 .month-header {
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary);
   padding: 12px 8px;
   text-align: center;
   border-bottom: 1px solid var(--color-border);
@@ -487,16 +489,15 @@ body {
 }
 
 .footer-section {
+  margin-top: 20px;
   text-align: center;
   padding: 20px;
   color: #999;
   font-size: 12px;
   background-color: white;
   margin-top: auto;
-  margin-bottom: 24px;
-  margin-left: 24px;
-  margin-right: 24px;
-  border-radius: 8px;
+  border-radius: 4px;
+  /* flex-shrink: 0; */
 }
 
 /* Responsive cho schedule-header */
