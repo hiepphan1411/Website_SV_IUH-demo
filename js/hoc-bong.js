@@ -4,7 +4,7 @@ const scholarshipData = {
     {
       id: 1,
       title: "Học bổng Khuyến khích học tập - Loại B",
-      type: "Khuyến khích",
+      type: "Nội bộ",
       typeBadgeClass: "type-academic",
       status: "approved",
       statusText: "Đã duyệt",
@@ -92,7 +92,7 @@ const scholarshipData = {
       id: 1,
       title: "Học bổng Khuyến khích - Loại A",
       typeBadge: "Nội bộ",
-      typeBadgeClass: "type-internal",
+      typeBadgeClass: "type-academic",
       amount: "100% học phí",
       amountNote: "Bình quân học phí học kỳ",
       requirements: [
@@ -110,7 +110,7 @@ const scholarshipData = {
       id: 2,
       title: "Học bổng Khuyến khích - Loại B",
       typeBadge: "Nội bộ",
-      typeBadgeClass: "type-internal",
+      typeBadgeClass: "type-academic",
       amount: "70% học phí",
       amountNote: "Bình quân học phí học kỳ",
       requirements: [
@@ -128,7 +128,7 @@ const scholarshipData = {
       id: 3,
       title: "Học bổng Hỗ trợ học tập",
       typeBadge: "Nội bộ",
-      typeBadgeClass: "type-internal",
+      typeBadgeClass: "type-academic",
       amount: "1.500.000đ",
       amountNote: "Theo kết quả học tập",
       requirements: [
@@ -450,7 +450,6 @@ document.addEventListener("DOMContentLoaded", function () {
   renderApplications();
   renderScholarships();
 
-  // View toggle functionality
   const viewToggleBtns = document.querySelectorAll(".view-toggle-btn");
   viewToggleBtns.forEach((btn) => {
     btn.addEventListener("click", function () {
@@ -561,11 +560,18 @@ function openDetailModal(scholarship) {
 
   document.getElementById("detailDescription").textContent =
     "Học bổng dành cho sinh viên có thành tích học tập xuất sắc, có ý thức rèn luyện tốt. Học bổng được cấp hàng học kỳ dựa trên kết quả học tập của học kỳ trước đó. Sinh viên được nhận học bổng dưới hình thức miễn giảm học phí trực tiếp.";
+
+  const applyBtn = document.querySelector(
+    "#detailModal .modal-footer .btn-apply",
+  );
+  if (applyBtn) {
+    applyBtn.style.display = scholarship.isAutomatic ? "none" : "";
+  }
 }
 
-function openApplyModal(scholarshipId) {
-  closeModal("detailModal");
-}
+// function openApplyModal(scholarshipId) {
+//   closeModal("detailModal");
+// }
 
 function openApplicationDetailModal(app) {
   document.getElementById("appDetailName").textContent = app.title;
