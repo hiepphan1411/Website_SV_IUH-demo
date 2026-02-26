@@ -464,11 +464,6 @@ body {
   color: var(--white);
 }
 
-.active {
-  background: var(--info-color);
-  color: var(--white);
-}
-
 .btn-toggle {
   border: 1px solid #dee2e6;
   background-color: var(--white);

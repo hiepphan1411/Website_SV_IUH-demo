@@ -288,11 +288,10 @@ function updateStatusIndicators() {
     ".status-gvcn .status-value d-hidden",
   );
 
-  //   if (ltStatus) ltStatus.textContent = `${percentLT}%`;
-  //   if (gvcnStatus) gvcnStatus.textContent = `${percentGVCN}%`;
+
 }
 
-// Hàm render bảng sinh viên
+// bảng sinh viên
 function renderStudentTable() {
   const tableBody = document.querySelector("tbody");
   if (!tableBody) return;

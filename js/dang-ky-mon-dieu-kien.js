@@ -1376,8 +1376,6 @@ let selectedClass = null;
 let registeredClasses = [];
 
 function init() {
-    console.log('Initializing page...');
-    console.log('Courses:', courses);
     renderCourseTable();
     initScheduleGrid();
     updateMobileSchedule(2);
@@ -1389,86 +1387,37 @@ function renderCourseTable() {
     const searchText = $('#searchCourse').val().toLowerCase();
     const activeTab = $('.tab-item.active').data('tab');
 
-    console.log('Rendering courses, activeTab:', activeTab);
-
     const filtered = courses.filter((course) => {
         const matchSearch =
             course.code.includes(searchText) ||
             course.name.toLowerCase().includes(searchText);
         const matchTab = course.type === activeTab;
 
-        // Kiểm tra môn học đã được đăng ký chưa
+        // môn học đã được đăng ký chưa
         const isRegistered = registeredClasses.some(
             (reg) => reg.courseId === course.id,
         );
 
-        // hiển thị các môn chưa đăng ký
+        // các môn chưa đăng ký
         return matchSearch && matchTab && !isRegistered;
     });
-
-    console.log('Filtered courses:', filtered.length);
 
     const tbody = $('#courseTable tbody');
     tbody.empty();
 
     filtered.forEach((course, index) => {
-        let conditionDisplay = '';
-
-        const prerequisite = course.prerequisiteId
-            ? courses.find((c) => c.id === course.prerequisiteId)
-            : null;
-
-        // Xác định ký tự điều kiện
-        if (course.condition === 'A') {
-            conditionDisplay = 'A';
-        } else if (course.condition === 'B') {
-            conditionDisplay = 'B';
-        } else if (course.condition === 'C') {
-            conditionDisplay = 'C';
-        } else {
-            conditionDisplay = '-';
-        }
-
-        // Không cần tooltip nữa, chỉ hiển thị ký tự điều kiện
-        const conditionCell = conditionDisplay;
-
-        // Xác định icon trạng thái môn học
-        let statusIcon = '';
-        if (course.type === 'new') {
-            statusIcon = '<span class="status-dot new" title="Môn mới"></span>';
-        } else if (course.type === 'studying') {
-            statusIcon =
-                '<span class="status-dot studying" title="Đang học"></span>';
-        } else if (course.type === 'completed') {
-            statusIcon =
-                '<span class="status-dot completed" title="Đã hoàn thành"></span>';
-        }
-
-        // Xác định class cho dòng không đủ điều kiện
         let rowClass = '';
-        if (course.condition === 'A' && prerequisite) {
-            rowClass = 'not-eligible';
-        }
-
         const row = $(`
                     <tr data-course-id="${course.id}" class="${rowClass}">
                         <td>${index + 1}</td>
                         <td>${course.code}</td>
                         <td>${course.name}</td>
                         <td>${course.credits}</td>
-                        <td>${statusIcon}</td>
-                        <td>${conditionCell}</td>
                     </tr>
                 `);
-
-        // Chỉ cho phép click nếu không phải dòng không đủ điều kiện
-        if (course.condition !== 'A') {
-            row.on('click', function () {
-                selectCourse(course);
-            });
-        } else {
-            row.css('cursor', 'not-allowed');
-        }
+        row.on('click', function () {
+            selectCourse(course);
+        });
 
         tbody.append(row);
     });
@@ -1493,10 +1442,7 @@ function viewCourseDetail(course) {
                 <label>SỐ TÍN CHỈ</label>
                 <div class="value">${course.credits}</div>
             </div>
-            <div class="info-item">
-                <label>LOẠI MÔN</label>
-                <div class="value">${course.required ? 'Bắt buộc' : 'Tự chọn'}</div>
-            </div>
+        
         </div>
     `;
 
@@ -1591,6 +1537,19 @@ function selectCourse(course) {
                     <p>Chọn một lớp học phần để xem chi tiết</p>
                 </div>
             `);
+
+    // Scroll xuống phần lớp học phần
+    setTimeout(() => {
+        const waitingSection = $('.two-column');
+        if (waitingSection.length) {
+            $('html, body').animate(
+                {
+                    scrollTop: waitingSection.offset().top - 100,
+                },
+                500,
+            );
+        }
+    }, 100);
 }
 
 // lớp học phần chờ đăng ký
@@ -2566,10 +2525,6 @@ function attachEventHandlers() {
 }
 
 function updateMobileSchedule(selectedDay = null) {
-    console.log('=== UPDATE MOBILE SCHEDULE ===');
-    console.log('Selected Day:', selectedDay);
-    console.log('Registered Classes:', registeredClasses);
-
     const dayNames = {
         2: 'Th 2',
         3: 'Th 3',
@@ -2584,7 +2539,6 @@ function updateMobileSchedule(selectedDay = null) {
     const scheduleByDay = {};
 
     if (registeredClasses.length === 0) {
-        console.log('NO REGISTERED CLASSES!');
         $('#mobileScheduleContent').html(
             '<div style="text-align: center; padding: 30px; color: #999;">Chưa đăng ký lớp học phần nào</div>',
         );
@@ -2592,7 +2546,6 @@ function updateMobileSchedule(selectedDay = null) {
     }
 
     registeredClasses.forEach((item, index) => {
-        console.log(`Processing item ${index}:`, item);
         const course = item.course;
         const cls = item.class;
 
@@ -2666,9 +2619,6 @@ function updateMobileSchedule(selectedDay = null) {
         }
     });
 
-    console.log('Full schedule by day:', fullScheduleByDay);
-    console.log('Filtered schedule by day:', scheduleByDay);
-
     let html = '';
     const sortedDays = Object.keys(scheduleByDay).sort(
         (a, b) => parseInt(a) - parseInt(b),
@@ -2712,13 +2662,10 @@ function updateMobileSchedule(selectedDay = null) {
         });
     }
 
-    console.log('Rendering HTML, length:', html.length);
     $('#mobileScheduleContent').html(html);
     $('#mobileScheduleList').css('display', 'block');
 
     highlightTabsWithSchedule(fullScheduleByDay);
-
-    console.log('=== END UPDATE ===');
 }
 
 function highlightTabsWithSchedule(scheduleByDay) {
