@@ -371,7 +371,7 @@ function renderScholarshipTable(scholarship) {
         <div style="font-size: 0.75rem; color: #6b7280; margin-bottom: 0.25rem;">${scholarship.deadline}</div>
         <div style="font-size: 0.75rem; color: #6b7280;">${scholarship.slots}</div>
       </td>
-      <td>
+      <td >
         <div class="table-actions">
           ${applyButton}
           <button class="btn-table" data-bs-toggle="modal" data-bs-target="#detailModal" data-scholarship-id="${scholarship.id}">Chi tiết</button>
@@ -409,7 +409,7 @@ function renderScholarships(viewMode = "grid") {
             <th>Mức học bổng</th>
             <th>Điều kiện</th>
             <th>Thông tin</th>
-            <th>Thao tác</th>
+            <th class="text-center">Thao tác</th>
           </tr>
         </thead>
         <tbody>

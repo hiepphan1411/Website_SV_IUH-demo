@@ -1,6 +1,7 @@
 :root {
   --primary-blue: #3a74f0;
   --primary-yellow: #febb13;
+  --white: #ffffff;
   --success-green: #28a745;
   --light-gray: #f5f5f5;
   --border-color: #e4e4e4;
@@ -465,7 +466,7 @@
 
 .scholarship-table th {
   padding: 0.75rem;
-  text-align: left;
+  text-align: center;
   font-size: 0.8125rem;
   font-weight: 600;
   color: #6b7280;
@@ -517,6 +518,7 @@
 
 .scholarship-table .table-actions {
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
 }
 
