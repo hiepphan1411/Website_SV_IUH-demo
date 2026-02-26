@@ -1428,107 +1428,6 @@ canvas#gpaChart {
   }
 }
 
-@media (max-width: 768px) {
-  .sidebar {
-    display: none;
-  }
-  .header-container {
-    padding: 10px;
-  }
-
-  .left-header-container {
-    max-width: 100%;
-  }
-
-  .right-header-container {
-    gap: 10px;
-  }
-
-  .right-header-container > div span {
-    display: none;
-  }
-
-  .search-bar {
-    max-width: 150px;
-  }
-
-  /* Course Item Tablet Responsive */
-  .course-item {
-    height: auto;
-    min-height: 210px;
-    padding: 12px 16px;
-  }
-
-  .course-header {
-    height: auto;
-    gap: 12px;
-  }
-
-  .course-title {
-    font-size: 14px;
-  }
-
-  .course-meta {
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 10px;
-    font-size: 13px;
-  }
-
-  .progress-title {
-    font-size: 15px;
-  }
-
-  .progress-row {
-    font-size: 13px;
-  }
-  .infor-text-container {
-    flex-direction: column;
-  }
-
-  .second-priority-container {
-    grid-template-columns: 1fr;
-  }
-
-  .quick-function-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .grid-2-cols {
-    grid-template-columns: 1fr;
-  }
-
-  .chart svg {
-    height: 250px;
-  }
-
-  /* Tiến độ học tập – tablet */
-  .gpa-progress-container {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .gpa-display-card {
-    min-width: unset;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 16px 20px !important;
-    border-radius: 12px !important;
-    gap: 12px;
-  }
-
-  .gpa-display-card .gpa-number {
-    font-size: 36px;
-    margin-bottom: 0;
-  }
-
-  .gpa-display-card .gpa-label {
-    margin-bottom: 6px;
-  }
-}
-
 @media (max-width: 576px) {
   .dashboard-content {
     padding: 0.75rem;
@@ -1679,7 +1578,7 @@ canvas#gpaChart {
   background: #555;
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .sidebar {
     display: none;
   }
@@ -1786,16 +1685,7 @@ canvas#gpaChart {
   .access-tabs {
     flex-wrap: wrap;
   }
-}
-
-.dashboard-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--header-height);
-  z-index: 1000;
-}
+} */
 
 .dashboard-sidebar {
   position: fixed;
@@ -1898,7 +1788,6 @@ canvas#gpaChart {
 }
 
 #quickAccessCompact > div {
-  /* Override bootstrap col-2 */
   flex: none;
   width: auto;
   max-width: none;
