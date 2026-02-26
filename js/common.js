@@ -22,14 +22,12 @@ function initHeaderDropdown() {
       this.classList.toggle("active");
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener("click", function (e) {
       if (!loginInfor.contains(e.target)) {
         loginInfor.classList.remove("active");
       }
     });
 
-    // Prevent dropdown from closing when clicking inside
     const dropdown = loginInfor.querySelector(".user-dropdown");
     if (dropdown) {
       dropdown.addEventListener("click", function (e) {
