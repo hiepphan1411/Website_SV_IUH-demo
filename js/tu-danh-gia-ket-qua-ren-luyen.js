@@ -246,7 +246,7 @@ const trainingDetailData = {
                             isBold: false,
                             children: [
                                 {
-                                    id: '-',
+                                    id: 'I.1.1.a',
                                     title: 'Đi học đầy đủ và đúng giờ',
                                     minScore: 0,
                                     maxScore: 2,
@@ -260,7 +260,7 @@ const trainingDetailData = {
                                     hasNote: true,
                                 },
                                 {
-                                    id: '-',
+                                    id: 'I.1.1.b',
                                     title: 'Thực hiện đầy đủ, nghiêm túc các loại bài tập',
                                     minScore: 0,
                                     maxScore: 2,
@@ -287,7 +287,7 @@ const trainingDetailData = {
                             isBold: false,
                             children: [
                                 {
-                                    id: '-',
+                                    id: 'I.1.2.a',
                                     title: 'Thực hiện đầy đủ, nghiêm túc các loại bài tập',
                                     minScore: 0,
                                     maxScore: 2,
@@ -316,7 +316,7 @@ const trainingDetailData = {
                     isBold: false,
                     children: [
                         {
-                            id: '-',
+                            id: 'I.2.a',
                             title: 'Sinh viên bỏ thì không có lí do',
                             minScore: -4,
                             maxScore: 0,
@@ -344,7 +344,7 @@ const trainingDetailData = {
             pctsScore: 15.0,
             children: [
                 {
-                    id: '-',
+                    id: 'II.a',
                     title: 'Sinh viên bỏ thì không có Ý định',
                     minScore: -4,
                     maxScore: 0,
@@ -370,7 +370,7 @@ const trainingDetailData = {
             pctsScore: 15.0,
             children: [
                 {
-                    id: '-',
+                    id: 'III.a',
                     title: 'Sinh viên bỏ thì không có Ý định',
                     minScore: -4,
                     maxScore: 0,
@@ -396,7 +396,7 @@ const trainingDetailData = {
             pctsScore: 15.0,
             children: [
                 {
-                    id: '-',
+                    id: 'IV.a',
                     title: 'Sinh viên bỏ thì không có Ý định',
                     minScore: -4,
                     maxScore: 0,
@@ -422,7 +422,7 @@ const trainingDetailData = {
             pctsScore: 15.0,
             children: [
                 {
-                    id: '-',
+                    id: 'V.a',
                     title: 'Sinh viên bỏ thì không có Ý định',
                     minScore: -4,
                     maxScore: 0,
@@ -448,7 +448,7 @@ const trainingDetailData = {
             pctsScore: 15.0,
             children: [
                 {
-                    id: '-',
+                    id: 'VI.a',
                     title: 'Sinh viên bỏ thì không có Ý định',
                     minScore: -4,
                     maxScore: 0,
@@ -513,23 +513,34 @@ function renderChildRow(tbody, item, parentId, isVisible) {
     if (!isVisible) tr.style.display = 'none';
 
     let dataLevel = '0';
-    if (item.id === '-') {
+    if (item.id.match(/^[IVX]+\.\d+\.\d+\.[a-z]$/)) {
+        // I.1.1.a
         dataLevel = '3';
-    } else if (item.id.match(/^[IVX]+\.\d+\.\d+/)) {
+    } else if (item.id.match(/^[IVX]+\.\d+\.[a-z]$/)) {
+        // I.2.a
+        dataLevel = '3';
+    } else if (item.id.match(/^[IVX]+\.[a-z]$/)) {
+        // II.a
+        dataLevel = '3';
+    } else if (item.id.match(/^[IVX]+\.\d+\.\d+$/)) {
+        // I.1.1
         dataLevel = '2';
     } else if (item.id.match(/^[IVX]+\.\d+$/)) {
+        // I.1
         dataLevel = '1';
     }
     tr.setAttribute('data-level', dataLevel);
 
+    const displayId = dataLevel === '3' ? '-' : item.id;
+
     if (item.hasNote) {
         tr.innerHTML = `
-            <td>${item.id}</td>
+            <td>${displayId}</td>
             <td class="text-start">${item.title}</td>
             <td>${item.minScore}</td>
             <td>${item.maxScore}</td>
-            <td><input type="text" class="form-control" /></td>
-            <td><input type="text" class="form-control" /></td>
+            <td><input type="text" class="form-control text-center" /></td>
+            <td><input type="text" class="form-control text-center" /></td>
             <td>
                 <div class="custom-file-upload">
                     <input type="file" id="file-${parentId}-${item.id}" class="file-input" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
@@ -561,7 +572,7 @@ function renderChildRow(tbody, item, parentId, isVisible) {
         `;
     } else {
         tr.innerHTML = `
-            <td>${item.id}</td>
+            <td>${displayId}</td>
             <td class="text-start">${item.title}</td>
             <td>${item.minScore}</td>
             <td>${item.maxScore}</td>
