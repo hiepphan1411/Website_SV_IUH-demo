@@ -1533,8 +1533,36 @@ canvas#gpaChart {
   }
 
   /* Tiến độ học tập – mobile */
+  .gpa-progress-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .gpa-display-card {
+    min-width: unset;
+    width: 100%;
+    padding: 1rem !important;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-radius: 12px !important;
+  }
+
   .gpa-display-card .gpa-number {
     font-size: 28px;
+    margin-bottom: 0 !important;
+  }
+
+  .gpa-display-card .gpa-label {
+    font-size: 12px;
+    margin-bottom: 0 !important;
+  }
+
+  .gpa-display-card .gpa-badge {
+    font-size: 11px;
+    padding: 3px 8px;
   }
 
   .credit-number {
@@ -1556,6 +1584,39 @@ canvas#gpaChart {
 
   .semester-info-open {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .gpa-progress-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .gpa-display-card {
+    min-width: unset;
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 16px;
+    padding: 1.25rem !important;
+    text-align: center;
+    border-radius: 12px !important;
+  }
+
+  .gpa-display-card .gpa-number {
+    font-size: 34px;
+    margin-bottom: 4px !important;
+  }
+
+  .gpa-display-card .gpa-label {
+    margin-bottom: 4px !important;
+  }
+
+  .progress-credit-section {
+    width: 100%;
   }
 }
 
