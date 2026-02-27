@@ -395,7 +395,7 @@ function renderScholarships(viewMode = "grid") {
             <th>Mức học bổng</th>
             <th>Điều kiện</th>
             <th>Thông tin</th>
-            <th>Thao tác</th>
+            <th class="text-center">Thao tác</th>
           </tr>
         </thead>
         <tbody>

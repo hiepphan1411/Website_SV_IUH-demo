@@ -1797,19 +1797,19 @@ function renderRegisteredTable() {
 
     const row = $(`
                     <tr>
-                        <td style="text-align: center;">${index + 1}</td>
-                        <td style="text-align: center;">${reg.course.code}</td>
-                        <td style="text-align: left;">${reg.course.name}</td>
-                        <td style="text-align: center;">${reg.course.credits}</td>
-                        <td style="text-align: center;">${practiceGroup}</td>
-                        <td style="text-align: center;">${formatMoney(feeL1)}</td>
-                        <td style="text-align: center;">${formatMoney(feeL2)}</td>
-                        <td style="text-align: center;">30/05/2025</td>
-                        <td style="text-align: center;"><span class="${paymentStatusClass}">${paymentStatus}</span></td>
-                        <td style="text-align: center;"><span class="ready">Đăng ký mới</span></td>
-                        <td style="text-align: center;">${reg.registeredDate}</td>
-                        <td style="text-align: center;"><span class="status-label ${classStatusClass}">${classStatus}</span></td>
-                        <td style="text-align: center; display: flex; justify-content: center; gap: 5px; flex-direction: row;">
+                        <td class="text-center">${index + 1}</td>
+                        <td class="text-center">${reg.course.code}</td>
+                        <td class="text-end">${reg.course.name}</td>
+                        <td class="text-center">${reg.course.credits}</td>
+                        <td class="text-center">${practiceGroup}</td>
+                        <td class="text-center">${formatMoney(feeL1)}</td>
+                        <td class="text-center">${formatMoney(feeL2)}</td>
+                        <td class="text-center">30/05/2025</td>
+                        <td class="text-center"><span class="${paymentStatusClass}">${paymentStatus}</span></td>
+                        <td class="text-center"><span class="ready">Đăng ký mới</span></td>
+                        <td class="text-center">${reg.registeredDate}</td>
+                        <td class="text-center"><span class="status-label ${classStatusClass}">${classStatus}</span></td>
+                        <td class="text-center d-flex justify-content-center flex-row gap-1">
                             <span class="action-icon view" onclick="viewRegistered(${index})" title="Xem"><i class="fa-solid fa-eye"></i></span>
                             <span class="action-icon delete" onclick="deleteRegistered(${index})" title="Xóa"><i class="fa-solid fa-trash"></i></span>
                         </td>
