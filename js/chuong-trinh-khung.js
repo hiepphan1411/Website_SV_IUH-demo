@@ -6,7 +6,7 @@ const curriculumData = {
         stt: 1,
         semester: 1,
         knowledgeBlock: "GDCN",
-        courseName: "Kỹ năng thăm gia quyết các vụ án dân sự",
+        courseName: "Kỹ năng tham gia giải quyết các vụ án dân sự",
         courseCode: "000093",
         prerequisite: "-",
         equivalent: "[010115]",
@@ -65,7 +65,7 @@ const curriculumData = {
           stt: 1,
           semester: 1,
           knowledgeBlock: "GDCN",
-          courseName: "Kỹ năng thăm gia giải quyết các vụ án dân sự 1",
+          courseName: "Kỹ năng tham gia giải quyết các vụ án dân sự 1",
           courseCode: "000093",
           prerequisite: "-",
           equivalent: "[010115]",
@@ -123,7 +123,7 @@ const curriculumData = {
           stt: 1,
           semester: 3,
           knowledgeBlock: "GDCN",
-          courseName: "Kỹ năng thăm gia giải quyết các vụ án dân sự 2",
+          courseName: "Kỹ năng tham gia giải quyết các vụ án dân sự 2",
           courseCode: "000094",
           prerequisite: "000093 (b)",
           equivalent: "[010115]",
@@ -654,17 +654,17 @@ function renderSemesterView() {
               <table class="table">
                 <thead>
                   <tr>
-                    <th>STT</th>
-                    <th>KHỐI KIẾN THỨC</th>
+                    <th class="column-center">STT</th>
+                    <th class="column-center">KHỐI KIẾN THỨC</th>
                     <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                    <th>MÃ HP</th>
-                    <th>HỌC PHẦN</th>
-                    <th>HP TƯƠNG ĐƯƠNG</th>
-                    <th>HP THAY THẾ</th>
-                    <th>SỐ TC</th>
-                    <th>SỐ TIẾT LÝ</th>
-                    <th>SỐ TIẾT THI</th>
-                    <th>ĐẠT</th>
+                    <th class="column-center">MÃ HP</th>
+                    <th class="column-center">HỌC PHẦN</th>
+                    <th class="column-center">HP TƯƠNG ĐƯƠNG</th>
+                    <th class="column-center">HP THAY THẾ</th>
+                    <th class="column-center">SỐ TC</th>
+                    <th class="column-center">SỐ TIẾT LÝ</th>
+                    <th class="column-center">SỐ TIẾT THI</th>
+                    <th class="column-center">ĐẠT</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -684,17 +684,17 @@ function renderSemesterView() {
               <table class="table">
                 <thead>
                   <tr>
-                    <th>STT</th>
-                    <th>KHỐI KIẾN THỨC</th>
+                    <th class="column-center">STT</th>
+                    <th class="column-center">KHỐI KIẾN THỨC</th>
                     <th>TÊN MÔN HỌC/HỌC PHẦN</th>
-                    <th>MÃ HP</th>
-                    <th>HỌC PHẦN</th>
-                    <th>HP TƯƠNG ĐƯƠNG</th>
-                    <th>HP THAY THẾ</th>
-                    <th>SỐ TC</th>
-                    <th>SỐ TIẾT LÝ</th>
-                    <th>SỐ TIẾT THI</th>
-                    <th>ĐẠT</th>
+                    <th class="column-center">MÃ HP</th>
+                    <th class="column-center">HỌC PHẦN</th>
+                    <th class="column-center">HP TƯƠNG ĐƯƠNG</th>
+                    <th class="column-center">HP THAY THẾ</th>
+                    <th class="column-center">SỐ TC</th>
+                    <th class="column-center">SỐ TIẾT LÝ</th>
+                    <th class="column-center">SỐ TIẾT THI</th>
+                    <th class="column-center">ĐẠT</th>
                   </tr>
                 </thead>
                 <tbody>
