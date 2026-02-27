@@ -1510,6 +1510,7 @@ function renderCourseTable() {
             row.on('click', function () {
                 selectCourse(course);
             });
+            row.css('cursor', 'pointer');
         } else {
             row.css('pointer-events', 'auto'); // Cho phép hover để xem tooltip
             row.css('cursor', 'not-allowed');
