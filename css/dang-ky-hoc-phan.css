@@ -235,7 +235,6 @@ body {
     padding: 10px 8px;
     border-bottom: 1px solid var(--border-color);
     color: var(--text-dark);
-    cursor: pointer;
     font-size: 13px;
     overflow: visible;
 }
@@ -278,7 +277,7 @@ body {
     color: #d32f2f;
 }
 
-/* Custom tooltip cho dòng */
+/* tooltip cho dòng */
 .table-courses tbody tr[title]:hover::after {
     content: attr(title);
     position: absolute;
